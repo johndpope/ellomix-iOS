@@ -62,7 +62,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     //MARK: YouTube
     func youtubeRequest(query: String) {
         print("---------------REQUESTING FROM YOUTUBE-----------------")
-        Alamofire.request(youtubeSearchURL, parameters: ["part":"snippet", "type":"video", "q":query, "key":YouTubeAPIKey]).responseJSON(completionHandler: { response in
+        Alamofire.request(youtubeSearchURL, parameters: ["part":"snippet", "type":"video", "q":query, "maxResults":"50", "key":YouTubeAPIKey]).responseJSON(completionHandler: { response in
             
             //print(response)
             if let JSON = response.result.value as? [String:AnyObject] {
