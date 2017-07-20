@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class SearchViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
+class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     let YouTubeAPIKey = "AIzaSyDl9doicP6uc4cEVlRDiM7Ttgy-o7Hal3I"
     var youtubeSearchURL = "https://www.googleapis.com/youtube/v3/search"
@@ -24,9 +24,8 @@ class SearchViewController: UITableViewController, UISearchControllerDelegate, U
         // Search bar initialization
         searchController = UISearchController(searchResultsController: nil)
         searchController?.dimsBackgroundDuringPresentation = false
-        searchController?.searchResultsUpdater = self
         tableView.tableHeaderView = searchController?.searchBar
-        searchController?.delegate = self
+        searchController?.searchBar.delegate = self
         self.tableView.backgroundView = UIView()
     }
     
@@ -52,10 +51,9 @@ class SearchViewController: UITableViewController, UISearchControllerDelegate, U
     }
     
     //MARK: Searchbar
-    func updateSearchResults(for searchController: UISearchController) {
-        // In the future, maybe display results as the user types via a background thread.
-        if (searchController.searchBar.text != nil && searchController.searchBar.text != "") {
-            let searchString = searchController.searchBar.text!
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if (searchBar.text != nil && searchBar.text != "") {
+            let searchString = searchBar.text!
             self.songs = []
             youtubeRequest(query: searchString)
         }
