@@ -20,6 +20,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         
+        self.definesPresentationContext = true
         
         // Search bar initialization
         searchController = UISearchController(searchResultsController: nil)
@@ -41,6 +42,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             let ytVideo = songs[indexPath.row] as? YouTubeVideo
             cell.songTitle.text = ytVideo?.videoTitle
             cell.artist.text = ytVideo?.videoChannel
+            
+            let url = URL(string: (ytVideo?.videoThumbnailURL)!)
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    cell.thumbnail.image = UIImage(data: data!)
+                }
+            }
         }
         
         return cell
@@ -48,6 +57,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
+        // Pop UISearchController
+        // self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: Searchbar

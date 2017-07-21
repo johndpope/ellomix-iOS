@@ -18,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        
+        // Status bar
+        UINavigationBar.appearance().clipsToBounds = true
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        statusBar.backgroundColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         return true
     }
 

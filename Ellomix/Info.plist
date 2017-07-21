@@ -38,6 +38,8 @@
 	<string>714928195322801</string>
 	<key>FacebookDisplayName</key>
 	<string>Ellomix</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
