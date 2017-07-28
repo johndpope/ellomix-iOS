@@ -15,8 +15,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     var youtubeSearchURL = "https://www.googleapis.com/youtube/v3/search"
     typealias JSONStandard = [String : AnyObject]
     var searchController:UISearchController?
+    let sections = ["Spotify", "Soundcloud", "YouTube"]
     
-    var songs:[AnyObject] = []
+    var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
     override func viewDidLoad() {
         
@@ -32,14 +33,20 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK: TableView functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        if (section == 0) {
+            return songs["Spotify"]!.count
+        } else if (section == 1) {
+            return songs["Soundcloud"]!.count
+        } else {
+            return songs["YouTube"]!.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchTableViewCell
         
-        if (songs[indexPath.row] is YouTubeVideo) {
-            let ytVideo = songs[indexPath.row] as? YouTubeVideo
+        if (songs["YouTube"]?[indexPath.row] is YouTubeVideo) {
+            let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
             cell.songTitle.text = ytVideo?.videoTitle
             cell.artist.text = ytVideo?.videoChannel
             
@@ -62,11 +69,19 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         // self.navigationController?.popViewController(animated: true)
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section]
+    }
+    
     //MARK: Searchbar
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if (searchBar.text != nil && searchBar.text != "") {
             let searchString = searchBar.text!
-            self.songs = []
+            clearSongs()
             youtubeRequest(query: searchString)
         }
     }
@@ -97,12 +112,21 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                     let highRes = thumbnails["high"] as! NSDictionary
                     ytVideo.videoThumbnailURL = highRes["url"] as? String
                     
-                    self.songs.append(ytVideo)
+                    
+                    self.songs["YouTube"]?.append(ytVideo)
                 }
 
                 self.tableView.reloadData()
             }
         })
+    }
+    
+    //MARK: Helpers
+    
+    func clearSongs() {
+        self.songs["Spotify"] = []
+        self.songs["Soundcloud"] = []
+        self.songs["YouTube"] = []
     }
     
 }
