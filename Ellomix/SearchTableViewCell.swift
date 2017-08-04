@@ -14,5 +14,6 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var songTitle: UILabel!
     @IBOutlet weak var artist: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
+    @IBOutlet weak var serviceIcon: UIImageView!
     
 }

@@ -49,6 +49,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
             cell.songTitle.text = ytVideo?.videoTitle
             cell.artist.text = ytVideo?.videoChannel
+            cell.serviceIcon.image = #imageLiteral(resourceName: "youtube")
             
             let url = URL(string: (ytVideo?.videoThumbnailURL)!)
             DispatchQueue.global().async {
