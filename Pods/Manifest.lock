@@ -1,4 +1,5 @@
 PODS:
+  - 1PasswordExtension (1.8.4)
   - Alamofire (4.4.0)
   - Firebase/Core (3.14.0):
     - FirebaseAnalytics (= 3.7.0)
@@ -18,13 +19,19 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+  - KeychainAccess (3.0.2)
+  - Soundcloud (1.1.0):
+    - 1PasswordExtension (~> 1.8.3)
+    - KeychainAccess (~> 3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - Firebase/Core
   - Firebase/Database
+  - Soundcloud
 
 SPEC CHECKSUMS:
+  1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
@@ -32,7 +39,9 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
+  Soundcloud: 476ba41826b4968a963048e76303056dbe529b64
 
-PODFILE CHECKSUM: 3a54de0de74166e1f5f773f4fce852962c58afa8
+PODFILE CHECKSUM: 824f31ff7566ef44e5b82c9ea414ce85277e4825
 
 COCOAPODS: 1.2.1

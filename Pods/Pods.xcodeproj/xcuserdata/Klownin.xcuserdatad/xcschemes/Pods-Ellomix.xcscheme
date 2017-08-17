@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F7F9B87159151DD587C633FE36DB2366"
+               BlueprintIdentifier = "D9CC8C8C7FE0B2653A1965E34A9656E1"
                BuildableName = "Pods_Ellomix.framework"
                BlueprintName = "Pods-Ellomix"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F7F9B87159151DD587C633FE36DB2366"
+            BlueprintIdentifier = "D9CC8C8C7FE0B2653A1965E34A9656E1"
             BuildableName = "Pods_Ellomix.framework"
             BlueprintName = "Pods-Ellomix"
             ReferencedContainer = "container:Pods.xcodeproj">

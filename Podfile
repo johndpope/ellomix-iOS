@@ -10,6 +10,7 @@ target 'Ellomix' do
     pod 'Firebase/Core'
     pod 'Firebase/Database'
     pod 'Alamofire', '~> 4.3'
+    pod 'Soundcloud'
 
   target 'EllomixTests' do
     inherit! :search_paths
