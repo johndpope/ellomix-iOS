@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // Status bar
         UINavigationBar.appearance().clipsToBounds = true
@@ -25,7 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         statusBar.backgroundColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
         UIApplication.shared.statusBarStyle = .lightContent
         
+        loginOrHome()
         return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        let handler = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        
+        return handler
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -48,6 +59,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    // Login and Home screen initialization
+    func loginOrHome() {
+        // Comment out to force user to log in
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let window = self.window {
+            if (FBSDKAccessToken.current() != nil) {
+                // User has already been authenticated
+                let homeTabController = storyboard.instantiateViewController(withIdentifier: "homeTabController")
+                window.rootViewController = homeTabController
+                
+            } else {
+                // User must login
+                let loginController = storyboard.instantiateViewController(withIdentifier: "loginController")
+                window.rootViewController = loginController
+            }
+        }
     }
 
 

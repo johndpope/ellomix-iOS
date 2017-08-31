@@ -26,14 +26,16 @@
 		BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */; };
 		DB0A47A81EBEB7AD004FBF41 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */; };
 		DB0A47AA1EBEBBCA004FBF41 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */; };
+		DB22FB7B1F5377E100AF384B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22FB7A1F5377E000AF384B /* User.swift */; };
 		DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */; };
+		DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */; };
 		DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */; };
 		DBE9B1111EA848A4002524C3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E330802A1E342EC50046D58F /* Bolts.framework */; };
 		E193B0AC9A542B67F255F143 /* Pods_EllomixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D24004B5B584B342FE1703 /* Pods_EllomixTests.framework */; };
 		E33080271E342DAB0046D58F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */; };
 		E33080291E342DBB0046D58F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33080281E342DBB0046D58F /* FBSDKLoginKit.framework */; };
 		E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379E6211E08B69500B0256F /* AppDelegate.swift */; };
-		E379E6241E08B69500B0256F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379E6231E08B69500B0256F /* ViewController.swift */; };
+		E379E6241E08B69500B0256F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379E6231E08B69500B0256F /* LoginViewController.swift */; };
 		E379E6271E08B69500B0256F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E379E6251E08B69500B0256F /* Main.storyboard */; };
 		E379E6291E08B69500B0256F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E379E6281E08B69500B0256F /* Assets.xcassets */; };
 		E379E62C1E08B69500B0256F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E379E62A1E08B69500B0256F /* LaunchScreen.storyboard */; };
@@ -84,7 +86,9 @@
 		CB58748A5C034C0CC7DBE1AB /* Pods-Ellomix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix.release.xcconfig"; sourceTree = "<group>"; };
 		DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
 		DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		DB22FB7A1F5377E000AF384B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ellomix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -93,7 +97,7 @@
 		E330802C1E342F2B0046D58F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "../Bridging-Header.h"; sourceTree = "<group>"; };
 		E379E61E1E08B69500B0256F /* Ellomix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ellomix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E379E6211E08B69500B0256F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E379E6231E08B69500B0256F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E379E6231E08B69500B0256F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E379E6261E08B69500B0256F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E379E6281E08B69500B0256F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E379E62B1E08B69500B0256F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -208,8 +212,10 @@
 				E330802C1E342F2B0046D58F /* Bridging-Header.h */,
 				E33080251E342DAA0046D58F /* Facebook Frameworks */,
 				E379E6211E08B69500B0256F /* AppDelegate.swift */,
-				E379E6231E08B69500B0256F /* ViewController.swift */,
+				E379E6231E08B69500B0256F /* LoginViewController.swift */,
+				DB22FB7A1F5377E000AF384B /* User.swift */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */,
 				DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */,
 				DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */,
 				DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */,
@@ -532,15 +538,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E379E6241E08B69500B0256F /* ViewController.swift in Sources */,
+				E379E6241E08B69500B0256F /* LoginViewController.swift in Sources */,
 				BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
 				E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */,
 				DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */,
 				BA14B00C1E654B1C004B8B67 /* AudioViewController.swift in Sources */,
+				DB22FB7B1F5377E100AF384B /* User.swift in Sources */,
 				BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */,
 				DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */,
+				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ChatTableViewCell.swift in Sources */,
 				BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */,
 				BA37F5CB1E5D600C00C937CD /* ChatViewController.swift in Sources */,

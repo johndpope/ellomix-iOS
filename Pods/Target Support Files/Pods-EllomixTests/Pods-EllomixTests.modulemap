@@ -1,6 +1,0 @@
-framework module Pods_EllomixTests {
-  umbrella header "Pods-EllomixTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
