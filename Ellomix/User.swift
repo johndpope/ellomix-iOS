@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 class User {
     
     var uid = ""
     var firstName:String = ""
     var lastName:String = ""
+    var profilePicLink:String = ""
+    var profilePicture:UIImageView = UIImageView()
     
     init(uid: String) {
         self.uid = uid
@@ -26,6 +29,10 @@ class User {
         self.lastName = lastName
     }
     
+    func setProfilePicLink(link: String) {
+        self.profilePicLink = link
+    }
+    
     func getFirstName() -> String {
         return firstName
     }
@@ -34,8 +41,12 @@ class User {
         return lastName
     }
     
+    func getProfilePicture() -> UIImageView {
+        return profilePicture
+    }
+    
     func toDictionary() -> Any {
         let name = firstName + " " + lastName
-        return ["uid": uid, "name": name]
+        return ["uid": uid, "name": name, "photo_url": profilePicLink]
     }
 }

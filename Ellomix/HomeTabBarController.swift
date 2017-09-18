@@ -25,7 +25,7 @@ class HomeTabBarController: UITabBarController {
         FirebaseAPI.getUsersRef().observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             if (snapshot.hasChild(self.user.uid)) {
                 print("User was loaded from Firbase")
-
+                // set local Global user here
             } else {
                 // Initialize new user
                 self.fetchProfile(user: self.user)
@@ -59,13 +59,13 @@ class HomeTabBarController: UITabBarController {
                                 if let picture = responseDict["picture"] as? NSDictionary {
                                     if let data = picture["data"] as? NSDictionary {
                                         if let url = data["url"] as? String {
-                                            
-                                            // download image from url
-                                            //self.profilePictureImageView.downloadedFrom(link: url)
+                                            newUser.profilePicture.downloadedFrom(link: url)
+                                            newUser.setProfilePicLink(link: url)
                                         }
                                     }
                                 }
                                 self.FirebaseAPI.createUser(user: newUser)
+                                Global.sharedGlobal.user = newUser
                             }
                             
                             break
@@ -92,6 +92,7 @@ extension UIImageView {
             }
             }.resume()
     }
+    
     func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         guard let url = URL(string: link) else { return }
         downloadedFrom(url: url, contentMode: mode)

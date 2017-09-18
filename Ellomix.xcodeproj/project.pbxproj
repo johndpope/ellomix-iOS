@@ -24,6 +24,7 @@
 		BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */; };
 		BA894FD71E57F59700BA3F73 /* FirebaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */; };
 		BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */; };
+		DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB052E321F6F7A6E00F32A70 /* Global.swift */; };
 		DB0A47A81EBEB7AD004FBF41 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */; };
 		DB0A47AA1EBEBBCA004FBF41 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */; };
 		DB22FB7B1F5377E100AF384B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22FB7A1F5377E000AF384B /* User.swift */; };
@@ -84,6 +85,7 @@
 		BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseApi.swift; sourceTree = "<group>"; };
 		BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFeedTableViewCell.swift; sourceTree = "<group>"; };
 		CB58748A5C034C0CC7DBE1AB /* Pods-Ellomix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix.release.xcconfig"; sourceTree = "<group>"; };
+		DB052E321F6F7A6E00F32A70 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
 		DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		DB22FB7A1F5377E000AF384B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				E379E6211E08B69500B0256F /* AppDelegate.swift */,
 				E379E6231E08B69500B0256F /* LoginViewController.swift */,
 				DB22FB7A1F5377E000AF384B /* User.swift */,
+				DB052E321F6F7A6E00F32A70 /* Global.swift */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
 				DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */,
 				DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */,
@@ -542,6 +545,7 @@
 				BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
+				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */,
 				DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */,
 				BA14B00C1E654B1C004B8B67 /* AudioViewController.swift in Sources */,
