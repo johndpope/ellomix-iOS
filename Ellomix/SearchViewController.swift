@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Soundcloud
 
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     
@@ -83,7 +84,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         if (searchBar.text != nil && searchBar.text != "") {
             let searchString = searchBar.text!
             clearSongs()
+            
+            soundcloudRequest(query: searchString)
             youtubeRequest(query: searchString)
+        }
+    }
+    
+    //MARK: Soundcloud
+    func soundcloudRequest(query: String) {
+        print("--------------REQUESTING FROM SOUNDCLOUD---------------")
+        
+        Track.search(queries: [.queryString(query)]) { response in
+            print("Soundcloud response: \(response)")
         }
     }
     
@@ -97,7 +109,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                 //print("YouTube JSON data: \(JSON)")
                 
                 for video in JSON["items"] as! NSArray {
-                    print("Video: \(video)")
+                    //print("Video: \(video)")
                     let ytVideo = YouTubeVideo()
                     let videoItem = video as! NSDictionary
                     

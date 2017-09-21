@@ -46,7 +46,6 @@ class User {
     }
     
     func toDictionary() -> Any {
-        let name = firstName + " " + lastName
-        return ["uid": uid, "name": name, "photo_url": profilePicLink]
+        return ["uid": uid, "first_name": firstName, "last_name": lastName, "photo_url": profilePicLink]
     }
 }

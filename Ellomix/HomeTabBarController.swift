@@ -25,12 +25,32 @@ class HomeTabBarController: UITabBarController {
         FirebaseAPI.getUsersRef().observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             if (snapshot.hasChild(self.user.uid)) {
                 print("User was loaded from Firbase")
-                // set local Global user here
+                
+                let results = snapshot.value as! Dictionary<String, AnyObject>
+                let userData = results[self.user.uid] as! Dictionary<String, AnyObject>
+                
+                self.setUser(userData: userData)
+
             } else {
                 // Initialize new user
                 self.fetchProfile(user: self.user)
             }
         })
+    }
+    
+    func setUser(userData: Dictionary<String, AnyObject>) {
+        print("userData: \(userData)")
+        
+        let firstName = userData["first_name"] as? String
+        let lastName = userData["last_name"] as? String
+        let photoUrl = userData["photo_url"] as? String
+        
+        let loadedUser = User(uid: self.user.uid)
+        loadedUser.setFirstName(firstName: firstName!)
+        loadedUser.setLastName(lastName: lastName!)
+        loadedUser.profilePicture.downloadedFrom(link: photoUrl!)
+        loadedUser.setProfilePicLink(link: photoUrl!)
+        Global.sharedGlobal.user = loadedUser
     }
     
     func fetchProfile(user: FIRUser) {
