@@ -46,7 +46,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchTableViewCell
         
-        if (songs["YouTube"]?[indexPath.row] is YouTubeVideo) {
+        if (indexPath.row < songs["Soundcloud"]!.count && songs["Soundcloud"]?[indexPath.row] is SoundcloudTrack) {
+            let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
+            cell.songTitle.text = scTrack?.title
+            cell.artist.text = scTrack?.artist
+            cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: (scTrack?.thumbnailURL)!)
+                DispatchQueue.main.async {
+                    cell.thumbnail.image = UIImage(data: data!)
+                }
+            }
+        } else if (indexPath.row < songs["YouTube"]!.count && songs["YouTube"]?[indexPath.row] is YouTubeVideo) {
             let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
             cell.songTitle.text = ytVideo?.videoTitle
             cell.artist.text = ytVideo?.videoChannel
@@ -92,18 +103,31 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK: Soundcloud
     func soundcloudRequest(query: String) {
-        print("--------------REQUESTING FROM SOUNDCLOUD---------------")
-        
         Track.search(queries: [.queryString(query)]) { response in
-            print("Soundcloud response: \(response)")
+            print("--------------REQUESTING FROM SOUNDCLOUD---------------")
+            //print("Soundcloud response: \(response.response.result)")
+            if let tracks = response.response.result {
+                
+                for track in tracks {
+                    let scTrack = SoundcloudTrack()
+                    
+                    scTrack.title = track.title
+                    scTrack.artist = track.createdBy.username
+                    scTrack.thumbnailURL = track.artworkImageURL.highURL
+                    
+                    self.songs["Soundcloud"]?.append(scTrack)
+                }
+                
+                self.tableView.reloadData()
+            }
         }
     }
     
     //MARK: YouTube
     func youtubeRequest(query: String) {
-        print("---------------REQUESTING FROM YOUTUBE-----------------")
         Alamofire.request(youtubeSearchURL, parameters: ["part":"snippet", "type":"video", "q":query, "maxResults":"50", "key":YouTubeAPIKey]).responseJSON(completionHandler: { response in
             
+            print("---------------REQUESTING FROM YOUTUBE-----------------")
             //print(response)
             if let JSON = response.result.value as? [String:AnyObject] {
                 //print("YouTube JSON data: \(JSON)")
