@@ -32,14 +32,14 @@ class LoginViewController: UIViewController {
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
                 print("Logged in!")
                 
-                let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
                 self.firebaseAuth(credential: credential)
             }
         }
     }
     
-    func firebaseAuth(credential: FIRAuthCredential) {
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+    func firebaseAuth(credential: AuthCredential) {
+        Auth.auth().signIn(with: credential) { (user, error) in
             if let error = error {
                 print("Firebase Authentication failed: \(error)")
             }

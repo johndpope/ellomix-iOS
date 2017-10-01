@@ -11,9 +11,9 @@ import Firebase
 
 class ChatFeedTableViewController: UITableViewController {
     
-    var ref: FIRDatabaseReference!
-    fileprivate var _refHandle: FIRDatabaseHandle?
-    var chats: [FIRDataSnapshot]! = []
+    var ref: DatabaseReference!
+    fileprivate var _refHandle: DatabaseHandle?
+    var chats: [DataSnapshot]! = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class ChatFeedTableViewController: UITableViewController {
     }
     
     func configureDatabase() {
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         
         // Listen for new chats
         _refHandle = self.ref.child("Chats").observe(.childAdded, with: { [weak self] (snapshot) -> Void in
@@ -71,7 +71,7 @@ class ChatFeedTableViewController: UITableViewController {
         
         //Get the chat at indexPath
         let index = indexPath.row
-        let chatSnapshot : FIRDataSnapshot! = chats[index]
+        let chatSnapshot : DataSnapshot! = chats[index]
         
         // Unpack chat from Firebase Snapshot
         // TODO: Learn how to pack in an

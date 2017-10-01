@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class User {
+class EllomixUser {
     
     var uid = ""
     var firstName:String = ""

@@ -12,23 +12,23 @@ import FirebaseDatabase
 
 class FirebaseApi {
     
-    private var ref: FIRDatabaseReference = FIRDatabase.database().reference()
+    private var ref: DatabaseReference = Database.database().reference()
     private let CHATS = "Chats"
     private let USERS = "Users"
     
-    func getDatabaseRef() -> FIRDatabaseReference {
+    func getDatabaseRef() -> DatabaseReference {
         return ref;
     }
     
-    func getChatsRef() -> FIRDatabaseReference {
+    func getChatsRef() -> DatabaseReference {
         return ref.child(CHATS)
     }
     
-    func getUsersRef() -> FIRDatabaseReference {
+    func getUsersRef() -> DatabaseReference {
         return ref.child(USERS)
     }
     
-    func createUser(user: User) {
+    func createUser(user: EllomixUser) {
         let newUserRef = ref.child(USERS).child(user.uid)
         newUserRef.setValue(user.toDictionary())
     }

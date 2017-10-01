@@ -13,5 +13,5 @@ class Global {
     // Now Global.sharedGlobal is your singleton, no need to use nested or other classes
     static let sharedGlobal = Global()
     
-    var user:User? = nil
+    var user:EllomixUser? = nil
 }

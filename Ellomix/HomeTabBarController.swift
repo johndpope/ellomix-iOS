@@ -14,13 +14,13 @@ import FirebaseAuth
 class HomeTabBarController: UITabBarController {
     
     private var FirebaseAPI: FirebaseApi!
-    private var user: FIRUser!
+    private var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         FirebaseAPI = FirebaseApi()
-        user = FIRAuth.auth()!.currentUser!
+        user = Auth.auth().currentUser!
         
         FirebaseAPI.getUsersRef().observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             if (snapshot.hasChild(self.user.uid)) {
@@ -45,7 +45,7 @@ class HomeTabBarController: UITabBarController {
         let lastName = userData["last_name"] as? String
         let photoUrl = userData["photo_url"] as? String
         
-        let loadedUser = User(uid: self.user.uid)
+        let loadedUser = EllomixUser(uid: self.user.uid)
         loadedUser.setFirstName(firstName: firstName!)
         loadedUser.setLastName(lastName: lastName!)
         loadedUser.profilePicture.downloadedFrom(link: photoUrl!)
@@ -53,7 +53,7 @@ class HomeTabBarController: UITabBarController {
         Global.sharedGlobal.user = loadedUser
     }
     
-    func fetchProfile(user: FIRUser) {
+    func fetchProfile(user: User) {
         let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
         print("Fetching profile from Facebook.")
         GraphRequest(graphPath: "me",
@@ -72,7 +72,7 @@ class HomeTabBarController: UITabBarController {
                                 let firstName = responseDict["first_name"] as? String
                                 let lastName = responseDict["last_name"] as? String
                                 
-                                let newUser = User(uid: user.uid)
+                                let newUser = EllomixUser(uid: user.uid)
                                 newUser.setFirstName(firstName: firstName!)
                                 newUser.setLastName(lastName: lastName!)
                                 

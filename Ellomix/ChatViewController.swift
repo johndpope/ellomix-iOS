@@ -14,9 +14,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
-    var ref: FIRDatabaseReference!
-    var messages: [FIRDataSnapshot]! = []
-    fileprivate var _refHandle: FIRDatabaseHandle!
+    var ref: DatabaseReference!
+    var messages = [DataSnapshot]()
+    fileprivate var _refHandle: DatabaseHandle!
     var chatId : String?
     
     @IBAction func sendMessageButton(_ sender: Any) {
@@ -47,7 +47,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func configureDatabase() {
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         // Listen for new messages in the Firebase database
         _refHandle = self.ref
             .child("Chats")
@@ -75,7 +75,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! ChatTableViewCell
         
         // Unpack message from Firebase DataSnapshot
-        let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
+        let messageSnapshot: DataSnapshot! = self.messages[indexPath.row]
         guard let message = messageSnapshot.value as? [String:String] else { return cell }
         
         let name = message["name"] ?? ""

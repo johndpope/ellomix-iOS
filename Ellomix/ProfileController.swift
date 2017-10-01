@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import FacebookCore
+import FacebookLogin
+import FirebaseAuth
+import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class ProfileController: UIViewController {
     
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var profileNavBar: UINavigationBar!
     
-    var currentUser:User?
+    var currentUser:EllomixUser?
     
     override func viewDidLoad() {
         currentUser = Global.sharedGlobal.user
@@ -23,6 +29,17 @@ class ProfileController: UIViewController {
     func loadProfile() {
         profileNavBar.topItem?.title = "\((currentUser?.getFirstName())!) \((currentUser?.getLastName())!)"
         profilePic.image = currentUser?.getProfilePicture().image
+    }
+    
+    func logoutProfile() {
+        let loginManager = LoginManager()
+        //log off facebook
+        loginManager.logOut()
+        
+        //log off firebase
+        
+        //segue into login screen on story board
+        
     }
     
 }
