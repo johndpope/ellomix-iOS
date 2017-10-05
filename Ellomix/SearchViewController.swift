@@ -46,7 +46,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchTableViewCell
         
-        if (indexPath.row < songs["Soundcloud"]!.count && songs["Soundcloud"]?[indexPath.row] is SoundcloudTrack) {
+        if (indexPath.section == 1 && indexPath.row < songs["Soundcloud"]!.count) {
             let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
             cell.songTitle.text = scTrack?.title
             cell.artist.text = scTrack?.artist
@@ -57,7 +57,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                     cell.thumbnail.image = UIImage(data: data!)
                 }
             }
-        } else if (indexPath.row < songs["YouTube"]!.count && songs["YouTube"]?[indexPath.row] is YouTubeVideo) {
+        } else if (indexPath.section == 2 && indexPath.row < songs["YouTube"]!.count) {
             let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
             cell.songTitle.text = ytVideo?.videoTitle
             cell.artist.text = ytVideo?.videoChannel
