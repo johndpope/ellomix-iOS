@@ -11,12 +11,15 @@ import Firebase
 
 class ChatFeedTableViewController: UITableViewController {
     
-    var ref: DatabaseReference!
-    fileprivate var _refHandle: DatabaseHandle?
+    private var chatUserRefHandle: DatabaseHandle?
+    private var FirebaseAPI: FirebaseApi!
+
     var chats: [DataSnapshot]! = []
+    var currentUser:EllomixUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseAPI = FirebaseApi()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -25,26 +28,29 @@ class ChatFeedTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         //TODO: Implement code similar to Android
-        configureDatabase()
+        currentUser = Global.sharedGlobal.user
+        observeChats()
     }
     
     deinit {
-        if let refHandle = _refHandle  {
-            self.ref.child("Chats").removeObserver(withHandle: refHandle)
+        if let refHandle = chatUserRefHandle  {
+            FirebaseAPI.getChatUserRef().removeObserver(withHandle: refHandle)
         }
     }
     
-    func configureDatabase() {
-        ref = Database.database().reference()
-        
-        // Listen for new chats
-        _refHandle = self.ref.child("Chats").observe(.childAdded, with: { [weak self] (snapshot) -> Void in
-            // TODO: listen for new chats you been added/invited to
-            guard let strongSelf = self else { return }
-            strongSelf.chats.append(snapshot)
-            strongSelf.tableView.insertRows(at: [IndexPath(row: strongSelf.chats.count - 1, section: 0)], with: .automatic)
+    func observeChats() {
+        chatUserRefHandle = FirebaseAPI.getChatUserRef().observe(.childAdded, with: { (snapshot) -> Void in
+            let cid = snapshot.key
+            let uid = snapshot.value as! String
+
+            if (uid == self.currentUser?.uid) {
+                // User is a member of chat CID
+                self.FirebaseAPI.getChatsRef().child(cid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Add this chat object to our local chats array
+                    self.chats.append(snapshot)
+                })
+            }
         })
-        // Listen for new messages
 
     }
 

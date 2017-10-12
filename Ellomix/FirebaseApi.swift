@@ -15,6 +15,7 @@ class FirebaseApi {
     private var ref: DatabaseReference = Database.database().reference()
     private let CHATS = "Chats"
     private let USERS = "Users"
+    private let CHAT_USER = "ChatUser"
     
     func getDatabaseRef() -> DatabaseReference {
         return ref;
@@ -23,11 +24,15 @@ class FirebaseApi {
     func getChatsRef() -> DatabaseReference {
         return ref.child(CHATS)
     }
-    
+
+    func getChatUserRef() -> DatabaseReference {
+        return ref.child(CHAT_USER)
+    }
+
     func getUsersRef() -> DatabaseReference {
         return ref.child(USERS)
     }
-    
+
     func createUser(user: EllomixUser) {
         let newUserRef = ref.child(USERS).child(user.uid)
         newUserRef.setValue(user.toDictionary())
