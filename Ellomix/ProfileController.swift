@@ -17,7 +17,6 @@ import FBSDKLoginKit
 class ProfileController: UIViewController {
     
     @IBOutlet weak var profilePic: UIImageView!
-    @IBOutlet weak var profileNavBar: UINavigationBar!
     
     var currentUser:EllomixUser?
     
@@ -27,7 +26,7 @@ class ProfileController: UIViewController {
     }
     
     func loadProfile() {
-        profileNavBar.topItem?.title = "\((currentUser?.getFirstName())!) \((currentUser?.getLastName())!)"
+        navigationController?.navigationBar.topItem?.title = "\((currentUser?.getFirstName())!) \((currentUser?.getLastName())!)"
         profilePic.image = currentUser?.getProfilePicture().image
     }
     
