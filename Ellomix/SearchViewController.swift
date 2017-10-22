@@ -17,6 +17,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     typealias JSONStandard = [String : AnyObject]
     var searchController:UISearchController?
     let sections = ["Spotify", "Soundcloud", "YouTube"]
+    let searchFilters = ["Music", "People"]
+    var scope = "Music"
     
     var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
@@ -28,6 +30,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchController = UISearchController(searchResultsController: nil)
         searchController?.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController?.searchBar
+        searchController?.searchBar.scopeButtonTitles = searchFilters
         searchController?.searchBar.delegate = self
         self.tableView.backgroundView = UIView()
     }
@@ -94,11 +97,19 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if (searchBar.text != nil && searchBar.text != "") {
             let searchString = searchBar.text!
-            clearSongs()
             
-            soundcloudRequest(query: searchString)
-            youtubeRequest(query: searchString)
+            if (scope == "Music") {
+                clearSongs()
+                soundcloudRequest(query: searchString)
+                youtubeRequest(query: searchString)
+            } else {
+                
+            }
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        scope = searchFilters[selectedScope]
     }
     
     //MARK: Soundcloud
