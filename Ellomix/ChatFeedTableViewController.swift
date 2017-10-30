@@ -53,7 +53,7 @@ class ChatFeedTableViewController: UITableViewController {
         })
 
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -135,11 +135,11 @@ class ChatFeedTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        let segueVC : ChatViewController = segue.destination as! ChatViewController
-        let cell : ChatFeedTableViewCell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
-        segueVC.chatId = cell.chatId
-        
+        if (segue.identifier == "toChatDetail") {
+            let segueVC : ChatViewController = segue.destination as! ChatViewController
+            let cell : ChatFeedTableViewCell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
+            segueVC.chatId = cell.chatId
+        } 
     }
  
 
