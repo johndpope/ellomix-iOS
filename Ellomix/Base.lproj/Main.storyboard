@@ -477,9 +477,9 @@
                         <color key="barTintColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
+                        <segue destination="lVH-qC-MVQ" kind="relationship" relationship="viewControllers" id="m3R-hZ-v19"/>
                         <segue destination="xW1-F6-z08" kind="relationship" relationship="viewControllers" id="QC7-xk-bUF"/>
                         <segue destination="UGU-FQ-1dq" kind="relationship" relationship="viewControllers" id="deB-Z2-rRq"/>
-                        <segue destination="lVH-qC-MVQ" kind="relationship" relationship="viewControllers" id="m3R-hZ-v19"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DD8-h9-89Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
