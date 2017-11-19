@@ -12,40 +12,76 @@ import UIKit
 class EllomixUser {
     
     var uid = ""
-    var firstName:String = ""
-    var lastName:String = ""
+    var name:String = ""
     var profilePicLink:String = ""
     var profilePicture:UIImageView = UIImageView()
+    var website:String = ""
+    var bio:String = ""
+    var email:String = ""
+    var gender:String = ""
+    var birthday:String = ""
     
     init(uid: String) {
         self.uid = uid
     }
     
-    func setFirstName(firstName: String) {
-        self.firstName = firstName
-    }
-    
-    func setLastName(lastName: String) {
-        self.lastName = lastName
+    func setName(name: String) {
+        self.name = name
     }
     
     func setProfilePicLink(link: String) {
         self.profilePicLink = link
     }
     
-    func getFirstName() -> String {
-        return firstName
+    func setWebsite(website: String) {
+        self.website = website
     }
     
-    func getLastName() -> String {
-        return lastName
+    func setBio(bio: String) {
+        self.bio = bio
+    }
+    
+    func setEmail(email: String) {
+        self.email = email
+    }
+    
+    func setGender(gender: String) {
+        self.gender = gender
+    }
+    
+    func setBirthday(birthday: String) {
+        self.birthday = birthday
+    }
+    
+    func getName() -> String {
+        return name
     }
     
     func getProfilePicture() -> UIImageView {
         return profilePicture
     }
     
+    func getWebsite() -> String {
+        return website
+    }
+    
+    func getBio() -> String {
+        return bio
+    }
+    
+    func getEmail() -> String {
+        return email
+    }
+    
+    func getGender() -> String {
+        return gender
+    }
+    
+    func getBirthday() -> String {
+        return birthday
+    }
+    
     func toDictionary() -> Any {
-        return ["uid": uid, "first_name": firstName, "last_name": lastName, "photo_url": profilePicLink]
+        return ["uid": uid, "name": name, "photo_url": profilePicLink]
     }
 }

@@ -26,7 +26,7 @@ class ProfileController: UIViewController {
     }
     
     func loadProfile() {
-        navigationController?.navigationBar.topItem?.title = "\((currentUser?.getFirstName())!) \((currentUser?.getLastName())!)"
+        navigationController?.navigationBar.topItem?.title = currentUser?.getName()
         profilePic.image = currentUser?.getProfilePicture().image
     }
     

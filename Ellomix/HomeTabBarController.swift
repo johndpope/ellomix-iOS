@@ -41,13 +41,11 @@ class HomeTabBarController: UITabBarController {
     func setUser(userData: Dictionary<String, AnyObject>) {
         print("userData: \(userData)")
         
-        let firstName = userData["first_name"] as? String
-        let lastName = userData["last_name"] as? String
+        let name = userData["name"] as? String
         let photoUrl = userData["photo_url"] as? String
         
         let loadedUser = EllomixUser(uid: self.user.uid)
-        loadedUser.setFirstName(firstName: firstName!)
-        loadedUser.setLastName(lastName: lastName!)
+        loadedUser.setName(name: name!)
         loadedUser.profilePicture.downloadedFrom(link: photoUrl!)
         loadedUser.setProfilePicLink(link: photoUrl!)
         Global.sharedGlobal.user = loadedUser
@@ -71,10 +69,10 @@ class HomeTabBarController: UITabBarController {
                             if let responseDict = graphResponse.dictionaryValue {
                                 let firstName = responseDict["first_name"] as? String
                                 let lastName = responseDict["last_name"] as? String
+                                let name = firstName! + " " + lastName!
                                 
                                 let newUser = EllomixUser(uid: user.uid)
-                                newUser.setFirstName(firstName: firstName!)
-                                newUser.setLastName(lastName: lastName!)
+                                newUser.setName(name: name)
                                 
                                 if let picture = responseDict["picture"] as? NSDictionary {
                                     if let data = picture["data"] as? NSDictionary {
