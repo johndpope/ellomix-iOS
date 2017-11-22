@@ -33,7 +33,7 @@ class FirebaseApi {
         return ref.child(USERS)
     }
 
-    func createUser(user: EllomixUser) {
+    func updateUser(user: EllomixUser) {
         let newUserRef = ref.child(USERS).child(user.uid)
         newUserRef.setValue(user.toDictionary())
     }

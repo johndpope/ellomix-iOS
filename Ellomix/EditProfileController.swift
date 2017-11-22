@@ -48,9 +48,9 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         currentUser?.setEmail(email: emailField.text!)
         currentUser?.setGender(gender: genderField.text!)
         
-        // Update user on Firebase
+        FirebaseAPI.updateUser(user: currentUser!)
+        Global.sharedGlobal.user = currentUser
 
-        
         dismiss(animated: true, completion: nil)
     }
     

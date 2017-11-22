@@ -43,11 +43,19 @@ class HomeTabBarController: UITabBarController {
         
         let name = userData["name"] as? String
         let photoUrl = userData["photo_url"] as? String
+        let website = userData["website"] as? String
+        let bio = userData["bio"] as? String
+        let email = userData["email"] as? String
+        let gender = userData["gender"] as? String
         
         let loadedUser = EllomixUser(uid: self.user.uid)
         loadedUser.setName(name: name!)
         loadedUser.profilePicture.downloadedFrom(link: photoUrl!)
         loadedUser.setProfilePicLink(link: photoUrl!)
+        if (website != nil) { loadedUser.setWebsite(website: website!) }
+        if (bio != nil) { loadedUser.setBio(bio: bio!) }
+        if (email != nil) { loadedUser.setEmail(email: email!) }
+        if (gender != nil) { loadedUser.setGender(gender: gender!) }
         Global.sharedGlobal.user = loadedUser
     }
     
@@ -82,7 +90,7 @@ class HomeTabBarController: UITabBarController {
                                         }
                                     }
                                 }
-                                self.FirebaseAPI.createUser(user: newUser)
+                                self.FirebaseAPI.updateUser(user: newUser)
                                 Global.sharedGlobal.user = newUser
                             }
                             

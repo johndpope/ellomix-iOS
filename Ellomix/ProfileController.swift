@@ -21,7 +21,11 @@ class ProfileController: UIViewController {
     var currentUser:EllomixUser?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         currentUser = Global.sharedGlobal.user
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         loadProfile()
     }
     

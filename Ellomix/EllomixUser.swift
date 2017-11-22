@@ -82,6 +82,6 @@ class EllomixUser {
     }
     
     func toDictionary() -> Any {
-        return ["uid": uid, "name": name, "photo_url": profilePicLink]
+        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender]
     }
 }
