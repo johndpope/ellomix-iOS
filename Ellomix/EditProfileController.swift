@@ -48,8 +48,10 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         currentUser?.setBio(bio: bioView.text )
         currentUser?.setEmail(email: emailField.text!)
         currentUser?.setGender(gender: genderField.text!)
+        currentUser?.setProfilePic(image: profilePic.image!)
         
         FirebaseAPI.updateUser(user: currentUser!)
+        FirebaseAPI.updateUserProfilePicture(user: currentUser!, image: profilePic.image!)
         Global.sharedGlobal.user = currentUser
 
         dismiss(animated: true, completion: nil)

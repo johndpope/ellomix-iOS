@@ -33,6 +33,10 @@ class EllomixUser {
         self.profilePicLink = link
     }
     
+    func setProfilePic(image: UIImage) {
+        self.profilePicture.image = image;
+    }
+    
     func setWebsite(website: String) {
         self.website = website
     }
