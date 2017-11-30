@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var websiteField: UITextField!
@@ -33,6 +33,7 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         
         profilePic.layer.cornerRadius = profilePic.frame.size.width/2
         profilePic.clipsToBounds = true
+        profilePic.contentMode = .scaleAspectFit
         
         displayProfileInfo()
     }
@@ -64,7 +65,14 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     @IBAction func changeProfilePic(_ sender: Any) {
-        
+        // What if they haven't allowed permission to access their photo library?
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     
     // Picker View functions
@@ -82,5 +90,12 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         genderField.text = genderOptions[row]
+    }
+    
+    // UIImagePicker functions
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        profilePic.image = image
+        dismiss(animated:true, completion: nil)
     }
 }
