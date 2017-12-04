@@ -72,8 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = self.window {
             if (FBSDKAccessToken.current() != nil) {
                 // User has already been authenticated
-                let homeTabController = storyboard.instantiateViewController(withIdentifier: "homeTabController")
-                window.rootViewController = homeTabController
+                let containerController = storyboard.instantiateViewController(withIdentifier: "containerController")
+                window.rootViewController = containerController
                 
             } else {
                 // User must login

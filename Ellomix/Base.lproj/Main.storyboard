@@ -9,6 +9,7 @@
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,6 +18,52 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Container View Controller-->
+        <scene sceneID="0on-NI-TzP">
+            <objects>
+                <viewController storyboardIdentifier="containerController" id="N1Y-6p-rHW" customClass="ContainerViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1T5-ZE-G6T"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bfk-yW-s0P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pXx-1S-nG0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3U-LN-wi9" userLabel="Base Container View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <segue destination="VVg-ze-OQR" kind="embed" id="Hbi-03-5qL"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePa-CF-63K" userLabel="Play Bar">
+                                <rect key="frame" x="0.0" y="662.33333333333337" width="414" height="73.666666666666629"/>
+                                <connections>
+                                    <segue destination="22K-7q-A5k" kind="embed" id="cZS-OT-jD7"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Bfk-yW-s0P" firstAttribute="top" secondItem="ePa-CF-63K" secondAttribute="bottom" id="00W-11-bJf"/>
+                            <constraint firstItem="K3U-LN-wi9" firstAttribute="leading" secondItem="pXx-1S-nG0" secondAttribute="leading" id="2Yo-Mf-65A"/>
+                            <constraint firstItem="Bfk-yW-s0P" firstAttribute="top" secondItem="K3U-LN-wi9" secondAttribute="bottom" id="NNL-xp-FRc"/>
+                            <constraint firstAttribute="trailing" secondItem="ePa-CF-63K" secondAttribute="trailing" id="RIc-Wa-5uh"/>
+                            <constraint firstAttribute="trailing" secondItem="K3U-LN-wi9" secondAttribute="trailing" id="fk6-eX-cil"/>
+                            <constraint firstItem="ePa-CF-63K" firstAttribute="leading" secondItem="pXx-1S-nG0" secondAttribute="leading" id="pPO-Bd-Egq"/>
+                            <constraint firstItem="K3U-LN-wi9" firstAttribute="top" secondItem="pXx-1S-nG0" secondAttribute="top" id="qPd-XL-oQS"/>
+                            <constraint firstItem="ePa-CF-63K" firstAttribute="height" secondItem="pXx-1S-nG0" secondAttribute="height" multiplier="1:10" id="t7Q-Yb-P0u"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="baseContainerView" destination="K3U-LN-wi9" id="afv-Ov-ipg"/>
+                        <outlet property="playBarView" destination="ePa-CF-63K" id="Lie-m7-3gR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QcU-go-ZmW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-764" y="1531"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -110,12 +157,12 @@
                         <outlet property="fbButton" destination="rPf-jc-sR1" id="LGj-wZ-kYM"/>
                         <outlet property="loginButton" destination="4TD-Ww-niw" id="R9s-fR-2C0"/>
                         <outlet property="signUpButton" destination="vBC-xA-wP7" id="jQw-Xp-3Am"/>
-                        <segue destination="VVg-ze-OQR" kind="show" identifier="toHomeTabBar" id="6Zj-vO-UrN"/>
+                        <segue destination="N1Y-6p-rHW" kind="show" identifier="toHomeTabBar" id="ut1-7T-a2h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-705.79710144927537" y="530.70652173913049"/>
+            <point key="canvasLocation" x="-765" y="555"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="thy-Ox-1bY">
@@ -1377,6 +1424,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIw-eD-MQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1670" y="1531"/>
+        </scene>
+        <!--Play Bar Controller-->
+        <scene sceneID="izp-xg-Iw3">
+            <objects>
+                <viewController id="22K-7q-A5k" customClass="PlayBarController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wJB-Kf-L2F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="73.666666666666629"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="to0-Tk-rgx">
+                                <rect key="frame" x="368" y="22" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4hE-pW-A4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-765" y="2031"/>
         </scene>
     </scenes>
     <resources>
