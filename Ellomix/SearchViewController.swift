@@ -22,9 +22,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
+    private var musicPlayer: MusicPlayer!
+    
     override func viewDidLoad() {
         
         self.definesPresentationContext = true
+        musicPlayer = MusicPlayer()
         
         // Search bar initialization
         searchController = UISearchController(searchResultsController: nil)
@@ -79,7 +82,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if (indexPath.section == 1) {
+            let track = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
+            print((track?.url)!)
+            musicPlayer.play(url: (track?.url)!)
+        } else if (indexPath.section == 2) {
+
+        }
         
         // Pop UISearchController
         // self.navigationController?.popViewController(animated: true)
@@ -124,6 +133,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                     
                     scTrack.title = track.title
                     scTrack.artist = track.createdBy.username
+                    scTrack.url = track.streamURL
                     scTrack.thumbnailURL = track.artworkImageURL.highURL
                     
                     self.songs["Soundcloud"]?.append(scTrack)
