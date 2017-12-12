@@ -25,13 +25,19 @@
 		BA894FD71E57F59700BA3F73 /* FirebaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */; };
 		BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */; };
 		DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB052E321F6F7A6E00F32A70 /* Global.swift */; };
+		DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0938621FD4F54C00DB64AA /* PlayBarController.swift */; };
+		DB0938651FD4FCD300DB64AA /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0938641FD4FCD200DB64AA /* ContainerViewController.swift */; };
+		DB0938671FD502F800DB64AA /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0938661FD502F700DB64AA /* MusicPlayer.swift */; };
 		DB0A47A81EBEB7AD004FBF41 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */; };
 		DB0A47AA1EBEBBCA004FBF41 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */; };
 		DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22FB7A1F5377E000AF384B /* EllomixUser.swift */; };
 		DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */; };
 		DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */; };
+		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
 		DB7B0BD21F7CB35300BB2707 /* SoundcloudTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */; };
+		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
 		DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */; };
+		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBE9B1111EA848A4002524C3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E330802A1E342EC50046D58F /* Bolts.framework */; };
 		E193B0AC9A542B67F255F143 /* Pods_EllomixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D24004B5B584B342FE1703 /* Pods_EllomixTests.framework */; };
 		E33080271E342DAB0046D58F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */; };
@@ -87,13 +93,19 @@
 		BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFeedTableViewCell.swift; sourceTree = "<group>"; };
 		CB58748A5C034C0CC7DBE1AB /* Pods-Ellomix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix.release.xcconfig"; sourceTree = "<group>"; };
 		DB052E321F6F7A6E00F32A70 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		DB0938621FD4F54C00DB64AA /* PlayBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBarController.swift; sourceTree = "<group>"; };
+		DB0938641FD4FCD200DB64AA /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		DB0938661FD502F700DB64AA /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
 		DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		DB22FB7A1F5377E000AF384B /* EllomixUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllomixUser.swift; sourceTree = "<group>"; };
 		DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
 		DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundcloudTrack.swift; sourceTree = "<group>"; };
+		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
 		DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ellomix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		E33080281E342DBB0046D58F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -190,6 +202,7 @@
 		E379E6151E08B69500B0256F = {
 			isa = PBXGroup;
 			children = (
+				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
 				E379E6201E08B69500B0256F /* Ellomix */,
 				E379E6351E08B69500B0256F /* EllomixTests */,
 				E379E6401E08B69500B0256F /* EllomixUITests */,
@@ -220,6 +233,10 @@
 				DB22FB7A1F5377E000AF384B /* EllomixUser.swift */,
 				DB052E321F6F7A6E00F32A70 /* Global.swift */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DB0938661FD502F700DB64AA /* MusicPlayer.swift */,
+				DB0938641FD4FCD200DB64AA /* ContainerViewController.swift */,
+				DBCE53751FBABD06002B760C /* EditProfileController.swift */,
+				DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */,
 				DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */,
 				DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */,
 				DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */,
@@ -234,6 +251,7 @@
 				BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */,
 				BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */,
 				BA37F5CE1E5D658300C937CD /* ChatTableViewCell.swift */,
+				DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */,
 				BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */,
 				BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */,
 				BA4E4C081E63944C00A4C4B9 /* AddMusicTableViewController.swift */,
@@ -338,7 +356,7 @@
 				TargetAttributes = {
 					E379E61D1E08B69500B0256F = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = QFBNLQV3XJ;
+						DevelopmentTeam = 23BHDPQ4LF;
 						ProvisioningStyle = Automatic;
 					};
 					E379E6311E08B69500B0256F = {
@@ -417,7 +435,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3383915B83CFDDD0E476566E /* [CP] Embed Pods Frameworks */ = {
@@ -450,7 +468,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		418FFE50DFD8C3BAA979AE57 /* [CP] Embed Pods Frameworks */ = {
@@ -525,7 +543,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7C95696F26DEAC0ACF5A0747 /* [CP] Copy Pods Resources */ = {
@@ -580,7 +598,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB0938671FD502F800DB64AA /* MusicPlayer.swift in Sources */,
 				E379E6241E08B69500B0256F /* LoginViewController.swift in Sources */,
+				DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */,
 				BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
@@ -589,15 +609,19 @@
 				DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */,
 				BA14B00C1E654B1C004B8B67 /* AudioViewController.swift in Sources */,
 				DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */,
+				DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */,
+				DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */,
 				BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */,
 				DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */,
 				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ChatTableViewCell.swift in Sources */,
 				BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */,
+				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,
 				BA37F5CB1E5D600C00C937CD /* ChatViewController.swift in Sources */,
 				DB0A47A81EBEB7AD004FBF41 /* YouTubeVideo.swift in Sources */,
 				DB0A47AA1EBEBBCA004FBF41 /* SearchTableViewCell.swift in Sources */,
 				DB7B0BD21F7CB35300BB2707 /* SoundcloudTrack.swift in Sources */,
+				DB0938651FD4FCD300DB64AA /* ContainerViewController.swift in Sources */,
 				BA894FD71E57F59700BA3F73 /* FirebaseApi.swift in Sources */,
 				BA4E4BB51E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift in Sources */,
 			);
@@ -750,7 +774,7 @@
 			baseConfigurationReference = 12016942F6C44225458DBBAF /* Pods-Ellomix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QFBNLQV3XJ;
+				DEVELOPMENT_TEAM = 23BHDPQ4LF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -769,7 +793,7 @@
 			baseConfigurationReference = CB58748A5C034C0CC7DBE1AB /* Pods-Ellomix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QFBNLQV3XJ;
+				DEVELOPMENT_TEAM = 23BHDPQ4LF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
