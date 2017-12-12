@@ -14,7 +14,10 @@ class MusicPlayer {
     var audioPlayer = AVPlayer()
     
     func play(url: URL) {
-        let audioPlayer = AVPlayer(url: url)
+        
+        audioPlayer = AVPlayer(url: url)
+        audioPlayer.rate = 1.0;
+        
         if isPlaying() {
             audioPlayer.pause()
         } else {
