@@ -202,7 +202,6 @@
 		E379E6151E08B69500B0256F = {
 			isa = PBXGroup;
 			children = (
-				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
 				E379E6201E08B69500B0256F /* Ellomix */,
 				E379E6351E08B69500B0256F /* EllomixTests */,
 				E379E6401E08B69500B0256F /* EllomixUITests */,
@@ -231,6 +230,7 @@
 				E379E6211E08B69500B0256F /* AppDelegate.swift */,
 				E379E6231E08B69500B0256F /* LoginViewController.swift */,
 				DB22FB7A1F5377E000AF384B /* EllomixUser.swift */,
+				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
 				DB052E321F6F7A6E00F32A70 /* Global.swift */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
 				DB0938661FD502F700DB64AA /* MusicPlayer.swift */,
