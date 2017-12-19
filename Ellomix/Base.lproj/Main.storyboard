@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -90,6 +90,9 @@
                                 <state key="normal" title="Sign Up" backgroundImage="redBackground">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vnm-IO-ipu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TD-Ww-niw">
                                 <rect key="frame" x="87" y="456" width="240" height="50"/>
@@ -158,6 +161,7 @@
                         <outlet property="loginButton" destination="4TD-Ww-niw" id="R9s-fR-2C0"/>
                         <outlet property="signUpButton" destination="vBC-xA-wP7" id="jQw-Xp-3Am"/>
                         <segue destination="N1Y-6p-rHW" kind="show" identifier="toHomeTabBar" id="ut1-7T-a2h"/>
+                        <segue destination="bO1-he-ovB" kind="show" identifier="toSignUp" id="NwJ-5c-kU3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -566,24 +570,24 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="9RK-zI-NRm" customClass="SearchTableViewCell" customModule="Ellomix" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="61"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9RK-zI-NRm" id="Afw-P8-2W8">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="9RK-zI-NRm" id="Afw-P8-2W8">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FaP-sx-nWS">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaP-sx-nWS">
                                             <rect key="frame" x="8" y="6" width="51" height="49"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="51" id="4sr-fr-10Y"/>
                                                 <constraint firstAttribute="height" constant="49" id="fGe-e7-h1V"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-10-jgl">
-                                            <rect key="frame" x="66" y="14" width="307" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-10-jgl">
+                                            <rect key="frame" x="66" y="17" width="307" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-kX-zZa">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-kX-zZa">
                                             <rect key="frame" x="66" y="34" width="307" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="307" id="S01-2i-gK3"/>
@@ -592,8 +596,8 @@
                                             <color key="textColor" red="0.79215686269999996" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="whF-pI-yAY" userLabel="Service Icon">
-                                            <rect key="frame" x="380" y="21" width="26" height="19"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whF-pI-yAY" userLabel="Service Icon">
+                                            <rect key="frame" x="380" y="24" width="26" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="Fqo-PS-JoI"/>
                                             </constraints>
@@ -919,13 +923,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m2j-9G-hxE">
-                                            <rect key="frame" x="8" y="14" width="74" height="74"/>
+                                            <rect key="frame" x="20" y="17" width="69" height="69"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="m2j-9G-hxE" secondAttribute="height" multiplier="1:1" id="MI9-eH-g1P"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEu-we-Ir1">
-                                            <rect key="frame" x="90" y="40" width="316" height="21"/>
+                                            <rect key="frame" x="97" y="40" width="297" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1183,10 +1187,10 @@
             </objects>
             <point key="canvasLocation" x="4083" y="810"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="Vet-NH-vy3">
             <objects>
-                <viewController id="bO1-he-ovB" sceneMemberID="viewController">
+                <viewController id="bO1-he-ovB" customClass="SignUpViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XFv-Rj-UQC"/>
                         <viewControllerLayoutGuide type="bottom" id="MGe-AJ-feE"/>
@@ -1215,6 +1219,9 @@
                                 <state key="normal" title="Continue" backgroundImage="redBackground">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="contButtonClicked:" destination="bO1-he-ovB" eventType="touchUpInside" id="JAu-hE-hYj"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zdD-QO-MAh">
                                 <rect key="frame" x="87" y="441" width="240" height="30"/>
@@ -1227,10 +1234,24 @@
                                 <rect key="frame" x="123" y="139" width="168" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="addImage"/>
+                                <connections>
+                                    <action selector="addProfilePic:" destination="bO1-he-ovB" eventType="touchUpInside" id="Q23-EV-LIY"/>
+                                </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rod-Jg-vd9">
+                                <rect key="frame" x="129" y="145" width="156" height="156"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="contButton" destination="ldY-o2-jiz" id="2eb-iY-Udn"/>
+                        <outlet property="emailField" destination="91c-ke-QSY" id="dMD-JE-CaE"/>
+                        <outlet property="nameField" destination="ZIo-jH-cAd" id="vZJ-99-aD4"/>
+                        <outlet property="passwordField" destination="zdD-QO-MAh" id="GtJ-zT-09A"/>
+                        <outlet property="profilePic" destination="rod-Jg-vd9" id="hiM-SS-DeX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HjA-HK-HF0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1429,6 +1450,10 @@
         <scene sceneID="izp-xg-Iw3">
             <objects>
                 <viewController id="22K-7q-A5k" customClass="PlayBarController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CxT-0z-fpg"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dap-ih-CTT"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wJB-Kf-L2F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="73.666666666666629"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

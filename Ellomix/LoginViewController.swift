@@ -38,6 +38,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func signUpButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toSignUp", sender: self)
+    }
+    
     func firebaseAuth(credential: AuthCredential) {
         Auth.auth().signIn(with: credential) { (user, error) in
             if let error = error {
