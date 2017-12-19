@@ -31,6 +31,7 @@
 		DB0A47A81EBEB7AD004FBF41 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */; };
 		DB0A47AA1EBEBBCA004FBF41 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */; };
 		DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22FB7A1F5377E000AF384B /* EllomixUser.swift */; };
+		DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */; };
 		DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */; };
 		DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */; };
 		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
@@ -99,6 +100,7 @@
 		DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
 		DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		DB22FB7A1F5377E000AF384B /* EllomixUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllomixUser.swift; sourceTree = "<group>"; };
+		DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
 				DB052E321F6F7A6E00F32A70 /* Global.swift */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */,
 				DB0938661FD502F700DB64AA /* MusicPlayer.swift */,
 				DB0938641FD4FCD200DB64AA /* ContainerViewController.swift */,
 				DBCE53751FBABD06002B760C /* EditProfileController.swift */,
@@ -604,6 +607,7 @@
 				BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
+				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */,
 				DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */,
