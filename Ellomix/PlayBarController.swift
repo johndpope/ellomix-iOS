@@ -15,8 +15,9 @@ class PlayBarController: UIViewController {
     @IBOutlet weak var playbarArtwork: UIImageView!
     @IBOutlet weak var playbarTitle: UILabel!
     @IBOutlet weak var playbarArtist: UILabel!
+    @IBOutlet weak var youtubePreviewWebview: UIWebView!
     
     override func viewDidLoad() {
-        
+        youtubePreviewWebview.isHidden = true
     }
 }

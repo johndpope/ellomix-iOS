@@ -23,6 +23,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
     private var musicPlayer: MusicPlayer!
+    var baseDelegate:ContainerViewController?
     
     override func viewDidLoad() {
         
@@ -86,8 +87,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             let track = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
             print((track?.url)!)
             musicPlayer.play(url: (track?.url)!)
+            baseDelegate?.activatePlaybar()
         } else if (indexPath.section == 2) {
-
+            let track = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
+            baseDelegate?.activatePlaybar()
         }
         
         // Pop UISearchController
