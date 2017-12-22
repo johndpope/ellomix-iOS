@@ -40,7 +40,40 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func contButtonClicked(_ sender: Any) {
-        
+        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
+            if error != nil {
+                if let errCode = AuthErrorCode(rawValue: error!._code) {
+                    switch errCode {
+                    case .invalidEmail:
+                        let alert = UIAlertController(title: "Oops", message: "Invalid Email", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
+                        print("Invalid email")
+                    case .emailAlreadyInUse:
+                        let alert = UIAlertController(title: "Oops", message: "Email Already In Use", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
+                        print("Email in use")
+                    case .weakPassword:
+                        let alert = UIAlertController(title: "Weak Password", message: "Password should be at least six characters", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
+                    default:
+                        print("Create User Error: \(error!)")
+                    }
+                }
+            }
+            else {
+                // User is signed in
+                print("Firebase Authenticated succeeded.")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "homeTabController")
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
     }
     
     // UIImagePicker functions
