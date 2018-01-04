@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
     
     @IBOutlet weak var playBarView: UIView!
@@ -19,6 +19,7 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         playBarView.isHidden = true
         playBarController.placeholderView.isHidden = true
+        playBarController.youtubePlayer.delegate = self
         musicPlayer = MusicPlayer()
     }
     
@@ -30,15 +31,18 @@ class ContainerViewController: UIViewController {
             musicPlayer.play(url: streamURL!)
         case is YouTubeVideo:
             playBarController.playbarArtwork.isHidden = true
-            playBarController.youtubePreviewWebview.isHidden = false
+            playBarController.youtubePlayer.isHidden = false
             let track = track as! YouTubeVideo
-            let embedURL = URL(string: "https://www.youtube.com/embed/\(track.videoID!)")
-            playBarController.youtubePreviewWebview.loadRequest(URLRequest(url: embedURL!))
+            playBarController.youtubePlayer.loadVideoID(track.videoID!)
         default:
             print("Unable to play selected track.")
         }
         
         playBarView.isHidden = false
+    }
+    
+    func playerReady(_ videoPlayer: YouTubePlayerView) {
+        videoPlayer.play()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

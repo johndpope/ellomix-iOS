@@ -15,11 +15,11 @@ class PlayBarController: UIViewController {
     @IBOutlet weak var playbarArtwork: UIImageView!
     @IBOutlet weak var playbarTitle: UILabel!
     @IBOutlet weak var playbarArtist: UILabel!
-    @IBOutlet weak var youtubePreviewWebview: UIWebView!
     @IBOutlet weak var placeholderView: UIView!
+    @IBOutlet weak var youtubePlayer: YouTubePlayerView!
     
     override func viewDidLoad() {
-        youtubePreviewWebview.isHidden = true
-        youtubePreviewWebview.allowsInlineMediaPlayback = true
+        youtubePlayer.isHidden = true
+        youtubePlayer.playerVars = ["playsinline": 1 as AnyObject, "showinfo": 0 as AnyObject, "rel": 0 as AnyObject, "modestbranding": 1 as AnyObject, "controls": 1 as AnyObject]
     }
 }

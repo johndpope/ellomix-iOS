@@ -1464,13 +1464,19 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHU-Nf-ZCW">
-                                <rect key="frame" x="97" y="25" width="33.333333333333343" height="21"/>
+                                <rect key="frame" x="97" y="25" width="252" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="252" id="2yY-2i-tIL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bly-1v-axf">
-                                <rect key="frame" x="97" y="49" width="35.333333333333343" height="17"/>
+                                <rect key="frame" x="97" y="49" width="252" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="252" id="BAy-Js-kgi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1482,36 +1488,41 @@
                                 </constraints>
                                 <state key="normal" title="Play"/>
                             </button>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GiB-Il-k9N">
-                                <rect key="frame" x="7" y="8" width="84" height="56"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="84" id="BDo-xo-07A"/>
-                                </constraints>
-                            </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tiq-qB-ctb" userLabel="Placeholder View">
                                 <rect key="frame" x="67" y="6" width="24" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="PH2-Oj-rAJ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1s-Yq-ex1" userLabel="YouTube Player View" customClass="YouTubePlayerView" customModule="Ellomix" customModuleProvider="target">
+                                <rect key="frame" x="7" y="8" width="84" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="Z0w-sx-KgM"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="p0g-ic-mMO" firstAttribute="leading" secondItem="GiB-Il-k9N" secondAttribute="leading" id="0RP-W9-puc"/>
-                            <constraint firstItem="tiq-qB-ctb" firstAttribute="leading" secondItem="p0g-ic-mMO" secondAttribute="trailing" id="0u3-EK-Ayu"/>
-                            <constraint firstItem="tiq-qB-ctb" firstAttribute="trailing" secondItem="GiB-Il-k9N" secondAttribute="trailing" id="4qJ-aw-Dvh"/>
-                            <constraint firstItem="to0-Tk-rgx" firstAttribute="centerY" secondItem="yHU-Nf-ZCW" secondAttribute="centerY" id="FEm-81-bzT"/>
-                            <constraint firstItem="p0g-ic-mMO" firstAttribute="leading" secondItem="wJB-Kf-L2F" secondAttribute="leadingMargin" constant="-13" id="Hpc-MZ-PEz"/>
-                            <constraint firstItem="tiq-qB-ctb" firstAttribute="centerY" secondItem="yHU-Nf-ZCW" secondAttribute="centerY" id="I7n-sA-TLW"/>
-                            <constraint firstItem="GiB-Il-k9N" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="8" symbolic="YES" id="JbK-aj-a8X"/>
-                            <constraint firstItem="yHU-Nf-ZCW" firstAttribute="leading" secondItem="tiq-qB-ctb" secondAttribute="trailing" constant="6" id="Nmi-yN-Klo"/>
-                            <constraint firstItem="p0g-ic-mMO" firstAttribute="top" secondItem="tiq-qB-ctb" secondAttribute="top" id="aNP-UF-Ohc"/>
-                            <constraint firstItem="p0g-ic-mMO" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="6" id="h7p-HS-248"/>
-                            <constraint firstItem="Bly-1v-axf" firstAttribute="leading" secondItem="tiq-qB-ctb" secondAttribute="trailing" constant="6" id="i7R-O9-vua"/>
-                            <constraint firstItem="p0g-ic-mMO" firstAttribute="bottom" secondItem="tiq-qB-ctb" secondAttribute="bottom" id="khv-xO-tT8"/>
-                            <constraint firstItem="to0-Tk-rgx" firstAttribute="trailing" secondItem="wJB-Kf-L2F" secondAttribute="trailingMargin" id="pc6-LT-Opj"/>
-                            <constraint firstItem="GiB-Il-k9N" firstAttribute="centerY" secondItem="tiq-qB-ctb" secondAttribute="centerY" id="wIF-4Q-3hp"/>
-                            <constraint firstItem="tiq-qB-ctb" firstAttribute="bottom" secondItem="Bly-1v-axf" secondAttribute="bottom" id="wqG-I3-m2h"/>
-                            <constraint firstItem="to0-Tk-rgx" firstAttribute="top" secondItem="wJB-Kf-L2F" secondAttribute="top" constant="20" symbolic="YES" id="yfn-4g-mdQ"/>
+                            <constraint firstItem="tiq-qB-ctb" firstAttribute="leading" secondItem="p0g-ic-mMO" secondAttribute="trailing" id="2bC-vO-4rL"/>
+                            <constraint firstItem="Dap-ih-CTT" firstAttribute="top" secondItem="to0-Tk-rgx" secondAttribute="bottom" constant="23.666666666666629" id="DeH-iu-sN0"/>
+                            <constraint firstAttribute="trailing" secondItem="to0-Tk-rgx" secondAttribute="trailing" constant="20" id="E7Q-kT-cOA"/>
+                            <constraint firstItem="Dap-ih-CTT" firstAttribute="top" secondItem="tiq-qB-ctb" secondAttribute="bottom" constant="7.6699999999999999" id="JEi-Ug-IXB"/>
+                            <constraint firstItem="to0-Tk-rgx" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="20" id="NEl-iv-uLk"/>
+                            <constraint firstItem="tiq-qB-ctb" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="6" id="O33-0m-lFj"/>
+                            <constraint firstItem="Bly-1v-axf" firstAttribute="leading" secondItem="tiq-qB-ctb" secondAttribute="trailing" constant="6" id="Rcf-a1-QdO"/>
+                            <constraint firstItem="p0g-ic-mMO" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="6" id="dYF-x5-RRO"/>
+                            <constraint firstItem="Dap-ih-CTT" firstAttribute="top" secondItem="z1s-Yq-ex1" secondAttribute="bottom" constant="9.6699999999999999" id="fGx-r4-PGy"/>
+                            <constraint firstItem="Dap-ih-CTT" firstAttribute="top" secondItem="p0g-ic-mMO" secondAttribute="bottom" constant="7.6699999999999999" id="gPi-OD-J9g"/>
+                            <constraint firstItem="p0g-ic-mMO" firstAttribute="leading" secondItem="wJB-Kf-L2F" secondAttribute="leading" constant="7" id="hCV-Iu-4id"/>
+                            <constraint firstItem="Bly-1v-axf" firstAttribute="top" secondItem="yHU-Nf-ZCW" secondAttribute="bottom" constant="3" id="hx2-17-Wqh"/>
+                            <constraint firstItem="yHU-Nf-ZCW" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="25" id="iXC-PL-FtQ"/>
+                            <constraint firstItem="Bly-1v-axf" firstAttribute="top" secondItem="yHU-Nf-ZCW" secondAttribute="bottom" constant="3" id="iwb-cQ-nwk"/>
+                            <constraint firstItem="z1s-Yq-ex1" firstAttribute="leading" secondItem="wJB-Kf-L2F" secondAttribute="leading" constant="7" id="kM3-80-wz2"/>
+                            <constraint firstItem="Dap-ih-CTT" firstAttribute="top" secondItem="Bly-1v-axf" secondAttribute="bottom" constant="7.6699999999999999" id="npi-LL-dbM"/>
+                            <constraint firstItem="yHU-Nf-ZCW" firstAttribute="leading" secondItem="tiq-qB-ctb" secondAttribute="trailing" constant="6" id="p1L-qm-WcN"/>
+                            <constraint firstItem="z1s-Yq-ex1" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="8" id="qfE-pY-cJq"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1520,7 +1531,7 @@
                         <outlet property="playbarArtist" destination="Bly-1v-axf" id="Ji0-uU-pzz"/>
                         <outlet property="playbarArtwork" destination="p0g-ic-mMO" id="qAi-XC-b0k"/>
                         <outlet property="playbarTitle" destination="yHU-Nf-ZCW" id="vPG-4e-0uD"/>
-                        <outlet property="youtubePreviewWebview" destination="GiB-Il-k9N" id="gmx-7I-jOq"/>
+                        <outlet property="youtubePlayer" destination="z1s-Yq-ex1" id="WwG-dD-wWh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hE-pW-A4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
