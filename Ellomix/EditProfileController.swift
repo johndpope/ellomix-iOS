@@ -51,7 +51,7 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         currentUser?.setProfilePic(image: profilePic.image!)
         
         FirebaseAPI.updateUser(user: currentUser!)
-        FirebaseAPI.updateUserProfilePicture(user: currentUser!, image: profilePic.image!)
+        FirebaseAPI.updateUserProfilePicture(user: currentUser!, image: profilePic.image!, completion: {})
         Global.sharedGlobal.user = currentUser
 
         dismiss(animated: true, completion: nil)

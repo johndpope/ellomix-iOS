@@ -40,7 +40,7 @@ class FirebaseApi {
         return storageRef.child(uid)
     }
     
-    func updateUserProfilePicture(user: EllomixUser, image: UIImage) {
+    func updateUserProfilePicture(user: EllomixUser, image: UIImage, completion: @escaping () -> Void) {
         let uploadMetadata = StorageMetadata()
         uploadMetadata.contentType = "image/jpeg"
         let imageData = UIImageJPEGRepresentation(image, 0.8)
@@ -54,6 +54,7 @@ class FirebaseApi {
                 let userPhotoURLRef = self.ref.child(self.USERS).child(user.uid).child("photo_url")
                 user.setProfilePicLink(link: (metadata?.downloadURL()?.absoluteString)!)
                 userPhotoURLRef.setValue((metadata?.downloadURL()?.absoluteString)!)
+                completion()
             }
         })
     }

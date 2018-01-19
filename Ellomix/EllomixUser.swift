@@ -20,6 +20,7 @@ class EllomixUser {
     var email:String = ""
     var gender:String = ""
     var birthday:String = ""
+    var password:String = ""
     
     init(uid: String) {
         self.uid = uid
@@ -57,6 +58,10 @@ class EllomixUser {
         self.birthday = birthday
     }
     
+    func setPassword(password: String) {
+        self.password = password
+    }
+
     func getName() -> String {
         return name
     }
@@ -86,6 +91,11 @@ class EllomixUser {
     }
     
     func toDictionary() -> Any {
-        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender]
+        var password = self.password
+        if (password.isEmpty) {
+            password = "N/A"
+        }
+
+        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender, "password": password]
     }
 }
