@@ -16,12 +16,16 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
     
     @IBOutlet weak var contButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        currentUser = Global.sharedGlobal.user
+        FirebaseAPI = FirebaseApi()
         
         profilePic.layer.cornerRadius = profilePic.frame.size.width/2
         profilePic.clipsToBounds = true
@@ -68,7 +72,11 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
             else {
                 // User is signed in
-                print("Firebase Authenticated succeeded.")
+                print("Firebase Authenticated succeeded")
+                
+                let userID = Auth.auth().currentUser?.uid
+                self.FirebaseAPI.getUsersRef().child(userID!).setValue(["email" : self.emailField.text, "name" : self.nameField.text]) // Need photoUrl or else nil error occurs
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "homeTabController")
                 self.present(vc, animated: true, completion: nil)
