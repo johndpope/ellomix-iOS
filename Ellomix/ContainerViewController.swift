@@ -34,6 +34,8 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.youtubePlayer.isHidden = false
             let track = track as! YouTubeVideo
             playBarController.youtubePlayer.loadVideoID(track.videoID!)
+            playBarController.playbarTitle.text = track.videoTitle
+            playBarController.playbarArtist.text = track.videoChannel
         default:
             print("Unable to play selected track.")
         }
