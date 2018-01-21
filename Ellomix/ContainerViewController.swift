@@ -27,12 +27,14 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
         switch track {
         case is SoundcloudTrack:
             let track = track as! SoundcloudTrack
+            playBarController.currentTrack = track
             let streamURL = track.url
             musicPlayer.play(url: streamURL!)
         case is YouTubeVideo:
             playBarController.playbarArtwork.isHidden = true
             playBarController.youtubePlayer.isHidden = false
             let track = track as! YouTubeVideo
+            playBarController.currentTrack = track
             playBarController.youtubePlayer.loadVideoID(track.videoID!)
             playBarController.playbarTitle.text = track.videoTitle
             playBarController.playbarArtist.text = track.videoChannel
