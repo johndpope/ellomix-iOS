@@ -51,6 +51,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let homeTabBarVC = segue.destination as? HomeTabBarController {
+            playBarView.transform = playBarView.transform.translatedBy(x: 0, y: -homeTabBarVC.tabBar.frame.height)
             if let navController = homeTabBarVC.viewControllers?.first as? UINavigationController {
                 let searchVC = navController.topViewController as! SearchViewController
                 searchVC.baseDelegate = self
