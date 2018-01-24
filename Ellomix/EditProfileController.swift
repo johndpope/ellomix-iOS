@@ -48,6 +48,7 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         currentUser?.setBio(bio: bioView.text )
         currentUser?.setEmail(email: emailField.text!)
         currentUser?.setGender(gender: genderField.text!)
+        currentUser?.setBirthday(birthday: birthdayField.text!)
         currentUser?.setProfilePic(image: profilePic.image!)
         
         FirebaseAPI.updateUser(user: currentUser!)
@@ -63,6 +64,7 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         websiteField.text = currentUser?.getWebsite()
         bioView.text = currentUser?.getBio()
         emailField.text = currentUser?.getEmail()
+        birthdayField.text = currentUser?.getBirthday()
         genderField.text = currentUser?.getGender()
     }
     
@@ -99,5 +101,20 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         profilePic.image = image
         dismiss(animated:true, completion: nil)
+    }
+
+    // Date Picker functions
+    @IBAction func editingBirthday(_ sender: UITextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(birthdayValueChanged), for: UIControlEvents.valueChanged)
+    }
+
+    func birthdayValueChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        birthdayField.text = dateFormatter.string(from: sender.date)
     }
 }
