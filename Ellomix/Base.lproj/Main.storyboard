@@ -1519,6 +1519,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="tiq-qB-ctb" firstAttribute="leading" secondItem="p0g-ic-mMO" secondAttribute="trailing" id="2bC-vO-4rL"/>
                             <constraint firstItem="Dap-ih-CTT" firstAttribute="top" secondItem="tiq-qB-ctb" secondAttribute="bottom" constant="7.6699999999999999" id="JEi-Ug-IXB"/>
@@ -1538,6 +1539,9 @@
                             <constraint firstItem="yHU-Nf-ZCW" firstAttribute="leading" secondItem="tiq-qB-ctb" secondAttribute="trailing" constant="6" id="p1L-qm-WcN"/>
                             <constraint firstItem="z1s-Yq-ex1" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="8" id="qfE-pY-cJq"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="DSM-av-6h2" appends="YES" id="3VZ-Wf-NCI"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="placeholderView" destination="tiq-qB-ctb" id="MSh-yI-sX7"/>
@@ -1549,8 +1553,40 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hE-pW-A4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DSM-av-6h2">
+                    <connections>
+                        <action selector="playbarTapped:" destination="22K-7q-A5k" id="cKj-qj-xKC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-765.21739130434787" y="2030.7065217391305"/>
+        </scene>
+        <!--Pop Up Player-->
+        <scene sceneID="5JA-RM-YmQ">
+            <objects>
+                <viewController storyboardIdentifier="popUpPlayerController" title="Pop Up Player" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xTc-iN-yhZ" customClass="PopUpPlayerController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xaP-l8-g24"/>
+                        <viewControllerLayoutGuide type="bottom" id="sDK-t6-iZQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xia-77-rPF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="pop up player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKY-Vp-CA5">
+                                <rect key="frame" x="137" y="358" width="141" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eQR-eR-30N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-765.21739130434787" y="2467.663043478261"/>
         </scene>
     </scenes>
     <resources>

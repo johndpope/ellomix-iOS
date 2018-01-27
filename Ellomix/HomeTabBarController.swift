@@ -101,7 +101,7 @@ class HomeTabBarController: UITabBarController {
     }
 }
 
-//CODE To display profile pictue ETC ignore imgview and you can just reuse code--
+// Extensions
 
 extension UIImageView {
     func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {

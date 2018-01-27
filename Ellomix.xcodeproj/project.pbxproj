@@ -33,9 +33,13 @@
 		DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22FB7A1F5377E000AF384B /* EllomixUser.swift */; };
 		DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */; };
 		DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */; };
+		DB42B5081FFDE37800AB7E1D /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = DB42B5071FFDE37800AB7E1D /* YTPlayer.html */; };
+		DB42B50A1FFDF28400AB7E1D /* YouTubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42B5091FFDF28400AB7E1D /* YouTubePlayer.swift */; };
 		DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */; };
 		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
 		DB7B0BD21F7CB35300BB2707 /* SoundcloudTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */; };
+		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
+		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
 		DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */; };
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
@@ -102,9 +106,13 @@
 		DB22FB7A1F5377E000AF384B /* EllomixUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllomixUser.swift; sourceTree = "<group>"; };
 		DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		DB42B5071FFDE37800AB7E1D /* YTPlayer.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = YTPlayer.html; sourceTree = "<group>"; };
+		DB42B5091FFDF28400AB7E1D /* YouTubePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayer.swift; sourceTree = "<group>"; };
 		DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
 		DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundcloudTrack.swift; sourceTree = "<group>"; };
+		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
+		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
 		DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
@@ -235,10 +243,14 @@
 				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
 				DB052E321F6F7A6E00F32A70 /* Global.swift */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */,
 				DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */,
 				DB0938661FD502F700DB64AA /* MusicPlayer.swift */,
 				DB0938641FD4FCD200DB64AA /* ContainerViewController.swift */,
+				DB42B5091FFDF28400AB7E1D /* YouTubePlayer.swift */,
+				DB42B5071FFDE37800AB7E1D /* YTPlayer.html */,
 				DBCE53751FBABD06002B760C /* EditProfileController.swift */,
+				DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */,
 				DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */,
 				DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */,
 				DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */,
@@ -400,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E379E62C1E08B69500B0256F /* LaunchScreen.storyboard in Resources */,
+				DB42B5081FFDE37800AB7E1D /* YTPlayer.html in Resources */,
 				BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */,
 				E379E6291E08B69500B0256F /* Assets.xcassets in Resources */,
 				E379E6271E08B69500B0256F /* Main.storyboard in Resources */,
@@ -610,6 +623,7 @@
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */,
+				DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */,
 				DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */,
 				BA14B00C1E654B1C004B8B67 /* AudioViewController.swift in Sources */,
 				DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */,
@@ -617,7 +631,9 @@
 				DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */,
 				BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */,
 				DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */,
+				DB42B50A1FFDF28400AB7E1D /* YouTubePlayer.swift in Sources */,
 				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
+				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ChatTableViewCell.swift in Sources */,
 				BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */,
 				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayBarController: UIViewController {
+class PlayBarController: UIViewController, UIViewControllerTransitioningDelegate {
     
     
     @IBOutlet weak var playPauseButton: UIButton!
@@ -41,4 +41,10 @@ class PlayBarController: UIViewController {
         }
     }
 
+    @IBAction func playbarTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let popUpPlayer = storyboard.instantiateViewController(withIdentifier: "popUpPlayerController")
+        popUpPlayer.transitioningDelegate = self
+        self.present(popUpPlayer, animated: true, completion: nil)
+    }
 }
