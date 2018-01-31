@@ -18,6 +18,7 @@ class PlayBarController: UIViewController, UIViewControllerTransitioningDelegate
     @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var youtubePlayer: YouTubePlayerView!
     var currentTrack: Any?
+    let transition = PopUpAnimator()
     
     override func viewDidLoad() {
         youtubePlayer.isHidden = true
@@ -46,5 +47,19 @@ class PlayBarController: UIViewController, UIViewControllerTransitioningDelegate
         let popUpPlayer = storyboard.instantiateViewController(withIdentifier: "popUpPlayerController")
         popUpPlayer.transitioningDelegate = self
         self.present(popUpPlayer, animated: true, completion: nil)
+    }
+
+    // Transition Delegate functions
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.originFrame = self.view.convert(self.view.frame, to: nil)
+        transition.presenting = true
+        self.view.isHidden = true
+
+        return transition
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
     }
 }
