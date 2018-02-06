@@ -22,7 +22,7 @@ class PlayBarController: UIViewController, UIViewControllerTransitioningDelegate
     
     override func viewDidLoad() {
         youtubePlayer.isHidden = true
-        youtubePlayer.playerVars = ["playsinline": 1 as AnyObject, "showinfo": 0 as AnyObject, "rel": 0 as AnyObject, "modestbranding": 1 as AnyObject, "controls": 1 as AnyObject]
+        youtubePlayer.playerVars = ["playsinline": 1 as AnyObject, "showinfo": 0 as AnyObject, "rel": 0 as AnyObject, "modestbranding": 1 as AnyObject, "controls": 0 as AnyObject]
     }
 
     @IBAction func playPause(_ sender: Any) {
