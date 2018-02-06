@@ -59,7 +59,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: (scTrack?.thumbnailURL)!)
                 DispatchQueue.main.async {
-                    cell.thumbnail.image = UIImage(data: data!)
+                    let image = UIImage(data: data!)
+                    cell.thumbnail.image = image
+                    scTrack?.thumbnailImage = image
                 }
             }
         } else if (indexPath.section == 2 && indexPath.row < songs["YouTube"]!.count) {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal class SoundcloudTrack {
     
@@ -14,5 +15,6 @@ internal class SoundcloudTrack {
     var artist:String?
     var url:URL?
     var thumbnailURL:URL?
+    var thumbnailImage:UIImage?
     
 }

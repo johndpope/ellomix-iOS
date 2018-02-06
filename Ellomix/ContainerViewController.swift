@@ -26,10 +26,15 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     func activatePlaybar(track: Any?) {
         switch track {
         case is SoundcloudTrack:
+            playBarController.youtubePlayer.isHidden = true
+            playBarController.playbarArtwork.isHidden = false
             let track = track as! SoundcloudTrack
             playBarController.currentTrack = track
             let streamURL = track.url
             musicPlayer.play(url: streamURL!)
+            playBarController.playbarTitle.text = track.title
+            playBarController.playbarArtist.text = track.artist
+            playBarController.playbarArtwork.image = track.thumbnailImage
         case is YouTubeVideo:
             playBarController.playbarArtwork.isHidden = true
             playBarController.youtubePlayer.isHidden = false
