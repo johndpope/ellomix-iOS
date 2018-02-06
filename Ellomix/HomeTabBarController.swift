@@ -24,7 +24,7 @@ class HomeTabBarController: UITabBarController {
         
         FirebaseAPI.getUsersRef().observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             if (snapshot.hasChild(self.user.uid)) {
-                print("User was loaded from Firbase")
+                print("User was loaded from Firebase")
                 
                 let results = snapshot.value as! Dictionary<String, AnyObject>
                 let userData = results[self.user.uid] as! Dictionary<String, AnyObject>

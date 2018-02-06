@@ -16,9 +16,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var fbButton: UIButton!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func fbButtonClicked(_ sender: Any) {
@@ -33,17 +36,22 @@ class LoginViewController: UIViewController {
                 print("Logged in!")
                 
                 let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
-                self.firebaseAuth(credential: credential)
+                Auth.auth().signIn(with: credential) { (user, error) in
+                    if let error = error {
+                        print("Firebase Authentication failed: \(error)")
+                    }
+                    // User is signed in
+                    print("Firebase Authenticated succeeded.")
+                    self.performSegue(withIdentifier: "toHomeTabBar", sender: self)
+                }
             }
         }
     }
     
-    @IBAction func signUpButtonClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSignUp", sender: self)
-    }
-    
-    func firebaseAuth(credential: AuthCredential) {
-        Auth.auth().signIn(with: credential) { (user, error) in
+    @IBAction func loginButtonClicked(_ sender: Any) {
+        let email = emailField.text!
+        let password = passwordField.text!
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("Firebase Authentication failed: \(error)")
             }
@@ -52,4 +60,9 @@ class LoginViewController: UIViewController {
             self.performSegue(withIdentifier: "toHomeTabBar", sender: self)
         }
     }
+    
+    @IBAction func signUpButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toSignUp", sender: self)
+    }
+
 }

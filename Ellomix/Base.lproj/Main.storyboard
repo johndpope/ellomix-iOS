@@ -98,6 +98,9 @@
                                 <state key="normal" title="Log in" backgroundImage="redBackground">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o0B-VP-Jyc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIz-Si-2IY">
                                 <rect key="frame" x="87" y="514" width="123" height="30"/>
@@ -156,8 +159,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailField" destination="W9u-5q-mXE" id="dBl-tJ-vyL"/>
                         <outlet property="fbButton" destination="rPf-jc-sR1" id="LGj-wZ-kYM"/>
                         <outlet property="loginButton" destination="4TD-Ww-niw" id="R9s-fR-2C0"/>
+                        <outlet property="passwordField" destination="ZGh-Hm-LvY" id="lca-wS-BM5"/>
                         <outlet property="signUpButton" destination="vBC-xA-wP7" id="jQw-Xp-3Am"/>
                         <segue destination="N1Y-6p-rHW" kind="show" identifier="toHomeTabBar" id="ut1-7T-a2h"/>
                         <segue destination="bO1-he-ovB" kind="show" identifier="toSignUp" id="NwJ-5c-kU3"/>
