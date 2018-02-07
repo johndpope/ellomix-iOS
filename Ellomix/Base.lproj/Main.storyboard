@@ -1570,8 +1570,64 @@
                     <view key="view" contentMode="scaleToFill" id="xia-77-rPF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pause" translatesAutoresizingMaskIntoConstraints="NO" id="uyC-9n-L87">
+                                <rect key="frame" x="182" y="627" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8ku-lp-L3P"/>
+                                    <constraint firstAttribute="width" constant="50" id="j1M-ue-hSs"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmj-ks-Nqg">
+                                <rect key="frame" x="45" y="501" width="330" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Fgw-GK-R6H"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqT-eZ-bJY">
+                                <rect key="frame" x="45" y="530" width="330" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fY8-to-qf7">
+                                <rect key="frame" x="0.0" y="54" width="414" height="414"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aS1-qZ-Z2S" customClass="YouTubePlayerView" customModule="Ellomix" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="125" width="414" height="272"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fY8-to-qf7" firstAttribute="leading" secondItem="aS1-qZ-Z2S" secondAttribute="leading" id="3mc-GE-U6m"/>
+                            <constraint firstItem="aS1-qZ-Z2S" firstAttribute="centerX" secondItem="uyC-9n-L87" secondAttribute="centerX" id="8f7-1I-2UX"/>
+                            <constraint firstAttribute="trailing" secondItem="fY8-to-qf7" secondAttribute="trailing" id="C1S-W8-aQb"/>
+                            <constraint firstItem="mmj-ks-Nqg" firstAttribute="top" secondItem="fY8-to-qf7" secondAttribute="bottom" constant="33" id="Ie4-vv-Igb"/>
+                            <constraint firstItem="mmj-ks-Nqg" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leadingMargin" constant="25" id="Phg-wR-0ym"/>
+                            <constraint firstItem="LqT-eZ-bJY" firstAttribute="top" secondItem="mmj-ks-Nqg" secondAttribute="bottom" constant="8" symbolic="YES" id="QEt-8s-igM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mmj-ks-Nqg" secondAttribute="trailing" constant="19" id="ReX-zT-u7i"/>
+                            <constraint firstItem="fY8-to-qf7" firstAttribute="top" secondItem="xaP-l8-g24" secondAttribute="bottom" constant="34" id="SKO-kb-x0d"/>
+                            <constraint firstItem="aS1-qZ-Z2S" firstAttribute="top" secondItem="xaP-l8-g24" secondAttribute="bottom" constant="105" id="Ujn-Kr-i6z"/>
+                            <constraint firstItem="aS1-qZ-Z2S" firstAttribute="centerY" secondItem="fY8-to-qf7" secondAttribute="centerY" id="XGg-UZ-nZN"/>
+                            <constraint firstItem="mmj-ks-Nqg" firstAttribute="trailing" secondItem="LqT-eZ-bJY" secondAttribute="trailing" id="nK2-wW-cj9"/>
+                            <constraint firstItem="sDK-t6-iZQ" firstAttribute="top" secondItem="uyC-9n-L87" secondAttribute="bottom" constant="59" id="pBN-fA-lXW"/>
+                            <constraint firstItem="fY8-to-qf7" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leading" id="s9X-IC-xWM"/>
+                            <constraint firstItem="mmj-ks-Nqg" firstAttribute="leading" secondItem="LqT-eZ-bJY" secondAttribute="leading" id="spT-vF-XFA"/>
+                            <constraint firstItem="fY8-to-qf7" firstAttribute="trailing" secondItem="aS1-qZ-Z2S" secondAttribute="trailing" id="vmO-rV-etG"/>
+                            <constraint firstItem="uyC-9n-L87" firstAttribute="top" secondItem="LqT-eZ-bJY" secondAttribute="bottom" constant="76" id="yB9-Rf-2Bc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="artistField" destination="LqT-eZ-bJY" id="J4T-DS-dSv"/>
+                        <outlet property="artworkImage" destination="fY8-to-qf7" id="dic-vK-65q"/>
+                        <outlet property="playPauseButton" destination="uyC-9n-L87" id="bAy-uK-C8R"/>
+                        <outlet property="titleField" destination="mmj-ks-Nqg" id="659-B7-JLE"/>
+                        <outlet property="youtubePlayer" destination="aS1-qZ-Z2S" id="BMU-0N-hvv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQR-eR-30N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
