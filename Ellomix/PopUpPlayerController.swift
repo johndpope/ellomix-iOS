@@ -13,18 +13,25 @@ class PopUpPlayerController: UIViewController {
     @IBOutlet weak var titleField: UILabel!
     @IBOutlet weak var artistField: UILabel!
     @IBOutlet weak var artworkImage: UIImageView!
-    @IBOutlet weak var youtubePlayer: YouTubePlayerView!
     @IBOutlet weak var playPauseButton: UIImageView!
     var currentTrack: Any?
     
     override func viewDidLoad() {
         loadTrackInfo()
+        self.view.addSubview(Global.sharedGlobal.youtubePlayer!)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 125, width: self.view.frame.width, height: 272)
+        Global.sharedGlobal.youtubePlayer?.play()
     }
     
     func loadTrackInfo() {
         switch currentTrack {
         case is SoundcloudTrack:
-            print("Soundcloud song loaded in popup player.")
+            let track = currentTrack as! SoundcloudTrack
+            titleField.text = track.title
+            artistField.text = track.artist
         case is YouTubeVideo:
             let track = currentTrack as! YouTubeVideo
             titleField.text = track.videoTitle

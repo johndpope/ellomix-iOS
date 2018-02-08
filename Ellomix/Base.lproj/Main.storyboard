@@ -1480,7 +1480,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHU-Nf-ZCW">
-                                <rect key="frame" x="120" y="14" width="246" height="21"/>
+                                <rect key="frame" x="122" y="14" width="244" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1488,13 +1488,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tiq-qB-ctb" userLabel="Placeholder View">
                                 <rect key="frame" x="75" y="0.0" width="37" height="74"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1s-Yq-ex1" userLabel="YouTube Player View" customClass="YouTubePlayerView" customModule="Ellomix" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="113" height="74"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="73.670000000000002" id="MwT-un-1jo"/>
-                                    <constraint firstAttribute="width" constant="113" id="QIj-kd-a44"/>
+                                    <constraint firstAttribute="width" constant="37" id="hJm-iv-TLI"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="to0-Tk-rgx">
@@ -1509,7 +1504,10 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bly-1v-axf">
-                                <rect key="frame" x="120" y="36" width="246" height="17"/>
+                                <rect key="frame" x="122" y="36" width="244" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="244" id="G98-dh-HZ8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1522,20 +1520,16 @@
                             <constraint firstItem="to0-Tk-rgx" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="26" id="46r-Jz-mNV"/>
                             <constraint firstItem="p0g-ic-mMO" firstAttribute="leading" secondItem="wJB-Kf-L2F" secondAttribute="leading" id="8r1-Ll-Yka"/>
                             <constraint firstItem="tiq-qB-ctb" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" id="CIk-MR-Lci"/>
-                            <constraint firstItem="Bly-1v-axf" firstAttribute="top" secondItem="yHU-Nf-ZCW" secondAttribute="bottom" constant="1" id="Caw-ce-CLC"/>
-                            <constraint firstItem="yHU-Nf-ZCW" firstAttribute="trailing" secondItem="Bly-1v-axf" secondAttribute="trailing" id="Ht7-7F-lEU"/>
+                            <constraint firstItem="to0-Tk-rgx" firstAttribute="leading" secondItem="Bly-1v-axf" secondAttribute="trailing" constant="8" symbolic="YES" id="Gg7-IZ-0oR"/>
                             <constraint firstItem="to0-Tk-rgx" firstAttribute="leading" secondItem="yHU-Nf-ZCW" secondAttribute="trailing" constant="8" symbolic="YES" id="Qms-AL-OGp"/>
                             <constraint firstItem="yHU-Nf-ZCW" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" constant="14" id="Sqn-CH-1Jr"/>
-                            <constraint firstItem="z1s-Yq-ex1" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" id="TZ3-sZ-sp6"/>
                             <constraint firstAttribute="bottom" secondItem="tiq-qB-ctb" secondAttribute="bottom" id="Wfn-uu-pfc"/>
                             <constraint firstAttribute="bottom" secondItem="p0g-ic-mMO" secondAttribute="bottom" id="XZJ-cJ-erx"/>
-                            <constraint firstItem="z1s-Yq-ex1" firstAttribute="leading" secondItem="wJB-Kf-L2F" secondAttribute="leading" id="Xmw-Cb-ceT"/>
-                            <constraint firstItem="yHU-Nf-ZCW" firstAttribute="leading" secondItem="z1s-Yq-ex1" secondAttribute="trailing" constant="7" id="YAU-Cs-PAg"/>
-                            <constraint firstItem="Dap-ih-CTT" firstAttribute="top" secondItem="z1s-Yq-ex1" secondAttribute="bottom" id="cY4-n3-r6D"/>
                             <constraint firstAttribute="trailing" secondItem="to0-Tk-rgx" secondAttribute="trailing" constant="20" id="dar-GR-t7n"/>
+                            <constraint firstItem="Bly-1v-axf" firstAttribute="top" secondItem="yHU-Nf-ZCW" secondAttribute="bottom" constant="1" id="duN-t8-rgT"/>
                             <constraint firstItem="p0g-ic-mMO" firstAttribute="top" secondItem="CxT-0z-fpg" secondAttribute="bottom" id="hSp-sw-Lbf"/>
-                            <constraint firstItem="yHU-Nf-ZCW" firstAttribute="leading" secondItem="tiq-qB-ctb" secondAttribute="trailing" constant="8" id="kEl-LC-Cmv"/>
-                            <constraint firstItem="yHU-Nf-ZCW" firstAttribute="leading" secondItem="Bly-1v-axf" secondAttribute="leading" id="uo0-zD-HTf"/>
+                            <constraint firstItem="yHU-Nf-ZCW" firstAttribute="leading" secondItem="tiq-qB-ctb" secondAttribute="trailing" constant="10" id="kEl-LC-Cmv"/>
+                            <constraint firstItem="Bly-1v-axf" firstAttribute="leading" secondItem="yHU-Nf-ZCW" secondAttribute="leading" id="zGA-EH-CYO"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="DSM-av-6h2" appends="YES" id="3VZ-Wf-NCI"/>
@@ -1547,7 +1541,6 @@
                         <outlet property="playbarArtist" destination="Bly-1v-axf" id="Ji0-uU-pzz"/>
                         <outlet property="playbarArtwork" destination="p0g-ic-mMO" id="qAi-XC-b0k"/>
                         <outlet property="playbarTitle" destination="yHU-Nf-ZCW" id="vPG-4e-0uD"/>
-                        <outlet property="youtubePlayer" destination="z1s-Yq-ex1" id="WwG-dD-wWh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hE-pW-A4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1596,28 +1589,20 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fY8-to-qf7">
                                 <rect key="frame" x="0.0" y="54" width="414" height="414"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aS1-qZ-Z2S" customClass="YouTubePlayerView" customModule="Ellomix" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="125" width="414" height="272"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fY8-to-qf7" firstAttribute="leading" secondItem="aS1-qZ-Z2S" secondAttribute="leading" id="3mc-GE-U6m"/>
-                            <constraint firstItem="aS1-qZ-Z2S" firstAttribute="centerX" secondItem="uyC-9n-L87" secondAttribute="centerX" id="8f7-1I-2UX"/>
                             <constraint firstAttribute="trailing" secondItem="fY8-to-qf7" secondAttribute="trailing" id="C1S-W8-aQb"/>
                             <constraint firstItem="mmj-ks-Nqg" firstAttribute="top" secondItem="fY8-to-qf7" secondAttribute="bottom" constant="33" id="Ie4-vv-Igb"/>
                             <constraint firstItem="mmj-ks-Nqg" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leadingMargin" constant="25" id="Phg-wR-0ym"/>
                             <constraint firstItem="LqT-eZ-bJY" firstAttribute="top" secondItem="mmj-ks-Nqg" secondAttribute="bottom" constant="8" symbolic="YES" id="QEt-8s-igM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mmj-ks-Nqg" secondAttribute="trailing" constant="19" id="ReX-zT-u7i"/>
                             <constraint firstItem="fY8-to-qf7" firstAttribute="top" secondItem="xaP-l8-g24" secondAttribute="bottom" constant="34" id="SKO-kb-x0d"/>
-                            <constraint firstItem="aS1-qZ-Z2S" firstAttribute="top" secondItem="xaP-l8-g24" secondAttribute="bottom" constant="105" id="Ujn-Kr-i6z"/>
-                            <constraint firstItem="aS1-qZ-Z2S" firstAttribute="centerY" secondItem="fY8-to-qf7" secondAttribute="centerY" id="XGg-UZ-nZN"/>
                             <constraint firstItem="mmj-ks-Nqg" firstAttribute="trailing" secondItem="LqT-eZ-bJY" secondAttribute="trailing" id="nK2-wW-cj9"/>
                             <constraint firstItem="sDK-t6-iZQ" firstAttribute="top" secondItem="uyC-9n-L87" secondAttribute="bottom" constant="59" id="pBN-fA-lXW"/>
+                            <constraint firstItem="uyC-9n-L87" firstAttribute="centerX" secondItem="fY8-to-qf7" secondAttribute="centerX" id="s3X-k3-9xk"/>
                             <constraint firstItem="fY8-to-qf7" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leading" id="s9X-IC-xWM"/>
                             <constraint firstItem="mmj-ks-Nqg" firstAttribute="leading" secondItem="LqT-eZ-bJY" secondAttribute="leading" id="spT-vF-XFA"/>
-                            <constraint firstItem="fY8-to-qf7" firstAttribute="trailing" secondItem="aS1-qZ-Z2S" secondAttribute="trailing" id="vmO-rV-etG"/>
                             <constraint firstItem="uyC-9n-L87" firstAttribute="top" secondItem="LqT-eZ-bJY" secondAttribute="bottom" constant="76" id="yB9-Rf-2Bc"/>
                         </constraints>
                     </view>
@@ -1626,7 +1611,6 @@
                         <outlet property="artworkImage" destination="fY8-to-qf7" id="dic-vK-65q"/>
                         <outlet property="playPauseButton" destination="uyC-9n-L87" id="bAy-uK-C8R"/>
                         <outlet property="titleField" destination="mmj-ks-Nqg" id="659-B7-JLE"/>
-                        <outlet property="youtubePlayer" destination="aS1-qZ-Z2S" id="BMU-0N-hvv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQR-eR-30N" userLabel="First Responder" sceneMemberID="firstResponder"/>

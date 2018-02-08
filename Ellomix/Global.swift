@@ -14,4 +14,5 @@ class Global {
     static let sharedGlobal = Global()
     
     var user:EllomixUser? = nil
+    var youtubePlayer:YouTubePlayerView? = nil
 }
