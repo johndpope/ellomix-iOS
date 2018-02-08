@@ -38,7 +38,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             let track = track as! YouTubeVideo
             playBarController.currentTrack = track
 
-            if (Global.sharedGlobal.youtubePlayer != nil) {
+            if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
                 Global.sharedGlobal.youtubePlayer?.stop()
             }
             Global.sharedGlobal.youtubePlayer = YouTubePlayerView()

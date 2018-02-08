@@ -18,18 +18,23 @@ class PopUpPlayerController: UIViewController {
     
     override func viewDidLoad() {
         loadTrackInfo()
-        self.view.addSubview(Global.sharedGlobal.youtubePlayer!)
+        if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+            self.view.addSubview(Global.sharedGlobal.youtubePlayer!)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 125, width: self.view.frame.width, height: 272)
-        Global.sharedGlobal.youtubePlayer?.play()
+        if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+            Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 125, width: self.view.frame.width, height: 272)
+            Global.sharedGlobal.youtubePlayer?.play()
+        }
     }
     
     func loadTrackInfo() {
         switch currentTrack {
         case is SoundcloudTrack:
             let track = currentTrack as! SoundcloudTrack
+            artworkImage.image = track.thumbnailImage
             titleField.text = track.title
             artistField.text = track.artist
         case is YouTubeVideo:
