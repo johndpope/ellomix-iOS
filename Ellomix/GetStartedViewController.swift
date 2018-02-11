@@ -14,6 +14,6 @@ class GetStartedViewController: UIViewController {
     @IBOutlet weak var getStartedButton: UIButton!
     
     override func viewDidLoad() {
-        getStartedButton.layer.cornerRadius = 5
+        getStartedButton.layer.cornerRadius = getStartedButton.frame.height / 2
     }
 }

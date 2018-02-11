@@ -25,12 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Soundcloud.clientIdentifier = "3e7f2924c47462bf79720ae5995194de"
         
-        // Status bar
-        UINavigationBar.appearance().clipsToBounds = true
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        statusBar.backgroundColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
-        UIApplication.shared.statusBarStyle = .lightContent
-        
         loginOrHome()
         return true
     }

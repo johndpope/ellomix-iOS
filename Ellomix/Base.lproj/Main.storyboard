@@ -1213,23 +1213,13 @@
                                     <constraint firstAttribute="height" constant="170" id="Cr4-i2-HK0"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account already?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEO-jB-Lc5">
-                                <rect key="frame" x="58" y="677" width="236" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="236" id="SDc-h8-zDf"/>
-                                    <constraint firstAttribute="height" constant="39" id="Tkk-l0-QI8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhK-gJ-1ug">
-                                <rect key="frame" x="282" y="677" width="65" height="39"/>
+                                <rect key="frame" x="280" y="677" width="54" height="39"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="54" id="23i-Tc-uoG"/>
                                     <constraint firstAttribute="height" constant="39" id="HnT-TE-ugn"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="L2Y-S9-wj9"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Log in">
                                     <color key="titleColor" red="0.90980392156862744" green="0.30588235294117649" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1259,20 +1249,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account already?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEO-jB-Lc5">
+                                <rect key="frame" x="69.999999999999986" y="677" width="207.66666666666663" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="Tkk-l0-QI8"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="207.66666666666663" id="wvQ-7M-ECn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4QP-kp-Cgu" firstAttribute="top" secondItem="DhK-gJ-1ug" secondAttribute="bottom" constant="20" id="9gJ-mL-I5H"/>
                             <constraint firstItem="XEO-jB-Lc5" firstAttribute="top" secondItem="9kV-tB-Xip" secondAttribute="bottom" constant="117" id="Fg9-2J-AX1"/>
+                            <constraint firstItem="DhK-gJ-1ug" firstAttribute="top" secondItem="9kV-tB-Xip" secondAttribute="bottom" constant="117" id="IYy-rY-UuI"/>
                             <constraint firstItem="Oub-Rt-YAr" firstAttribute="top" secondItem="S5a-m4-ZfP" secondAttribute="bottom" constant="73" id="Rpe-0X-eXZ"/>
                             <constraint firstItem="Oub-Rt-YAr" firstAttribute="centerX" secondItem="tJe-1p-ULG" secondAttribute="centerX" id="TpW-TO-Ohy"/>
-                            <constraint firstItem="XEO-jB-Lc5" firstAttribute="leading" secondItem="tJe-1p-ULG" secondAttribute="leading" constant="58" id="VKH-Fn-ypK"/>
                             <constraint firstItem="9kV-tB-Xip" firstAttribute="top" secondItem="ZcP-Ye-Jmi" secondAttribute="bottom" constant="8" id="aCT-5L-hJN"/>
                             <constraint firstItem="9kV-tB-Xip" firstAttribute="centerX" secondItem="tJe-1p-ULG" secondAttribute="centerX" id="dHx-c2-ty8"/>
-                            <constraint firstItem="DhK-gJ-1ug" firstAttribute="leading" secondItem="XEO-jB-Lc5" secondAttribute="trailing" constant="-12" id="nRm-bQ-c4E"/>
+                            <constraint firstItem="XEO-jB-Lc5" firstAttribute="leading" secondItem="tJe-1p-ULG" secondAttribute="leading" constant="70" id="e4h-tN-WQT"/>
                             <constraint firstItem="4QP-kp-Cgu" firstAttribute="top" secondItem="XEO-jB-Lc5" secondAttribute="bottom" constant="20" id="nxy-Cl-aOf"/>
                             <constraint firstItem="ZcP-Ye-Jmi" firstAttribute="centerX" secondItem="tJe-1p-ULG" secondAttribute="centerX" id="t5W-Fq-uze"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DhK-gJ-1ug" secondAttribute="trailing" constant="20" symbolic="YES" id="ziN-BL-d4z"/>
+                            <constraint firstItem="DhK-gJ-1ug" firstAttribute="leading" secondItem="XEO-jB-Lc5" secondAttribute="trailing" constant="2.3333333333333712" id="voK-Jo-Er7"/>
                         </constraints>
                     </view>
                     <connections>
