@@ -14,7 +14,6 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -22,6 +21,12 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        // UI setup
+        emailField.underlined()
+        passwordField.underlined()
+        loginButton.layer.cornerRadius = loginButton.frame.height / 2
+        fbButton.layer.cornerRadius = fbButton.frame.height / 2
     }
     
     @IBAction func fbButtonClicked(_ sender: Any) {
