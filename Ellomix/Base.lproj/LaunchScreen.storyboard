@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,16 +21,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="IJ9-Y6-11N">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellomix_logo" translatesAutoresizingMaskIntoConstraints="NO" id="IJ9-Y6-11N">
+                                <rect key="frame" x="87" y="233" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Otc-wT-DmT"/>
+                                    <constraint firstAttribute="width" constant="200" id="R9L-by-JJ8"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="IJ9-Y6-11N" secondAttribute="trailing" id="C1K-oR-kHx"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="IJ9-Y6-11N" secondAttribute="bottom" id="OKk-2b-orq"/>
-                            <constraint firstItem="IJ9-Y6-11N" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="fYR-AQ-OtK"/>
-                            <constraint firstItem="IJ9-Y6-11N" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="hNY-4n-GcQ"/>
+                            <constraint firstItem="IJ9-Y6-11N" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="DRg-7i-f2S"/>
+                            <constraint firstItem="IJ9-Y6-11N" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rLZ-Ln-QDf"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Splash" width="563" height="1001"/>
+        <image name="ellomix_logo" width="83" height="83"/>
     </resources>
 </document>

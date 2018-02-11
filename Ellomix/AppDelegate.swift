@@ -67,20 +67,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Login and Home screen initialization
     func loginOrHome() {
         // Comment out to force user to log in
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        if let window = self.window {
-            if (FBSDKAccessToken.current() != nil) {
-                // User has already been authenticated
-                let containerController = storyboard.instantiateViewController(withIdentifier: "containerController")
-                window.rootViewController = containerController
-                
-            } else {
-                // User must login
-                let loginController = storyboard.instantiateViewController(withIdentifier: "loginController")
-                window.rootViewController = loginController
-            }
-        }
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//        if let window = self.window {
+//            if (FBSDKAccessToken.current() != nil) {
+//                // User has already been authenticated
+//                let containerController = storyboard.instantiateViewController(withIdentifier: "containerController")
+//                window.rootViewController = containerController
+//
+//            } else {
+//                // User must login
+//                let loginController = storyboard.instantiateViewController(withIdentifier: "loginController")
+//                window.rootViewController = loginController
+//            }
+//        }
     }
 
 

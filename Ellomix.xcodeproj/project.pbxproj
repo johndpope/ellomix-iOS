@@ -38,6 +38,7 @@
 		DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */; };
 		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
 		DB7B0BD21F7CB35300BB2707 /* SoundcloudTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */; };
+		DB7BAA63202FB731005B7115 /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */; };
 		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
 		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
@@ -111,6 +112,7 @@
 		DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
 		DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundcloudTrack.swift; sourceTree = "<group>"; };
+		DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
 		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
 				DB052E321F6F7A6E00F32A70 /* Global.swift */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */,
 				DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */,
 				DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */,
 				DB0938661FD502F700DB64AA /* MusicPlayer.swift */,
@@ -633,6 +636,7 @@
 				DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */,
 				DB42B50A1FFDF28400AB7E1D /* YouTubePlayer.swift in Sources */,
 				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
+				DB7BAA63202FB731005B7115 /* GetStartedViewController.swift in Sources */,
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ChatTableViewCell.swift in Sources */,
 				BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */,
