@@ -65,9 +65,5 @@ class LoginViewController: UIViewController {
             self.performSegue(withIdentifier: "toHomeTabBar", sender: self)
         }
     }
-    
-    @IBAction func signUpButtonClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSignUp", sender: self)
-    }
 
 }
