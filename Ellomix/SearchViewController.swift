@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import Soundcloud
+import Firebase
 
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     
@@ -22,10 +23,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
+    private var FirebaseAPI: FirebaseApi!
+    var allUsers = [Dictionary<String, AnyObject>?]()
+    var filteredUsers = [Dictionary<String, AnyObject>?]()
+
     var baseDelegate:ContainerViewController?
     
     override func viewDidLoad() {
-        
+        FirebaseAPI = FirebaseApi()
         self.definesPresentationContext = true
         
         // Search bar initialization
@@ -35,6 +40,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchController?.searchBar.scopeButtonTitles = searchFilters
         searchController?.searchBar.delegate = self
         self.tableView.backgroundView = UIView()
+
+        retrieveUsers()
+    }
+
+    func retrieveUsers() {
+        FirebaseAPI.getUsersRef().queryOrdered(byChild: "name").observe(.childAdded, with: { (snapshot) in
+            self.allUsers.append(snapshot.value as? Dictionary)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     //MARK: TableView functions
