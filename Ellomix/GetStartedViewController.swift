@@ -16,4 +16,14 @@ class GetStartedViewController: UIViewController {
     override func viewDidLoad() {
         getStartedButton.layer.cornerRadius = getStartedButton.frame.height / 2
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toSignUp") {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
 }

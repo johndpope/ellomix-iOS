@@ -24,6 +24,17 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         nameField.underlined()
     }
     
+    @IBAction func contButtonClicked(_ sender: Any) {
+        if (emailPhoneField.text!.isEmpty || nameField.text!.isEmpty) {
+            let alert = UIAlertController(title: "Oops", message: "Please enter an email and name", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            self.performSegue(withIdentifier: "toPassword", sender: self)
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toPassword") {
             let passwordVC = segue.destination as! PasswordViewController
