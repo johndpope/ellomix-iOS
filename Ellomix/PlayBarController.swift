@@ -20,7 +20,9 @@ class PlayBarController: UIViewController, UIViewControllerTransitioningDelegate
     let transition = PopUpAnimator()
     
     override func viewDidLoad() {
-
+        transition.dismissCompletion = {
+            self.view.isHidden = false
+        }
     }
 
     @IBAction func playPause(_ sender: Any) {

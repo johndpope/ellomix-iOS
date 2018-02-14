@@ -13,7 +13,6 @@ class PopUpPlayerController: UIViewController {
     @IBOutlet weak var titleField: UILabel!
     @IBOutlet weak var artistField: UILabel!
     @IBOutlet weak var artworkImage: UIImageView!
-    @IBOutlet weak var playPauseButton: UIImageView!
     var currentTrack: Any?
     
     override func viewDidLoad() {
@@ -45,4 +44,9 @@ class PopUpPlayerController: UIViewController {
             print("Unable to load track info.")
         }
     }
+    
+    @IBAction func dismissPlayer(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
