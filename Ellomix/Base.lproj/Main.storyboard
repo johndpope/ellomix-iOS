@@ -1657,8 +1657,8 @@
         <image name="facebook" width="1024" height="1024"/>
         <image name="messages" width="42" height="29"/>
         <image name="pause" width="34" height="39"/>
-        <image name="profile" width="33" height="39"/>
+        <image name="profile" width="19" height="25"/>
         <image name="redBackground" width="432" height="87"/>
-        <image name="search" width="36" height="36"/>
+        <image name="search" width="24" height="23"/>
     </resources>
 </document>
