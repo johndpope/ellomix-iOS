@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayBarController: UIViewController, UIViewControllerTransitioningDelegate {
+class PlayBarController: UIViewController {
     
     
     @IBOutlet weak var playPauseButton: UIButton!
@@ -16,13 +16,16 @@ class PlayBarController: UIViewController, UIViewControllerTransitioningDelegate
     @IBOutlet weak var playbarTitle: UILabel!
     @IBOutlet weak var playbarArtist: UILabel!
     @IBOutlet weak var placeholderView: UIView!
+    var popUpPlayer: PopUpPlayerController?
     var currentTrack: Any?
-    let transition = PopUpAnimator()
+    //let transition = PopUpAnimator()
     
     override func viewDidLoad() {
-        transition.dismissCompletion = {
-            self.view.isHidden = false
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        popUpPlayer = storyboard.instantiateViewController(withIdentifier: "popUpPlayerController") as? PopUpPlayerController
+//        transition.dismissCompletion = {
+//            self.view.isHidden = false
+//        }
     }
 
     @IBAction func playPause(_ sender: Any) {
@@ -43,26 +46,25 @@ class PlayBarController: UIViewController, UIViewControllerTransitioningDelegate
     }
 
     @IBAction func playbarTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let popUpPlayer = storyboard.instantiateViewController(withIdentifier: "popUpPlayerController") as! PopUpPlayerController
-        popUpPlayer.transitioningDelegate = self
-        popUpPlayer.currentTrack = currentTrack
-        self.present(popUpPlayer, animated: true, completion: nil)
+        //popUpPlayer.transitioningDelegate = self
+        popUpPlayer?.currentTrack = currentTrack
+        popUpPlayer?.playbar = self
+        self.present(popUpPlayer!, animated: true, completion: nil)
     }
 
     // Transition Delegate functions
 
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.originFrame = self.view.convert(self.view.frame, to: nil)
-        transition.presenting = true
-        self.view.isHidden = true
-
-        return transition
-    }
-
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.presenting = false
-
-        return transition
-    }
+//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        transition.originFrame = self.view.convert(self.view.frame, to: nil)
+//        transition.presenting = true
+//        self.view.isHidden = true
+//
+//        return transition
+//    }
+//
+//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        transition.presenting = false
+//
+//        return transition
+//    }
 }

@@ -55,8 +55,8 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
                  "modestbranding": 1 as AnyObject,
                  "controls": 0 as AnyObject]
             Global.sharedGlobal.youtubePlayer?.loadVideoID(track.videoID!)
-            self.playBarController.view.addSubview(Global.sharedGlobal.youtubePlayer!)
-            Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 0, width: 113, height: self.playBarController.view.frame.height)
+            playBarController.view.addSubview(Global.sharedGlobal.youtubePlayer!)
+            Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 0, width: 113, height: playBarController.view.frame.height)
 
             playBarController.playbarTitle.text = track.videoTitle
             playBarController.playbarArtist.text = track.videoChannel
