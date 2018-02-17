@@ -13,6 +13,7 @@ target 'Ellomix' do
     pod 'Firebase/Storage'
     pod 'FacebookCore'
     pod 'FacebookLogin'
+    pod 'SwiftyJSON'
     pod 'Alamofire', '~> 4.3'
     pod 'Soundcloud'
 
