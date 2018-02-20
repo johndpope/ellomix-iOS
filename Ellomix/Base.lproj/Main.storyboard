@@ -1625,6 +1625,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4A-1w-3eO" userLabel="Play Pause">
                                 <rect key="frame" x="182" y="630" width="50" height="50"/>
                                 <state key="normal" image="pause"/>
+                                <connections>
+                                    <action selector="playPause:" destination="xTc-iN-yhZ" eventType="touchUpInside" id="Ngh-Nt-RdE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eae-yn-Fd5" userLabel="Dismiss Player">
                                 <rect key="frame" x="11" y="30" width="24" height="24"/>
@@ -1676,6 +1679,7 @@
                     <connections>
                         <outlet property="artistField" destination="LqT-eZ-bJY" id="J4T-DS-dSv"/>
                         <outlet property="artworkImage" destination="fY8-to-qf7" id="dic-vK-65q"/>
+                        <outlet property="playPauseButton" destination="h4A-1w-3eO" id="bKs-f3-zbq"/>
                         <outlet property="titleField" destination="mmj-ks-Nqg" id="659-B7-JLE"/>
                     </connections>
                 </viewController>

@@ -10,6 +10,7 @@ import UIKit
 
 class PopUpPlayerController: UIViewController {
     
+    @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var titleField: UILabel!
     @IBOutlet weak var artistField: UILabel!
     @IBOutlet weak var artworkImage: UIImageView!
@@ -47,6 +48,24 @@ class PopUpPlayerController: UIViewController {
         }
     }
     
+    @IBAction func playPause(_ sender: Any) {
+        switch currentTrack {
+        case is SoundcloudTrack:
+            print("Play/pause Soundcloud track.")
+        case is YouTubeVideo:
+            if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+                playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+                Global.sharedGlobal.youtubePlayer?.pause()
+            } else {
+                playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+                Global.sharedGlobal.youtubePlayer?.play()
+            }
+        default:
+            print("Unable to play or pause current track.")
+        }
+    }
+
+
     @IBAction func dismissPlayer(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
