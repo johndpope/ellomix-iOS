@@ -52,6 +52,12 @@ class PlayBarController: UIViewController {
         self.present(popUpPlayer!, animated: true, completion: nil)
     }
 
+    func reAddYoutubeVideo() {
+        self.view.addSubview(Global.sharedGlobal.youtubePlayer!)
+        Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 0, width: 113, height: self.view.frame.height)
+        Global.sharedGlobal.youtubePlayer?.play()
+    }
+
     // Transition Delegate functions
 
 //    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {

@@ -25,7 +25,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     func activatePlaybar(track: Any?) {
         switch track {
         case is SoundcloudTrack:
-            if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+            if (playBarController.currentTrack is YouTubeVideo) {
                 Global.sharedGlobal.youtubePlayer?.stop()
             }
 

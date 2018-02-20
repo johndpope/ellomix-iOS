@@ -23,13 +23,19 @@ class PopUpPlayerController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         loadTrackInfo()
-        if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+        if (currentTrack is YouTubeVideo) {
             self.view.addSubview(Global.sharedGlobal.youtubePlayer!)
             Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 125, width: self.view.frame.width, height: 272)
             Global.sharedGlobal.youtubePlayer?.play()
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if (currentTrack is YouTubeVideo) {
+            playbar?.reAddYoutubeVideo();
+        }
+    }
+
     func loadTrackInfo() {
         switch currentTrack {
         case is SoundcloudTrack:
