@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import AVFoundation
 import MediaPlayer
 
@@ -22,12 +23,16 @@ class MusicPlayer {
         player?.replaceCurrentItem(with: playerItem)
         player?.rate = 1.0;
         player?.play()
-        
-//        if isPlaying() {
-//            player?.pause()
-//        } else {
-//            player?.play()
-//        }
+    }
+    
+    func playPause(button: UIButton) {
+        if isPlaying() {
+            button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            player?.pause()
+        } else {
+             button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            player?.play()
+        }
     }
     
     private func isPlaying() -> Bool {
