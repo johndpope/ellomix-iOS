@@ -34,6 +34,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.currentTrack = track
             let streamURL = track.url
             Global.sharedGlobal.musicPlayer.play(url: streamURL!)
+            Global.sharedGlobal.musicPlayer.updateNowPlayingInfoCenter(track: track)
             playBarController.playbarTitle.text = track.title
             playBarController.playbarArtist.text = track.artist
             playBarController.playbarArtwork.image = track.thumbnailImage

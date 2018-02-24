@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import MediaPlayer
 
 class MusicPlayer {
     
@@ -33,7 +34,23 @@ class MusicPlayer {
         return player?.rate != 0 && player?.error == nil
     }
     
-    func initPlayer() {
+    func updateNowPlayingInfoCenter(track: Any?) {
+        if (track is SoundcloudTrack) {
+            let track = track as! SoundcloudTrack
+            MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+                MPMediaItemPropertyTitle: track.title ?? "",
+                //MPMediaItemPropertyAlbumTitle: track ?? "",
+                MPMediaItemPropertyArtist: track.artist ?? "",
+                //MPMediaItemPropertyPlaybackDuration: audioPlayer.duration,
+                //MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.progress
+            ]
+            if let artwork = track.thumbnailImage {
+                MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: artwork)
+            }
+        }
+    }
+    
+    private func initPlayer() {
         if #available(iOS 10.0, *) {
             player?.automaticallyWaitsToMinimizeStalling = false
         }
