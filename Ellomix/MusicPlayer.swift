@@ -11,21 +11,33 @@ import AVFoundation
 
 class MusicPlayer {
     
-    var audioPlayer = AVPlayer()
+    var player: AVPlayer?
     
     func play(url: URL) {
+        player = AVPlayer()
+        initPlayer()
+        let asset = AVAsset(url: url)
+        let playerItem = AVPlayerItem(asset: asset)
+        player?.replaceCurrentItem(with: playerItem)
+        player?.rate = 1.0;
+        player?.play()
         
-        audioPlayer = AVPlayer(url: url)
-        audioPlayer.rate = 1.0;
-        
-        if isPlaying() {
-            audioPlayer.pause()
-        } else {
-            audioPlayer.play()
-        }
+//        if isPlaying() {
+//            player?.pause()
+//        } else {
+//            player?.play()
+//        }
     }
     
     private func isPlaying() -> Bool {
-        return audioPlayer.rate != 0 && audioPlayer.error == nil
+        return player?.rate != 0 && player?.error == nil
+    }
+    
+    func initPlayer() {
+        if #available(iOS 10.0, *) {
+            player?.automaticallyWaitsToMinimizeStalling = false
+        }
+        self.player?.allowsExternalPlayback = true
+        self.player?.usesExternalPlaybackWhileExternalScreenIsActive = true
     }
 }

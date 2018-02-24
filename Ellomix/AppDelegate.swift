@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
@@ -22,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // Music Player configuration
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        let _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        let _ = try? AVAudioSession.sharedInstance().setActive(true)
         
         Soundcloud.clientIdentifier = "3e7f2924c47462bf79720ae5995194de"
         

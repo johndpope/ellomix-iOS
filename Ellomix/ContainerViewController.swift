@@ -7,19 +7,18 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
     
     @IBOutlet weak var playBarView: UIView!
     
-    private var musicPlayer: MusicPlayer!
     var playBarController: PlayBarController!
     
     override func viewDidLoad() {
         playBarView.isHidden = true
         playBarController.placeholderView.isHidden = true
-        musicPlayer = MusicPlayer()
     }
     
     func activatePlaybar(track: Any?) {
@@ -34,7 +33,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             let track = track as! SoundcloudTrack
             playBarController.currentTrack = track
             let streamURL = track.url
-            musicPlayer.play(url: streamURL!)
+            Global.sharedGlobal.musicPlayer.play(url: streamURL!)
             playBarController.playbarTitle.text = track.title
             playBarController.playbarArtist.text = track.artist
             playBarController.playbarArtwork.image = track.thumbnailImage

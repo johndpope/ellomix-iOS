@@ -15,4 +15,5 @@ class Global {
     
     var user:EllomixUser? = nil
     var youtubePlayer:YouTubePlayerView? = nil
+    var musicPlayer:MusicPlayer = MusicPlayer()
 }
