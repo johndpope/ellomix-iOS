@@ -77,27 +77,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 cell.songTitle.text = scTrack?.title
                 cell.artist.text = scTrack?.artist
                 cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
-                DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: (scTrack?.thumbnailURL)!)
-                    DispatchQueue.main.async {
-                        let image = UIImage(data: data!)
-                        cell.thumbnail.image = image
-                        scTrack?.thumbnailImage = image
-                    }
-                }
+                cell.thumbnail.image = scTrack?.thumbnailImage
             } else if (indexPath.section == 2 && indexPath.row < songs["YouTube"]!.count) {
                 let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
                 cell.songTitle.text = ytVideo?.videoTitle
                 cell.artist.text = ytVideo?.videoChannel
                 cell.serviceIcon.image = #imageLiteral(resourceName: "youtube")
-                
-                let url = URL(string: (ytVideo?.videoThumbnailURL)!)
-                DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: url!)
-                    DispatchQueue.main.async {
-                        cell.thumbnail.image = UIImage(data: data!)
-                    }
-                }
+                cell.thumbnail.image = ytVideo?.videoThumbnailImage
             }
         } else {
             let user = filteredUsers[indexPath.row]
@@ -175,7 +161,23 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     scTrack.title = track.title
                     scTrack.artist = track.createdBy.username
                     scTrack.url = track.streamURL
-                    scTrack.thumbnailURL = track.artworkImageURL.highURL
+                    if (track.artworkImageURL.highURL != nil) {
+                        scTrack.thumbnailURL = track.artworkImageURL.highURL
+                    } else if (track.createdBy.avatarURL.highURL != nil) {
+                        scTrack.thumbnailURL = track.createdBy.avatarURL.highURL
+                    } else {
+                        scTrack.thumbnailImage = UIImage()
+                    }
+                    
+                    if (scTrack.thumbnailURL != nil) {
+                        DispatchQueue.global().async {
+                            let data = try? Data(contentsOf: scTrack.thumbnailURL!)
+                            DispatchQueue.main.async {
+                                scTrack.thumbnailImage = UIImage(data: data!)
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
                     
                     self.songs["Soundcloud"]?.append(scTrack)
                 }
@@ -210,7 +212,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     let thumbnails = snippet["thumbnails"] as! NSDictionary
                     let highRes = thumbnails["high"] as! NSDictionary
                     ytVideo.videoThumbnailURL = highRes["url"] as? String
-                    
+                    DispatchQueue.global().async {
+                        let data = try? Data(contentsOf: URL(string: ytVideo.videoThumbnailURL!)!)
+                        DispatchQueue.main.async {
+                            ytVideo.videoThumbnailImage = UIImage(data: data!)
+                            self.tableView.reloadData()
+                        }
+                    }
                     
                     self.songs["YouTube"]?.append(ytVideo)
                 }

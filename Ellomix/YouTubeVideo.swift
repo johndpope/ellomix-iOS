@@ -6,6 +6,8 @@
 //  Copyright © 2017 Akshay Vyas. All rights reserved.
 //
 
+import UIKit
+
 internal class YouTubeVideo {
    
     var videoID:String?
@@ -13,5 +15,6 @@ internal class YouTubeVideo {
     var videoDescription:String?
     var videoTitle:String?
     var videoThumbnailURL:String?
+    var videoThumbnailImage:UIImage?
     
 }
