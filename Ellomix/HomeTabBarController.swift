@@ -86,7 +86,7 @@ class HomeTabBarController: UITabBarController {
                                     if let data = picture["data"] as? NSDictionary {
                                         if let url = data["url"] as? String {
                                             newUser.profilePicture.downloadedFrom(link: url)
-                                            newUser.setProfilePicLink(link: url)
+                                            self.FirebaseAPI.updateUserProfilePicture(user: newUser, image: newUser.getProfilePicture().image!, completion: {})
                                         }
                                     }
                                 }

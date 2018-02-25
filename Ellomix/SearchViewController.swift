@@ -88,6 +88,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         } else {
             let user = filteredUsers[indexPath.row]
             cell.songTitle.text = user!["name"] as? String
+            cell.artist.text = "Recent:"
+            if (user!["photo_url"] as? String == "" || user!["photo_url"] == nil) {
+                cell.thumbnail.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+            } else {
+                DispatchQueue.global().async {
+                    let url = user!["photo_url"]! as? String
+                    let data = try? Data(contentsOf: URL(string: url!)!)
+                    DispatchQueue.main.async {
+                        cell.thumbnail.image = UIImage(data: data!)
+                    }
+                }
+            }
         }
         
         return cell
