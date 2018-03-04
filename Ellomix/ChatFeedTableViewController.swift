@@ -65,7 +65,6 @@ class ChatFeedTableViewController: UITableViewController {
         if (chats.count == 0) {
             let noChatsLabel:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             noChatsLabel.text = "You don't have any messages yet."
-            noChatsLabel.textColor = UIColor.white
             noChatsLabel.textAlignment = .center
             tableView.backgroundView  = noChatsLabel
             tableView.separatorStyle  = .none
