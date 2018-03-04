@@ -97,6 +97,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     let data = try? Data(contentsOf: URL(string: url!)!)
                     DispatchQueue.main.async {
                         cell.thumbnail.image = UIImage(data: data!)
+                        cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2
+                        cell.thumbnail.clipsToBounds = true
                     }
                 }
             }
@@ -122,15 +124,49 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         if (scope == "Music") {
             return sections.count
         }
+        
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "searchHeaderCell") as! SearchHeaderCell
+        
         if (scope == "Music") {
-            return sections[section]
+            headerCell.sectionTitleLabel.text = sections[section]
+        } else {
+            headerCell.sectionTitleLabel.text = "People"
         }
         
-        return nil
+        return headerCell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if (scope == "Music") {
+            switch section {
+            case 0:
+                return 0
+            case 1:
+                if (!songs["Soundcloud"]!.isEmpty) {
+                    return 75
+                }
+                
+                return 0
+            case 2:
+                if (!songs["YouTube"]!.isEmpty) {
+                    return 75
+                }
+                
+                return 0
+            default:
+                return 0
+            }
+        } else {
+            if (!filteredUsers.isEmpty) {
+                return 75
+            }
+            
+            return 0
+        }
     }
     
     //MARK: Searchbar

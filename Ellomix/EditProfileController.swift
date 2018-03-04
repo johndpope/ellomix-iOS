@@ -31,7 +31,7 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         genderField.inputView = pickerView
         pickerView.delegate = self
         
-        profilePic.layer.cornerRadius = profilePic.frame.size.width/2
+        profilePic.layer.cornerRadius = profilePic.frame.size.width / 2
         profilePic.clipsToBounds = true
         profilePic.contentMode = .scaleAspectFit
         

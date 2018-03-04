@@ -31,6 +31,7 @@
 		DB0A47A81EBEB7AD004FBF41 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */; };
 		DB0A47AA1EBEBBCA004FBF41 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */; };
 		DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22FB7A1F5377E000AF384B /* EllomixUser.swift */; };
+		DB2DB00E204B7ADD00E0935A /* SearchHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2DB00D204B7ADD00E0935A /* SearchHeaderCell.swift */; };
 		DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */; };
 		DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */; };
 		DB42B5081FFDE37800AB7E1D /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = DB42B5071FFDE37800AB7E1D /* YTPlayer.html */; };
@@ -107,6 +108,7 @@
 		DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
 		DB0A47A91EBEBBCA004FBF41 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		DB22FB7A1F5377E000AF384B /* EllomixUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllomixUser.swift; sourceTree = "<group>"; };
+		DB2DB00D204B7ADD00E0935A /* SearchHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderCell.swift; sourceTree = "<group>"; };
 		DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		DB42B5071FFDE37800AB7E1D /* YTPlayer.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = YTPlayer.html; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				E379E6251E08B69500B0256F /* Main.storyboard */,
 				DB7BAA64202FC7F1005B7115 /* Extensions.swift */,
 				DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */,
+				DB2DB00D204B7ADD00E0935A /* SearchHeaderCell.swift */,
 				DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */,
 				DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */,
 				DB7BAA66202FD378005B7115 /* PasswordViewController.swift */,
@@ -648,6 +651,7 @@
 				DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */,
 				DB42B50A1FFDF28400AB7E1D /* YouTubePlayer.swift in Sources */,
 				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
+				DB2DB00E204B7ADD00E0935A /* SearchHeaderCell.swift in Sources */,
 				DB7BAA63202FB731005B7115 /* GetStartedViewController.swift in Sources */,
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ChatTableViewCell.swift in Sources */,

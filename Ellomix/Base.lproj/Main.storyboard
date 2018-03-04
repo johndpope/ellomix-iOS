@@ -529,24 +529,24 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="9RK-zI-NRm" customClass="SearchTableViewCell" customModule="Ellomix" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="61"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9RK-zI-NRm" id="Afw-P8-2W8">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="9RK-zI-NRm" id="Afw-P8-2W8">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FaP-sx-nWS">
-                                            <rect key="frame" x="8" y="6.3333333333333357" width="51" height="49"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaP-sx-nWS">
+                                            <rect key="frame" x="8" y="6.3333333333333321" width="51" height="49"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="51" id="4sr-fr-10Y"/>
                                                 <constraint firstAttribute="height" constant="49" id="fGe-e7-h1V"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-10-jgl">
-                                            <rect key="frame" x="66" y="17.333333333333336" width="307" height="20.333333333333336"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-10-jgl">
+                                            <rect key="frame" x="66" y="17.333333333333332" width="307" height="15.666666666666668"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-kX-zZa">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-kX-zZa">
                                             <rect key="frame" x="66" y="34" width="307" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="307" id="S01-2i-gK3"/>
@@ -555,8 +555,8 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="whF-pI-yAY" userLabel="Service Icon">
-                                            <rect key="frame" x="380" y="24.333333333333336" width="26" height="18.333333333333336"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whF-pI-yAY" userLabel="Service Icon">
+                                            <rect key="frame" x="380" y="24.333333333333332" width="26" height="13.666666666666668"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="Fqo-PS-JoI"/>
                                             </constraints>
@@ -587,6 +587,41 @@
                                     <outlet property="thumbnail" destination="FaP-sx-nWS" id="WoZ-Dd-GhW"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchHeaderCell" rowHeight="75" id="Skh-XL-gt1" customClass="SearchHeaderCell" customModule="Ellomix" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="89" width="414" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Skh-XL-gt1" id="WgB-A1-rnL">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dH-ww-gNT">
+                                            <rect key="frame" x="358" y="34" width="45" height="29"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title="See All">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VW-eM-kmp">
+                                            <rect key="frame" x="7" y="29.333333333333329" width="140.33333333333334" height="28.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="9dH-ww-gNT" firstAttribute="top" secondItem="WgB-A1-rnL" secondAttribute="top" constant="34" id="Qik-PV-EHW"/>
+                                        <constraint firstItem="2VW-eM-kmp" firstAttribute="leading" secondItem="WgB-A1-rnL" secondAttribute="leading" constant="7" id="R0x-Tf-suE"/>
+                                        <constraint firstAttribute="bottom" secondItem="9dH-ww-gNT" secondAttribute="bottom" constant="12" id="hiW-jJ-gxp"/>
+                                        <constraint firstAttribute="trailing" secondItem="9dH-ww-gNT" secondAttribute="trailing" constant="11" id="rbZ-GY-0BF"/>
+                                        <constraint firstItem="2VW-eM-kmp" firstAttribute="top" secondItem="WgB-A1-rnL" secondAttribute="top" constant="29.333333333333599" id="sTs-O8-dFY"/>
+                                        <constraint firstAttribute="bottom" secondItem="2VW-eM-kmp" secondAttribute="bottom" constant="16.99999999999973" id="tgN-ss-m1m"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="sectionTitleLabel" destination="2VW-eM-kmp" id="5kp-2J-lAS"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="1Kf-Zl-rEN" id="Nap-W1-o66"/>
@@ -597,7 +632,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3P7-RJ-OiZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="880" y="2271"/>
+            <point key="canvasLocation" x="879.71014492753625" y="2270.380434782609"/>
         </scene>
         <!--Edit Profile Controller-->
         <scene sceneID="3TH-1l-MhD">
