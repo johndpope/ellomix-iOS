@@ -15,6 +15,10 @@ class MusicPlayer {
     
     var player: AVPlayer?
     
+    init() {
+        commandCenterHandlers()
+    }
+    
     func play(url: URL) {
         player = AVPlayer()
         initPlayer()
@@ -61,5 +65,24 @@ class MusicPlayer {
         }
         self.player?.allowsExternalPlayback = true
         self.player?.usesExternalPlaybackWhileExternalScreenIsActive = true
+    }
+    
+    private func commandCenterHandlers() {
+        MPRemoteCommandCenter.shared().playCommand.addTarget {event in
+            self.player?.play()
+            return .success
+        }
+        MPRemoteCommandCenter.shared().pauseCommand.addTarget {event in
+            self.player?.pause()
+            return .success
+        }
+        MPRemoteCommandCenter.shared().nextTrackCommand.addTarget {event in
+            //self.next()
+            return .success
+        }
+        MPRemoteCommandCenter.shared().previousTrackCommand.addTarget {event in
+            //self.prev()
+            return .success
+        }
     }
 }
