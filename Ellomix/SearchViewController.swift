@@ -108,12 +108,23 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.section == 1) {
-            let track = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
-            baseDelegate?.activatePlaybar(track: track)
-        } else if (indexPath.section == 2) {
-            let track = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
-            baseDelegate?.activatePlaybar(track: track)
+        if (scope == "Music") {
+            if (indexPath.section == 1) {
+                let track = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
+                baseDelegate?.activatePlaybar(track: track)
+            } else if (indexPath.section == 2) {
+                let track = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
+                baseDelegate?.activatePlaybar(track: track)
+            }
+        } else {
+            let user = filteredUsers[indexPath.row]
+            let uid = user!["uid"] as? String
+            let name = user!["name"] as? String
+            let photoURL = user!["photo_url"] as? String
+            let ellomixUser = EllomixUser(uid: uid!)
+            ellomixUser.setName(name: name!)
+            ellomixUser.profilePicture.downloadedFrom(link: photoURL!)
+            performSegue(withIdentifier: "toProfile", sender: ellomixUser)
         }
         
         // Pop UISearchController
@@ -276,8 +287,17 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         })
     }
     
-    //MARK: Helpers
+    //MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toProfile") {
+            if let user = sender as? EllomixUser {
+                let userProfileVC = segue.destination as! ProfileController
+                userProfileVC.currentUser = user
+            }
+        }
+    }
     
+    //MARK: Helpers
     func clearSongs() {
         self.songs["Spotify"] = []
         self.songs["Soundcloud"] = []

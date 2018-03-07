@@ -22,7 +22,9 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentUser = Global.sharedGlobal.user
+        if (currentUser == nil) {
+            currentUser = Global.sharedGlobal.user
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
