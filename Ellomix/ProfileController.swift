@@ -17,6 +17,9 @@ import FBSDKLoginKit
 class ProfileController: UIViewController {
     
     @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var messageButton: UIButton!
+    @IBOutlet weak var editProfileButton: UIButton!
     
     var currentUser:EllomixUser?
     
@@ -24,7 +27,17 @@ class ProfileController: UIViewController {
         super.viewDidLoad()
         if (currentUser == nil) {
             currentUser = Global.sharedGlobal.user
+            followButton.isHidden = true
+            messageButton.isHidden = true
+        } else {
+            editProfileButton.isHidden = true
         }
+        
+        followButton.layer.cornerRadius = followButton.frame.height / 2
+        messageButton.layer.cornerRadius = messageButton.frame.height / 2
+        editProfileButton.layer.cornerRadius = editProfileButton.frame.height / 2
+        profilePic.layer.cornerRadius = profilePic.frame.size.width / 2
+        profilePic.clipsToBounds = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
