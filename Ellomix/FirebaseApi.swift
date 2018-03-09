@@ -17,6 +17,8 @@ class FirebaseApi {
     private let CHATS = "Chats"
     private let USERS = "Users"
     private let CHAT_USER = "ChatUser"
+    private let FOLLOWING = "Following"
+    private let FOLLOWERS = "Followers"
     
     private var storageRef: StorageReference = Storage.storage().reference()
 
@@ -34,6 +36,14 @@ class FirebaseApi {
 
     func getUsersRef() -> DatabaseReference {
         return ref.child(USERS)
+    }
+    
+    func getFollowingRef() -> DatabaseReference {
+        return ref.child(FOLLOWING)
+    }
+    
+    func getFollowersRef() -> DatabaseReference {
+        return ref.child(FOLLOWERS)
     }
     
     func getUserStorageRef(uid: String) -> StorageReference {

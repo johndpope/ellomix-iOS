@@ -21,21 +21,39 @@ class ProfileController: UIViewController {
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var editProfileButton: UIButton!
     
+    private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseAPI = FirebaseApi()
+        
         if (currentUser == nil) {
+            // Viewing our profile
             currentUser = Global.sharedGlobal.user
             followButton.isHidden = true
             messageButton.isHidden = true
+            editProfileButton.layer.cornerRadius = editProfileButton.frame.height / 2
         } else {
+            // Viewing another user's profile
             editProfileButton.isHidden = true
+            followButton.layer.cornerRadius = followButton.frame.height / 2
+            messageButton.layer.cornerRadius = messageButton.frame.height / 2
+            
+            FirebaseAPI.getFollowingRef()
+                .child((Global.sharedGlobal.user?.uid)!)
+                .child((currentUser?.uid)!)
+                .observe(.value, with: { (snapshot) in
+                    if (snapshot.exists()) {
+                        self.followButton.setTitle("Unfollow", for: .normal)
+                    } else {
+                        self.followButton.setTitle("Follow", for: .normal)
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
         }
-        
-        followButton.layer.cornerRadius = followButton.frame.height / 2
-        messageButton.layer.cornerRadius = messageButton.frame.height / 2
-        editProfileButton.layer.cornerRadius = editProfileButton.frame.height / 2
+
         profilePic.clipsToBounds = true
     }
 
@@ -51,6 +69,15 @@ class ProfileController: UIViewController {
         navigationController?.navigationBar.topItem?.title = currentUser?.getName()
         profilePic.image = currentUser?.getProfilePicture().image
     }
+    
+    @IBAction func followUnfollowButtonClicked(_ sender: Any) {
+        if (followButton.titleLabel?.text == "Follow") {
+            
+        } else {
+            
+        }
+    }
+    
     
     func logoutProfile() {
         let loginManager = LoginManager()
