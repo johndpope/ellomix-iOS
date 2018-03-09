@@ -36,12 +36,15 @@ class ProfileController: UIViewController {
         followButton.layer.cornerRadius = followButton.frame.height / 2
         messageButton.layer.cornerRadius = messageButton.frame.height / 2
         editProfileButton.layer.cornerRadius = editProfileButton.frame.height / 2
-        profilePic.layer.cornerRadius = profilePic.frame.size.width / 2
         profilePic.clipsToBounds = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
         loadProfile()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        profilePic.layer.cornerRadius = profilePic.frame.size.width / 2
     }
     
     func loadProfile() {
