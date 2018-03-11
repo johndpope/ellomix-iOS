@@ -123,6 +123,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             let photoURL = user!["photo_url"] as? String
             let ellomixUser = EllomixUser(uid: uid!)
             ellomixUser.setName(name: name!)
+            ellomixUser.setProfilePicLink(link: photoURL!)
             ellomixUser.profilePicture.downloadedFrom(link: photoURL!)
             performSegue(withIdentifier: "toProfile", sender: ellomixUser)
         }

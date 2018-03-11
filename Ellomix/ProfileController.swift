@@ -71,10 +71,18 @@ class ProfileController: UIViewController {
     }
     
     @IBAction func followUnfollowButtonClicked(_ sender: Any) {
+        let followersPath = "Followers/\((self.currentUser?.uid)!)/\((Global.sharedGlobal.user?.uid)!)"
+        let followingPath = "Following/\((Global.sharedGlobal.user?.uid)!)/\((self.currentUser?.uid)!)"
+        
         if (followButton.titleLabel?.text == "Follow") {
+            let follower = ["name": Global.sharedGlobal.user?.name, "photo_url": Global.sharedGlobal.user?.profilePicLink]
+            let following = ["name":self.currentUser?.name, "photo_url": self.currentUser?.profilePicLink]
             
+            let childUpdates = [followersPath:follower, followingPath:following]
+            FirebaseAPI.getDatabaseRef().updateChildValues(childUpdates)
         } else {
-            
+            let childUpdates = [followersPath:NSNull(), followingPath:NSNull()]
+            FirebaseAPI.getDatabaseRef().updateChildValues(childUpdates)
         }
     }
     
