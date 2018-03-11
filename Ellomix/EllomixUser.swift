@@ -21,6 +21,8 @@ class EllomixUser {
     var gender:String = ""
     var birthday:String = ""
     var password:String = ""
+    var followingCount:Int?
+    var followersCount:Int?
     
     init(uid: String) {
         self.uid = uid
@@ -61,6 +63,14 @@ class EllomixUser {
     func setPassword(password: String) {
         self.password = password
     }
+    
+    func setFollowingCount(count: Int?) {
+        self.followingCount = count
+    }
+    
+    func setFollowersCount(count: Int?) {
+        self.followersCount = count
+    }
 
     func getName() -> String {
         return name
@@ -90,12 +100,28 @@ class EllomixUser {
         return birthday
     }
     
+    func getFollowingCount() -> Int? {
+        if (followingCount == nil) {
+            return nil
+        }
+        
+        return followingCount!
+    }
+    
+    func getFollowersCount() -> Int? {
+        if (followersCount == nil) {
+            return nil
+        }
+        
+        return followersCount!
+    }
+    
     func toDictionary() -> Any {
         var password = self.password
         if (password.isEmpty) {
             password = "N/A"
         }
 
-        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender, "birthday": birthday, "password": password]
+        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender, "birthday": birthday, "password": password, "following_count": String(describing: followingCount), "followers_count": String(describing: followersCount)]
     }
 }

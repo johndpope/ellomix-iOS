@@ -75,14 +75,42 @@ class ProfileController: UIViewController {
         let followingPath = "Following/\((Global.sharedGlobal.user?.uid)!)/\((self.currentUser?.uid)!)"
         
         if (followButton.titleLabel?.text == "Follow") {
-            let follower = ["name": Global.sharedGlobal.user?.name, "photo_url": Global.sharedGlobal.user?.profilePicLink]
-            let following = ["name":self.currentUser?.name, "photo_url": self.currentUser?.profilePicLink]
+            let follower = ["name": Global.sharedGlobal.user?.getName(), "photo_url": Global.sharedGlobal.user?.profilePicLink]
+            let following = ["name":self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink]
+            
+            var followersCount:Int?
+            var followingCount:Int?
+            
+            if (self.currentUser?.getFollowersCount() == nil) {
+                followersCount = 1
+                self.currentUser?.setFollowersCount(count: 1)
+            } else {
+                followersCount = (self.currentUser?.getFollowersCount())! + 1
+                self.currentUser?.setFollowersCount(count: followersCount)
+            }
+            
+            if (Global.sharedGlobal.user?.getFollowingCount() == nil) {
+                followingCount = 1
+                Global.sharedGlobal.user?.setFollowingCount(count: 1)
+            } else {
+                followingCount = (Global.sharedGlobal.user?.getFollowingCount())! + 1
+                Global.sharedGlobal.user?.setFollowingCount(count: followingCount)
+            }
             
             let childUpdates = [followersPath:follower, followingPath:following]
             FirebaseAPI.getDatabaseRef().updateChildValues(childUpdates)
+            FirebaseAPI.getUsersRef().child("\((self.currentUser?.uid)!)").child("followers_count").setValue(followersCount)
+            FirebaseAPI.getUsersRef().child("\((Global.sharedGlobal.user?.uid)!)").child("following_count").setValue(followingCount)
         } else {
             let childUpdates = [followersPath:NSNull(), followingPath:NSNull()]
+            let followersCount = (self.currentUser?.getFollowersCount())! - 1
+            let followingCount = (Global.sharedGlobal.user?.getFollowingCount())! - 1
+            
+            self.currentUser?.setFollowersCount(count: followersCount)
+            Global.sharedGlobal.user?.setFollowingCount(count: followingCount)
             FirebaseAPI.getDatabaseRef().updateChildValues(childUpdates)
+            FirebaseAPI.getUsersRef().child("\((self.currentUser?.uid)!)").child("followers_count").setValue(followersCount)
+            FirebaseAPI.getUsersRef().child("\((Global.sharedGlobal.user?.uid)!)").child("following_count").setValue(followingCount)
         }
     }
     

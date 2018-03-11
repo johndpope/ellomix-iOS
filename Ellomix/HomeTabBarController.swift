@@ -52,6 +52,8 @@ class HomeTabBarController: UITabBarController {
         let bio = userData["bio"] as? String
         let email = userData["email"] as? String
         let gender = userData["gender"] as? String
+        let followersCount = userData["followers_count"] as? Int
+        let followingCount = userData["following_count"] as? Int
         
         let loadedUser = EllomixUser(uid: self.user.uid)
         loadedUser.setName(name: name!)
@@ -61,6 +63,8 @@ class HomeTabBarController: UITabBarController {
         if (bio != nil) { loadedUser.setBio(bio: bio!) }
         if (email != nil) { loadedUser.setEmail(email: email!) }
         if (gender != nil) { loadedUser.setGender(gender: gender!) }
+        if (followersCount != nil) { loadedUser.setFollowersCount(count: followersCount!) }
+        if (followingCount != nil) { loadedUser.setFollowingCount(count: followingCount!) }
         Global.sharedGlobal.user = loadedUser
     }
     

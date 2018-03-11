@@ -41,7 +41,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         searchController?.searchBar.scopeButtonTitles = searchFilters
         searchController?.searchBar.delegate = self
         self.tableView.backgroundView = UIView()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.allUsers.removeAll()
         retrieveUsers()
     }
 
@@ -121,9 +124,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             let uid = user!["uid"] as? String
             let name = user!["name"] as? String
             let photoURL = user!["photo_url"] as? String
+            let followingCount = user!["following_count"] as? Int
+            let followersCount = user!["followers_count"] as? Int
             let ellomixUser = EllomixUser(uid: uid!)
             ellomixUser.setName(name: name!)
             ellomixUser.setProfilePicLink(link: photoURL!)
+            ellomixUser.setFollowingCount(count: followingCount)
+            ellomixUser.setFollowersCount(count: followersCount)
             ellomixUser.profilePicture.downloadedFrom(link: photoURL!)
             performSegue(withIdentifier: "toProfile", sender: ellomixUser)
         }
