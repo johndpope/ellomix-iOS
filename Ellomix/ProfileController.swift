@@ -20,6 +20,8 @@ class ProfileController: UIViewController {
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var followersCountButton: UIButton!
+    @IBOutlet weak var followingCountButton: UIButton!
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
@@ -68,6 +70,24 @@ class ProfileController: UIViewController {
     func loadProfile() {
         navigationController?.navigationBar.topItem?.title = currentUser?.getName()
         profilePic.image = currentUser?.getProfilePicture().image
+        
+        var followersCount:Int?
+        var followingCount:Int?
+        
+        if (currentUser?.getFollowersCount() == nil) {
+            followersCount = 0
+        } else {
+            followersCount = currentUser?.getFollowersCount()
+        }
+        
+        if (currentUser?.getFollowingCount() == nil) {
+            followingCount = 0
+        } else {
+            followingCount = currentUser?.getFollowingCount()
+        }
+
+        followersCountButton.setTitle(String(describing: followersCount!), for: .normal)
+        followingCountButton.setTitle(String(describing: followingCount!), for: .normal)
     }
     
     @IBAction func followUnfollowButtonClicked(_ sender: Any) {

@@ -228,27 +228,15 @@
                                     <constraint firstAttribute="width" secondItem="Ibv-p9-Zq3" secondAttribute="height" multiplier="1:1" id="EpD-Ya-5L3"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S38-AA-nfk" userLabel="Following">
-                                <rect key="frame" x="274" y="193.33333333333334" width="79" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S38-AA-nfk" userLabel="Following">
+                                <rect key="frame" x="274" y="199.33333333333337" width="79" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ht1-S1-wTQ" userLabel="Following Count">
-                                <rect key="frame" x="307.33333333333331" y="173.33333333333334" width="12.666666666666686" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="followers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMd-rZ-UnF" userLabel="Followers">
                                 <rect key="frame" x="273.66666666666669" y="131.33333333333334" width="79" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOv-0h-ual" userLabel="Followers Count">
-                                <rect key="frame" x="307.33333333333331" y="110.33333333333333" width="12.666666666666686" height="23.999999999999986"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -291,6 +279,20 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbQ-65-CYg" userLabel="Followers Count">
+                                <rect key="frame" x="298" y="106" width="30" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pT9-uW-BsU" userLabel="Following Count">
+                                <rect key="frame" x="301" y="177" width="24" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -302,27 +304,27 @@
                             <constraint firstItem="54c-uU-cId" firstAttribute="height" secondItem="pPA-eg-vhn" secondAttribute="height" id="5aA-7Y-NGm"/>
                             <constraint firstItem="pPA-eg-vhn" firstAttribute="top" secondItem="Ibv-p9-Zq3" secondAttribute="bottom" constant="28" id="8n7-cC-MDL"/>
                             <constraint firstItem="daK-gr-VpQ" firstAttribute="leading" secondItem="nQO-1X-pk1" secondAttribute="leadingMargin" constant="16" id="96a-B2-X4h"/>
-                            <constraint firstItem="uMd-rZ-UnF" firstAttribute="centerX" secondItem="aOv-0h-ual" secondAttribute="centerX" id="AGr-Qw-a6O"/>
+                            <constraint firstItem="pT9-uW-BsU" firstAttribute="centerX" secondItem="S38-AA-nfk" secondAttribute="centerX" id="9tO-O7-hvT"/>
+                            <constraint firstItem="uMd-rZ-UnF" firstAttribute="centerX" secondItem="pT9-uW-BsU" secondAttribute="centerX" id="B2A-oW-lqO"/>
+                            <constraint firstItem="AbQ-65-CYg" firstAttribute="centerX" secondItem="uMd-rZ-UnF" secondAttribute="centerX" id="BCz-KJ-QJu"/>
                             <constraint firstItem="daK-gr-VpQ" firstAttribute="height" secondItem="pPA-eg-vhn" secondAttribute="height" id="Cmy-dc-Hkf"/>
+                            <constraint firstItem="uMd-rZ-UnF" firstAttribute="top" secondItem="AbQ-65-CYg" secondAttribute="bottom" constant="-10.666666666666657" id="GYb-9h-hMn"/>
                             <constraint firstItem="pPA-eg-vhn" firstAttribute="centerX" secondItem="NFw-1K-4uR" secondAttribute="centerX" id="I8w-MA-c04"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pPA-eg-vhn" secondAttribute="trailing" constant="16" id="K8A-yx-NwR"/>
                             <constraint firstItem="54c-uU-cId" firstAttribute="top" secondItem="Ibv-p9-Zq3" secondAttribute="bottom" constant="28" id="MJ4-0s-0HI"/>
-                            <constraint firstItem="S38-AA-nfk" firstAttribute="centerX" secondItem="Ht1-S1-wTQ" secondAttribute="centerX" id="R5z-Ye-5WI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="S38-AA-nfk" secondAttribute="trailing" constant="41" id="Rfb-1B-8N8"/>
                             <constraint firstItem="pPA-eg-vhn" firstAttribute="leading" secondItem="nQO-1X-pk1" secondAttribute="leadingMargin" constant="16" id="Rt5-gi-mtm"/>
-                            <constraint firstItem="uMd-rZ-UnF" firstAttribute="top" secondItem="aOv-0h-ual" secondAttribute="bottom" constant="-3" id="T79-BU-9s5"/>
-                            <constraint firstItem="Ibv-p9-Zq3" firstAttribute="top" secondItem="aOv-0h-ual" secondAttribute="bottom" constant="-51" id="YMw-lQ-H50"/>
-                            <constraint firstItem="Ht1-S1-wTQ" firstAttribute="top" secondItem="uMd-rZ-UnF" secondAttribute="bottom" constant="20" id="Zdo-Rx-7E9"/>
+                            <constraint firstItem="Ibv-p9-Zq3" firstAttribute="top" secondItem="AbQ-65-CYg" secondAttribute="bottom" constant="-58.666666666666671" id="TMt-04-Mph"/>
                             <constraint firstItem="Ibv-p9-Zq3" firstAttribute="width" secondItem="NFw-1K-4uR" secondAttribute="width" multiplier="0.4" id="bXg-MA-CpH"/>
                             <constraint firstItem="daK-gr-VpQ" firstAttribute="top" secondItem="Ibv-p9-Zq3" secondAttribute="bottom" constant="28" id="bdb-4e-vY2"/>
                             <constraint firstItem="4WL-Jd-EA0" firstAttribute="leading" secondItem="nQO-1X-pk1" secondAttribute="leading" constant="20" id="fK1-u2-7KN"/>
                             <constraint firstItem="4WL-Jd-EA0" firstAttribute="top" secondItem="daK-gr-VpQ" secondAttribute="bottom" constant="47" id="hVo-0g-RSm"/>
-                            <constraint firstItem="S38-AA-nfk" firstAttribute="top" secondItem="Ht1-S1-wTQ" secondAttribute="bottom" constant="-4" id="pkI-rz-gIO"/>
+                            <constraint firstItem="S38-AA-nfk" firstAttribute="top" secondItem="pT9-uW-BsU" secondAttribute="bottom" constant="-7.6666666666666572" id="mA5-LI-yra"/>
                             <constraint firstAttribute="trailingMargin" secondItem="54c-uU-cId" secondAttribute="trailing" constant="16" id="qso-g1-mBd"/>
-                            <constraint firstItem="Ht1-S1-wTQ" firstAttribute="centerX" secondItem="uMd-rZ-UnF" secondAttribute="centerX" id="rPI-Ch-ja2"/>
                             <constraint firstItem="54c-uU-cId" firstAttribute="bottom" secondItem="daK-gr-VpQ" secondAttribute="bottom" id="rRp-Ma-ogF"/>
                             <constraint firstItem="NFw-1K-4uR" firstAttribute="leading" secondItem="nQO-1X-pk1" secondAttribute="leading" id="rd2-Qj-u1e"/>
                             <constraint firstItem="54c-uU-cId" firstAttribute="width" secondItem="daK-gr-VpQ" secondAttribute="width" id="sBx-yh-imE"/>
+                            <constraint firstItem="pT9-uW-BsU" firstAttribute="top" secondItem="uMd-rZ-UnF" secondAttribute="bottom" constant="23.666666666666657" id="tPR-HO-Mhv"/>
                             <constraint firstAttribute="trailing" secondItem="NFw-1K-4uR" secondAttribute="trailing" id="vs4-L1-RYl"/>
                         </constraints>
                     </view>
@@ -330,6 +332,8 @@
                     <connections>
                         <outlet property="editProfileButton" destination="pPA-eg-vhn" id="G6U-ga-DHS"/>
                         <outlet property="followButton" destination="daK-gr-VpQ" id="Cvq-w1-gYC"/>
+                        <outlet property="followersCountButton" destination="AbQ-65-CYg" id="OMb-91-fQi"/>
+                        <outlet property="followingCountButton" destination="pT9-uW-BsU" id="vcV-te-eNM"/>
                         <outlet property="messageButton" destination="54c-uU-cId" id="hHt-VA-l75"/>
                         <outlet property="profilePic" destination="Ibv-p9-Zq3" id="X09-6q-lIs"/>
                     </connections>
