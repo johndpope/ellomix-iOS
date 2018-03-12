@@ -48,8 +48,12 @@ class ProfileController: UIViewController {
                 .observe(.value, with: { (snapshot) in
                     if (snapshot.exists()) {
                         self.followButton.setTitle("Unfollow", for: .normal)
+                        self.messageButton.isEnabled = true
+                        self.messageButton.alpha = 1.0
                     } else {
                         self.followButton.setTitle("Follow", for: .normal)
+                        self.messageButton.isEnabled = false
+                        self.messageButton.alpha = 0.5
                     }
                 }) { (error) in
                     print(error.localizedDescription)
