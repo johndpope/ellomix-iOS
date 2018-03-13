@@ -9,8 +9,8 @@
 import UIKit
 
 class ComposeMessageTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var friendProfileImage: UIImageView!
-    @IBOutlet weak var friendNameLabel: UILabel!
+    
+    @IBOutlet weak var userProfilePic: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     
 }

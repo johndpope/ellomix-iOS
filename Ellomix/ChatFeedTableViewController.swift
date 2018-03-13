@@ -145,7 +145,7 @@ class ChatFeedTableViewController: UITableViewController {
             let segueVC : ChatViewController = segue.destination as! ChatViewController
             let cell : ChatFeedTableViewCell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
             segueVC.chatId = cell.chatId
-        } 
+        }
     }
  
 
