@@ -405,7 +405,9 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rdv-tS-U6O">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Compose"/>
+                                <state key="normal" title="Compose">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="r1U-Kq-0Ld" kind="presentation" identifier="toComposeMessage" id="H1V-gE-fD2"/>
                                 </connections>
@@ -1008,13 +1010,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cfa-l3-V2H">
-                                        <rect key="frame" x="39" y="10" width="367" height="30"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YKk-oh-XzP">
+                                        <rect key="frame" x="41" y="8" width="365" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1055,14 +1057,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="sQO-SK-dsE">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="xlC-ZV-m6p">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelNewMessage:" destination="DqU-dZ-VVe" id="bmK-Li-oIO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="K0I-EQ-ph0"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="K0I-EQ-ph0">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchTextField" destination="Cfa-l3-V2H" id="Hgf-AA-XDT"/>
+                        <outlet property="searchTextView" destination="YKk-oh-XzP" id="mCx-qX-s2K"/>
                         <outlet property="tableView" destination="poj-mV-f0H" id="ru3-mm-q0w"/>
                     </connections>
                 </viewController>
@@ -1711,7 +1716,7 @@
         <image name="ellomix_logo" width="170" height="170"/>
         <image name="facebook" width="1024" height="1024"/>
         <image name="forward" width="24" height="24"/>
-        <image name="messages" width="42" height="29"/>
+        <image name="messages" width="25" height="20"/>
         <image name="pause" width="34" height="39"/>
         <image name="profile" width="19" height="25"/>
         <image name="repeat" width="24" height="24"/>

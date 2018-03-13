@@ -10,12 +10,13 @@ import UIKit
 import Alamofire
 import Soundcloud
 
-class ComposeMessageController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ComposeMessageController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
 
-    @IBOutlet weak var searchTextField: UITextField!
+
+    @IBOutlet weak var searchTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
     var followingUsers = [Dictionary<String, AnyObject>?]()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
@@ -26,7 +27,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         currentUser = Global.sharedGlobal.user
         tableView.dataSource = self
         tableView.delegate = self
-        searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        searchTextView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,12 +78,11 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         dismiss(animated: true, completion: nil)
     }
     
-    //MARK: Text Field functions
-    func textFieldDidChange(_ textField: UITextField) {
-        filterUsers(searchText: textField.text!)
+    //MARK: Text View functions
+    func textViewDidChange(_ textView: UITextView) {
+        filterUsers(searchText: textView.text!)
         tableView.reloadData()
     }
-
     
     //MARK: Helpers
     func filterUsers(searchText: String) {
