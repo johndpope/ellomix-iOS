@@ -16,6 +16,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     var currentUser:EllomixUser?
 
 
+    @IBOutlet weak var searchUsersView: UIView!
     @IBOutlet weak var searchTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
     var followingUsers = [Dictionary<String, AnyObject>?]()
@@ -28,6 +29,11 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         tableView.dataSource = self
         tableView.delegate = self
         searchTextView.delegate = self
+        
+        let border = CALayer()
+        border.frame = CGRect.init(x: 0, y: searchUsersView.frame.height, width: searchUsersView.frame.width, height: 1)
+        border.backgroundColor = UIColor.lightGray.cgColor
+        searchUsersView.layer.addSublayer(border)
     }
     
     override func viewWillAppear(_ animated: Bool) {
