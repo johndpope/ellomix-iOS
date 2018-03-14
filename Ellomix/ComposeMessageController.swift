@@ -21,6 +21,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var tableView: UITableView!
     var followingUsers = [Dictionary<String, AnyObject>?]()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
+    var selected:[String:Bool] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,10 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     
     func retrieveFollowingUsers() {
         FirebaseAPI.getFollowingRef().child("\((currentUser?.uid)!)").queryOrdered(byChild: "name").observe(.childAdded, with: { (snapshot) in
-            self.followingUsers.append(snapshot.value as? Dictionary)
+            let user = snapshot.value as? Dictionary<String, AnyObject>
+            let uid = user?["uid"] as? String
+            self.followingUsers.append(user)
+            self.selected[uid!] = false
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -58,6 +62,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "composeMessageCell", for: indexPath) as! ComposeMessageTableViewCell
 
         let user = filteredUsers[indexPath.row]
+        let uid = user!["uid"] as? String
         cell.userNameLabel.text = user!["name"] as? String
         if (user!["photo_url"] as? String == "" || user!["photo_url"] == nil) {
             cell.userProfilePic.image = #imageLiteral(resourceName: "ellomix_logo_bw")
@@ -72,12 +77,35 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
                 }
             }
         }
+        
+        if (selected[uid!]!) {
+            cell.userNameLabel.isEnabled = false
+            cell.userProfilePic.alpha = 0.5
+            cell.backgroundColor = UIColor.lightGray
+        } else {
+            cell.userNameLabel.isEnabled = true
+            cell.userProfilePic.alpha = 1.0
+            cell.backgroundColor = UIColor.white
+        }
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let user = filteredUsers[indexPath.row]
+        let uid = user!["uid"] as? String
+
+        let cell = tableView.cellForRow(at: indexPath) as! ComposeMessageTableViewCell
+        if (selected[uid!]!) {
+            cell.userNameLabel.isEnabled = true
+            cell.userProfilePic.alpha = 1.0
+            cell.backgroundColor = UIColor.white
+        } else {
+            cell.userNameLabel.isEnabled = false
+            cell.userProfilePic.alpha = 0.5
+            cell.backgroundColor = UIColor.lightGray
+        }
+        selected[uid!] = !(selected[uid!]!)
     }
     
     @IBAction func cancelNewMessage(_ sender: Any) {

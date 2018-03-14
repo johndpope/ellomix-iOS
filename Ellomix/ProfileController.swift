@@ -99,8 +99,8 @@ class ProfileController: UIViewController {
         let followingPath = "Following/\((Global.sharedGlobal.user?.uid)!)/\((self.currentUser?.uid)!)"
         
         if (followButton.titleLabel?.text == "Follow") {
-            let follower = ["name": Global.sharedGlobal.user?.getName(), "photo_url": Global.sharedGlobal.user?.profilePicLink]
-            let following = ["name":self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink]
+            let follower = ["name": Global.sharedGlobal.user?.getName(), "photo_url": Global.sharedGlobal.user?.profilePicLink, "uid": Global.sharedGlobal.user?.uid]
+            let following = ["name":self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink, "uid": self.currentUser?.uid]
             
             var followersCount:Int?
             var followingCount:Int?
