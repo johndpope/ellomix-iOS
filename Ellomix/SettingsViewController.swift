@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-class SettingsViewController: TableViewController {
+class SettingsViewController: UITableViewController {
 
     //linked accounts
     

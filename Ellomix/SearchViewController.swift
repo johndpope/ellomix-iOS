@@ -304,7 +304,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             if let tracks = readableJSON["tracks"] as? JSONStandard {
                 if let items = tracks["items"] as? [JSONStandard] {
                     for i in 0..<items.count {
-                        let spTrack = spotifyTrack()
+                        let spTrack = SpotifyTrack()
                         let item = items[i]
                         spTrack.trackTitle = item["name"] as? String
                         spTrack.trackURI = item["uri"] as? String
