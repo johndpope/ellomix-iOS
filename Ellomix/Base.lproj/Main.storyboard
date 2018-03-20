@@ -545,7 +545,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VW-eM-kmp">
-                                            <rect key="frame" x="7" y="35.333333333333329" width="140.33333333333331" height="28.666666666666664"/>
+                                            <rect key="frame" x="7" y="35.333333333333336" width="140.33333333333334" height="28.666666666666664"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1077,6 +1077,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="nextButton" destination="K0I-EQ-ph0" id="Wlf-5j-Xmj"/>
                         <outlet property="searchTextView" destination="YKk-oh-XzP" id="mCx-qX-s2K"/>
                         <outlet property="searchUsersView" destination="koe-qS-nvz" id="IMO-bI-jRp"/>
                         <outlet property="tableView" destination="poj-mV-f0H" id="ru3-mm-q0w"/>

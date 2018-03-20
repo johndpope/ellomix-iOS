@@ -19,6 +19,8 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var searchUsersView: UIView!
     @IBOutlet weak var searchTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    
     var followingUsers = [Dictionary<String, AnyObject>?]()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
     var selected:[String:Bool] = [:]
@@ -30,6 +32,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         tableView.dataSource = self
         tableView.delegate = self
         searchTextView.delegate = self
+        nextButton.isEnabled = false
         
         let border = CALayer()
         border.frame = CGRect.init(x: 0, y: searchUsersView.frame.height, width: searchUsersView.frame.width, height: 1)
@@ -106,6 +109,12 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
             cell.backgroundColor = UIColor.lightGray
         }
         selected[uid!] = !(selected[uid!]!)
+        
+        if (selected.values.contains(true)) {
+            nextButton.isEnabled = true
+        } else {
+            nextButton.isEnabled = false
+        }
     }
     
     @IBAction func cancelNewMessage(_ sender: Any) {
