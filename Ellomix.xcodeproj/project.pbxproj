@@ -125,9 +125,9 @@
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBF9440E205F4DF80047A1EB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyTrack.swift; sourceTree = "<group>"; };
-		DBF94415205F5D210047A1EB /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = ../../SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
-		DBF94416205F5D220047A1EB /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyMetadata.framework; path = ../../SpotifyMetadata.framework; sourceTree = "<group>"; };
-		DBF94417205F5D220047A1EB /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAuthentication.framework; path = ../../SpotifyAuthentication.framework; sourceTree = "<group>"; };
+		DBF94415205F5D210047A1EB /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		DBF94416205F5D220047A1EB /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
+		DBF94417205F5D220047A1EB /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 		DBF9441B205F5F8C0047A1EB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ellomix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -216,7 +216,8 @@
 				DBF94417205F5D220047A1EB /* SpotifyAuthentication.framework */,
 				DBF94416205F5D220047A1EB /* SpotifyMetadata.framework */,
 			);
-			path = "Spotify Frameworks";
+			name = "Spotify Frameworks";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E33080251E342DAA0046D58F /* Facebook Frameworks */ = {
