@@ -13,7 +13,7 @@ import Soundcloud
 class ComposeMessageController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     private var FirebaseAPI: FirebaseApi!
-    var currentUser:EllomixUser?
+    var currentUser: EllomixUser?
 
 
     @IBOutlet weak var searchUsersView: UIView!
@@ -132,6 +132,13 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         filteredUsers = followingUsers.filter{ user in
             let name = user!["name"] as? String
             return (name?.lowercased().contains(searchText.lowercased()))!
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toSendNewMessage") {
+            let segueVC:ChatViewController = segue.destination as! ChatViewController
+            segueVC.newChatGroup = Array(selected.keys)
         }
     }
     

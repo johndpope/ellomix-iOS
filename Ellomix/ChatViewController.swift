@@ -9,15 +9,35 @@
 import UIKit
 import Firebase
 
-class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
-, UITextFieldDelegate{
+class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
-    var ref: DatabaseReference!
-    var messages = [DataSnapshot]()
-    fileprivate var _refHandle: DatabaseHandle!
-    var chatId : String?
+    
+    private var FirebaseAPI: FirebaseApi!
+    private var messagesRefHandle: DatabaseHandle?
+    var currentUser:EllomixUser?
+    var chatId: String?
+    var newChatGroup: [String]?
+    
+    var messages = [Dictionary<String, AnyObject>?]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseAPI = FirebaseApi()
+        currentUser = Global.sharedGlobal.user
+        
+        chatTableView.delegate = self
+        chatTableView.dataSource = self
+        chatTableView.isScrollEnabled = true
+        messageTextField.delegate = self
+        
+        if (chatId == nil) {
+            // Check for existing chat between newChatGroup and current user. If it doesn't exist, create new chat
+        } else {
+            observeMessages()
+        }
+    }
     
     @IBAction func sendMessageButton(_ sender: Any) {
         if (messageTextField.text != "") {
@@ -26,39 +46,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        chatTableView.delegate = self
-        chatTableView.dataSource = self
-        chatTableView.isScrollEnabled = true
-        messageTextField.delegate = self
-        print(chatId!)
-        configureDatabase()
-    }
-    
     deinit {
-        self.ref.child("Chats")
-            .child(chatId!)
-            .child("messages")
-            .removeObserver(withHandle: _refHandle)
+        if let refHandle = messagesRefHandle {
+            FirebaseAPI.getChatsRef().child(chatId!).removeObserver(withHandle: refHandle)
+        }
     }
-    
-    func configureDatabase() {
-        ref = Database.database().reference()
-        // Listen for new messages in the Firebase database
-        _refHandle = self.ref
-            .child("Chats")
-            .child(chatId!)
-            .child("messages")
-            .observe(.childAdded, with: { [weak self] (snapshot) -> Void in
-            guard let strongSelf = self else { return }
-            strongSelf.messages.append(snapshot)
-            strongSelf.chatTableView.insertRows(at: [IndexPath(row: strongSelf.messages.count - 1, section: 0)], with: .automatic)
-            strongSelf.chatTableView.scrollToRow(at: IndexPath(row: strongSelf.messages.count - 1, section: 0), at: UITableViewScrollPosition.top, animated: true)
-        })
+
+    func observeMessages() {
+        messagesRefHandle = FirebaseAPI.getChatsRef().child(chatId!).observe(.childAdded, with: { (snapshot)  in
+            let message = snapshot.value as? Dictionary<String, AnyObject>
+            self.messages.append(message)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -75,19 +75,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! ChatTableViewCell
         
         // Unpack message from Firebase DataSnapshot
-        let messageSnapshot: DataSnapshot! = self.messages[indexPath.row]
-        guard let message = messageSnapshot.value as? [String:String] else { return cell }
-        
-        let name = message["name"] ?? ""
-        let text = message["text"] ?? ""
-        
-        cell.recipientLabel.text = name
-        cell.messageLabel.text = text
-        cell.imageView?.image = UIImage(named: "ic_account_circle")
-        if let photoURL = message["photoUrl"], let URL = URL(string: photoURL),
-            let data = try? Data(contentsOf: URL) {
-            cell.imageView?.image = UIImage(data: data)
-        }
+//        let message = self.messages[indexPath.row]
+//        guard let message = messageSnapshot.value as? [String:String] else { return cell }
+//
+//        let name = message["name"] ?? ""
+//        let text = message["text"] ?? ""
+//
+//        cell.recipientLabel.text = name
+//        cell.messageLabel.text = text
+//        cell.imageView?.image = UIImage(named: "ic_account_circle")
+//        if let photoURL = message["photoUrl"], let URL = URL(string: photoURL),
+//            let data = try? Data(contentsOf: URL) {
+//            cell.imageView?.image = UIImage(data: data)
+//        }
         return cell
     }
     
@@ -117,23 +117,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        }
         
         // Push data to Firebase Database
-    
-        self.ref.child("Chats")
-        .child(chatId!)
-        .child("messages")
-        .childByAutoId()
-        .setValue(mdata)
+        FirebaseAPI.getChatsRef().child(chatId!).childByAutoId().setValue(mdata)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

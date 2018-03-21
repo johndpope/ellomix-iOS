@@ -1074,6 +1074,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="K0I-EQ-ph0">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="wre-Od-M5Z" kind="show" identifier="toSendNewMessage" id="rgG-hi-hp7"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1982,6 +1985,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="rgG-hi-hp7"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>
