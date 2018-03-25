@@ -11,7 +11,7 @@ import Firebase
 
 class ChatFeedTableViewController: UITableViewController {
     
-    private var chatUserRefHandle: DatabaseHandle?
+    private var groupsRefHandle: DatabaseHandle?
     private var FirebaseAPI: FirebaseApi!
 
     var chats: [DataSnapshot]! = []
@@ -33,23 +33,19 @@ class ChatFeedTableViewController: UITableViewController {
     }
     
     deinit {
-        if let refHandle = chatUserRefHandle  {
-            FirebaseAPI.getChatUserRef().removeObserver(withHandle: refHandle)
+        if let refHandle = groupsRefHandle  {
+            FirebaseAPI.getUsersRef().child("groups").removeObserver(withHandle: refHandle)
         }
     }
     
     func observeChats() {
-        chatUserRefHandle = FirebaseAPI.getChatUserRef().observe(.childAdded, with: { (snapshot) -> Void in
-            let cid = snapshot.key
-            let uid = snapshot.value as! String
+        groupsRefHandle = FirebaseAPI.getUsersRef().child("groups").observe(.childAdded, with: { (snapshot) -> Void in
+            let gid = snapshot.key
 
-            if (uid == self.currentUser?.uid) {
-                // User is a member of chat CID
-                self.FirebaseAPI.getChatsRef().child(cid).observeSingleEvent(of: .value, with: { (snapshot) in
-                    // Add this chat object to our local chats array
-                    self.chats.append(snapshot)
-                })
-            }
+            self.FirebaseAPI.getGroupsRef().child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
+                self.chats.append(snapshot)
+            })
+
         })
 
     }
@@ -93,7 +89,7 @@ class ChatFeedTableViewController: UITableViewController {
         // Configure the cell...
         cell.fromRecipientLabel?.text = chatRecipient
         cell.recentMessageLabel?.text = chatLastMessage
-        cell.chatId = chatSnapshot.key
+        cell.gid = chatSnapshot.key
 
         return cell
     }
@@ -142,9 +138,9 @@ class ChatFeedTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "toChatDetail") {
-            let segueVC : ChatViewController = segue.destination as! ChatViewController
-            let cell : ChatFeedTableViewCell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
-            segueVC.chatId = cell.chatId
+            let segueVC: ChatViewController = segue.destination as! ChatViewController
+            let cell: ChatFeedTableViewCell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
+            segueVC.gid = cell.gid
         }
     }
  

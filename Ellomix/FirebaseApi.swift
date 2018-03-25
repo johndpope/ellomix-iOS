@@ -14,9 +14,10 @@ import UIKit
 class FirebaseApi {
     
     private var ref: DatabaseReference = Database.database().reference()
-    private let CHATS = "Chats"
     private let USERS = "Users"
-    private let CHAT_USER = "ChatUser"
+    private let MESSAGES = "Messages"
+    private let GROUPS = "Groups"
+    private let GROUP_PLAYLISTS = "GroupPlaylists"
     private let FOLLOWING = "Following"
     private let FOLLOWERS = "Followers"
     
@@ -26,12 +27,12 @@ class FirebaseApi {
         return ref;
     }
     
-    func getChatsRef() -> DatabaseReference {
-        return ref.child(CHATS)
+    func getMessagesRef() -> DatabaseReference {
+        return ref.child(MESSAGES)
     }
 
-    func getChatUserRef() -> DatabaseReference {
-        return ref.child(CHAT_USER)
+    func getGroupsRef() -> DatabaseReference {
+        return ref.child(GROUPS)
     }
 
     func getUsersRef() -> DatabaseReference {

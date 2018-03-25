@@ -16,7 +16,7 @@ class ChatFeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recentMessageLabel: UILabel!
     
-    var chatId : String = ""
+    var gid: String = ""
     
 
     override func awakeFromNib() {

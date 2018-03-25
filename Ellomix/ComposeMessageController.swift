@@ -138,7 +138,14 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toSendNewMessage") {
             let segueVC:ChatViewController = segue.destination as! ChatViewController
-            segueVC.newChatGroup = Array(selected.keys)
+            
+            var newChatGroup = [Dictionary<String, AnyObject>?]()
+            for user in followingUsers {
+                if (selected[(user!["uid"] as? String)!])! {
+                    newChatGroup.append(user)
+                }
+            }
+            segueVC.newChatGroup = newChatGroup
         }
     }
     

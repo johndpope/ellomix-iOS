@@ -17,8 +17,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var FirebaseAPI: FirebaseApi!
     private var messagesRefHandle: DatabaseHandle?
     var currentUser:EllomixUser?
-    var chatId: String?
-    var newChatGroup: [String]?
+    var gid: String?
+    var newChatGroup: [Dictionary<String, AnyObject>?]?
     
     var messages = [Dictionary<String, AnyObject>?]()
     
@@ -32,8 +32,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         chatTableView.isScrollEnabled = true
         messageTextField.delegate = self
         
-        if (chatId == nil) {
-            // Check for existing chat between newChatGroup and current user. If it doesn't exist, create new chat
+        if (gid == nil) {
+            // Check for existing group between newChatGroup and current user. If it doesn't exist, create new group
+            FirebaseAPI.getUsersRef().child("groups").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+                let gid = snapshot.key
+                
+                self.FirebaseAPI.getGroupsRef().observeSingleEvent(of: .value, with: { (snapshot) in
+                    if (snapshot.hasChild(gid)) {
+                        self.gid = gid
+                        self.observeMessages()
+                    } else {
+                        // Load blank group and create new group only once the user sends a message
+                    }
+                })
+            })
         } else {
             observeMessages()
         }
@@ -48,12 +60,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     deinit {
         if let refHandle = messagesRefHandle {
-            FirebaseAPI.getChatsRef().child(chatId!).removeObserver(withHandle: refHandle)
+            FirebaseAPI.getMessagesRef().child(gid!).removeObserver(withHandle: refHandle)
         }
     }
 
     func observeMessages() {
-        messagesRefHandle = FirebaseAPI.getChatsRef().child(chatId!).observe(.childAdded, with: { (snapshot)  in
+        messagesRefHandle = FirebaseAPI.getMessagesRef().child(gid!).observe(.childAdded, with: { (snapshot)  in
             let message = snapshot.value as? Dictionary<String, AnyObject>
             self.messages.append(message)
         }) { (error) in
@@ -117,7 +129,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        }
         
         // Push data to Firebase Database
-        FirebaseAPI.getChatsRef().child(chatId!).childByAutoId().setValue(mdata)
+        // FirebaseAPI.getMessagesRef().child(gid!).childByAutoId().setValue(mdata)
     }
 
 
