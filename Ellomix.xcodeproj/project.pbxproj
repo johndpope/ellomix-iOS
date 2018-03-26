@@ -12,7 +12,7 @@
 		BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14B0091E654535004B8B67 /* AddMusicTableViewCell.swift */; };
 		BA14B00C1E654B1C004B8B67 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14B00B1E654B1C004B8B67 /* AudioViewController.swift */; };
 		BA37F5CB1E5D600C00C937CD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */; };
-		BA37F5CF1E5D658300C937CD /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA37F5CE1E5D658300C937CD /* ChatTableViewCell.swift */; };
+		BA37F5CF1E5D658300C937CD /* ReceivedChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */; };
 		BA4E4BB51E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */; };
 		BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */; };
 		BA4E4C061E63924700A4C4B9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */; };
@@ -43,6 +43,7 @@
 		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
 		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
+		DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */; };
 		DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */; };
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBE9B1111EA848A4002524C3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E330802A1E342EC50046D58F /* Bolts.framework */; };
@@ -91,7 +92,7 @@
 		BA14B0091E654535004B8B67 /* AddMusicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMusicTableViewCell.swift; sourceTree = "<group>"; };
 		BA14B00B1E654B1C004B8B67 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		BA37F5CE1E5D658300C937CD /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedChatTableViewCell.swift; sourceTree = "<group>"; };
 		BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPlaylistTableViewController.swift; sourceTree = "<group>"; };
 		BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLoginViewController.swift; sourceTree = "<group>"; };
 		BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +124,7 @@
 		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
 		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
+		DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentChatTableViewCell.swift; sourceTree = "<group>"; };
 		DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBF9440E205F4DF80047A1EB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -296,8 +298,9 @@
 				BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */,
 				BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */,
 				BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */,
+				DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */,
 				DB7034DA20620F41003235EB /* Message.swift */,
-				BA37F5CE1E5D658300C937CD /* ChatTableViewCell.swift */,
+				BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */,
 				DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */,
 				BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */,
 				BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */,
@@ -676,7 +679,8 @@
 				DB7BAA63202FB731005B7115 /* GetStartedViewController.swift in Sources */,
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				DBF94410205F4DF90047A1EB /* SettingsViewController.swift in Sources */,
-				BA37F5CF1E5D658300C937CD /* ChatTableViewCell.swift in Sources */,
+				DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */,
+				BA37F5CF1E5D658300C937CD /* ReceivedChatTableViewCell.swift in Sources */,
 				BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */,
 				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,
 				DB7034DB20620F41003235EB /* Message.swift in Sources */,

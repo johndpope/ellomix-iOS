@@ -9,10 +9,11 @@
 import UIKit
 import Firebase
 
-class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     @IBOutlet weak var chatTableView: UITableView!
-    @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var dockView: UIView!
+    @IBOutlet weak var mesageTextView: UITextView!
     
     private var FirebaseAPI: FirebaseApi!
     private var messagesRefHandle: DatabaseHandle?
@@ -30,7 +31,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.isScrollEnabled = true
-        messageTextField.delegate = self
+        mesageTextView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         if (gid == nil) {
             // Check for existing group between newChatGroup and current user. If it doesn't exist, create new group
@@ -52,10 +55,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func sendMessageButton(_ sender: Any) {
-        if (messageTextField.text != "") {
-            let data = ["text": messageTextField.text]
-            sendMessage(withData: data as! [String : String])
-        }
+//        if (messageTextField.text != "") {
+//            let data = ["text": messageTextField.text]
+//            sendMessage(withData: data as! [String : String])
+//        }
     }
     
     deinit {
@@ -84,7 +87,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Dequeue cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! ChatTableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! ChatTableViewCell
         
         // Unpack message from Firebase DataSnapshot
 //        let message = self.messages[indexPath.row]
@@ -100,17 +103,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            let data = try? Data(contentsOf: URL) {
 //            cell.imageView?.image = UIImage(data: data)
 //        }
-        return cell
-    }
-    
-    // UITextViewDelegate protocol methods
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text = textField.text else { return true }
-        textField.text = ""
-        view.endEditing(true)
-        let data = ["text": text]
-        sendMessage(withData: data)
-        return true
+//        return cell
+        return UITableViewCell()
     }
 
     override func didReceiveMemoryWarning() {
@@ -130,6 +124,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Push data to Firebase Database
         // FirebaseAPI.getMessagesRef().child(gid!).childByAutoId().setValue(mdata)
+    }
+    
+    //MARK: Keyboard handling
+    func handleKeyboardNotification(notification: Notification) {
+        let userInfo = notification.userInfo
+        let keyboardFrame = (userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
     }
 
 

@@ -8,11 +8,10 @@
 
 import UIKit
 
-class ChatTableViewCell: UITableViewCell {
+class RecievedChatTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var recipientLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var messageTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
