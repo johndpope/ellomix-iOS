@@ -12,6 +12,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-BoldItalic</string>
+        </array>
         <array key="HelveticaNeueLights.ttc">
             <string>HelveticaNeue-Light</string>
         </array>
@@ -1224,12 +1227,12 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhK-gJ-1ug">
-                                <rect key="frame" x="280" y="677" width="54" height="39"/>
+                                <rect key="frame" x="294" y="677" width="54" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="54" id="23i-Tc-uoG"/>
                                     <constraint firstAttribute="height" constant="39" id="HnT-TE-ugn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Log in">
                                     <color key="titleColor" red="0.90980392156862744" green="0.30588235294117649" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1237,9 +1240,25 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="vNM-6e-nEv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting the world one song at a time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcP-Ye-Jmi">
+                                <rect key="frame" x="63" y="390" width="289" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="98g-mY-PvI"/>
+                                    <constraint firstAttribute="width" constant="289" id="fd5-Gg-bZH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account already?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEO-jB-Lc5">
+                                <rect key="frame" x="70" y="677" width="222" height="39"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kV-tB-Xip">
-                                <rect key="frame" x="62.666666666666657" y="500" width="289" height="60"/>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.30588235289999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="63" y="476" width="289" height="60"/>
+                                <color key="backgroundColor" red="0.89772015810012817" green="0.29490339756011963" blue="0.29408130049705505" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="289" id="HiZ-5a-WJ4"/>
                                     <constraint firstAttribute="height" constant="60" id="KXt-MZ-sUs"/>
@@ -1252,40 +1271,20 @@
                                     <segue destination="bO1-he-ovB" kind="show" identifier="toSignUp" id="juu-vN-PZv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="connecting the world one song at a time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcP-Ye-Jmi">
-                                <rect key="frame" x="34" y="423" width="346" height="69"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="98g-mY-PvI"/>
-                                    <constraint firstAttribute="width" constant="346" id="fd5-Gg-bZH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account already?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEO-jB-Lc5">
-                                <rect key="frame" x="69.999999999999986" y="677" width="207.66666666666663" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="Tkk-l0-QI8"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="207.66666666666663" id="wvQ-7M-ECn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="DhK-gJ-1ug" firstAttribute="leading" secondItem="XEO-jB-Lc5" secondAttribute="trailing" constant="2" id="4Ik-8O-R2h"/>
                             <constraint firstItem="4QP-kp-Cgu" firstAttribute="top" secondItem="DhK-gJ-1ug" secondAttribute="bottom" constant="20" id="9gJ-mL-I5H"/>
-                            <constraint firstItem="XEO-jB-Lc5" firstAttribute="top" secondItem="9kV-tB-Xip" secondAttribute="bottom" constant="117" id="Fg9-2J-AX1"/>
-                            <constraint firstItem="DhK-gJ-1ug" firstAttribute="top" secondItem="9kV-tB-Xip" secondAttribute="bottom" constant="117" id="IYy-rY-UuI"/>
+                            <constraint firstItem="XEO-jB-Lc5" firstAttribute="top" secondItem="DhK-gJ-1ug" secondAttribute="top" id="GvP-lx-RJ4"/>
+                            <constraint firstItem="DhK-gJ-1ug" firstAttribute="top" secondItem="9kV-tB-Xip" secondAttribute="bottom" constant="141" id="IYy-rY-UuI"/>
                             <constraint firstItem="Oub-Rt-YAr" firstAttribute="top" secondItem="S5a-m4-ZfP" secondAttribute="bottom" constant="73" id="Rpe-0X-eXZ"/>
                             <constraint firstItem="Oub-Rt-YAr" firstAttribute="centerX" secondItem="tJe-1p-ULG" secondAttribute="centerX" id="TpW-TO-Ohy"/>
-                            <constraint firstItem="9kV-tB-Xip" firstAttribute="top" secondItem="ZcP-Ye-Jmi" secondAttribute="bottom" constant="8" id="aCT-5L-hJN"/>
+                            <constraint firstItem="9kV-tB-Xip" firstAttribute="top" secondItem="ZcP-Ye-Jmi" secondAttribute="bottom" constant="17" id="aCT-5L-hJN"/>
                             <constraint firstItem="9kV-tB-Xip" firstAttribute="centerX" secondItem="tJe-1p-ULG" secondAttribute="centerX" id="dHx-c2-ty8"/>
-                            <constraint firstItem="XEO-jB-Lc5" firstAttribute="leading" secondItem="tJe-1p-ULG" secondAttribute="leading" constant="70" id="e4h-tN-WQT"/>
-                            <constraint firstItem="4QP-kp-Cgu" firstAttribute="top" secondItem="XEO-jB-Lc5" secondAttribute="bottom" constant="20" id="nxy-Cl-aOf"/>
+                            <constraint firstItem="XEO-jB-Lc5" firstAttribute="trailing" secondItem="Oub-Rt-YAr" secondAttribute="trailing" id="rJW-EI-Tgf"/>
                             <constraint firstItem="ZcP-Ye-Jmi" firstAttribute="centerX" secondItem="tJe-1p-ULG" secondAttribute="centerX" id="t5W-Fq-uze"/>
-                            <constraint firstItem="DhK-gJ-1ug" firstAttribute="leading" secondItem="XEO-jB-Lc5" secondAttribute="trailing" constant="2.3333333333333712" id="voK-Jo-Er7"/>
+                            <constraint firstItem="XEO-jB-Lc5" firstAttribute="bottom" secondItem="DhK-gJ-1ug" secondAttribute="bottom" id="tey-kR-hX4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ztb-uX-4xV"/>
@@ -1295,7 +1294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d65-UP-jOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-639" y="86"/>
+            <point key="canvasLocation" x="-639.13043478260875" y="85.59782608695653"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Vet-NH-vy3">
