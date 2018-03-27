@@ -14,6 +14,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var dockView: UIView!
     @IBOutlet weak var mesageTextView: UITextView!
+    @IBOutlet weak var dockBottomConstraint: NSLayoutConstraint!
     
     private var FirebaseAPI: FirebaseApi!
     private var messagesRefHandle: DatabaseHandle?
@@ -33,7 +34,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         chatTableView.isScrollEnabled = true
         mesageTextView.delegate = self
         
+        self.hideKeyboardWhenTappedAround()
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         if (gid == nil) {
             // Check for existing group between newChatGroup and current user. If it doesn't exist, create new group
@@ -130,6 +133,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func handleKeyboardNotification(notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        if (notification.name == Notification.Name.UIKeyboardWillShow) {
+             dockBottomConstraint.constant = keyboardFrame.height
+        } else {
+             dockBottomConstraint.constant = 0
+        }
+        
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: { (completed) in
+            
+        })
     }
 
 
