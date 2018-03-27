@@ -70,15 +70,10 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         if (user!["photo_url"] as? String == "" || user!["photo_url"] == nil) {
             cell.userProfilePic.image = #imageLiteral(resourceName: "ellomix_logo_bw")
         } else {
-            DispatchQueue.global().async {
-                let url = user!["photo_url"]! as? String
-                let data = try? Data(contentsOf: URL(string: url!)!)
-                DispatchQueue.main.async {
-                    cell.userProfilePic.image = UIImage(data: data!)
-                    cell.userProfilePic.layer.cornerRadius = cell.userProfilePic.frame.size.width / 2
-                    cell.userProfilePic.clipsToBounds = true
-                }
-            }
+            let url = user!["photo_url"]! as? String
+            cell.userProfilePic.downloadedFrom(link: url!)
+            cell.userProfilePic.layer.cornerRadius = cell.userProfilePic.frame.size.width / 2
+            cell.userProfilePic.clipsToBounds = true
         }
         
         if (selected[uid!]!) {
