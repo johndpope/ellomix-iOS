@@ -13,7 +13,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var dockView: UIView!
-    @IBOutlet weak var mesageTextView: UITextView!
+    @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var dockBottomConstraint: NSLayoutConstraint!
     
     private var FirebaseAPI: FirebaseApi!
@@ -32,7 +32,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.isScrollEnabled = true
-        mesageTextView.delegate = self
+        messageTextView.delegate = self
+        
+        messageTextView.layer.cornerRadius = 8.0
+        messageTextView.text = "Reply"
+        messageTextView.textColor = UIColor.lightGray
         
         self.hideKeyboardWhenTappedAround()
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -136,8 +140,16 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if (notification.name == Notification.Name.UIKeyboardWillShow) {
              dockBottomConstraint.constant = keyboardFrame.height
+            if (messageTextView.textColor == UIColor.lightGray) {
+                messageTextView.text = nil
+                messageTextView.textColor = UIColor.black
+            }
         } else {
              dockBottomConstraint.constant = 0
+            if (messageTextView.text.isEmpty) {
+                messageTextView.text = "Reply"
+                messageTextView.textColor = UIColor.lightGray
+            }
         }
         
         UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
