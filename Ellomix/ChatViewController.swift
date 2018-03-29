@@ -43,29 +43,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         if (gid == nil) {
-            // Check for existing group between newChatGroup and current user. If it doesn't exist, create new group
-            FirebaseAPI.getUsersRef().child("groups").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
-                let gid = snapshot.key
-                
-                self.FirebaseAPI.getGroupsRef().observeSingleEvent(of: .value, with: { (snapshot) in
-                    if (snapshot.hasChild(gid)) {
-                        self.gid = gid
-                        self.observeMessages()
-                    } else {
-                        // Load blank group and create new group only once the user sends a message
-                    }
-                })
+            // Check for existing group between newChatGroup and current user.
+            FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+//                let gid = snapshot.key
+//
+//                self.FirebaseAPI.getGroupsRef().observeSingleEvent(of: .value, with: { (snapshot) in
+//                    if (snapshot.hasChild(gid)) {
+//                        self.gid = gid
+//                        self.observeMessages()
+//                    }
+//                })
             })
         } else {
             observeMessages()
         }
-    }
-    
-    @IBAction func sendMessageButton(_ sender: Any) {
-//        if (messageTextField.text != "") {
-//            let data = ["text": messageTextField.text]
-//            sendMessage(withData: data as! [String : String])
-//        }
     }
     
     deinit {
@@ -119,19 +110,36 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    func sendMessage(withData data: [String: String]) {
-        var mdata = data
-        mdata["name"] = "Anonymous"
-        let photoURL : String? = nil
-        mdata["photoUrl"] = photoURL
-            
-//            if let photoURL = FIRAuth.auth()?.currentUser?.photoURL {
-//            mdata[Constants.MessageFields.photoURL] = photoURL.absoluteString
-//        }
-        
+    @IBAction func sendMessageButtonClicked(_ sender: Any) {
+        if (!messageTextView.text.isEmpty) {
+            if (gid != nil) {
+                sendMessage(message: messageTextView.text)
+            } else {
+                
+                FirebaseAPI.getGroupsRef().childByAutoId().observeSingleEvent(of: .value, with: { (snapshot) in
+                    self.gid = snapshot.key
+                    
+                    var groupName = ""
+                    var usersData = [String: AnyObject]()
+                    for user in self.newChatGroup! {
+                        usersData[user!["uid"] as! String] = ["name": user!["name"], "photo_url": user!["photo_url"]] as AnyObject
+                        groupName += "\(user!["name"]), "
+                    }
+                    
+                    let groupData = ["name": groupName, "notifications": true, "users": usersData] as [String : AnyObject]
+                    
+                    self.FirebaseAPI.getGroupsRef().child(self.gid!).setValue(groupData)
+                    self.sendMessage(message: self.messageTextView.text)
+                })
+            }
+        }
+    }
+    
+    func sendMessage(message: String) {
         // Push data to Firebase Database
         // FirebaseAPI.getMessagesRef().child(gid!).childByAutoId().setValue(mdata)
     }
+    
     
     //MARK: Keyboard handling
     func handleKeyboardNotification(notification: Notification) {
