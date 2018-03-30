@@ -1226,7 +1226,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageTextView" destination="khR-QU-AfR" id="v1C-ZJ-rdS"/>
-                                            <outlet property="profileImageView" destination="k4a-DB-TvK" id="Df8-tV-dcy"/>
                                             <outlet property="profilePic" destination="k4a-DB-TvK" id="20b-1G-LjW"/>
                                         </connections>
                                     </tableViewCell>

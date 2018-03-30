@@ -8,11 +8,11 @@
 
 import Foundation
 
-internal class Message {
+internal class Message: NSObject {
     
     var uid:String?
     var type:String?
-    var content:Any?
+    var content:String?
     var timestamp:Int?
     var isRead:Bool?
     var image:UIImage?

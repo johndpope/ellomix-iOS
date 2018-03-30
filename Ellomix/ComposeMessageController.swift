@@ -140,6 +140,10 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
                     newChatGroup.append(user)
                 }
             }
+            
+            // Add current user to the new chat group
+            let currentUser = ["uid": self.currentUser?.uid, "name": self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink] as Dictionary<String, AnyObject>
+            newChatGroup.append(currentUser)
             segueVC.newChatGroup = newChatGroup
         }
     }
