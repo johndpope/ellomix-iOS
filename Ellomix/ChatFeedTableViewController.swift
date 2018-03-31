@@ -14,36 +14,47 @@ class ChatFeedTableViewController: UITableViewController {
     private var groupsRefHandle: DatabaseHandle?
     private var FirebaseAPI: FirebaseApi!
 
-    var chats: [DataSnapshot]! = []
     var currentUser:EllomixUser?
+    
+    var groupChats = [Group]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        //TODO: Implement code similar to Android
         currentUser = Global.sharedGlobal.user
         observeChats()
     }
     
     deinit {
         if let refHandle = groupsRefHandle  {
-            FirebaseAPI.getUsersRef().child("groups").removeObserver(withHandle: refHandle)
+            FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").removeObserver(withHandle: refHandle)
         }
     }
     
     func observeChats() {
-        groupsRefHandle = FirebaseAPI.getUsersRef().child("groups").observe(.childAdded, with: { (snapshot) -> Void in
+        groupsRefHandle = FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").observe(.childAdded, with: { (snapshot) -> Void in
             let gid = snapshot.key
 
             self.FirebaseAPI.getGroupsRef().child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
-                self.chats.append(snapshot)
+                if let groupDictionary = snapshot.value as? Dictionary<String, AnyObject> {
+                    let group = Group()
+                    group.gid = gid
+                    group.name = groupDictionary["name"] as? String
+                    group.notifications = groupDictionary["notifications"] as? Bool
+                    
+                    let lastMessage = Message()
+                    if let lastMessageDictionary = groupDictionary["last_message"] as? Dictionary<String, AnyObject> {
+                        lastMessage.content = lastMessageDictionary["content"] as? String
+                        lastMessage.timestamp = lastMessageDictionary["timestamp"] as? Int
+                        group.lastMessage = lastMessage
+                    }
+                    self.groupChats.append(group)
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
             })
 
         })
@@ -58,7 +69,7 @@ class ChatFeedTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if (chats.count == 0) {
+        if (groupChats.count == 0) {
             let noChatsLabel:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             noChatsLabel.text = "You don't have any messages yet."
             noChatsLabel.textAlignment = .center
@@ -69,74 +80,29 @@ class ChatFeedTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
+        return groupChats.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:ChatFeedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatFeedTableViewCell
+        let group = groupChats[indexPath.row]
         
-        let cell:ChatFeedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ChatFeedTableViewCell
-        
-        //Get the chat at indexPath
-        let index = indexPath.row
-        let chatSnapshot : DataSnapshot! = chats[index]
-        
-        // Unpack chat from Firebase Snapshot
-        // TODO: Learn how to pack in an
-        let chatRecipient = chatSnapshot.childSnapshot(forPath: "fromRecipient").value as? String ?? ""
-        let chatLastMessage = chatSnapshot.childSnapshot(forPath: "mostRecentMessage").value as? String ?? ""
-        
-        // Configure the cell...
-        cell.fromRecipientLabel?.text = chatRecipient
-        cell.recentMessageLabel?.text = chatLastMessage
-        cell.gid = chatSnapshot.key
+        if (group.name == nil || group.name!.isEmpty) {
+            // Make an extension
+            cell.chatNameLabel.text = "Group Name"
+        } else {
+           cell.chatNameLabel.text = group.name!
+        }
+
+        cell.recentMessageLabel.text = group.lastMessage?.content
+        cell.gid = group.gid!
 
         return cell
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if (segue.identifier == "toChatDetail") {
             let segueVC: ChatViewController = segue.destination as! ChatViewController
             let cell: ChatFeedTableViewCell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell

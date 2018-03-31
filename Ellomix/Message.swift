@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal class Message: NSObject {
+internal class Message {
     
     var uid:String?
     var type:String?

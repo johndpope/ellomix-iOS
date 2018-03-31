@@ -12,7 +12,7 @@ class ChatFeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     
-    @IBOutlet weak var fromRecipientLabel: UILabel!
+    @IBOutlet weak var chatNameLabel: UILabel!
     
     @IBOutlet weak var recentMessageLabel: UILabel!
     

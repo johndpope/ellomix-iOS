@@ -52,6 +52,7 @@
 		DBF94418205F5D220047A1EB /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94415205F5D210047A1EB /* SpotifyAudioPlayback.framework */; };
 		DBF94419205F5D220047A1EB /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94416205F5D220047A1EB /* SpotifyMetadata.framework */; };
 		DBF9441A205F5D220047A1EB /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94417205F5D220047A1EB /* SpotifyAuthentication.framework */; };
+		DBFA76DD206F39DF00689D4F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA76DC206F39DF00689D4F /* Group.swift */; };
 		E193B0AC9A542B67F255F143 /* Pods_EllomixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D24004B5B584B342FE1703 /* Pods_EllomixTests.framework */; };
 		E33080271E342DAB0046D58F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */; };
 		E33080291E342DBB0046D58F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33080281E342DBB0046D58F /* FBSDKLoginKit.framework */; };
@@ -133,6 +134,7 @@
 		DBF94416205F5D220047A1EB /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
 		DBF94417205F5D220047A1EB /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 		DBF9441B205F5F8C0047A1EB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		DBFA76DC206F39DF00689D4F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ellomix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		E33080281E342DBB0046D58F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				E379E62A1E08B69500B0256F /* LaunchScreen.storyboard */,
 				E379E62D1E08B69500B0256F /* Info.plist */,
 				BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */,
+				DBFA76DC206F39DF00689D4F /* Group.swift */,
 				BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */,
 				BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */,
 				BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */,
@@ -660,6 +663,7 @@
 				BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
+				DBFA76DD206F39DF00689D4F /* Group.swift in Sources */,
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */,
