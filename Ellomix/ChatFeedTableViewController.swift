@@ -75,6 +75,8 @@ class ChatFeedTableViewController: UITableViewController {
             noChatsLabel.textAlignment = .center
             tableView.backgroundView  = noChatsLabel
             tableView.separatorStyle  = .none
+        } else {
+            tableView.backgroundView = nil
         }
         return 1
     }
