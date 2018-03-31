@@ -74,7 +74,6 @@ class ChatFeedTableViewController: UITableViewController {
             noChatsLabel.text = "You don't have any messages yet."
             noChatsLabel.textAlignment = .center
             tableView.backgroundView  = noChatsLabel
-            tableView.separatorStyle  = .none
         } else {
             tableView.backgroundView = nil
         }

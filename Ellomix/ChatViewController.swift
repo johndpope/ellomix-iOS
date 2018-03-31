@@ -71,7 +71,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         newGroup.append(user!["uid"] as! String)
                     }
                     
-                    if (currentGroup == newGroup) {
+                    if (Set(currentGroup) == Set(newGroup)) {
                         self.gid = gid
                         self.observeMessages()
                     }
