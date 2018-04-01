@@ -409,7 +409,7 @@
                                     <outlet property="chatNameLabel" destination="2Hf-xe-iFW" id="50k-LT-KJC"/>
                                     <outlet property="profileImageView" destination="gnv-AU-kNN" id="lwn-Kd-OBm"/>
                                     <outlet property="recentMessageLabel" destination="Bbs-4M-PVs" id="jAf-zq-9VH"/>
-                                    <segue destination="wre-Od-M5Z" kind="presentation" identifier="toChatDetail" id="VHZ-sW-aW3"/>
+                                    <segue destination="wre-Od-M5Z" kind="show" identifier="toChatDetail" id="VHZ-sW-aW3"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1204,7 +1204,7 @@
         <!--Chat View Controller-->
         <scene sceneID="Cqv-bC-aKI">
             <objects>
-                <viewController id="wre-Od-M5Z" customClass="ChatViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="wre-Od-M5Z" customClass="ChatViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n2F-Yi-RbJ"/>
                         <viewControllerLayoutGuide type="bottom" id="enJ-93-ZSR"/>
@@ -2134,7 +2134,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VHZ-sW-aW3"/>
+        <segue reference="rgG-hi-hp7"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>

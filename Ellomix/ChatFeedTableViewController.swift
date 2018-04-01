@@ -105,8 +105,8 @@ class ChatFeedTableViewController: UITableViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toChatDetail") {
-            let segueVC: ChatViewController = segue.destination as! ChatViewController
-            let cell: ChatFeedTableViewCell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
+            let segueVC = segue.destination as! ChatViewController
+            let cell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
             segueVC.gid = cell.gid
         }
     }
