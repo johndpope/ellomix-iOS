@@ -108,6 +108,14 @@ class ChatFeedTableViewController: UITableViewController {
             let segueVC = segue.destination as! ChatViewController
             let cell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
             segueVC.gid = cell.gid
+        } else if (segue.identifier == "toComposeModal") {
+            let segueVC = segue.destination as! ComposeMessageController
+            segueVC.chatFeedDelegate = self
+        } else if (segue.identifier == "toSendNewMessage") {
+            let segueVC = segue.destination as! ChatViewController
+            if let newChatGroup = sender as? [Dictionary<String, AnyObject>?] {
+                segueVC.newChatGroup = newChatGroup
+            }
         }
     }
  

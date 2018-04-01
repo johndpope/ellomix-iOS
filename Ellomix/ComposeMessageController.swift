@@ -21,6 +21,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
+    var chatFeedDelegate: ChatFeedTableViewController?
     var followingUsers = [Dictionary<String, AnyObject>?]()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
     var selected:[String:Bool] = [:]
@@ -116,6 +117,23 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func nextButtonClicked(_ sender: Any) {
+        var newChatGroup = [Dictionary<String, AnyObject>?]()
+        for user in followingUsers {
+            if (selected[(user!["uid"] as? String)!])! {
+                newChatGroup.append(user)
+            }
+        }
+        
+        // Add current user to the new chat group
+        let currentUser = ["uid": self.currentUser?.uid, "name": self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink] as Dictionary<String, AnyObject>
+        newChatGroup.append(currentUser)
+        
+        chatFeedDelegate?.performSegue(withIdentifier: "toSendNewMessage", sender: newChatGroup)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     //MARK: Text View functions
     func textViewDidChange(_ textView: UITextView) {
         filterUsers(searchText: textView.text!)
@@ -127,24 +145,6 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         filteredUsers = followingUsers.filter{ user in
             let name = user!["name"] as? String
             return (name?.lowercased().contains(searchText.lowercased()))!
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "toSendNewMessage") {
-            let segueVC:ChatViewController = segue.destination as! ChatViewController
-            
-            var newChatGroup = [Dictionary<String, AnyObject>?]()
-            for user in followingUsers {
-                if (selected[(user!["uid"] as? String)!])! {
-                    newChatGroup.append(user)
-                }
-            }
-            
-            // Add current user to the new chat group
-            let currentUser = ["uid": self.currentUser?.uid, "name": self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink] as Dictionary<String, AnyObject>
-            newChatGroup.append(currentUser)
-            segueVC.newChatGroup = newChatGroup
         }
     }
     
