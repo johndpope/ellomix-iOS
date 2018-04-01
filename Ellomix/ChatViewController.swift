@@ -60,20 +60,28 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let gid = child.key
 
-                self.FirebaseAPI.getGroupsRef().child(gid).child("users").observeSingleEvent(of: .value, with: { (snapshot) in
-                    var currentGroup = [String]()
-                    for child in snapshot.children.allObjects as! [DataSnapshot] {
-                        currentGroup.append(child.key)
-                    }
-                    
-                    var newGroup = [String]()
-                    for user in self.newChatGroup! {
-                        newGroup.append(user!["uid"] as! String)
-                    }
-                    
-                    if (Set(currentGroup) == Set(newGroup)) {
-                        self.gid = gid
-                        self.observeMessages()
+                self.FirebaseAPI.getGroupsRef().child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
+                        if let users = dictionary["users"] as? Dictionary<String, AnyObject> {
+                            let currentGroup = Array(users.keys)
+                            
+                            var newGroup = [String]()
+                            for user in self.newChatGroup! {
+                                newGroup.append(user!["uid"] as! String)
+                            }
+                            
+                            if (Set(currentGroup) == Set(newGroup)) {
+                                self.gid = gid
+                                self.observeMessages()
+                            }
+                            
+                            let groupName = dictionary["name"] as? String
+                            if (groupName == nil || (groupName?.isEmpty)!) {
+                                self.navigationItem.title = self.newChatGroup?.groupNameFromUsers()
+                            } else {
+                                self.navigationItem.title = groupName
+                            }
+                        }
                     }
                 })
             }

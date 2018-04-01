@@ -42,6 +42,13 @@ class ChatFeedTableViewController: UITableViewController {
                     group.gid = gid
                     group.name = groupDictionary["name"] as? String
                     group.notifications = groupDictionary["notifications"] as? Bool
+                    if let users = groupDictionary["users"] as? Dictionary<String, AnyObject> {
+                        var usersArray = [Dictionary<String, AnyObject>?]()
+                        for user in users.values {
+                            usersArray.append(user as? Dictionary<String, AnyObject>)
+                        }
+                        group.users = usersArray
+                    }
                     
                     let lastMessage = Message()
                     if let lastMessageDictionary = groupDictionary["last_message"] as? Dictionary<String, AnyObject> {
@@ -90,8 +97,7 @@ class ChatFeedTableViewController: UITableViewController {
         let group = groupChats[indexPath.row]
         
         if (group.name == nil || group.name!.isEmpty) {
-            // Make an extension
-            cell.chatNameLabel.text = "Group Name"
+            cell.chatNameLabel.text = group.users?.groupNameFromUsers()
         } else {
            cell.chatNameLabel.text = group.name!
         }
