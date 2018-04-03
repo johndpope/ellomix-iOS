@@ -6,32 +6,73 @@
 //  Copyright © 2018 Akshay Vyas. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import Firebase
+import UIKit
+import FacebookCore
+import FacebookLogin
+import FirebaseAuth
+import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class SettingsViewController: TableViewController {
-
-    //linked accounts
+class SettingsTableViewController: UITableViewController, UITableViewDelegate {
     
-    //change password
+    @IBOutlet weak var logoutButton: UIButton
+    private var FirebaseAPI: FirebaseApi!
+    var currentUser:EllomixUser?
     
-    //make account private
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseAPI = FirebaseApi()
+        
+        FirebaseAPI.getUsersRef()
+            .child((currentUser?.uid)!)
+    }
     
-    //push notifications
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
-    //use less data
+    //make account private: TODO:
+    //change and add a private field and if so ONLY SHOW ON PRIVATE MATTERS ETC>>> FIRBASE STUFF FILTER ON AND OFF
+    func makeAccountPrivate(){
+        //button pressed 
+        //firebase --> then private
+    }
     
-    //help center/requests
-    
-    //report a problem
-    
-    //ads
+    //push notifications:
+    //push to the phone? message alerts?
     
     //blog
+    //TODO:Change to IBACTION
+    func openblog(){
+    UIApplication.shared.open(URL(string : "http://www.Ellomix.com")!, options: [:], completionHandler: { (status) in
+        })
+    }
     
-    //terms
-    
-    //clear search history
+    //clear search history --> push button
     
     //logout
+    //TODO:Change to IBACTION
+    func logoutPushed() {
+        //facebook
+        if(FBSDKAccessToken.current() !== nil){
+            FBSDKLoginManager().logOut()
+            logout();
+        } else {
+            Auth.auth().currentUser == nil
+            logout()
+        }
+    
+    }
+    
+    func logout() {
+        print("logout function")
+        let storyboard = UIStoryboard(name: "login", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "loginController")
+        self.present(vc, animated: true, completion: nil)
+    }
 
 }
