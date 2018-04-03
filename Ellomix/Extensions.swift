@@ -54,3 +54,19 @@ extension UIImageView {
     }
     
 }
+
+extension Array {
+    func groupNameFromUsers() -> String {
+        var names = [String]()
+        
+        for i in 0..<self.count {
+            if let user = self[i] as? Dictionary<String, AnyObject> {
+                if let name = user["name"] as? String, name != Global.sharedGlobal.user?.getName() {
+                    names.append(name)
+                }
+            }
+        }
+        
+        return names.joined(separator: ",")
+    }
+}

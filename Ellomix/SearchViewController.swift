@@ -96,15 +96,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             if (user!["photo_url"] as? String == "" || user!["photo_url"] == nil) {
                 cell.thumbnail.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             } else {
-                DispatchQueue.global().async {
-                    let url = user!["photo_url"]! as? String
-                    let data = try? Data(contentsOf: URL(string: url!)!)
-                    DispatchQueue.main.async {
-                        cell.thumbnail.image = UIImage(data: data!)
-                        cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2
-                        cell.thumbnail.clipsToBounds = true
-                    }
-                }
+                let url = user!["photo_url"]! as? String
+                cell.thumbnail.downloadedFrom(link: url!)
+                cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2
+                cell.thumbnail.clipsToBounds = true
             }
         }
         
@@ -304,7 +299,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             if let tracks = readableJSON["tracks"] as? JSONStandard {
                 if let items = tracks["items"] as? [JSONStandard] {
                     for i in 0..<items.count {
-                        let spTrack = spotifyTrack()
+                        let spTrack = SpotifyTrack()
                         let item = items[i]
                         spTrack.trackTitle = item["name"] as? String
                         spTrack.trackURI = item["uri"] as? String

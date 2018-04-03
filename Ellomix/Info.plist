@@ -24,6 +24,16 @@
 				<string>fb714928195322801</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.spotify.spotify-action</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>Ellomix</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

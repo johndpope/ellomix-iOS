@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal class spotifyTrack {
+internal class SpotifyTrack {
     
     var trackID:String?
     var trackTitle:String?

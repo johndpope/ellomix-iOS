@@ -44,8 +44,6 @@ class HomeTabBarController: UITabBarController {
     }
     
     func setUser(userData: Dictionary<String, AnyObject>) {
-        print("userData: \(userData)")
-        
         let name = userData["name"] as? String
         let photoUrl = userData["photo_url"] as? String
         let website = userData["website"] as? String

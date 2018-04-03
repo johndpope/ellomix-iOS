@@ -33,7 +33,6 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         
         profilePic.layer.cornerRadius = profilePic.frame.size.width / 2
         profilePic.clipsToBounds = true
-        profilePic.contentMode = .scaleAspectFit
         
         displayProfileInfo()
     }

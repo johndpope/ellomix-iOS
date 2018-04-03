@@ -9,96 +9,129 @@
 import UIKit
 import Firebase
 
-class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
-, UITextFieldDelegate{
+class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     @IBOutlet weak var chatTableView: UITableView!
-    @IBOutlet weak var messageTextField: UITextField!
-    var ref: DatabaseReference!
-    var messages = [DataSnapshot]()
-    fileprivate var _refHandle: DatabaseHandle!
-    var chatId : String?
+    @IBOutlet weak var dockView: UIView!
+    @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var dockBottomConstraint: NSLayoutConstraint!
+
+    private var FirebaseAPI: FirebaseApi!
+    private var messagesRefHandle: DatabaseHandle?
+    var currentUser:EllomixUser?
+    var gid: String?
+    var newChatGroup: [Dictionary<String, AnyObject>?]?
     
-    @IBAction func sendMessageButton(_ sender: Any) {
-        if (messageTextField.text != "") {
-            let data = ["text": messageTextField.text]
-            sendMessage(withData: data as! [String : String])
-        }
-    }
-    
+    var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        FirebaseAPI = FirebaseApi()
+        currentUser = Global.sharedGlobal.user
+        
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.isScrollEnabled = true
-        messageTextField.delegate = self
-        print(chatId!)
-        configureDatabase()
+        messageTextView.delegate = self
+        
+        messageTextView.layer.cornerRadius = 8.0
+        messageTextView.text = "Reply"
+        messageTextView.textColor = UIColor.lightGray
+        
+        self.hideKeyboardWhenTappedAround()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        if (gid == nil) {
+            checkForExistingGroup()
+        } else {
+            observeMessages()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+        self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     deinit {
-        self.ref.child("Chats")
-            .child(chatId!)
-            .child("messages")
-            .removeObserver(withHandle: _refHandle)
+        if let refHandle = messagesRefHandle {
+            FirebaseAPI.getMessagesRef().child(gid!).removeObserver(withHandle: refHandle)
+        }
     }
     
-    func configureDatabase() {
-        ref = Database.database().reference()
-        // Listen for new messages in the Firebase database
-        _refHandle = self.ref
-            .child("Chats")
-            .child(chatId!)
-            .child("messages")
-            .observe(.childAdded, with: { [weak self] (snapshot) -> Void in
-            guard let strongSelf = self else { return }
-            strongSelf.messages.append(snapshot)
-            strongSelf.chatTableView.insertRows(at: [IndexPath(row: strongSelf.messages.count - 1, section: 0)], with: .automatic)
-            strongSelf.chatTableView.scrollToRow(at: IndexPath(row: strongSelf.messages.count - 1, section: 0), at: UITableViewScrollPosition.top, animated: true)
+    func checkForExistingGroup() {
+        FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let gid = child.key
+
+                self.FirebaseAPI.getGroupsRef().child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
+                        if let users = dictionary["users"] as? Dictionary<String, AnyObject> {
+                            let currentGroup = Array(users.keys)
+                            
+                            var newGroup = [String]()
+                            for user in self.newChatGroup! {
+                                newGroup.append(user!["uid"] as! String)
+                            }
+                            
+                            if (Set(currentGroup) == Set(newGroup)) {
+                                self.gid = gid
+                                self.observeMessages()
+                            }
+                            
+                            let groupName = dictionary["name"] as? String
+                            if (groupName == nil || (groupName?.isEmpty)!) {
+                                self.navigationItem.title = self.newChatGroup?.groupNameFromUsers()
+                            } else {
+                                self.navigationItem.title = groupName
+                            }
+                        }
+                    }
+                })
+            }
         })
     }
+
+    func observeMessages() {
+        messagesRefHandle = FirebaseAPI.getMessagesRef().child(gid!).observe(.childAdded, with: { (snapshot)  in
+            if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
+                let message = Message()
+                message.uid = dictionary["uid"] as? String
+                message.content = dictionary["content"] as? String
+                message.timestamp = dictionary["timestamp"] as? Int
+                self.messages.append(message)
+
+                DispatchQueue.main.async {
+                    self.chatTableView.reloadData()
+                }
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
     
+    //Mark: Table View functions
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    // UITableViewDataSource protocol methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Dequeue cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! ChatTableViewCell
-        
-        // Unpack message from Firebase DataSnapshot
-        let messageSnapshot: DataSnapshot! = self.messages[indexPath.row]
-        guard let message = messageSnapshot.value as? [String:String] else { return cell }
-        
-        let name = message["name"] ?? ""
-        let text = message["text"] ?? ""
-        
-        cell.recipientLabel.text = name
-        cell.messageLabel.text = text
-        cell.imageView?.image = UIImage(named: "ic_account_circle")
-        if let photoURL = message["photoUrl"], let URL = URL(string: photoURL),
-            let data = try? Data(contentsOf: URL) {
-            cell.imageView?.image = UIImage(data: data)
+        let message = self.messages[indexPath.row]
+
+        if (message.uid == currentUser?.uid) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "sentMessageCell", for: indexPath) as! SentChatTableViewCell
+            cell.messageTextView.text = message.content!
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! RecievedChatTableViewCell
+            cell.messageTextView.text = message.content!
+            return cell
         }
-        return cell
-    }
-    
-    // UITextViewDelegate protocol methods
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text = textField.text else { return true }
-        textField.text = ""
-        view.endEditing(true)
-        let data = ["text": text]
-        sendMessage(withData: data)
-        return true
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,34 +139,62 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    func sendMessage(withData data: [String: String]) {
-        var mdata = data
-        mdata["name"] = "Anonymous"
-        let photoURL : String? = nil
-        mdata["photoUrl"] = photoURL
-            
-//            if let photoURL = FIRAuth.auth()?.currentUser?.photoURL {
-//            mdata[Constants.MessageFields.photoURL] = photoURL.absoluteString
-//        }
+    @IBAction func sendMessageButtonClicked(_ sender: Any) {
+        if (!messageTextView.text.isEmpty) {
+            if (gid != nil) {
+                sendMessage()
+            } else {
+                FirebaseAPI.getGroupsRef().childByAutoId().observeSingleEvent(of: .value, with: { (snapshot) in
+                    self.gid = snapshot.key
+                    self.observeMessages()
+                    
+                    var usersData = [String: AnyObject]()
+                    for user in self.newChatGroup! {
+                        let uid = user!["uid"] as? String
+                        usersData[uid!] = ["name": user!["name"], "photo_url": user!["photo_url"]] as AnyObject
+                        self.FirebaseAPI.getUsersRef().child(uid!).child("groups").child(self.gid!).setValue(true)
+                    }
+                    
+                    let groupValues = ["notifications": true, "users": usersData] as [String : AnyObject]
+                    
+                    self.FirebaseAPI.getGroupsRef().child(self.gid!).updateChildValues(groupValues)
+                    self.sendMessage()
+                })
+            }
+        }
+    }
+    
+    func sendMessage() {
+        let timestamp:Int = Int(Date.timeIntervalSinceReferenceDate)
+        let messageValues = ["uid": self.currentUser?.uid, "content": self.messageTextView.text, "timestamp": timestamp] as [String : AnyObject]
+        self.FirebaseAPI.getMessagesRef().child(self.gid!).childByAutoId().updateChildValues(messageValues)
+        self.FirebaseAPI.getGroupsRef().child(self.gid!).child("last_message").updateChildValues(messageValues)
+    }
+    
+    
+    //MARK: Keyboard handling
+    func handleKeyboardNotification(notification: Notification) {
+        let userInfo = notification.userInfo
+        let keyboardFrame = (userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        // Push data to Firebase Database
-    
-        self.ref.child("Chats")
-        .child(chatId!)
-        .child("messages")
-        .childByAutoId()
-        .setValue(mdata)
+        if (notification.name == Notification.Name.UIKeyboardWillShow) {
+            dockBottomConstraint.constant = keyboardFrame.height
+            if (messageTextView.textColor == UIColor.lightGray) {
+                messageTextView.text = nil
+                messageTextView.textColor = UIColor.black
+            }
+        } else {
+            dockBottomConstraint.constant = 0
+            if (messageTextView.text.isEmpty) {
+                messageTextView.text = "Reply"
+                messageTextView.textColor = UIColor.lightGray
+            }
+        }
+        
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

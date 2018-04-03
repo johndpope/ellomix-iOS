@@ -13,12 +13,15 @@ import Soundcloud
 class ComposeMessageController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     private var FirebaseAPI: FirebaseApi!
-    var currentUser:EllomixUser?
+    var currentUser: EllomixUser?
 
 
     @IBOutlet weak var searchUsersView: UIView!
     @IBOutlet weak var searchTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    
+    var chatFeedDelegate: ChatFeedTableViewController?
     var followingUsers = [Dictionary<String, AnyObject>?]()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
     var selected:[String:Bool] = [:]
@@ -30,6 +33,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         tableView.dataSource = self
         tableView.delegate = self
         searchTextView.delegate = self
+        nextButton.isEnabled = false
         
         let border = CALayer()
         border.frame = CGRect.init(x: 0, y: searchUsersView.frame.height, width: searchUsersView.frame.width, height: 1)
@@ -67,15 +71,10 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         if (user!["photo_url"] as? String == "" || user!["photo_url"] == nil) {
             cell.userProfilePic.image = #imageLiteral(resourceName: "ellomix_logo_bw")
         } else {
-            DispatchQueue.global().async {
-                let url = user!["photo_url"]! as? String
-                let data = try? Data(contentsOf: URL(string: url!)!)
-                DispatchQueue.main.async {
-                    cell.userProfilePic.image = UIImage(data: data!)
-                    cell.userProfilePic.layer.cornerRadius = cell.userProfilePic.frame.size.width / 2
-                    cell.userProfilePic.clipsToBounds = true
-                }
-            }
+            let url = user!["photo_url"]! as? String
+            cell.userProfilePic.downloadedFrom(link: url!)
+            cell.userProfilePic.layer.cornerRadius = cell.userProfilePic.frame.size.width / 2
+            cell.userProfilePic.clipsToBounds = true
         }
         
         if (selected[uid!]!) {
@@ -106,11 +105,34 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
             cell.backgroundColor = UIColor.lightGray
         }
         selected[uid!] = !(selected[uid!]!)
+        
+        if (selected.values.contains(true)) {
+            nextButton.isEnabled = true
+        } else {
+            nextButton.isEnabled = false
+        }
     }
     
     @IBAction func cancelNewMessage(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func nextButtonClicked(_ sender: Any) {
+        var newChatGroup = [Dictionary<String, AnyObject>?]()
+        for user in followingUsers {
+            if (selected[(user!["uid"] as? String)!])! {
+                newChatGroup.append(user)
+            }
+        }
+        
+        // Add current user to the new chat group
+        let currentUser = ["uid": self.currentUser?.uid, "name": self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink] as Dictionary<String, AnyObject>
+        newChatGroup.append(currentUser)
+        
+        chatFeedDelegate?.performSegue(withIdentifier: "toSendNewMessage", sender: newChatGroup)
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     //MARK: Text View functions
     func textViewDidChange(_ textView: UITextView) {
