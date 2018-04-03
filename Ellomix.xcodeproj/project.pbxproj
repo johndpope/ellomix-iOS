@@ -699,7 +699,11 @@
 				BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */,
 				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				BA3669A7205F2F2000DC4D54 /* spotifyTrack.swift in Sources */,
+=======
+				DB7034DB20620F41003235EB /* Message.swift in Sources */,
+>>>>>>> 4c5270cf60fa8bcffd8d9f061c872ea61589dc8f
 =======
 				DB7034DB20620F41003235EB /* Message.swift in Sources */,
 >>>>>>> 4c5270cf60fa8bcffd8d9f061c872ea61589dc8f

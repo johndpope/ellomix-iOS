@@ -6,7 +6,6 @@
 //  Copyright © 2018 Akshay Vyas. All rights reserved.
 //
 
-<<<<<<< HEAD
 import UIKit
 import Firebase
 import UIKit
@@ -18,18 +17,6 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class SettingsTableViewController: UITableViewController, UITableViewDelegate {
-=======
-import Foundation
-import UIKit
-
-class SettingsViewController: UITableViewController {
-
-    //linked accounts
-    
-    //change password
-    
-    //make account private
->>>>>>> 4c5270cf60fa8bcffd8d9f061c872ea61589dc8f
     
     @IBOutlet weak var logoutButton: UIButton
     private var FirebaseAPI: FirebaseApi!
