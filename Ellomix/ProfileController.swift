@@ -150,4 +150,19 @@ class ProfileController: UIViewController {
         
     }
     
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "messageFromProfile") {
+            let chatVC = segue.destination as! ChatViewController
+            var newChatGroup = [Dictionary<String, AnyObject>?]()
+            
+            let currentUser = ["uid": Global.sharedGlobal.user?.uid, "name": Global.sharedGlobal.user?.getName(), "photo_url": Global.sharedGlobal.user?.profilePicLink] as Dictionary<String, AnyObject>
+            let userToMessage = ["uid": self.currentUser?.uid, "name": self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink] as Dictionary<String, AnyObject>
+            newChatGroup.append(currentUser)
+            newChatGroup.append(userToMessage)
+            
+            chatVC.newChatGroup = newChatGroup
+        }
+    }
+    
 }

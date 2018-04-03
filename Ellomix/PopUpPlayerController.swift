@@ -58,7 +58,6 @@ class PopUpPlayerController: UIViewController {
         switch currentTrack {
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
-            print("Play/pause Soundcloud track.")
         case is YouTubeVideo:
             if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
                 playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)

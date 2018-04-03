@@ -280,6 +280,9 @@
                                 <state key="normal" title="Message">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="wre-Od-M5Z" kind="show" identifier="messageFromProfile" id="wpc-gh-sEA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbQ-65-CYg" userLabel="Followers Count">
                                 <rect key="frame" x="298" y="106" width="30" height="36"/>
@@ -2125,7 +2128,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NQM-Qj-Y2t"/>
+        <segue reference="wpc-gh-sEA"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>
