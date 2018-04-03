@@ -1225,9 +1225,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-1t-K3U">
-                                <rect key="frame" x="0.0" y="28" width="414" height="659"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-1t-K3U">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="receivedMessageCell" rowHeight="40" id="yqY-p7-tL3" customClass="RecievedChatTableViewCell" customModule="Ellomix" customModuleProvider="target">
@@ -1320,7 +1319,11 @@
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Zbu-1t-K3U" firstAttribute="top" secondItem="I0B-Ca-CTe" secondAttribute="top" id="BkU-e9-sIA"/>
+                            <constraint firstAttribute="trailing" secondItem="Zbu-1t-K3U" secondAttribute="trailing" id="Vdc-Qz-uoc"/>
+                            <constraint firstItem="8Pe-tW-Pks" firstAttribute="top" secondItem="Zbu-1t-K3U" secondAttribute="bottom" id="VxH-DW-4eh"/>
                             <constraint firstItem="enJ-93-ZSR" firstAttribute="top" secondItem="8Pe-tW-Pks" secondAttribute="bottom" id="ara-xV-lR9"/>
+                            <constraint firstItem="Zbu-1t-K3U" firstAttribute="leading" secondItem="I0B-Ca-CTe" secondAttribute="leading" id="dFT-ZA-DHh"/>
                             <constraint firstItem="8Pe-tW-Pks" firstAttribute="leading" secondItem="I0B-Ca-CTe" secondAttribute="leading" id="w4W-8x-tTl"/>
                             <constraint firstAttribute="trailing" secondItem="8Pe-tW-Pks" secondAttribute="trailing" id="wDl-UT-LPu"/>
                         </constraints>

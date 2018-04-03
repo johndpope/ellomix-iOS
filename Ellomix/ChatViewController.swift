@@ -15,7 +15,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var dockView: UIView!
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var dockBottomConstraint: NSLayoutConstraint!
-    
+
     private var FirebaseAPI: FirebaseApi!
     private var messagesRefHandle: DatabaseHandle?
     var currentUser:EllomixUser?
@@ -47,6 +47,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             observeMessages()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+        self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     deinit {
@@ -173,13 +178,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let keyboardFrame = (userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         if (notification.name == Notification.Name.UIKeyboardWillShow) {
-             dockBottomConstraint.constant = keyboardFrame.height
+            dockBottomConstraint.constant = keyboardFrame.height
             if (messageTextView.textColor == UIColor.lightGray) {
                 messageTextView.text = nil
                 messageTextView.textColor = UIColor.black
             }
         } else {
-             dockBottomConstraint.constant = 0
+            dockBottomConstraint.constant = 0
             if (messageTextView.text.isEmpty) {
                 messageTextView.text = "Reply"
                 messageTextView.textColor = UIColor.lightGray
@@ -188,9 +193,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
-        }, completion: { (completed) in
-            
-        })
+        }, completion: nil)
     }
 
 
