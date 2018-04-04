@@ -1,13 +1,11 @@
 //
-//  settingsViewController.swift
+//  SettingsViewController.swift
 //  Ellomix
 //
 //  Created by Akshay Vyas on 3/18/18.
 //  Copyright © 2018 Akshay Vyas. All rights reserved.
 //
 
-import UIKit
-import Firebase
 import UIKit
 import FacebookCore
 import FacebookLogin
@@ -16,9 +14,8 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class SettingsTableViewController: UITableViewController, UITableViewDelegate {
+class SettingsTableViewController: UITableViewController {
     
-    @IBOutlet weak var logoutButton: UIButton
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
     
@@ -47,10 +44,10 @@ class SettingsTableViewController: UITableViewController, UITableViewDelegate {
     
     //blog
     //TODO:Change to IBACTION
-    func openblog(){
-    UIApplication.shared.open(URL(string : "http://www.Ellomix.com")!, options: [:], completionHandler: { (status) in
-        })
-    }
+//    func openblog(){
+//    UIApplication.shared.open(URL(string : "http://www.Ellomix.com")!, options: [:], completionHandler: { (status) in
+//        })
+//    }
     
     //clear search history --> push button
     
@@ -58,14 +55,14 @@ class SettingsTableViewController: UITableViewController, UITableViewDelegate {
     //TODO:Change to IBACTION
     func logoutPushed() {
         //facebook
-        if(FBSDKAccessToken.current() !== nil){
-            FBSDKLoginManager().logOut()
-            logout();
-        } else {
-            Auth.auth().currentUser == nil
-            logout()
-        }
-    
+//        if(FBSDKAccessToken.current() !== nil){
+//            FBSDKLoginManager().logOut()
+//            logout()
+//        } else {
+//            Auth.auth().currentUser == nil
+//            logout()
+//        }
+//
     }
     
     func logout() {

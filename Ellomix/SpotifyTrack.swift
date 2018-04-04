@@ -1,5 +1,5 @@
 //
-//  spotifyTrack.swift
+//  SpotifyTrack.swift
 //  Ellomix
 //
 //  Created by Akshay Vyas on 3/18/18.

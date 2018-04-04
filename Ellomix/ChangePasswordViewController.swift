@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import UIKit
 import FacebookCore
 import FacebookLogin
 import FirebaseAuth
@@ -45,18 +43,18 @@ class ChangePasswordViewController: UIViewController {
     
     @IBAction func finishButtonClicked(_ sender: Any) {
         //TODO: finish field
-        Auth.auth().currentUser?.updatePassword(to: <#T##String#>, completion: <#T##UserProfileChangeCallback?##UserProfileChangeCallback?##(Error?) -> Void#>){
-                print("Firebase Authenticated succeeded")
-                let userID = Auth.auth().currentUser?.uid
-            if(self.passwordField === self.confirmPasswordField){
-                let password = self.passwordField.text!
-                self.FirebaseAPI.updateUser(user: newUser)
-                self.goToHome()
-            
-            } else {
-                print("Passwords do not match..")
-            }
-        }
+//        Auth.auth().currentUser?.updatePassword(to: <#T##String#>, completion: <#T##UserProfileChangeCallback?##UserProfileChangeCallback?##(Error?) -> Void#>){
+//                print("Firebase Authenticated succeeded")
+//                let userID = Auth.auth().currentUser?.uid
+//            if (self.passwordField === self.confirmPasswordField) {
+//                let password = self.passwordField.text!
+//                self.FirebaseAPI.updateUser(user: newUser)
+//                self.goToHome()
+//            
+//            } else {
+//                print("Passwords do not match..")
+//            }
+//        }
     }
     
     func goToHome() {
