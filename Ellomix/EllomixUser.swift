@@ -23,6 +23,7 @@ class EllomixUser {
     var password:String = ""
     var followingCount:Int?
     var followersCount:Int?
+    var groups:[String] = []
     
     init(uid: String) {
         self.uid = uid
@@ -116,12 +117,21 @@ class EllomixUser {
         return followersCount!
     }
     
+    func groupsDictionary() -> Dictionary<String, Bool> {
+        var dictionary = Dictionary<String, Bool>()
+        for gid in groups {
+            dictionary[gid] = true
+        }
+        
+        return dictionary
+    }
+    
     func toDictionary() -> Any {
         var password = self.password
         if (password.isEmpty) {
             password = "N/A"
         }
 
-        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender, "birthday": birthday, "password": password, "following_count": String(describing: followingCount), "followers_count": String(describing: followersCount)]
+        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender, "birthday": birthday, "password": password, "following_count": followingCount!, "followers_count": followersCount!, "groups": groupsDictionary()]
     }
 }

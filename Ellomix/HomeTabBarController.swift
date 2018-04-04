@@ -52,6 +52,7 @@ class HomeTabBarController: UITabBarController {
         let gender = userData["gender"] as? String
         let followersCount = userData["followers_count"] as? Int
         let followingCount = userData["following_count"] as? Int
+        let groups = userData["groups"] as? Dictionary<String, AnyObject>
         
         let loadedUser = EllomixUser(uid: self.user.uid)
         loadedUser.setName(name: name!)
@@ -63,6 +64,7 @@ class HomeTabBarController: UITabBarController {
         if (gender != nil) { loadedUser.setGender(gender: gender!) }
         if (followersCount != nil) { loadedUser.setFollowersCount(count: followersCount!) }
         if (followingCount != nil) { loadedUser.setFollowingCount(count: followingCount!) }
+        if (groups != nil) { loadedUser.groups = Array(groups!.keys)}
         Global.sharedGlobal.user = loadedUser
     }
     

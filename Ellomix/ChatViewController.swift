@@ -156,7 +156,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         usersData[uid!] = ["name": user!["name"], "photo_url": user!["photo_url"]] as AnyObject
                         self.FirebaseAPI.getUsersRef().child(uid!).child("groups").child(self.gid!).setValue(true)
                     }
-                    
+                    self.currentUser?.groups.append(self.gid!)
                     let groupValues = ["notifications": true, "users": usersData] as [String : AnyObject]
                     
                     self.FirebaseAPI.getGroupsRef().child(self.gid!).updateChildValues(groupValues)
