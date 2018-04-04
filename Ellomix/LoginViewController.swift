@@ -67,9 +67,7 @@ class LoginViewController: UIViewController {
                 // NSD
                 let params = ["fields" : "email, name"]
                 let graphRequest = GraphRequest(graphPath: "me/friends", parameters: params)
-                graphRequest.start {
-                    (urlResponse, requestResult) in
-                    
+                graphRequest.start { (urlResponse, requestResult) in
                     switch requestResult {
                     case .failed(let error):
                         print("error in graph request:", error)
@@ -77,10 +75,6 @@ class LoginViewController: UIViewController {
                     case .success(let graphResponse):
                         if let responseDictionary = graphResponse.dictionaryValue {
                             print(responseDictionary)
-                            
-                            print(responseDictionary["name"])
-                            print(responseDictionary["email"])
-                            print(responseDictionary["user_friends"])
                         }
                     }
                 }

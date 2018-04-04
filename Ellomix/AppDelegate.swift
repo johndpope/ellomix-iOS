@@ -70,19 +70,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         if let window = self.window {
-            if (FBSDKAccessToken.current() != nil) {
-                // User has already been authenticated
-                let containerController = storyboard.instantiateViewController(withIdentifier: "containerController")
-                window.rootViewController = containerController
-
-            } else {
-                // User must login
-                let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")
-                window.rootViewController = getStartedNavController
+            Auth.auth().addStateDidChangeListener() { auth, user in
+                if (user != nil || FBSDKAccessToken.current() != nil)  {
+                    // User has already been authenticated
+                    let containerController = storyboard.instantiateViewController(withIdentifier: "containerController")
+                    window.rootViewController = containerController
+                } else {
+                    // User must login
+                    let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")
+                    window.rootViewController = getStartedNavController
+                }
             }
         }
     }
-
 
 }
 
