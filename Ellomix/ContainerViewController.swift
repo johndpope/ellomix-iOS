@@ -22,12 +22,14 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     }
     
     func activatePlaybar(track: Any?) {
+        if (playBarController.currentTrack is YouTubeVideo) {
+            Global.sharedGlobal.youtubePlayer?.stop()
+        } else if (Global.sharedGlobal.musicPlayer.isPlaying()) {
+            Global.sharedGlobal.musicPlayer.player?.pause()
+        }
+        
         switch track {
         case is SoundcloudTrack:
-            if (playBarController.currentTrack is YouTubeVideo) {
-                Global.sharedGlobal.youtubePlayer?.stop()
-            }
-
             playBarController.playbarArtwork.isHidden = false
             Global.sharedGlobal.youtubePlayer?.isHidden = true
             let track = track as! SoundcloudTrack
@@ -42,10 +44,6 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarArtwork.isHidden = true
             let track = track as! YouTubeVideo
             playBarController.currentTrack = track
-
-            if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
-                Global.sharedGlobal.youtubePlayer?.stop()
-            }
             Global.sharedGlobal.youtubePlayer = YouTubePlayerView()
             Global.sharedGlobal.youtubePlayer?.delegate = self
             Global.sharedGlobal.youtubePlayer?.playerVars =

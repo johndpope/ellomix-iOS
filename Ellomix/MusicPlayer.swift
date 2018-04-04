@@ -34,12 +34,12 @@ class MusicPlayer {
             button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             player?.pause()
         } else {
-             button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             player?.play()
         }
     }
     
-    private func isPlaying() -> Bool {
+    func isPlaying() -> Bool {
         return player?.rate != 0 && player?.error == nil
     }
     

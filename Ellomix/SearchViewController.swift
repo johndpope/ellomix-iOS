@@ -130,9 +130,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             ellomixUser.profilePicture.downloadedFrom(link: photoURL!)
             performSegue(withIdentifier: "toProfile", sender: ellomixUser)
         }
-        
-        // Pop UISearchController
-        // self.navigationController?.popViewController(animated: true)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
