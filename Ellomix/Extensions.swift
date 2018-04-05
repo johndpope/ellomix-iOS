@@ -33,8 +33,7 @@ extension UITextField {
 }
 
 extension UIImageView {
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        contentMode = mode
+    func downloadedFrom(url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
@@ -48,9 +47,9 @@ extension UIImageView {
             }.resume()
     }
     
-    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+    func downloadedFrom(link: String) {
         guard let url = URL(string: link) else { return }
-        downloadedFrom(url: url, contentMode: mode)
+        downloadedFrom(url: url)
     }
     
 }
