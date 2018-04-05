@@ -101,7 +101,12 @@ class ChatFeedTableViewController: UITableViewController {
         } else {
            cell.chatNameLabel.text = group.name!
         }
-
+        
+        if let seconds = group.lastMessage?.timestamp {
+            let timestampDate = Date(timeIntervalSinceReferenceDate: Double(seconds))
+            cell.timestampLabel.text = timestampDate.timeAgoDisplay()
+        }
+        cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
         cell.recentMessageLabel.text = group.lastMessage?.content
         cell.gid = group.gid!
 

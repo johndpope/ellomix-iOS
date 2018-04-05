@@ -11,14 +11,12 @@ import UIKit
 class ChatFeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
-    
     @IBOutlet weak var chatNameLabel: UILabel!
-    
     @IBOutlet weak var recentMessageLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     var gid: String = ""
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

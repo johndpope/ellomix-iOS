@@ -418,6 +418,7 @@
                                     <outlet property="chatNameLabel" destination="2Hf-xe-iFW" id="50k-LT-KJC"/>
                                     <outlet property="profileImageView" destination="gnv-AU-kNN" id="lwn-Kd-OBm"/>
                                     <outlet property="recentMessageLabel" destination="Bbs-4M-PVs" id="jAf-zq-9VH"/>
+                                    <outlet property="timestampLabel" destination="quS-3G-KM4" id="m5a-df-DVc"/>
                                     <segue destination="wre-Od-M5Z" kind="show" identifier="toChatDetail" id="VHZ-sW-aW3"/>
                                 </connections>
                             </tableViewCell>
@@ -2288,7 +2289,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wpc-gh-sEA"/>
+        <segue reference="NQM-Qj-Y2t"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>
