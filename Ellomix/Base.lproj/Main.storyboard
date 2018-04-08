@@ -2152,13 +2152,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmj-ks-Nqg">
-                                <rect key="frame" x="185" y="518" width="45" height="29"/>
+                                <rect key="frame" x="66" y="518" width="281" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="ra6-fG-9pK"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqT-eZ-bJY">
-                                <rect key="frame" x="186" y="554" width="42" height="21"/>
+                                <rect key="frame" x="66" y="554" width="281" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="Xp6-lN-jBM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
