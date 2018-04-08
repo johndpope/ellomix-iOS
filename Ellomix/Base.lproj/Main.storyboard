@@ -2203,10 +2203,6 @@
                                     <action selector="dismissPlayer:" destination="xTc-iN-yhZ" eventType="touchUpInside" id="wX2-FE-Yjz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okO-5B-YXb" userLabel="Options">
-                                <rect key="frame" x="379" y="30" width="24" height="24"/>
-                                <state key="normal" image="dots"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fG-Qe-QmX">
                                 <rect key="frame" x="364" y="642" width="28" height="24"/>
                                 <state key="normal" image="share"/>
@@ -2218,7 +2214,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="okO-5B-YXb" firstAttribute="top" secondItem="xaP-l8-g24" secondAttribute="bottom" constant="10" id="AyE-Os-4yo"/>
                             <constraint firstItem="dbe-m0-khX" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leadingMargin" id="BPO-Rk-0Ft"/>
                             <constraint firstAttribute="trailing" secondItem="fY8-to-qf7" secondAttribute="trailing" id="C1S-W8-aQb"/>
                             <constraint firstItem="dbe-m0-khX" firstAttribute="centerY" secondItem="mmj-ks-Nqg" secondAttribute="centerY" id="C88-1x-cIB"/>
@@ -2233,7 +2228,6 @@
                             <constraint firstItem="LqT-eZ-bJY" firstAttribute="centerX" secondItem="xia-77-rPF" secondAttribute="centerX" id="fSD-PC-483"/>
                             <constraint firstItem="eK2-XV-waa" firstAttribute="top" secondItem="n5s-d9-Tqa" secondAttribute="top" id="gWR-gg-KlJ"/>
                             <constraint firstItem="eK2-XV-waa" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leadingMargin" constant="2" id="hFw-Uz-0Np"/>
-                            <constraint firstAttribute="trailing" secondItem="okO-5B-YXb" secondAttribute="trailing" constant="11" id="o5Y-1v-phM"/>
                             <constraint firstItem="h4A-1w-3eO" firstAttribute="centerX" secondItem="xia-77-rPF" secondAttribute="centerX" id="p3C-q2-psz"/>
                             <constraint firstItem="dbe-m0-khX" firstAttribute="top" secondItem="fY8-to-qf7" secondAttribute="bottom" constant="25" id="pCk-oD-us7"/>
                             <constraint firstItem="gXb-Qo-i99" firstAttribute="leading" secondItem="h4A-1w-3eO" secondAttribute="trailing" constant="30" id="qiu-h2-Pvp"/>
