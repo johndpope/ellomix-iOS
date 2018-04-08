@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var websiteField: UITextField!
@@ -31,6 +31,8 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         genderField.inputView = pickerView
         pickerView.delegate = self
         
+        bioView.delegate = self
+        
         profilePic.layer.cornerRadius = profilePic.frame.size.width / 2
         profilePic.clipsToBounds = true
         
@@ -44,7 +46,7 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
     @IBAction func saveInfo(_ sender: Any) {
         currentUser?.setName(name: nameField.text!)
         currentUser?.setWebsite(website: websiteField.text!)
-        currentUser?.setBio(bio: bioView.text )
+        currentUser?.setBio(bio: bioView.text!)
         currentUser?.setEmail(email: emailField.text!)
         currentUser?.setGender(gender: genderField.text!)
         currentUser?.setBirthday(birthday: birthdayField.text!)
@@ -115,5 +117,11 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.none
         birthdayField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.count
+        return numberOfChars <= 250;
     }
 }
