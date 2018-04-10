@@ -14,7 +14,7 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsViewController: UITableViewController {
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
@@ -22,9 +22,6 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
-        
-        FirebaseAPI.getUsersRef()
-            .child((currentUser?.uid)!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,25 +48,21 @@ class SettingsTableViewController: UITableViewController {
     
     //clear search history --> push button
     
-    //logout
-    //TODO:Change to IBACTION
-    func logoutPushed() {
-        //facebook
-//        if(FBSDKAccessToken.current() !== nil){
-//            FBSDKLoginManager().logOut()
-//            logout()
-//        } else {
-//            Auth.auth().currentUser == nil
-//            logout()
-//        }
-//
-    }
-    
-    func logout() {
-        print("logout function")
-        let storyboard = UIStoryboard(name: "login", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "loginController")
-        self.present(vc, animated: true, completion: nil)
+    @IBAction func logout(_ sender: Any) {
+        if (FBSDKAccessToken.current() != nil) {
+            FBSDKLoginManager().logOut()
+        }
+        
+        do {
+            try Auth.auth().signOut()
+            if let window = UIApplication.shared.delegate?.window {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")
+                window!.rootViewController = getStartedNavController
+            }
+        } catch let signOutError {
+            print ("Error signing out of Firebase: \(signOutError)")
+        }
     }
 
 }

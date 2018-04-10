@@ -1656,7 +1656,7 @@
         <!--Settings View Controller-->
         <scene sceneID="Yyg-nh-PCa">
             <objects>
-                <tableViewController id="puZ-aM-LRE" customClass="SettingsViewController" sceneMemberID="viewController">
+                <tableViewController id="puZ-aM-LRE" customClass="SettingsViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eNW-mG-LEP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1877,6 +1877,9 @@
                                                     <rect key="frame" x="18" y="6" width="48" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Logout"/>
+                                                    <connections>
+                                                        <action selector="logout:" destination="puZ-aM-LRE" eventType="touchUpInside" id="ECs-5L-gwE"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -2289,7 +2292,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NQM-Qj-Y2t"/>
+        <segue reference="wpc-gh-sEA"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>
