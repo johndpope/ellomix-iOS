@@ -22,6 +22,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var followersCountButton: UIButton!
     @IBOutlet weak var followingCountButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
