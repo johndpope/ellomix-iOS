@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */; };
 		35B95F0B09AA0D4D290F2B53 /* Pods_EllomixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F42159EA00C7245320515D /* Pods_EllomixUITests.framework */; };
 		79465F4F359335E43F682CB8 /* Pods_Ellomix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */; };
 		BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14B0091E654535004B8B67 /* AddMusicTableViewCell.swift */; };
@@ -85,6 +86,7 @@
 
 /* Begin PBXFileReference section */
 		12016942F6C44225458DBBAF /* Pods-Ellomix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix.debug.xcconfig"; sourceTree = "<group>"; };
+		167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyListenedCollectionViewCell.swift; sourceTree = "<group>"; };
 		34C16BA52CE61328DE8C8CD5 /* Pods-EllomixUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllomixUITests/Pods-EllomixUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4A1BF9AAABD2A86C22E0CE5E /* Pods-EllomixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EllomixTests/Pods-EllomixTests.release.xcconfig"; sourceTree = "<group>"; };
 		51D24004B5B584B342FE1703 /* Pods_EllomixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllomixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,6 +266,7 @@
 		E379E6201E08B69500B0256F /* Ellomix */ = {
 			isa = PBXGroup;
 			children = (
+				167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */,
 				DBF94414205F5CFA0047A1EB /* Spotify Frameworks */,
 				BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */,
 				E330802C1E342F2B0046D58F /* Bridging-Header.h */,
@@ -663,6 +666,7 @@
 				DB0938671FD502F800DB64AA /* MusicPlayer.swift in Sources */,
 				E379E6241E08B69500B0256F /* LoginViewController.swift in Sources */,
 				DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */,
+				167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */,
 				BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
