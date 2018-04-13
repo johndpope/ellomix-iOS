@@ -38,6 +38,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         messageTextView.text = "Reply"
         messageTextView.textColor = UIColor.lightGray
         
+        chatTableView.estimatedRowHeight = 40
+        chatTableView.rowHeight = UITableViewAutomaticDimension
+        
         self.hideKeyboardWhenTappedAround()
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)

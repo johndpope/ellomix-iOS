@@ -10,7 +10,6 @@ import UIKit
 
 class SentChatTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var messageTextView: UITextView!
     
     override func awakeFromNib() {
