@@ -16,5 +16,6 @@ internal class SoundcloudTrack {
     var url:URL?
     var thumbnailURL:URL?
     var thumbnailImage:UIImage?
+    var id:String?
     
 }

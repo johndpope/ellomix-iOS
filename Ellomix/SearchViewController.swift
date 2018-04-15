@@ -221,6 +221,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     scTrack.title = track.title
                     scTrack.artist = track.createdBy.username
                     scTrack.url = track.streamURL
+                    scTrack.id = String(track.identifier)
                     if (track.artworkImageURL.highURL != nil) {
                         scTrack.thumbnailURL = track.artworkImageURL.highURL
                     } else if (track.createdBy.avatarURL.highURL != nil) {

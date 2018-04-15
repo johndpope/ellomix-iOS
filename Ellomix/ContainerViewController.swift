@@ -11,12 +11,13 @@ import AVFoundation
 
 class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
-    
     @IBOutlet weak var playBarView: UIView!
     
     var playBarController: PlayBarController!
+    private var FirebaseAPI: FirebaseApi!
     
     override func viewDidLoad() {
+        FirebaseAPI = FirebaseApi()
         playBarView.isHidden = true
         playBarController.placeholderView.isHidden = true
     }
@@ -40,6 +41,11 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarTitle.text = track.title
             playBarController.playbarArtist.text = track.artist
             playBarController.playbarArtwork.image = track.thumbnailImage
+            
+            let id = track.id
+            let timestamp:Int = Int(Date.timeIntervalSinceReferenceDate)
+            let recentlyListenedValues = ["type": "soundcloud", "timestamp": timestamp] as [String : AnyObject]
+            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").child(id!).updateChildValues(recentlyListenedValues)
         case is YouTubeVideo:
             playBarController.playbarArtwork.isHidden = true
             let track = track as! YouTubeVideo
@@ -55,9 +61,12 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             Global.sharedGlobal.youtubePlayer?.loadVideoID(track.videoID!)
             playBarController.view.addSubview(Global.sharedGlobal.youtubePlayer!)
             Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 0, width: 113, height: playBarController.view.frame.height)
-
             playBarController.playbarTitle.text = track.videoTitle
             playBarController.playbarArtist.text = track.videoChannel
+            
+            let timestamp:Int = Int(Date.timeIntervalSinceReferenceDate)
+            let recentlyListenedValues = ["type": "youtube", "timestamp": timestamp] as [String : AnyObject]
+            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").child(track.videoID!).updateChildValues(recentlyListenedValues)
         default:
             print("Unable to play selected track.")
         }
