@@ -66,7 +66,7 @@ extension Array {
             }
         }
         
-        return names.joined(separator: ",")
+        return names.joined(separator: ", ")
     }
 }
 

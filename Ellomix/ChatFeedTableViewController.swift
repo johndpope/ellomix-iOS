@@ -141,6 +141,7 @@ class ChatFeedTableViewController: UITableViewController {
             let segueVC = segue.destination as! ChatViewController
             let cell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
             segueVC.gid = cell.gid
+            segueVC.navigationItem.title = cell.chatNameLabel.text
         } else if (segue.identifier == "toComposeModal") {
             let segueVC = segue.destination as! ComposeMessageController
             segueVC.chatFeedDelegate = self
