@@ -15,6 +15,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class SettingsViewController: UITableViewController {
+    @IBOutlet weak var blogButton: UIButton!
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
@@ -41,10 +42,10 @@ class SettingsViewController: UITableViewController {
     
     //blog
     //TODO:Change to IBACTION
-//    func openblog(){
-//    UIApplication.shared.open(URL(string : "http://www.Ellomix.com")!, options: [:], completionHandler: { (status) in
-//        })
-//    }
+    @IBAction func openBlog(_ sender: Any) {
+        UIApplication.shared.openURL(URL(string: "http://www.Ellomix.com")!)
+
+    }
     
     //clear search history --> push button
     

@@ -23,6 +23,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var followersCountButton: UIButton!
     @IBOutlet weak var followingCountButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var Settings_Button: UIBarButtonItem!
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
@@ -34,12 +35,14 @@ class ProfileController: UIViewController {
         if (currentUser == nil) {
             // Viewing our profile
             currentUser = Global.sharedGlobal.user
+            Settings_Button.isEnabled = true
             followButton.isHidden = true
             messageButton.isHidden = true
             editProfileButton.layer.cornerRadius = editProfileButton.frame.height / 2
         } else {
             // Viewing another user's profile
             editProfileButton.isHidden = true
+            Settings_Button.isEnabled = false
             followButton.layer.cornerRadius = followButton.frame.height / 2
             messageButton.layer.cornerRadius = messageButton.frame.height / 2
             
