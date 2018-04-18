@@ -190,6 +190,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         } else {
             dockBottomConstraint.constant = 0
+            self.chatTableView.contentOffset.y -= keyboardFrame.height
             if (messageTextView.text.isEmpty) {
                 messageTextView.text = "Reply"
                 messageTextView.textColor = UIColor.lightGray
@@ -198,6 +199,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
+            if (notification.name == Notification.Name.UIKeyboardWillShow) {
+                self.chatTableView.contentOffset.y += keyboardFrame.height
+            }
         }, completion: nil)
     }
 
