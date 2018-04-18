@@ -13,6 +13,7 @@ import FirebaseAuth
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Soundcloud
 
 class ProfileController: UIViewController {
     
@@ -40,6 +41,7 @@ class ProfileController: UIViewController {
             messageButton.isHidden = true
             editProfileButton.layer.cornerRadius = editProfileButton.frame.height / 2
             self.navigationItem.rightBarButtonItem = settingsButton
+            retrieveRecentlyListened(uid: (currentUser?.uid)!)
         } else {
             // Viewing another user's profile
             editProfileButton.isHidden = true
@@ -170,4 +172,24 @@ class ProfileController: UIViewController {
         }
     }
     
+    func retrieveRecentlyListened(uid: String) {
+        self.FirebaseAPI.getUsersRef().child(uid).child("recently_listened").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionaryRecentlyListened = snapshot.value as? Dictionary<String, AnyObject> {
+                print(dictionaryRecentlyListened)
+                let idList = Array(dictionaryRecentlyListened.keys)
+                for id in idList {
+                    if (dictionaryRecentlyListened[id]!["type"] as! String) == "soundcloud" {
+                        self.loadSoundcloudTrack(id: Int(id)!)
+                    }
+                }
+            }
+        })
+    }
+    
+    func loadSoundcloudTrack(id: Int) {
+        Track.track(identifier: id) { response in
+            print("--------------REQUESTING FROM SOUNDCLOUD---------------")
+            //print("Soundcloud response: \(response.response.result)")
+        }
+    }
 }
