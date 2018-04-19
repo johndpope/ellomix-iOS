@@ -171,8 +171,12 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recentlyListenedCell", for: indexPath) as! RecentlyListenedCollectionViewCell
         if (indexPath.item < (recentlyListenedSongs["Soundcloud"]?.count)!) {
             let scTrack = recentlyListenedSongs["Soundcloud"]?[indexPath.item] as? SoundcloudTrack
-            cell.thumbnail.image = scTrack?.thumbnailImage
             cell.artist.text = scTrack?.artist
+            cell.thumbnail.image = scTrack?.thumbnailImage
+            
+            cell.thumbnail.clipsToBounds = true
+            cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.height / 2
+            cell.thumbnail.contentMode = .scaleAspectFill
         }
         return cell
     }
