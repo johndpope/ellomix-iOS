@@ -35,6 +35,9 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
         
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
         if (currentUser == nil) {
             // Viewing our profile
             currentUser = Global.sharedGlobal.user
@@ -166,11 +169,11 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     //Populate views
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recentlyListenedCell", for: indexPath) as! RecentlyListenedCollectionViewCell
-        
-        let scTrack = recentlyListenedSongs["Soundcloud"]?[indexPath.item] as? SoundcloudTrack
-        cell.thumbnail.image = scTrack?.thumbnailImage
-        cell.artist.text = scTrack?.artist
-        
+        if (indexPath.item < (recentlyListenedSongs["Soundcloud"]?.count)!) {
+            let scTrack = recentlyListenedSongs["Soundcloud"]?[indexPath.item] as? SoundcloudTrack
+            cell.thumbnail.image = scTrack?.thumbnailImage
+            cell.artist.text = scTrack?.artist
+        }
         return cell
     }
     
