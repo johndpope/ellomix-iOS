@@ -15,7 +15,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Soundcloud
 
-class ProfileController: UIViewController {
+class ProfileController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var followButton: UIButton!
@@ -29,6 +29,7 @@ class ProfileController: UIViewController {
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
+    var recentlyListenedSongs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +67,7 @@ class ProfileController: UIViewController {
                     print(error.localizedDescription)
                 }
         }
-
+        
         profilePic.clipsToBounds = true
     }
 
@@ -157,6 +158,22 @@ class ProfileController: UIViewController {
         
     }
     
+    //Number of views
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return recentlyListenedSongs.count
+    }
+    
+    //Populate views
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recentlyListenedCell", for: indexPath) as! RecentlyListenedCollectionViewCell
+        
+        let scTrack = recentlyListenedSongs["Soundcloud"]?[indexPath.item] as? SoundcloudTrack
+        cell.thumbnail.image = scTrack?.thumbnailImage
+        cell.artist.text = scTrack?.artist
+        
+        return cell
+    }
+    
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "messageFromProfile") {
@@ -190,6 +207,34 @@ class ProfileController: UIViewController {
         Track.track(identifier: id) { response in
             print("--------------REQUESTING FROM SOUNDCLOUD---------------")
             //print("Soundcloud response: \(response.response.result)")
-        }
+            if let track = response.response.result {
+                let scTrack = SoundcloudTrack()
+                    
+                scTrack.title = track.title
+                scTrack.artist = track.createdBy.username
+                scTrack.url = track.streamURL
+                scTrack.id = String(track.identifier)
+                if (track.artworkImageURL.highURL != nil) {
+                    scTrack.thumbnailURL = track.artworkImageURL.highURL
+                } else if (track.createdBy.avatarURL.highURL != nil) {
+                    scTrack.thumbnailURL = track.createdBy.avatarURL.highURL
+                } else {
+                    scTrack.thumbnailImage = UIImage()
+                }
+                    
+                if (scTrack.thumbnailURL != nil) {
+                    DispatchQueue.global().async {
+                        let data = try? Data(contentsOf: scTrack.thumbnailURL!)
+                        DispatchQueue.main.async {
+                            scTrack.thumbnailImage = UIImage(data: data!)
+                            self.collectionView.reloadData()
+                        }
+                    }
+                }
+                self.recentlyListenedSongs["Soundcloud"]?.append(scTrack)
+                print(self.recentlyListenedSongs)
+                }
+            self.collectionView.reloadData()
+            }
     }
 }
