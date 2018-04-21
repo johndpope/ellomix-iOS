@@ -59,6 +59,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     deinit {
         if let refHandle = messagesRefHandle {
             FirebaseAPI.getMessagesRef().child(gid!).removeObserver(withHandle: refHandle)
@@ -174,6 +178,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let messageValues = ["uid": self.currentUser?.uid, "content": self.messageTextView.text, "timestamp": timestamp] as [String : AnyObject]
         self.FirebaseAPI.getMessagesRef().child(self.gid!).childByAutoId().updateChildValues(messageValues)
         self.FirebaseAPI.getGroupsRef().child(self.gid!).child("last_message").updateChildValues(messageValues)
+        messageTextView.text = ""
     }
     
     
