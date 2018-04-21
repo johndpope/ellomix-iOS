@@ -24,17 +24,29 @@ class ChatFeedTableViewController: UITableViewController {
         FirebaseAPI = FirebaseApi()
         
         currentUser = Global.sharedGlobal.user
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        var groupChatDictionary = Dictionary<String, Group>()
+        for group in groupChats {
+            groupChatDictionary[group.gid!] = group
+        }
+        let currentGIDs = Array(groupChatDictionary.keys)
+
         for gid in (self.currentUser?.groups)! {
-            let group = Group()
-            group.gid = gid
-            observeChat(group: group)
-            groupChats.append(group)
+            if (!currentGIDs.contains(gid)) {
+                let group = Group()
+                group.gid = gid
+                observeChat(group: group)
+                self.groupChats.append(group)
+            } else {
+                observeChat(group: groupChatDictionary[gid]!)
+            }
         }
         observeNewChats()
     }
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
         if let refHandle = userGroupsRefHandle  {
             FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").removeObserver(withHandle: refHandle)
         }
@@ -42,12 +54,13 @@ class ChatFeedTableViewController: UITableViewController {
         for (gid, handle) in currentChatObservers {
             FirebaseAPI.getGroupsRef().child(gid).removeObserver(withHandle: handle)
         }
+        currentChatObservers = [:]
     }
     
     func observeNewChats() {
         userGroupsRefHandle = FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").observe(.childAdded, with: { (snapshot) -> Void in
             let gid = snapshot.key
-            
+
             if (!(self.currentUser?.groups.contains(gid))!) {
                 let group = Group()
                 group.gid = gid
