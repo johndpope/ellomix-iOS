@@ -134,10 +134,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         if (message.uid == currentUser?.uid) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "sentMessageCell", for: indexPath) as! SentChatTableViewCell
+            cell.messageTextView.layer.cornerRadius = 8.0
             cell.messageTextView.text = message.content!
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! RecievedChatTableViewCell
+            cell.messageTextView.layer.cornerRadius = 8.0
             cell.messageTextView.text = message.content!
             return cell
         }
