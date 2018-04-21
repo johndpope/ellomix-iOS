@@ -224,10 +224,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     scTrack.id = String(track.identifier)
                     if (track.artworkImageURL.highURL != nil) {
                         scTrack.thumbnailURL = track.artworkImageURL.highURL
-                    } else if (track.createdBy.avatarURL.highURL != nil) {
-                        scTrack.thumbnailURL = track.createdBy.avatarURL.highURL
                     } else {
-                        scTrack.thumbnailImage = UIImage()
+                        scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
                     }
                     
                     if (scTrack.thumbnailURL != nil) {
