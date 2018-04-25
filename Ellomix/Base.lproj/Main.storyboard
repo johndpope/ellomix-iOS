@@ -1306,10 +1306,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khR-QU-AfR">
-                                                    <rect key="frame" x="49" y="5" width="230" height="30"/>
+                                                    <rect key="frame" x="49" y="5" width="10" height="30"/>
                                                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="230" id="FhV-Pi-TB7"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="FhV-Pi-TB7"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1336,10 +1336,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sl-10-Eb8">
-                                                    <rect key="frame" x="173" y="5" width="230" height="30"/>
+                                                    <rect key="frame" x="393" y="5" width="10" height="30"/>
                                                     <color key="backgroundColor" red="0.40000000000000002" green="0.56470588235294117" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="230" id="opk-NH-xwd"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="opk-NH-xwd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
