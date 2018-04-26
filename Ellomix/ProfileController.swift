@@ -29,7 +29,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
-    var recentlyListenedSongs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
+    var recentlyListenedSongs:[AnyObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,8 +169,8 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     //Populate views
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recentlyListenedCell", for: indexPath) as! RecentlyListenedCollectionViewCell
-        if (indexPath.item < (recentlyListenedSongs["Soundcloud"]?.count)!) {
-            let scTrack = recentlyListenedSongs["Soundcloud"]?[indexPath.item] as? SoundcloudTrack
+        if (indexPath.item < (recentlyListenedSongs.count)) {
+            let scTrack = recentlyListenedSongs[indexPath.item] as? SoundcloudTrack
             cell.artist.text = scTrack?.artist
             cell.thumbnail.image = scTrack?.thumbnailImage
             
@@ -178,6 +178,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.height / 2
             cell.thumbnail.contentMode = .scaleAspectFill
         }
+        print(indexPath.item)
         return cell
     }
     
@@ -202,7 +203,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
                 print(dictionaryRecentlyListened)
                 let idList = Array(dictionaryRecentlyListened.keys)
                 for id in idList {
-                    if (dictionaryRecentlyListened[id]!["type"] as! String) == "soundcloud" {
+                    if (dictionaryRecentlyListened[id]!["type"] as! String ==  "soundcloud") {
                         self.loadSoundcloudTrack(id: Int(id)!)
                     }
                 }
@@ -238,7 +239,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
                         }
                     }
                 }
-                self.recentlyListenedSongs["Soundcloud"]?.append(scTrack)
+                self.recentlyListenedSongs.append(scTrack)
                 print(self.recentlyListenedSongs)
                 }
             self.collectionView.reloadData()
