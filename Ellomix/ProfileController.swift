@@ -149,18 +149,6 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         }
     }
     
-    
-    func logoutProfile() {
-        let loginManager = LoginManager()
-        //log off facebook
-        loginManager.logOut()
-        
-        //log off firebase
-        
-        //segue into login screen on story board
-        
-    }
-    
     //Number of views
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recentlyListenedSongs.count

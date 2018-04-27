@@ -90,8 +90,11 @@ class ChatFeedTableViewController: UITableViewController {
         group.notifications = groupDictionary["notifications"] as? Bool
         if let users = groupDictionary["users"] as? Dictionary<String, AnyObject> {
             var usersArray = [Dictionary<String, AnyObject>?]()
-            for user in users.values {
-                usersArray.append(user as? Dictionary<String, AnyObject>)
+            for user in users {
+                if var userDictionary = user.value as? Dictionary<String, AnyObject> {
+                    userDictionary["uid"] = user.key as AnyObject
+                    usersArray.append(userDictionary)
+                }
             }
             group.users = usersArray
         }
@@ -152,9 +155,11 @@ class ChatFeedTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toChatDetail") {
             let segueVC = segue.destination as! ChatViewController
-            let cell = self.tableView.cellForRow(at: (self.tableView.indexPathForSelectedRow)!) as! ChatFeedTableViewCell
-            segueVC.gid = cell.gid
-            segueVC.navigationItem.title = cell.chatNameLabel.text
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let group = groupChats[indexPath.row]
+                segueVC.group = group
+                segueVC.navigationItem.title = group.users?.groupNameFromUsers()
+            }
         } else if (segue.identifier == "toComposeModal") {
             let segueVC = segue.destination as! ComposeMessageController
             segueVC.chatFeedDelegate = self

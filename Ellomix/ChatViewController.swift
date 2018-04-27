@@ -19,7 +19,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var FirebaseAPI: FirebaseApi!
     private var messagesRefHandle: DatabaseHandle?
     var currentUser:EllomixUser?
-    var gid: String?
+    var group: Group?
     var newChatGroup: [Dictionary<String, AnyObject>?]?
     
     var messages = [Message]()
@@ -45,7 +45,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        if (gid == nil) {
+        if (group == nil) {
             checkForExistingGroup()
         } else {
             observeMessages()
@@ -65,7 +65,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     deinit {
         if let refHandle = messagesRefHandle {
-            FirebaseAPI.getMessagesRef().child(gid!).removeObserver(withHandle: refHandle)
+            FirebaseAPI.getMessagesRef().child((group?.gid)!).removeObserver(withHandle: refHandle)
         }
     }
     
@@ -85,7 +85,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             }
                             
                             if (Set(currentGroup) == Set(newGroup)) {
-                                self.gid = gid
+                                self.group = Group()
+                                self.group?.gid = gid
+                                self.group?.users = self.newChatGroup
                                 self.observeMessages()
                             }
                             
@@ -103,7 +105,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func observeMessages() {
-        messagesRefHandle = FirebaseAPI.getMessagesRef().child(gid!).observe(.childAdded, with: { (snapshot)  in
+        messagesRefHandle = FirebaseAPI.getMessagesRef().child((group?.gid)!).observe(.childAdded, with: { (snapshot)  in
             if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
                 let message = Message()
                 message.uid = dictionary["uid"] as? String
@@ -136,11 +138,24 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCell(withIdentifier: "sentMessageCell", for: indexPath) as! SentChatTableViewCell
             cell.messageTextView.layer.cornerRadius = 8.0
             cell.messageTextView.text = message.content!
+
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! RecievedChatTableViewCell
             cell.messageTextView.layer.cornerRadius = 8.0
             cell.messageTextView.text = message.content!
+            for user in (self.group?.users)! {
+                let uid = user!["uid"] as? String
+                if (uid! == message.uid!) {
+                    if let photoURL = user!["photo_url"] as? String {
+                        cell.profilePic.downloadedFrom(url: URL(string: photoURL)!)
+                        cell.profilePic.layer.cornerRadius = cell.profilePic.frame.size.width / 2
+                        cell.profilePic.clipsToBounds = true
+                        break
+                    }
+                }
+            }
+
             return cell
         }
     }
@@ -152,23 +167,25 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
         if (!messageTextView.text.isEmpty) {
-            if (gid != nil) {
+            if (group != nil) {
                 sendMessage()
             } else {
                 FirebaseAPI.getGroupsRef().childByAutoId().observeSingleEvent(of: .value, with: { (snapshot) in
-                    self.gid = snapshot.key
+                    self.group = Group()
+                    self.group?.gid = snapshot.key
                     self.observeMessages()
                     
                     var usersData = [String: AnyObject]()
                     for user in self.newChatGroup! {
                         let uid = user!["uid"] as? String
                         usersData[uid!] = ["name": user!["name"], "photo_url": user!["photo_url"]] as AnyObject
-                        self.FirebaseAPI.getUsersRef().child(uid!).child("groups").child(self.gid!).setValue(true)
+                        self.FirebaseAPI.getUsersRef().child(uid!).child("groups").child((self.group?.gid)!).setValue(true)
                     }
-                    self.currentUser?.groups.append(self.gid!)
+                    self.currentUser?.groups.append((self.group?.gid)!)
+                    self.group?.users = self.newChatGroup
                     let groupValues = ["notifications": true, "users": usersData] as [String : AnyObject]
                     
-                    self.FirebaseAPI.getGroupsRef().child(self.gid!).updateChildValues(groupValues)
+                    self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).updateChildValues(groupValues)
                     self.sendMessage()
                 })
             }
@@ -178,8 +195,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func sendMessage() {
         let timestamp:Int = Int(Date.timeIntervalSinceReferenceDate)
         let messageValues = ["uid": self.currentUser?.uid, "content": self.messageTextView.text, "timestamp": timestamp] as [String : AnyObject]
-        self.FirebaseAPI.getMessagesRef().child(self.gid!).childByAutoId().updateChildValues(messageValues)
-        self.FirebaseAPI.getGroupsRef().child(self.gid!).child("last_message").updateChildValues(messageValues)
+        self.FirebaseAPI.getMessagesRef().child((self.group?.gid)!).childByAutoId().updateChildValues(messageValues)
+        self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).child("last_message").updateChildValues(messageValues)
         messageTextView.text = ""
     }
     
