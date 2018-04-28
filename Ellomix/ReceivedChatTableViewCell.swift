@@ -15,7 +15,7 @@ class RecievedChatTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        profilePic.circular()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -52,6 +52,10 @@ extension UIImageView {
         downloadedFrom(url: url)
     }
     
+    func circular() {
+        self.layer.cornerRadius = self.frame.size.width / 2
+        self.clipsToBounds = true
+    }
 }
 
 extension Array {

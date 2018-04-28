@@ -73,8 +73,6 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         } else {
             let url = user!["photo_url"]! as? String
             cell.userProfilePic.downloadedFrom(link: url!)
-            cell.userProfilePic.layer.cornerRadius = cell.userProfilePic.frame.size.width / 2
-            cell.userProfilePic.clipsToBounds = true
         }
         
         if (selected[uid!]!) {

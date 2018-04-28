@@ -149,8 +149,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if (uid! == message.uid!) {
                     if let photoURL = user!["photo_url"] as? String {
                         cell.profilePic.downloadedFrom(url: URL(string: photoURL)!)
-                        cell.profilePic.layer.cornerRadius = cell.profilePic.frame.size.width / 2
-                        cell.profilePic.clipsToBounds = true
                         break
                     }
                 }

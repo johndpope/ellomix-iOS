@@ -32,9 +32,8 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         pickerView.delegate = self
         
         bioView.delegate = self
-        
-        profilePic.layer.cornerRadius = profilePic.frame.size.width / 2
-        profilePic.clipsToBounds = true
+
+        profilePic.circular()
         
         displayProfileInfo()
     }

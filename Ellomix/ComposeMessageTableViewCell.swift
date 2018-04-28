@@ -13,4 +13,9 @@ class ComposeMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var userProfilePic: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        userProfilePic.circular()
+    }
+
 }
