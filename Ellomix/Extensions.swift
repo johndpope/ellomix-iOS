@@ -20,6 +20,13 @@ extension UIViewController {
     }
 }
 
+extension UILabel {
+    func circular() {
+        self.layer.cornerRadius = self.frame.size.width / 2
+        self.clipsToBounds = true
+    }
+}
+
 extension UITextField {
     func underlined(){
         let border = CALayer()

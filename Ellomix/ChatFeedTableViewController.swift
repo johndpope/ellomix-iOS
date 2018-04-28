@@ -153,7 +153,7 @@ class ChatFeedTableViewController: UITableViewController {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
             cell.profileImageView.circular()
-        } else if (users.count == 2) {
+        } else if (users.count > 1) {
             let firstUser = users[0]
             let secondUser = users[1]
             
@@ -171,8 +171,15 @@ class ChatFeedTableViewController: UITableViewController {
             
             cell.firstProfileImageView.circular()
             cell.secondProfileImageView.circular()
-        } else {
             
+            if (users.count > 2) {
+                let additionalUsersCount = users.count - 2
+                cell.profileImageLabel.text = "+\(additionalUsersCount)"
+                cell.profileImageLabel.circular()
+                cell.profileImageLabel.isHidden = false
+                let widthDifference = cell.profileImageView.frame.size.width - cell.secondProfileImageView.frame.size.width
+                cell.secondProfileImageLeadingConstraint.constant -= (widthDifference / 2)
+            }
         }
         
         if (group.name == nil || group.name!.isEmpty) {

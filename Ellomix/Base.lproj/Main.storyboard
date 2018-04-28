@@ -463,6 +463,16 @@
                                                 <constraint firstAttribute="width" secondItem="ksu-8b-83y" secondAttribute="height" multiplier="1:1" id="e21-ib-EL4"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHx-Rh-rfm">
+                                            <rect key="frame" x="28" y="28" width="34" height="34"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="AHx-Rh-rfm" secondAttribute="height" multiplier="1:1" id="5DP-Nw-MDi"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="gnv-AU-kNN" firstAttribute="leading" secondItem="PuR-AY-Jjs" secondAttribute="leading" constant="8" id="5Hk-VK-RIP"/>
@@ -470,18 +480,22 @@
                                         <constraint firstItem="gnv-AU-kNN" firstAttribute="top" secondItem="BQV-0I-ont" secondAttribute="bottom" constant="-34" id="Bqa-mu-f9C"/>
                                         <constraint firstItem="2Hf-xe-iFW" firstAttribute="leading" secondItem="gnv-AU-kNN" secondAttribute="trailing" constant="8" id="II8-Pe-BQB"/>
                                         <constraint firstItem="BQV-0I-ont" firstAttribute="leading" secondItem="gnv-AU-kNN" secondAttribute="trailing" constant="-34" id="Ost-nC-bhq"/>
+                                        <constraint firstItem="AHx-Rh-rfm" firstAttribute="top" secondItem="gnv-AU-kNN" secondAttribute="bottom" constant="-34" id="RX4-iv-lqA"/>
                                         <constraint firstItem="gnv-AU-kNN" firstAttribute="centerY" secondItem="PuR-AY-Jjs" secondAttribute="centerY" id="SEB-b0-LG8"/>
                                         <constraint firstItem="BQV-0I-ont" firstAttribute="top" secondItem="gnv-AU-kNN" secondAttribute="top" id="UNg-0c-2u5"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Hf-xe-iFW" secondAttribute="trailing" constant="20" symbolic="YES" id="UPj-zf-1Pc"/>
                                         <constraint firstItem="ksu-8b-83y" firstAttribute="leading" secondItem="gnv-AU-kNN" secondAttribute="leading" id="a3M-Sy-LHJ"/>
+                                        <constraint firstItem="AHx-Rh-rfm" firstAttribute="leading" secondItem="gnv-AU-kNN" secondAttribute="trailing" constant="-34" id="bV1-SP-pjd"/>
                                         <constraint firstItem="ksu-8b-83y" firstAttribute="top" secondItem="gnv-AU-kNN" secondAttribute="bottom" constant="-34" id="f3j-VJ-b2Y"/>
                                         <constraint firstItem="quS-3G-KM4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PuR-AY-Jjs" secondAttribute="leading" constant="20" symbolic="YES" id="hgx-3K-8Dp"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bbs-4M-PVs" secondAttribute="trailing" constant="20" symbolic="YES" id="hy7-yG-AaT"/>
+                                        <constraint firstItem="AHx-Rh-rfm" firstAttribute="bottom" secondItem="gnv-AU-kNN" secondAttribute="bottom" id="iHp-Vq-0Ou"/>
                                         <constraint firstItem="Bbs-4M-PVs" firstAttribute="top" secondItem="2Hf-xe-iFW" secondAttribute="bottom" constant="-0.33333333333337123" id="jMV-BP-wH9"/>
                                         <constraint firstAttribute="bottom" secondItem="gnv-AU-kNN" secondAttribute="bottom" constant="8" id="lZy-Cr-qi1"/>
                                         <constraint firstItem="gnv-AU-kNN" firstAttribute="top" secondItem="PuR-AY-Jjs" secondAttribute="top" constant="8" id="lns-ty-wCJ"/>
                                         <constraint firstAttribute="bottom" secondItem="quS-3G-KM4" secondAttribute="bottom" constant="7.6666666666666714" id="pRe-Hx-JA4"/>
                                         <constraint firstItem="2Hf-xe-iFW" firstAttribute="top" secondItem="gnv-AU-kNN" secondAttribute="top" constant="3.3333333333333712" id="pXk-pi-zmL"/>
+                                        <constraint firstItem="AHx-Rh-rfm" firstAttribute="trailing" secondItem="gnv-AU-kNN" secondAttribute="trailing" id="qbw-Ar-Tdk"/>
                                         <constraint firstAttribute="trailing" secondItem="quS-3G-KM4" secondAttribute="trailing" constant="10" id="xCD-Hr-gHq"/>
                                         <constraint firstItem="ksu-8b-83y" firstAttribute="bottom" secondItem="gnv-AU-kNN" secondAttribute="bottom" id="zf7-Cf-wLt"/>
                                     </constraints>
@@ -490,8 +504,10 @@
                                 <connections>
                                     <outlet property="chatNameLabel" destination="2Hf-xe-iFW" id="50k-LT-KJC"/>
                                     <outlet property="firstProfileImageView" destination="ksu-8b-83y" id="Je6-5C-MzF"/>
+                                    <outlet property="profileImageLabel" destination="AHx-Rh-rfm" id="dQP-Pe-FmK"/>
                                     <outlet property="profileImageView" destination="gnv-AU-kNN" id="lwn-Kd-OBm"/>
                                     <outlet property="recentMessageLabel" destination="Bbs-4M-PVs" id="jAf-zq-9VH"/>
+                                    <outlet property="secondProfileImageLeadingConstraint" destination="Ost-nC-bhq" id="yck-A4-Mjg"/>
                                     <outlet property="secondProfileImageView" destination="BQV-0I-ont" id="rAy-pr-dcF"/>
                                     <outlet property="timestampLabel" destination="quS-3G-KM4" id="m5a-df-DVc"/>
                                     <segue destination="wre-Od-M5Z" kind="show" identifier="toChatDetail" id="VHZ-sW-aW3"/>
