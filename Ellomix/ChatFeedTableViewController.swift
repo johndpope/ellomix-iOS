@@ -133,18 +133,58 @@ class ChatFeedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:ChatFeedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatFeedTableViewCell
         let group = groupChats[indexPath.row]
+        var users = [Dictionary<String, AnyObject>]()
+        
+        // Make a new array of users that excludes our user
+        if (group.users != nil) {
+            for user in group.users! {
+                let uid = user!["uid"] as? String
+                if (uid != currentUser?.uid) {
+                    users.append(user!)
+                }
+            }
+        }
+        
+        if (users.count == 1) {
+            let user = users[0]
+            if let photoURL = user["photo_url"] as? String {
+                cell.profileImageView.downloadedFrom(url: URL(string: photoURL)!)
+            } else {
+                cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+            }
+            cell.profileImageView.circular()
+        } else if (users.count == 2) {
+            let firstUser = users[0]
+            let secondUser = users[1]
+            
+            if let photoURL = firstUser["photo_url"] as? String {
+                cell.firstProfileImageView.downloadedFrom(url: URL(string: photoURL)!)
+            } else {
+                cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+            }
+            
+            if let photoURL = secondUser["photo_url"] as? String {
+                cell.secondProfileImageView.downloadedFrom(url: URL(string: photoURL)!)
+            } else {
+                cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+            }
+            
+            cell.firstProfileImageView.circular()
+            cell.secondProfileImageView.circular()
+        } else {
+            
+        }
         
         if (group.name == nil || group.name!.isEmpty) {
             cell.chatNameLabel.text = group.users?.groupNameFromUsers()
         } else {
-           cell.chatNameLabel.text = group.name!
+            cell.chatNameLabel.text = group.name!
         }
         
         if let seconds = group.lastMessage?.timestamp {
             let timestampDate = Date(timeIntervalSinceReferenceDate: Double(seconds))
             cell.timestampLabel.text = timestampDate.timeAgoDisplay()
         }
-        cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
         cell.recentMessageLabel.text = group.lastMessage?.content
         cell.gid = group.gid!
 

@@ -14,12 +14,13 @@ class ChatFeedTableViewCell: UITableViewCell {
     @IBOutlet weak var chatNameLabel: UILabel!
     @IBOutlet weak var recentMessageLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var firstProfileImageView: UIImageView!
+    @IBOutlet weak var secondProfileImageView: UIImageView!
     
     var gid: String = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImageView.circular()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
