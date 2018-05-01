@@ -1324,7 +1324,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-1t-K3U">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="receivedMessageCell" rowHeight="40" id="yqY-p7-tL3" customClass="RecievedChatTableViewCell" customModule="Ellomix" customModuleProvider="target">
@@ -1394,20 +1394,23 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Pe-tW-Pks" userLabel="Dock">
-                                <rect key="frame" x="0.0" y="686" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="687" width="414" height="49"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSr-9Y-5NN" userLabel="Attach">
-                                        <rect key="frame" x="13" y="13" width="25" height="25"/>
+                                        <rect key="frame" x="13" y="12.666666666666629" width="25" height="25"/>
                                         <state key="normal" image="attach"/>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8SX-oN-7zO" userLabel="Message Text View">
-                                        <rect key="frame" x="49" y="8" width="303" height="34"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8SX-oN-7zO" userLabel="Message Text View">
+                                        <rect key="frame" x="49" y="8" width="303" height="33"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="RU3-nV-mvU"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3b-ae-7et">
-                                        <rect key="frame" x="366" y="10" width="36" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3b-ae-7et">
+                                        <rect key="frame" x="366" y="9.6666666666666288" width="36" height="30"/>
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1418,14 +1421,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="g3b-ae-7et" secondAttribute="bottom" constant="9.3333333333333712" id="0xo-Qc-uvu"/>
                                     <constraint firstItem="8SX-oN-7zO" firstAttribute="top" secondItem="8Pe-tW-Pks" secondAttribute="top" constant="8" id="3eY-Hn-Sa4"/>
                                     <constraint firstItem="8SX-oN-7zO" firstAttribute="leading" secondItem="cSr-9Y-5NN" secondAttribute="trailing" constant="11" id="9xe-mv-RS9"/>
                                     <constraint firstAttribute="trailing" secondItem="g3b-ae-7et" secondAttribute="trailing" constant="12" id="beq-oK-frT"/>
                                     <constraint firstItem="g3b-ae-7et" firstAttribute="leading" secondItem="8SX-oN-7zO" secondAttribute="trailing" constant="14" id="iWq-pO-sSr"/>
                                     <constraint firstItem="cSr-9Y-5NN" firstAttribute="centerY" secondItem="8SX-oN-7zO" secondAttribute="centerY" id="jLs-qI-OVd"/>
                                     <constraint firstAttribute="bottom" secondItem="8SX-oN-7zO" secondAttribute="bottom" constant="8" id="jMZ-RH-Y1G"/>
-                                    <constraint firstItem="g3b-ae-7et" firstAttribute="centerY" secondItem="8SX-oN-7zO" secondAttribute="centerY" id="phb-90-emO"/>
-                                    <constraint firstAttribute="height" constant="50" id="tD6-uE-RV8"/>
                                     <constraint firstItem="cSr-9Y-5NN" firstAttribute="leading" secondItem="8Pe-tW-Pks" secondAttribute="leading" constant="13" id="y96-W2-AMf"/>
                                 </constraints>
                             </view>

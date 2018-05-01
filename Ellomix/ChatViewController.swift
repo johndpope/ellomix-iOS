@@ -226,6 +226,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }, completion: nil)
     }
+    
+    //MARK: TextView functions
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if messageTextView.contentSize.height >= 100 {
+            messageTextView.isScrollEnabled = true
+        } else {
+            messageTextView.frame.size.height = messageTextView.contentSize.height
+            messageTextView.isScrollEnabled = false
+        }
+    }
 
 
 }
