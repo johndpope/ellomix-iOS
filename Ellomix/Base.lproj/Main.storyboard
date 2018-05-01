@@ -436,17 +436,17 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hf-xe-iFW">
-                                            <rect key="frame" x="70" y="11.333333333333336" width="104.66666666666669" height="24"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <rect key="frame" x="70" y="11.333333333333334" width="95.666666666666686" height="21.666666666666664"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbs-4M-PVs">
-                                            <rect key="frame" x="70" y="35" width="127" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="70" y="32.666666666666664" width="107" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quS-3G-KM4">
-                                            <rect key="frame" x="372" y="45.333333333333336" width="32" height="17"/>
+                                            <rect key="frame" x="372" y="48.333333333333336" width="32" height="17.000000000000007"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -493,7 +493,7 @@
                                         <constraint firstItem="Bbs-4M-PVs" firstAttribute="top" secondItem="2Hf-xe-iFW" secondAttribute="bottom" constant="-0.33333333333337123" id="jMV-BP-wH9"/>
                                         <constraint firstAttribute="bottom" secondItem="gnv-AU-kNN" secondAttribute="bottom" constant="8" id="lZy-Cr-qi1"/>
                                         <constraint firstItem="gnv-AU-kNN" firstAttribute="top" secondItem="PuR-AY-Jjs" secondAttribute="top" constant="8" id="lns-ty-wCJ"/>
-                                        <constraint firstAttribute="bottom" secondItem="quS-3G-KM4" secondAttribute="bottom" constant="7.6666666666666714" id="pRe-Hx-JA4"/>
+                                        <constraint firstAttribute="bottom" secondItem="quS-3G-KM4" secondAttribute="bottom" constant="4.6666666666666288" id="pRe-Hx-JA4"/>
                                         <constraint firstItem="2Hf-xe-iFW" firstAttribute="top" secondItem="gnv-AU-kNN" secondAttribute="top" constant="3.3333333333333712" id="pXk-pi-zmL"/>
                                         <constraint firstItem="AHx-Rh-rfm" firstAttribute="trailing" secondItem="gnv-AU-kNN" secondAttribute="trailing" id="qbw-Ar-Tdk"/>
                                         <constraint firstAttribute="trailing" secondItem="quS-3G-KM4" secondAttribute="trailing" constant="10" id="xCD-Hr-gHq"/>
