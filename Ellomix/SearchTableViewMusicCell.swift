@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchTableViewCell: UITableViewCell {
+class SearchTableViewMusicCell: UITableViewCell {
     
     
     @IBOutlet weak var songTitle: UILabel!

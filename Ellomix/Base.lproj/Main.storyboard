@@ -589,7 +589,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="9RK-zI-NRm" customClass="SearchTableViewCell" customModule="Ellomix" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchMusicCell" id="9RK-zI-NRm" userLabel="searchMusicCell" customClass="SearchTableViewMusicCell" customModule="Ellomix" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="61"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9RK-zI-NRm" id="Afw-P8-2W8">
@@ -604,15 +604,14 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-10-jgl">
-                                            <rect key="frame" x="70" y="9" width="307" height="15"/>
+                                            <rect key="frame" x="70" y="9" width="33.333333333333343" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-kX-zZa">
-                                            <rect key="frame" x="100" y="32.666666666666664" width="307" height="20.333333333333336"/>
+                                            <rect key="frame" x="100" y="32.666666666666664" width="31" height="20.333333333333336"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="307" id="awI-MT-8YY"/>
                                                 <constraint firstAttribute="height" constant="21" id="kOH-l1-bmo"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -628,7 +627,7 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="trailing" secondItem="EOy-10-jgl" secondAttribute="trailing" constant="30" id="23e-rp-Chg"/>
+                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EOy-10-jgl" secondAttribute="trailing" id="23e-rp-Chg"/>
                                         <constraint firstAttribute="bottom" secondItem="CJe-9Y-9zc" secondAttribute="bottom" constant="19" id="3qW-8y-VCH"/>
                                         <constraint firstItem="9Ny-kX-zZa" firstAttribute="leading" secondItem="Afw-P8-2W8" secondAttribute="leading" constant="100" id="DHe-62-4Rw"/>
                                         <constraint firstAttribute="trailing" secondItem="CJe-9Y-9zc" secondAttribute="trailing" constant="9" id="Gh0-7W-m5R"/>
@@ -639,7 +638,7 @@
                                         <constraint firstItem="9Ny-kX-zZa" firstAttribute="top" secondItem="EOy-10-jgl" secondAttribute="bottom" constant="8.6666666666666643" id="PjJ-ae-0lP"/>
                                         <constraint firstItem="CJe-9Y-9zc" firstAttribute="top" secondItem="Afw-P8-2W8" secondAttribute="top" constant="18" id="TCz-iP-nDZ"/>
                                         <constraint firstItem="EOy-10-jgl" firstAttribute="leading" secondItem="FaP-sx-nWS" secondAttribute="trailing" constant="7" id="WV8-RL-nbq"/>
-                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="leading" secondItem="EOy-10-jgl" secondAttribute="leading" constant="30" id="bP7-td-TIG"/>
+                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EOy-10-jgl" secondAttribute="leading" id="bP7-td-TIG"/>
                                         <constraint firstItem="9Ny-kX-zZa" firstAttribute="bottom" secondItem="FaP-sx-nWS" secondAttribute="bottom" constant="-2" id="gCJ-H9-xCP"/>
                                         <constraint firstItem="FaP-sx-nWS" firstAttribute="leading" secondItem="Afw-P8-2W8" secondAttribute="leadingMargin" constant="-8" id="jS9-oa-kjH"/>
                                         <constraint firstItem="whF-pI-yAY" firstAttribute="centerY" secondItem="9Ny-kX-zZa" secondAttribute="centerY" constant="-1.5" id="kqh-sf-rze"/>
@@ -657,8 +656,54 @@
                                     <outlet property="thumbnail" destination="FaP-sx-nWS" id="WoZ-Dd-GhW"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchHeaderCell" rowHeight="75" id="Skh-XL-gt1" customClass="SearchHeaderCell" customModule="Ellomix" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchPeopleCell" rowHeight="75" id="76q-KK-1e2" userLabel="searchPeopleCell" customClass="SearchTableViewPeopleCell" customModule="Ellomix" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="89" width="414" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="76q-KK-1e2" id="h1P-cq-fyh">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWy-mv-ksB">
+                                            <rect key="frame" x="12" y="10" width="55" height="55"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="RWy-mv-ksB" secondAttribute="height" multiplier="1:1" id="bc1-Mu-uWm"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8Z-hx-ZvC">
+                                            <rect key="frame" x="75" y="17" width="319" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziN-3y-qb1">
+                                            <rect key="frame" x="75" y="39" width="319" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="f8Z-hx-ZvC" firstAttribute="top" secondItem="RWy-mv-ksB" secondAttribute="top" constant="7" id="CU4-F6-8Xs"/>
+                                        <constraint firstItem="ziN-3y-qb1" firstAttribute="leading" secondItem="RWy-mv-ksB" secondAttribute="trailing" constant="8" id="Nf3-E2-QIU"/>
+                                        <constraint firstItem="RWy-mv-ksB" firstAttribute="centerY" secondItem="h1P-cq-fyh" secondAttribute="centerY" id="SMC-OA-rDv"/>
+                                        <constraint firstItem="ziN-3y-qb1" firstAttribute="top" secondItem="f8Z-hx-ZvC" secondAttribute="bottom" constant="1" id="VOk-6O-96G"/>
+                                        <constraint firstItem="RWy-mv-ksB" firstAttribute="leading" secondItem="h1P-cq-fyh" secondAttribute="leading" constant="12" id="YIi-rP-zm2"/>
+                                        <constraint firstAttribute="trailing" secondItem="f8Z-hx-ZvC" secondAttribute="trailing" constant="20" id="ae4-0h-ygu"/>
+                                        <constraint firstAttribute="trailing" secondItem="ziN-3y-qb1" secondAttribute="trailing" constant="20" id="d4v-h9-ncR"/>
+                                        <constraint firstItem="f8Z-hx-ZvC" firstAttribute="leading" secondItem="RWy-mv-ksB" secondAttribute="trailing" constant="8" id="ffU-9K-P94"/>
+                                        <constraint firstItem="RWy-mv-ksB" firstAttribute="top" secondItem="h1P-cq-fyh" secondAttribute="top" constant="10" id="jO9-mg-mpZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="RWy-mv-ksB" secondAttribute="bottom" constant="10" id="tiN-Wr-K5k"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="nameLabel" destination="f8Z-hx-ZvC" id="jHI-Yb-Mbc"/>
+                                    <outlet property="profilePicImageView" destination="RWy-mv-ksB" id="tfy-Pz-9Hc"/>
+                                    <outlet property="recentLabel" destination="ziN-3y-qb1" id="HYn-it-cGG"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchHeaderCell" rowHeight="75" id="Skh-XL-gt1" customClass="SearchHeaderCell" customModule="Ellomix" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="164" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Skh-XL-gt1" id="WgB-A1-rnL">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -681,6 +726,8 @@
                                     <constraints>
                                         <constraint firstItem="9dH-ww-gNT" firstAttribute="top" secondItem="WgB-A1-rnL" secondAttribute="top" constant="35" id="Qik-PV-EHW"/>
                                         <constraint firstItem="2VW-eM-kmp" firstAttribute="leading" secondItem="WgB-A1-rnL" secondAttribute="leading" constant="7" id="R0x-Tf-suE"/>
+                                        <constraint firstItem="9dH-ww-gNT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WgB-A1-rnL" secondAttribute="leading" constant="20" symbolic="YES" id="Rb1-q8-McY"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2VW-eM-kmp" secondAttribute="trailing" constant="20" symbolic="YES" id="eJS-FY-9BS"/>
                                         <constraint firstAttribute="bottom" secondItem="9dH-ww-gNT" secondAttribute="bottom" constant="11" id="hiW-jJ-gxp"/>
                                         <constraint firstAttribute="trailing" secondItem="9dH-ww-gNT" secondAttribute="trailing" constant="11" id="rbZ-GY-0BF"/>
                                         <constraint firstItem="2VW-eM-kmp" firstAttribute="top" secondItem="WgB-A1-rnL" secondAttribute="top" constant="35.333333333333329" id="sTs-O8-dFY"/>
@@ -2345,6 +2392,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VHZ-sW-aW3"/>
-        <segue reference="KcT-l4-FZP"/>
+        <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>

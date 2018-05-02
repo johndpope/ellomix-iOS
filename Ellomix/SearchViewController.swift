@@ -73,9 +73,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchTableViewCell
-
         if (scope == "Music") {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "searchMusicCell", for: indexPath) as! SearchTableViewMusicCell
             if (indexPath.section == 1 && indexPath.row < songs["Soundcloud"]!.count) {
                 let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
                 cell.songTitle.text = scTrack?.title
@@ -89,21 +88,22 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 cell.serviceIcon.image = #imageLiteral(resourceName: "youtube")
                 cell.thumbnail.image = ytVideo?.videoThumbnailImage
             }
+            
+            return cell
         } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "searchPeopleCell", for: indexPath) as! SearchTableViewPeopleCell
             let user = filteredUsers[indexPath.row]
-            cell.songTitle.text = user!["name"] as? String
-            cell.artist.text = "Recent:"
+            cell.nameLabel.text = user!["name"] as? String
             if (user!["photo_url"] as? String == "" || user!["photo_url"] == nil) {
-                cell.thumbnail.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+                cell.profilePicImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             } else {
                 let url = user!["photo_url"]! as? String
-                cell.thumbnail.downloadedFrom(link: url!)
-                cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2
-                cell.thumbnail.clipsToBounds = true
+                cell.profilePicImageView.downloadedFrom(link: url!)
+                cell.profilePicImageView.circular()
             }
+            
+            return cell
         }
-        
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
