@@ -77,6 +77,14 @@ class ChatFeedTableViewController: UITableViewController {
             if let groupDictionary = snapshot.value as? Dictionary<String, AnyObject> {
                 self.setGroupProperties(group: group, groupDictionary: groupDictionary)
                 DispatchQueue.main.async {
+                    self.groupChats.sort() {
+                        if let message0 = $0.lastMessage, let message1 = $1.lastMessage {
+                            if let timestamp0 = message0.timestamp, let timestamp1 = message1.timestamp {
+                                return timestamp0 > timestamp1
+                            }
+                        }
+                        return false
+                    }
                     self.tableView.reloadData()
                 }
             }
@@ -158,12 +166,14 @@ class ChatFeedTableViewController: UITableViewController {
             let secondUser = users[1]
             
             if let photoURL = firstUser["photo_url"] as? String {
+                cell.profileImageView.image = nil
                 cell.firstProfileImageView.downloadedFrom(url: URL(string: photoURL)!)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
             
             if let photoURL = secondUser["photo_url"] as? String {
+                cell.profileImageView.image = nil
                 cell.secondProfileImageView.downloadedFrom(url: URL(string: photoURL)!)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")

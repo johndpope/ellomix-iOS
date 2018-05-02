@@ -38,6 +38,10 @@ class ChatFeedTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         secondProfileImageLeadingConstraint.constant = defaultSecondProfileLeadingConstant
+        profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+        firstProfileImageView.image = nil
+        secondProfileImageView.image = nil
+        profileImageLabel.isHidden = true
     }
 
 }
