@@ -35,10 +35,9 @@ class HomeTabBarController: UITabBarController {
                 let userData = results[self.user.uid] as! Dictionary<String, AnyObject>
                 
                 self.setUser(userData: userData)
-
-            } else {
-                // Initialize new user
-                self.fetchProfile(user: self.user)
+            } else if (AccessToken.current != nil) {
+                print("Fetching profile from Facebook.")
+                self.fetchProfileFromFB(user: self.user)
             }
         })
     }
@@ -68,21 +67,18 @@ class HomeTabBarController: UITabBarController {
         Global.sharedGlobal.user = loadedUser
     }
     
-    func fetchProfile(user: User) {
+    func fetchProfileFromFB(user: User) {
         let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
-        print("Fetching profile from Facebook.")
         GraphRequest(graphPath: "me",
                      parameters: parameters,
                      accessToken: AccessToken.current,
                      httpMethod: .GET,
                      apiVersion: .defaultVersion).start { (urlResponse, requestResult) in
-                        
                         switch requestResult {
                         case .failed(let error):
                             print(error)
                             break
                         case .success(let graphResponse):
-                            
                             if let responseDict = graphResponse.dictionaryValue {
                                 let firstName = responseDict["first_name"] as? String
                                 let lastName = responseDict["last_name"] as? String
@@ -93,19 +89,27 @@ class HomeTabBarController: UITabBarController {
                                 
                                 if let picture = responseDict["picture"] as? NSDictionary {
                                     if let data = picture["data"] as? NSDictionary {
-                                        if let url = data["url"] as? String {
-                                            newUser.profilePicture.downloadedFrom(link: url)
-                                            self.FirebaseAPI.updateUserProfilePicture(user: newUser, image: newUser.getProfilePicture().image!, completion: {})
+                                        if let urlString = data["url"] as? String {
+                                            let url = URL(string: urlString)
+                                            let data = try? Data(contentsOf: url!)
+                                            DispatchQueue.main.async {
+                                                let image =  UIImage(data: data!)
+                                                newUser.setProfilePic(image: image!)
+                                                self.FirebaseAPI.updateUserProfilePicture(user: newUser, image: image!) {
+                                                    self.FirebaseAPI.updateUser(user: newUser)
+                                                    Global.sharedGlobal.user = newUser
+                                                }
+                                            }
                                         }
                                     }
+                                } else {
+                                    self.FirebaseAPI.updateUser(user: newUser)
+                                    Global.sharedGlobal.user = newUser
                                 }
-                                self.FirebaseAPI.updateUser(user: newUser)
-                                Global.sharedGlobal.user = newUser
                             }
                             
                             break
                         }
-                        
         }
     }
 }

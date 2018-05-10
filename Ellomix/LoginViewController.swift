@@ -31,10 +31,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func fbButtonClicked(_ sender: Any) {
         let loginManager = LoginManager()
-        loginManager.logIn([.publicProfile, .email, .userFriends], viewController: self) { loginResult in
+        loginManager.logIn(readPermissions: [.publicProfile, .email, .userFriends], viewController: self) { loginResult in
             switch loginResult {
             case .failed(let error):
-                print(error)
+                print("Error logging in with Facebook: \(error)")
             case .cancelled:
                 print("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
@@ -65,19 +65,19 @@ class LoginViewController: UIViewController {
                     
                 }*/
                 // NSD
-                let params = ["fields" : "email, name"]
-                let graphRequest = GraphRequest(graphPath: "me/friends", parameters: params)
-                graphRequest.start { (urlResponse, requestResult) in
-                    switch requestResult {
-                    case .failed(let error):
-                        print("error in graph request:", error)
-                        break
-                    case .success(let graphResponse):
-                        if let responseDictionary = graphResponse.dictionaryValue {
-                            print(responseDictionary)
-                        }
-                    }
-                }
+//                let params = ["fields" : "email, name"]
+//                let graphRequest = GraphRequest(graphPath: "me/friends", parameters: params)
+//                graphRequest.start { (urlResponse, requestResult) in
+//                    switch requestResult {
+//                    case .failed(let error):
+//                        print("error in graph request:", error)
+//                        break
+//                    case .success(let graphResponse):
+//                        if let responseDictionary = graphResponse.dictionaryValue {
+//                            print(responseDictionary)
+//                        }
+//                    }
+//                }
                 
                 let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
                 Auth.auth().signIn(with: credential) { (user, error) in
@@ -86,7 +86,6 @@ class LoginViewController: UIViewController {
                     }
                     // User is signed in
                     print("Firebase Authenticated succeeded.")
-                    self.performSegue(withIdentifier: "toHomeTabBar", sender: self)
                 }
             }
         }

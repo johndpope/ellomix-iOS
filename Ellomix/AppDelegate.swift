@@ -9,9 +9,8 @@
 import UIKit
 import AVFoundation
 import Firebase
-import FBSDKCoreKit
-import FBSDKLoginKit
 import Soundcloud
+import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // Music Player configuration
         UIApplication.shared.beginReceivingRemoteControlEvents()
@@ -35,9 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        
-        let handler = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handler = SDKApplicationDelegate.shared.application(app, open: url, options: options)
         
         return handler
     }
@@ -71,10 +69,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if let window = self.window {
             Auth.auth().addStateDidChangeListener() { auth, user in
-                if (user != nil || FBSDKAccessToken.current() != nil)  {
-                    // User has already been authenticated
-                    let containerController = storyboard.instantiateViewController(withIdentifier: "containerController")
-                    window.rootViewController = containerController
+                if (user != nil)  {
+                    user!.getIDTokenForcingRefresh(true) { idToken, error in
+                        if let error = error {
+                            print("Error grabbing authentication token: \(error)")
+                            let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")
+                            window.rootViewController = getStartedNavController
+                        } else {
+                            // User is authenticated
+                            let containerController = storyboard.instantiateViewController(withIdentifier: "containerController")
+                            window.rootViewController = containerController
+                        }
+                    }
                 } else {
                     // User must login
                     let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")

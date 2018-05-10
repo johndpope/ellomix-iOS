@@ -49,7 +49,6 @@
 		DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */; };
 		DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */; };
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
-		DBE9B1111EA848A4002524C3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E330802A1E342EC50046D58F /* Bolts.framework */; };
 		DBF40DB120996B70000AD390 /* SearchTableViewPeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */; };
 		DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */; };
 		DBF94418205F5D220047A1EB /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94415205F5D210047A1EB /* SpotifyAudioPlayback.framework */; };
@@ -57,8 +56,6 @@
 		DBF9441A205F5D220047A1EB /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94417205F5D220047A1EB /* SpotifyAuthentication.framework */; };
 		DBFA76DD206F39DF00689D4F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA76DC206F39DF00689D4F /* Group.swift */; };
 		E193B0AC9A542B67F255F143 /* Pods_EllomixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D24004B5B584B342FE1703 /* Pods_EllomixTests.framework */; };
-		E33080271E342DAB0046D58F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */; };
-		E33080291E342DBB0046D58F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33080281E342DBB0046D58F /* FBSDKLoginKit.framework */; };
 		E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379E6211E08B69500B0256F /* AppDelegate.swift */; };
 		E379E6241E08B69500B0256F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379E6231E08B69500B0256F /* LoginViewController.swift */; };
 		E379E6271E08B69500B0256F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E379E6251E08B69500B0256F /* Main.storyboard */; };
@@ -142,9 +139,6 @@
 		DBF9441B205F5F8C0047A1EB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		DBFA76DC206F39DF00689D4F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ellomix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		E33080281E342DBB0046D58F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		E330802A1E342EC50046D58F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		E330802C1E342F2B0046D58F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "../Bridging-Header.h"; sourceTree = "<group>"; };
 		E379E61E1E08B69500B0256F /* Ellomix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ellomix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E379E6211E08B69500B0256F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,12 +160,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE9B1111EA848A4002524C3 /* Bolts.framework in Frameworks */,
 				DBF9441A205F5D220047A1EB /* SpotifyAuthentication.framework in Frameworks */,
 				BA4E4C061E63924700A4C4B9 /* AVFoundation.framework in Frameworks */,
-				E33080291E342DBB0046D58F /* FBSDKLoginKit.framework in Frameworks */,
 				DBF94419205F5D220047A1EB /* SpotifyMetadata.framework in Frameworks */,
-				E33080271E342DAB0046D58F /* FBSDKCoreKit.framework in Frameworks */,
 				79465F4F359335E43F682CB8 /* Pods_Ellomix.framework in Frameworks */,
 				DBF94418205F5D220047A1EB /* SpotifyAudioPlayback.framework in Frameworks */,
 			);
@@ -232,17 +223,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		E33080251E342DAA0046D58F /* Facebook Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E330802A1E342EC50046D58F /* Bolts.framework */,
-				E33080281E342DBB0046D58F /* FBSDKLoginKit.framework */,
-				E33080261E342DAB0046D58F /* FBSDKCoreKit.framework */,
-			);
-			name = "Facebook Frameworks";
-			path = ..;
-			sourceTree = "<group>";
-		};
 		E379E6151E08B69500B0256F = {
 			isa = PBXGroup;
 			children = (
@@ -272,7 +252,6 @@
 				DBF94414205F5CFA0047A1EB /* Spotify Frameworks */,
 				BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */,
 				E330802C1E342F2B0046D58F /* Bridging-Header.h */,
-				E33080251E342DAA0046D58F /* Facebook Frameworks */,
 				E379E6211E08B69500B0256F /* AppDelegate.swift */,
 				E379E6231E08B69500B0256F /* LoginViewController.swift */,
 				DB22FB7A1F5377E000AF384B /* EllomixUser.swift */,
@@ -503,7 +482,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3383915B83CFDDD0E476566E /* [CP] Embed Pods Frameworks */ = {
@@ -536,7 +515,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		418FFE50DFD8C3BAA979AE57 /* [CP] Embed Pods Frameworks */ = {
@@ -611,7 +590,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7C95696F26DEAC0ACF5A0747 /* [CP] Copy Pods Resources */ = {

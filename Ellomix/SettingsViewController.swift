@@ -11,8 +11,6 @@ import FacebookCore
 import FacebookLogin
 import FirebaseAuth
 import Firebase
-import FBSDKCoreKit
-import FBSDKLoginKit
 
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var blogButton: UIButton!
@@ -50,8 +48,8 @@ class SettingsViewController: UITableViewController {
     //clear search history --> push button
     
     @IBAction func logout(_ sender: Any) {
-        if (FBSDKAccessToken.current() != nil) {
-            FBSDKLoginManager().logOut()
+        if (AccessToken.current != nil) {
+            LoginManager().logOut()
         }
         
         do {
