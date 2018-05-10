@@ -40,42 +40,33 @@ class LoginViewController: UIViewController {
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
                 print("Logged in!")
                 
-               /* //NSD2
-                let params = ["fields":"..."]
-                let graphRequest = GraphRequest(graphPath: "me", parameters: params)
-                graphRequest.start {
-                    (urlResponse, requestResult) in
-                    switch requestResult {
-                    case .failed(let error):
-                        print("error in graph request:", error)
-                        break
-                        // Handle the result's error
-                        
-                    case .success(let graphResponse):
-                        if let responseDictionary = graphResponse.dictionaryValue {
-                            let json = JSON(responseDictionary)
-                            let id = json["id"].string!
-                            successBlock(true, json, accessToken.authenticationToken ,id)
-                            print(responseDictionary["name"])
-                            print(responseDictionary["email"])
-                            print(responseDictionary["user_friends"])
-
-                        }
+               /* secondary auth for analytics purposes FB USERS
+                 let params = ["fields": "id, first_name, last_name, name, email, picture"]
+                 
+                 let graphRequest = FBSDKGraphRequest(graphPath: "/me/friends", parameters: params)
+                 let connection = FBSDKGraphRequestConnection()
+                 connection.add(graphRequest, completionHandler: { (connection, result, error) in
+                 if error == nil {
+                 if let userData = result as? [String:Any] {
+                 print(userData)
+                 }
+                 } else {
+                 print("Error Getting Friends \(error)");
                     }
-                    
+                 })
                 }*/
-                // NSD
-//                let params = ["fields" : "email, name"]
-//                let graphRequest = GraphRequest(graphPath: "me/friends", parameters: params)
-//                graphRequest.start { (urlResponse, requestResult) in
-//                    switch requestResult {
-//                    case .failed(let error):
-//                        print("error in graph request:", error)
-//                        break
-//                    case .success(let graphResponse):
-//                        if let responseDictionary = graphResponse.dictionaryValue {
-//                            print(responseDictionary)
-//                        }
+                
+                // -->>>> GET USERS ON SAME APPLICATION ELLOMIX
+//                let params = ["fields": "id, first_name, last_name, middle_name, name, email, picture"]
+//                let request = FBSDKGraphRequest(graphPath: "me/friends", parameters: params)
+//                request.startWithCompletionHandler { (connection : FBSDKGraphRequestConnection!, result : AnyObject!, error : NSError!) -> Void in
+//                    
+//                    if error != nil {
+//                        let errorMessage = error.localizedDescription
+//                        /* Handle error */
+//                    }
+//                    else if result.isKindOfClass(NSDictionary){
+//                        /*  handle response */
 //                    }
 //                }
                 
