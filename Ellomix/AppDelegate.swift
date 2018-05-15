@@ -16,6 +16,8 @@ import FacebookCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var storyboard: UIStoryboard?
+    private var FirebaseAPI: FirebaseApi!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -30,7 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Soundcloud.clientIdentifier = "3e7f2924c47462bf79720ae5995194de"
         
+        FirebaseAPI = FirebaseApi()
         loginOrHome()
+
         return true
     }
     
@@ -65,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Login and Home screen initialization
     func loginOrHome() {
         // Comment out to force user to log in
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         if let window = self.window {
             Auth.auth().addStateDidChangeListener() { auth, user in
@@ -73,21 +77,115 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     user!.getIDTokenForcingRefresh(true) { idToken, error in
                         if let error = error {
                             print("Error grabbing authentication token: \(error)")
-                            let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")
+                            let getStartedNavController = self.storyboard?.instantiateViewController(withIdentifier: "getStartedNavController")
                             window.rootViewController = getStartedNavController
                         } else {
-                            // User is authenticated
-                            let containerController = storyboard.instantiateViewController(withIdentifier: "containerController")
-                            window.rootViewController = containerController
+                            self.loadUser(user: user!)
                         }
                     }
                 } else {
                     // User must login
-                    let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")
+                    let getStartedNavController = self.storyboard?.instantiateViewController(withIdentifier: "getStartedNavController")
                     window.rootViewController = getStartedNavController
                 }
             }
         }
+    }
+    
+    func loadUser(user: Firebase.User) {
+        FirebaseAPI.getUsersRef().observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+            if (snapshot.hasChild(user.uid)) {
+                print("User was loaded from Firebase")
+                
+                let results = snapshot.value as! Dictionary<String, AnyObject>
+                let userData = results[user.uid] as! Dictionary<String, AnyObject>
+                
+                self.setUser(userData: userData, uid: user.uid)
+            } else if (AccessToken.current != nil) {
+                print("Fetching profile from Facebook.")
+                self.fetchProfileFromFB(user: user)
+            }
+        })
+    }
+    
+    func setUser(userData: Dictionary<String, AnyObject>, uid: String) {
+        let name = userData["name"] as? String
+        let photoUrl = userData["photo_url"] as? String
+        let website = userData["website"] as? String
+        let bio = userData["bio"] as? String
+        let email = userData["email"] as? String
+        let gender = userData["gender"] as? String
+        let followersCount = userData["followers_count"] as? Int
+        let followingCount = userData["following_count"] as? Int
+        let groups = userData["groups"] as? Dictionary<String, AnyObject>
+        
+        let loadedUser = EllomixUser(uid: uid)
+        loadedUser.setName(name: name!)
+        loadedUser.profilePicture.downloadedFrom(link: photoUrl!)
+        loadedUser.setProfilePicLink(link: photoUrl!)
+        if (website != nil) { loadedUser.setWebsite(website: website!) }
+        if (bio != nil) { loadedUser.setBio(bio: bio!) }
+        if (email != nil) { loadedUser.setEmail(email: email!) }
+        if (gender != nil) { loadedUser.setGender(gender: gender!) }
+        if (followersCount != nil) { loadedUser.setFollowersCount(count: followersCount!) }
+        if (followingCount != nil) { loadedUser.setFollowingCount(count: followingCount!) }
+        if (groups != nil) { loadedUser.groups = Array(groups!.keys)}
+        Global.sharedGlobal.user = loadedUser
+        
+        loadHomeScreen()
+    }
+    
+    func fetchProfileFromFB(user: Firebase.User) {
+        let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
+        GraphRequest(graphPath: "me",
+                     parameters: parameters,
+                     accessToken: AccessToken.current,
+                     httpMethod: .GET,
+                     apiVersion: .defaultVersion).start { (urlResponse, requestResult) in
+                        switch requestResult {
+                        case .failed(let error):
+                            print(error)
+                            break
+                        case .success(let graphResponse):
+                            if let responseDict = graphResponse.dictionaryValue {
+                                let firstName = responseDict["first_name"] as? String
+                                let lastName = responseDict["last_name"] as? String
+                                let name = firstName! + " " + lastName!
+                                
+                                let newUser = EllomixUser(uid: user.uid)
+                                newUser.setName(name: name)
+                                
+                                if let picture = responseDict["picture"] as? NSDictionary {
+                                    if let data = picture["data"] as? NSDictionary {
+                                        if let urlString = data["url"] as? String {
+                                            let url = URL(string: urlString)
+                                            let data = try? Data(contentsOf: url!)
+                                            DispatchQueue.main.async {
+                                                let image =  UIImage(data: data!)
+                                                newUser.setProfilePic(image: image!)
+                                                self.FirebaseAPI.updateUserProfilePicture(user: newUser, image: image!) {
+                                                    self.FirebaseAPI.updateUser(user: newUser)
+                                                    Global.sharedGlobal.user = newUser
+                                                    self.loadHomeScreen()
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    self.FirebaseAPI.updateUser(user: newUser)
+                                    Global.sharedGlobal.user = newUser
+                                    self.loadHomeScreen()
+                                }
+                            }
+                            
+                            break
+                        }
+        }
+    }
+    
+    func loadHomeScreen() {
+        let containerController = storyboard?.instantiateViewController(withIdentifier: "containerController")
+        window?.rootViewController = containerController
     }
 
 }

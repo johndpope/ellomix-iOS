@@ -46,6 +46,7 @@
 		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
 		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
+		DBB727E420AA91AC00419789 /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB727E320AA91AC00419789 /* SplashController.swift */; };
 		DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */; };
 		DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */; };
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
@@ -128,6 +129,7 @@
 		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
 		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
+		DBB727E320AA91AC00419789 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentChatTableViewCell.swift; sourceTree = "<group>"; };
 		DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
 				DB052E321F6F7A6E00F32A70 /* Global.swift */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DBB727E320AA91AC00419789 /* SplashController.swift */,
 				DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */,
 				DB7BAA64202FC7F1005B7115 /* Extensions.swift */,
 				DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */,
@@ -652,6 +655,7 @@
 				BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
+				DBB727E420AA91AC00419789 /* SplashController.swift in Sources */,
 				DBFA76DD206F39DF00689D4F /* Group.swift in Sources */,
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,

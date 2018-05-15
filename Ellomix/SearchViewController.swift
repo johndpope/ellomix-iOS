@@ -25,6 +25,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
     private var FirebaseAPI: FirebaseApi!
+    var currentUser:EllomixUser?
     var allUsers = [Dictionary<String, AnyObject>?]()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
 
@@ -33,6 +34,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
         self.definesPresentationContext = true
+        currentUser = Global.sharedGlobal.user
         
         // Search bar initialization
         searchController = UISearchController(searchResultsController: nil)
@@ -346,8 +348,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     
     func filterUsers(searchText: String) {
         filteredUsers = allUsers.filter{ user in
-            if let name = user!["name"] as? String {
-                return name.lowercased().contains(searchText.lowercased())
+            if let name = user!["name"] as? String, let uid = user!["uid"] as? String {
+                if (uid != currentUser?.uid) {
+                    return name.lowercased().contains(searchText.lowercased())
+                }
             }
             
             return false
