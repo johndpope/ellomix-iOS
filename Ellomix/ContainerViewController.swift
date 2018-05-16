@@ -42,10 +42,9 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarArtist.text = track.artist
             playBarController.playbarArtwork.image = track.thumbnailImage
             
-            let id = track.id
-            let timestamp:Int = Int(Date.timeIntervalSinceReferenceDate)
-            let recentlyListenedValues = ["type": "soundcloud", "timestamp": timestamp] as [String : AnyObject]
-            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").child(id!).updateChildValues(recentlyListenedValues)
+            let recentlyListenedValues = ["artist": track.artist, "title": track.title, "artwork_url": track.thumbnailURL?.absoluteString, "stream_uri": track.url?.absoluteString, "source": "soundcloud"] as! [String : String]
+            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
+    
         case is YouTubeVideo:
             playBarController.playbarArtwork.isHidden = true
             let track = track as! YouTubeVideo
@@ -64,9 +63,8 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarTitle.text = track.videoTitle
             playBarController.playbarArtist.text = track.videoChannel
             
-            let timestamp:Int = Int(Date.timeIntervalSinceReferenceDate)
-            let recentlyListenedValues = ["type": "youtube", "timestamp": timestamp] as [String : AnyObject]
-            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").child(track.videoID!).updateChildValues(recentlyListenedValues)
+            let recentlyListenedValues = ["artist": track.videoChannel, "title": track.videoTitle, "artwork_url": track.videoThumbnailURL, "stream_uri": track.videoID, "source": "youtube"] as! [String : String]
+            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
         default:
             print("Unable to play selected track.")
         }

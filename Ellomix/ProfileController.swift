@@ -15,8 +15,8 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Soundcloud
 
-class ProfileController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    
+class ProfileController: UIViewController, UICollectionViewDelegate {
+    // UICollectionViewDataSource
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
@@ -29,14 +29,14 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
-    var recentlyListenedSongs:[AnyObject] = []
+    var recentlyListenedSongs:Dictionary<String, AnyObject> = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        //collectionView.dataSource = self
+        //collectionView.delegate = self
         
         if (currentUser == nil) {
             // Viewing our profile
@@ -149,6 +149,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         }
     }
     
+    /*
     //Number of views
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recentlyListenedSongs.count
@@ -169,7 +170,8 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         print(indexPath.item)
         return cell
     }
-    
+    */
+
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "messageFromProfile") {
@@ -188,17 +190,14 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     func retrieveRecentlyListened(uid: String) {
         self.FirebaseAPI.getUsersRef().child(uid).child("recently_listened").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionaryRecentlyListened = snapshot.value as? Dictionary<String, AnyObject> {
-                print(dictionaryRecentlyListened)
-                let idList = Array(dictionaryRecentlyListened.keys)
-                for id in idList {
-                    if (dictionaryRecentlyListened[id]!["type"] as! String ==  "soundcloud") {
-                        self.loadSoundcloudTrack(id: Int(id)!)
-                    }
-                }
+                //print(dictionaryRecentlyListened)
+                self.recentlyListenedSongs = dictionaryRecentlyListened
+                //print(self.recentlyListenedSongs)
             }
         })
     }
     
+    /*
     func loadSoundcloudTrack(id: Int) {
         Track.track(identifier: id) { response in
             print("--------------REQUESTING FROM SOUNDCLOUD---------------")
@@ -233,4 +232,5 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             self.collectionView.reloadData()
             }
     }
+    */
 }
