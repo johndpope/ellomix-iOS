@@ -15,8 +15,8 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Soundcloud
 
-class ProfileController: UIViewController, UICollectionViewDelegate {
-    // UICollectionViewDataSource
+class ProfileController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
@@ -26,17 +26,16 @@ class ProfileController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var settingsButton: UIBarButtonItem!
     
-    
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
-    var recentlyListenedSongs:Dictionary<String, AnyObject> = [:]
+    var recentlyListenedSongs: [AnyObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
         
-        //collectionView.dataSource = self
-        //collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         if (currentUser == nil) {
             // Viewing our profile
@@ -149,28 +148,28 @@ class ProfileController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    /*
     //Number of views
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recentlyListenedSongs.count
+        return self.recentlyListenedSongs.count
     }
     
     //Populate views
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recentlyListenedCell", for: indexPath) as! RecentlyListenedCollectionViewCell
-        if (indexPath.item < (recentlyListenedSongs.count)) {
-            let scTrack = recentlyListenedSongs[indexPath.item] as? SoundcloudTrack
-            cell.artist.text = scTrack?.artist
-            cell.thumbnail.image = scTrack?.thumbnailImage
+        if (indexPath.item < (self.recentlyListenedSongs.count)) {
+            let track = self.recentlyListenedSongs[indexPath.item] as! [String: AnyObject]
+
+            cell.artist.text = track["artist"] as? String
+            let url = track["artwork_url"]! as? String
+            cell.thumbnail.downloadedFrom(link: url!)
             
             cell.thumbnail.clipsToBounds = true
             cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.height / 2
             cell.thumbnail.contentMode = .scaleAspectFill
         }
-        print(indexPath.item)
         return cell
     }
-    */
+
 
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -189,48 +188,12 @@ class ProfileController: UIViewController, UICollectionViewDelegate {
     
     func retrieveRecentlyListened(uid: String) {
         self.FirebaseAPI.getUsersRef().child(uid).child("recently_listened").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionaryRecentlyListened = snapshot.value as? Dictionary<String, AnyObject> {
-                //print(dictionaryRecentlyListened)
-                self.recentlyListenedSongs = dictionaryRecentlyListened
-                //print(self.recentlyListenedSongs)
+            if let dictionaryRecentlyListened = snapshot.value as? [String: AnyObject] {
+                for track in dictionaryRecentlyListened {
+                    self.recentlyListenedSongs.append(track.value)
+                }
             }
+            self.collectionView.reloadData()
         })
     }
-    
-    /*
-    func loadSoundcloudTrack(id: Int) {
-        Track.track(identifier: id) { response in
-            print("--------------REQUESTING FROM SOUNDCLOUD---------------")
-            //print("Soundcloud response: \(response.response.result)")
-            if let track = response.response.result {
-                let scTrack = SoundcloudTrack()
-                    
-                scTrack.title = track.title
-                scTrack.artist = track.createdBy.username
-                scTrack.url = track.streamURL
-                scTrack.id = String(track.identifier)
-                if (track.artworkImageURL.highURL != nil) {
-                    scTrack.thumbnailURL = track.artworkImageURL.highURL
-                } else if (track.createdBy.avatarURL.highURL != nil) {
-                    scTrack.thumbnailURL = track.createdBy.avatarURL.highURL
-                } else {
-                    scTrack.thumbnailImage = UIImage()
-                }
-                    
-                if (scTrack.thumbnailURL != nil) {
-                    DispatchQueue.global().async {
-                        let data = try? Data(contentsOf: scTrack.thumbnailURL!)
-                        DispatchQueue.main.async {
-                            scTrack.thumbnailImage = UIImage(data: data!)
-                            self.collectionView.reloadData()
-                        }
-                    }
-                }
-                self.recentlyListenedSongs.append(scTrack)
-                print(self.recentlyListenedSongs)
-                }
-            self.collectionView.reloadData()
-            }
-    }
-    */
 }
