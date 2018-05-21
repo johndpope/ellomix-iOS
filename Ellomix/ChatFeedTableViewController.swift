@@ -156,7 +156,7 @@ class ChatFeedTableViewController: UITableViewController {
         if (users.count == 1) {
             let user = users[0]
             if let photoURL = user["photo_url"] as? String {
-                cell.profileImageView.downloadedFrom(url: URL(string: photoURL)!)
+                cell.profileImageView.downloadedFrom(link: photoURL)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             }

@@ -148,7 +148,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let uid = user!["uid"] as? String
                 if (uid! == message.uid!) {
                     if let photoURL = user!["photo_url"] as? String {
-                        cell.profilePic.downloadedFrom(url: URL(string: photoURL)!)
+                        cell.profilePic.downloadedFrom(link: photoURL)
                         break
                     }
                 }
