@@ -28,7 +28,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
-    var recentlyListenedSongs: [AnyObject] = []
+    var recentlyListenedSongs: [Any] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +44,18 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             messageButton.isHidden = true
             editProfileButton.layer.cornerRadius = editProfileButton.frame.height / 2
             self.navigationItem.rightBarButtonItem = settingsButton
-            retrieveRecentlyListened(uid: (currentUser?.uid)!)
+            
+            clearSongs()
+            retrieveRecentlyListened(uid: (self.currentUser?.uid)!)
         } else {
             // Viewing another user's profile
             editProfileButton.isHidden = true
             followButton.layer.cornerRadius = followButton.frame.height / 2
             messageButton.layer.cornerRadius = messageButton.frame.height / 2
             self.navigationItem.rightBarButtonItem = nil
+            
+            clearSongs()
+            retrieveRecentlyListened(uid: (Global.sharedGlobal.user?.uid)!)
             
             FirebaseAPI.getFollowingRef()
                 .child((Global.sharedGlobal.user?.uid)!)
@@ -157,10 +162,10 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recentlyListenedCell", for: indexPath) as! RecentlyListenedCollectionViewCell
         if (indexPath.item < (self.recentlyListenedSongs.count)) {
-            let track = self.recentlyListenedSongs[indexPath.item] as! [String: AnyObject]
+            let track = self.recentlyListenedSongs[indexPath.item] as? Dictionary<String, Any>
 
-            cell.artist.text = track["artist"] as? String
-            let url = track["artwork_url"]! as? String
+            cell.artist.text = track!["artist"] as? String
+            let url = track!["artwork_url"] as? String
             cell.thumbnail.downloadedFrom(link: url!)
             
             cell.thumbnail.clipsToBounds = true
@@ -169,7 +174,6 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         }
         return cell
     }
-
 
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -187,13 +191,16 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     }
     
     func retrieveRecentlyListened(uid: String) {
-        self.FirebaseAPI.getUsersRef().child(uid).child("recently_listened").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionaryRecentlyListened = snapshot.value as? [String: AnyObject] {
-                for track in dictionaryRecentlyListened {
-                    self.recentlyListenedSongs.append(track.value)
-                }
+        self.FirebaseAPI.getUsersRef().child(uid).child("recently_listened").queryOrderedByKey().queryLimited(toLast: 20).observeSingleEvent(of: .value, with: { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                self.recentlyListenedSongs.append(child.value!)
             }
+            self.recentlyListenedSongs.reverse()
             self.collectionView.reloadData()
         })
+    }
+    
+    func clearSongs() {
+        self.recentlyListenedSongs = []
     }
 }
