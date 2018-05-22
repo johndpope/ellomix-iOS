@@ -44,19 +44,13 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             messageButton.isHidden = true
             editProfileButton.layer.cornerRadius = editProfileButton.frame.height / 2
             self.navigationItem.rightBarButtonItem = settingsButton
-            
-            clearSongs()
-            retrieveRecentlyListened(uid: (self.currentUser?.uid)!)
         } else {
             // Viewing another user's profile
             editProfileButton.isHidden = true
             followButton.layer.cornerRadius = followButton.frame.height / 2
             messageButton.layer.cornerRadius = messageButton.frame.height / 2
             self.navigationItem.rightBarButtonItem = nil
-            
-            clearSongs()
-            retrieveRecentlyListened(uid: (Global.sharedGlobal.user?.uid)!)
-            
+
             FirebaseAPI.getFollowingRef()
                 .child((Global.sharedGlobal.user?.uid)!)
                 .child((currentUser?.uid)!)
@@ -80,6 +74,8 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
 
     override func viewDidAppear(_ animated: Bool) {
         loadProfile()
+        clearSongs()
+        retrieveRecentlyListened()
     }
     
     override func viewWillLayoutSubviews() {
@@ -190,13 +186,14 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         }
     }
     
-    func retrieveRecentlyListened(uid: String) {
-        self.FirebaseAPI.getUsersRef().child(uid).child("recently_listened").queryOrderedByKey().queryLimited(toLast: 20).observeSingleEvent(of: .value, with: { (snapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                self.recentlyListenedSongs.append(child.value!)
-            }
-            self.recentlyListenedSongs.reverse()
-            self.collectionView.reloadData()
+    func retrieveRecentlyListened() {
+        self.FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("recently_listened")
+            .queryOrderedByKey().queryLimited(toLast: 20).observeSingleEvent(of: .value, with: { (snapshot) in
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    self.recentlyListenedSongs.append(child.value!)
+                }
+                self.recentlyListenedSongs.reverse()
+                self.collectionView.reloadData()
         })
     }
     
