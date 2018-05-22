@@ -39,6 +39,14 @@ class MusicPlayer {
         }
     }
     
+    func setButton(button: UIButton) {
+        if isPlaying() {
+            button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        } else {
+            button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        }
+    }
+    
     func isPlaying() -> Bool {
         return player?.rate != 0 && player?.error == nil
     }

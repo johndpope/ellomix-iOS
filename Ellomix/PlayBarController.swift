@@ -27,19 +27,21 @@ class PlayBarController: UIViewController {
 //            self.view.isHidden = false
 //        }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if (currentTrack is SoundcloudTrack) {
+            Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
+        } else {
+            Global.sharedGlobal.youtubePlayer?.setButton(button: playPauseButton)
+        }
+    }
 
     @IBAction func playPause(_ sender: Any) {
         switch currentTrack {
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
         case is YouTubeVideo:
-            if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
-                playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-                Global.sharedGlobal.youtubePlayer?.pause()
-            } else {
-                playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-                Global.sharedGlobal.youtubePlayer?.play()
-            }
+            Global.sharedGlobal.youtubePlayer?.playPause(button: playPauseButton)
         default:
             print("Unable to play or pause current track.")
         }
@@ -55,7 +57,9 @@ class PlayBarController: UIViewController {
     func reAddYoutubeVideo() {
         self.view.addSubview(Global.sharedGlobal.youtubePlayer!)
         Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 0, width: 113, height: self.view.frame.height)
-        Global.sharedGlobal.youtubePlayer?.play()
+        if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+            Global.sharedGlobal.youtubePlayer?.play()
+        }
     }
 
     // Transition Delegate functions

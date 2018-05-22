@@ -26,7 +26,9 @@ class PopUpPlayerController: UIViewController {
         if (currentTrack is YouTubeVideo) {
             self.view.addSubview(Global.sharedGlobal.youtubePlayer!)
             Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 125, width: self.view.frame.width, height: 272)
-            Global.sharedGlobal.youtubePlayer?.play()
+            if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+                Global.sharedGlobal.youtubePlayer?.play()
+            }
         }
     }
     
@@ -39,12 +41,14 @@ class PopUpPlayerController: UIViewController {
     func loadTrackInfo() {
         switch currentTrack {
         case is SoundcloudTrack:
+            Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
             artworkImage.isHidden = false
             let track = currentTrack as! SoundcloudTrack
             artworkImage.image = track.thumbnailImage
             titleField.text = track.title
             artistField.text = track.artist
         case is YouTubeVideo:
+            Global.sharedGlobal.youtubePlayer?.setButton(button: playPauseButton)
             artworkImage.isHidden = true
             let track = currentTrack as! YouTubeVideo
             titleField.text = track.videoTitle
@@ -59,13 +63,7 @@ class PopUpPlayerController: UIViewController {
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
         case is YouTubeVideo:
-            if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
-                playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-                Global.sharedGlobal.youtubePlayer?.pause()
-            } else {
-                playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-                Global.sharedGlobal.youtubePlayer?.play()
-            }
+            Global.sharedGlobal.youtubePlayer?.playPause(button: playPauseButton)
         default:
             print("Unable to play or pause current track.")
         }

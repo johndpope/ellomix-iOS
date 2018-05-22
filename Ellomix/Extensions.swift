@@ -83,7 +83,6 @@ extension Array {
 
 extension Date {
     func timeAgoDisplay() -> String {
-        
         let calendar = Calendar.current
         let minuteAgo = calendar.date(byAdding: .minute, value: -1, to: Date())!
         let hourAgo = calendar.date(byAdding: .hour, value: -1, to: Date())!
@@ -105,5 +104,25 @@ extension Date {
         }
         let diff = Calendar.current.dateComponents([.weekOfYear], from: self, to: Date()).weekOfYear ?? 0
         return "\(diff)w"
+    }
+}
+
+extension YouTubePlayerView {
+    func playPause(button: UIButton) {
+        if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+            button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            Global.sharedGlobal.youtubePlayer?.pause()
+        } else {
+            button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            Global.sharedGlobal.youtubePlayer?.play()
+        }
+    }
+    
+    func setButton(button: UIButton) {
+        if (Global.sharedGlobal.youtubePlayer?.playerState == YouTubePlayerState.Playing) {
+            button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        } else {
+            button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        }
     }
 }
