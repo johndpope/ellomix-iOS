@@ -167,14 +167,14 @@ class ChatFeedTableViewController: UITableViewController {
             
             if let photoURL = firstUser["photo_url"] as? String {
                 cell.profileImageView.image = nil
-                cell.firstProfileImageView.downloadedFrom(url: URL(string: photoURL)!)
+                cell.firstProfileImageView.downloadedFrom(link: photoURL)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
             
             if let photoURL = secondUser["photo_url"] as? String {
                 cell.profileImageView.image = nil
-                cell.secondProfileImageView.downloadedFrom(url: URL(string: photoURL)!)
+                cell.secondProfileImageView.downloadedFrom(link: photoURL)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             }

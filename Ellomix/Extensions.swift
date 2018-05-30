@@ -49,14 +49,19 @@ extension UIImageView {
                 let image = UIImage(data: data)
                 else { return }
             DispatchQueue.main.async() { () -> Void in
+                Global.sharedGlobal.cache.set(obj: image, key: url.absoluteString as NSString)
                 self.image = image
             }
             }.resume()
     }
     
     func downloadedFrom(link: String) {
-        guard let url = URL(string: link) else { return }
-        downloadedFrom(url: url)
+        if let cachedImage = Global.sharedGlobal.cache.get(key: link as NSString) as? UIImage {
+            self.image = cachedImage
+        } else {
+            guard let url = URL(string: link) else { return }
+            downloadedFrom(url: url)
+        }
     }
     
     func circular() {

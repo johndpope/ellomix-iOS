@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Global {
+final class Global {
     
     // Now Global.sharedGlobal is your singleton, no need to use nested or other classes
     static let sharedGlobal = Global()
@@ -16,4 +16,6 @@ class Global {
     var user:EllomixUser? = nil
     var youtubePlayer:YouTubePlayerView? = nil
     var musicPlayer:MusicPlayer = MusicPlayer()
+    var cache:Cache = Cache()
+
 }
