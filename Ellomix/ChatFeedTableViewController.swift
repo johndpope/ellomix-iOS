@@ -155,7 +155,7 @@ class ChatFeedTableViewController: UITableViewController {
         
         if (users.count == 1) {
             let user = users[0]
-            if let photoURL = user["photo_url"] as? String {
+            if let photoURL = user["photo_url"] as? String, !photoURL.isEmpty {
                 cell.profileImageView.downloadedFrom(link: photoURL)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
@@ -165,14 +165,14 @@ class ChatFeedTableViewController: UITableViewController {
             let firstUser = users[0]
             let secondUser = users[1]
             
-            if let photoURL = firstUser["photo_url"] as? String {
+            if let photoURL = firstUser["photo_url"] as? String, !photoURL.isEmpty {
                 cell.profileImageView.image = nil
                 cell.firstProfileImageView.downloadedFrom(link: photoURL)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
             
-            if let photoURL = secondUser["photo_url"] as? String {
+            if let photoURL = secondUser["photo_url"] as? String, !photoURL.isEmpty {
                 cell.profileImageView.image = nil
                 cell.secondProfileImageView.downloadedFrom(link: photoURL)
             } else {

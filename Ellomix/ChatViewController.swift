@@ -147,10 +147,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for user in (self.group?.users)! {
                 let uid = user!["uid"] as? String
                 if (uid! == message.uid!) {
-                    if let photoURL = user!["photo_url"] as? String {
+                    if let photoURL = user!["photo_url"] as? String, !photoURL.isEmpty {
                         cell.profilePic.downloadedFrom(link: photoURL)
-                        break
+                    } else {
+                        cell.profilePic.image = #imageLiteral(resourceName: "ellomix_logo_bw")
                     }
+                    break
                 }
             }
 
