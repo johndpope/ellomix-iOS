@@ -115,6 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let bio = userData["bio"] as? String
         let email = userData["email"] as? String
         let gender = userData["gender"] as? String
+        let birthday = userData["birthday"] as? String
         let followersCount = userData["followers_count"] as? Int
         let followingCount = userData["following_count"] as? Int
         let groups = userData["groups"] as? Dictionary<String, AnyObject>
@@ -127,6 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (bio != nil) { loadedUser.setBio(bio: bio!) }
         if (email != nil) { loadedUser.setEmail(email: email!) }
         if (gender != nil) { loadedUser.setGender(gender: gender!) }
+        if (birthday != nil) { loadedUser.setBirthday(birthday: birthday!)}
         if (followersCount != nil) { loadedUser.setFollowersCount(count: followersCount!) }
         if (followingCount != nil) { loadedUser.setFollowingCount(count: followingCount!) }
         if (groups != nil) { loadedUser.groups = Array(groups!.keys)}

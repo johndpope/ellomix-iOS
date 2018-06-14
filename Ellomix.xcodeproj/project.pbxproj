@@ -10,8 +10,6 @@
 		167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */; };
 		35B95F0B09AA0D4D290F2B53 /* Pods_EllomixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F42159EA00C7245320515D /* Pods_EllomixUITests.framework */; };
 		79465F4F359335E43F682CB8 /* Pods_Ellomix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */; };
-		BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14B0091E654535004B8B67 /* AddMusicTableViewCell.swift */; };
-		BA14B00C1E654B1C004B8B67 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14B00B1E654B1C004B8B67 /* AudioViewController.swift */; };
 		BA3669A9205F431200DC4D54 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3669A8205F431200DC4D54 /* SettingsViewController.swift */; };
 		BA3669AB205F5F5500DC4D54 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */; };
 		BA37F5CB1E5D600C00C937CD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */; };
@@ -19,7 +17,6 @@
 		BA4E4BB51E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */; };
 		BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */; };
 		BA4E4C061E63924700A4C4B9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */; };
-		BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E4C081E63944C00A4C4B9 /* AddMusicTableViewController.swift */; };
 		BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */; };
 		BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */; };
 		BA894FD71E57F59700BA3F73 /* FirebaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */; };
@@ -93,8 +90,6 @@
 		540DAA8C272C14067F94158B /* Pods-EllomixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllomixTests/Pods-EllomixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		60F42159EA00C7245320515D /* Pods_EllomixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllomixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6930722A09922E5F7220E98F /* Pods-EllomixUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EllomixUITests/Pods-EllomixUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BA14B0091E654535004B8B67 /* AddMusicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMusicTableViewCell.swift; sourceTree = "<group>"; };
-		BA14B00B1E654B1C004B8B67 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		BA3669A8205F431200DC4D54 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +97,6 @@
 		BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPlaylistTableViewController.swift; sourceTree = "<group>"; };
 		BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLoginViewController.swift; sourceTree = "<group>"; };
 		BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		BA4E4C081E63944C00A4C4B9 /* AddMusicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMusicTableViewController.swift; sourceTree = "<group>"; };
 		BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFeedTableViewController.swift; sourceTree = "<group>"; };
 		BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseApi.swift; sourceTree = "<group>"; };
@@ -299,9 +293,6 @@
 				DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */,
 				BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */,
 				BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */,
-				BA4E4C081E63944C00A4C4B9 /* AddMusicTableViewController.swift */,
-				BA14B0091E654535004B8B67 /* AddMusicTableViewCell.swift */,
-				BA14B00B1E654B1C004B8B67 /* AudioViewController.swift */,
 				BA3669A8205F431200DC4D54 /* SettingsViewController.swift */,
 				BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */,
 			);
@@ -655,7 +646,6 @@
 				E379E6241E08B69500B0256F /* LoginViewController.swift in Sources */,
 				DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */,
 				167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */,
-				BA4E4C091E63944C00A4C4B9 /* AddMusicTableViewController.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
 				DBB727E420AA91AC00419789 /* SplashController.swift in Sources */,
@@ -669,7 +659,6 @@
 				DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */,
 				BA3669A9205F431200DC4D54 /* SettingsViewController.swift in Sources */,
 				BA3669AB205F5F5500DC4D54 /* ChangePasswordViewController.swift in Sources */,
-				BA14B00C1E654B1C004B8B67 /* AudioViewController.swift in Sources */,
 				DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */,
 				DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */,
 				DB7BAA67202FD378005B7115 /* PasswordViewController.swift in Sources */,
@@ -684,7 +673,6 @@
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ReceivedChatTableViewCell.swift in Sources */,
-				BA14B00A1E654535004B8B67 /* AddMusicTableViewCell.swift in Sources */,
 				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,
 				DB7034DB20620F41003235EB /* Message.swift in Sources */,
 				BA37F5CB1E5D600C00C937CD /* ChatViewController.swift in Sources */,

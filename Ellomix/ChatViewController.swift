@@ -37,6 +37,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         messageTextView.layer.cornerRadius = 8.0
         messageTextView.text = "Reply"
         messageTextView.textColor = UIColor.lightGray
+        messageTextView.sizeToFit()
         
         chatTableView.estimatedRowHeight = 40
         chatTableView.rowHeight = UITableViewAutomaticDimension
