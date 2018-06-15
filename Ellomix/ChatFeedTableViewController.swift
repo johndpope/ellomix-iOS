@@ -199,7 +199,7 @@ class ChatFeedTableViewController: UITableViewController {
         }
         
         if let seconds = group.lastMessage?.timestamp {
-            let timestampDate = Date(timeIntervalSinceReferenceDate: Double(seconds))
+            let timestampDate = Date(timeIntervalSince1970: Double(seconds))
             cell.timestampLabel.text = timestampDate.timeAgoDisplay()
         }
         cell.recentMessageLabel.text = group.lastMessage?.content
