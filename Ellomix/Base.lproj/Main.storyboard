@@ -654,7 +654,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWy-mv-ksB">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWy-mv-ksB" customClass="RoundImageView" customModule="Ellomix" customModuleProvider="target">
                                             <rect key="frame" x="12" y="10" width="55" height="55"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="RWy-mv-ksB" secondAttribute="height" multiplier="1:1" id="bc1-Mu-uWm"/>

@@ -29,6 +29,7 @@
 		DB0A47AA1EBEBBCA004FBF41 /* SearchTableViewMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A47A91EBEBBCA004FBF41 /* SearchTableViewMusicCell.swift */; };
 		DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22FB7A1F5377E000AF384B /* EllomixUser.swift */; };
 		DB2DB00E204B7ADD00E0935A /* SearchHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2DB00D204B7ADD00E0935A /* SearchHeaderCell.swift */; };
+		DB2FE5CE20DA0CEA0018E402 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2FE5CD20DA0CEA0018E402 /* RoundImageView.swift */; };
 		DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */; };
 		DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */; };
 		DB42B5081FFDE37800AB7E1D /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = DB42B5071FFDE37800AB7E1D /* YTPlayer.html */; };
@@ -110,6 +111,7 @@
 		DB0A47A91EBEBBCA004FBF41 /* SearchTableViewMusicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewMusicCell.swift; sourceTree = "<group>"; };
 		DB22FB7A1F5377E000AF384B /* EllomixUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllomixUser.swift; sourceTree = "<group>"; };
 		DB2DB00D204B7ADD00E0935A /* SearchHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderCell.swift; sourceTree = "<group>"; };
+		DB2FE5CD20DA0CEA0018E402 /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		DB42B5071FFDE37800AB7E1D /* YTPlayer.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = YTPlayer.html; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				DB0A47A91EBEBBCA004FBF41 /* SearchTableViewMusicCell.swift */,
 				DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */,
 				DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */,
+				DB2FE5CD20DA0CEA0018E402 /* RoundImageView.swift */,
 				DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */,
 				DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */,
 				DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */,
@@ -653,6 +656,7 @@
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */,
+				DB2FE5CE20DA0CEA0018E402 /* RoundImageView.swift in Sources */,
 				E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */,
 				DBF40DB120996B70000AD390 /* SearchTableViewPeopleCell.swift in Sources */,
 				DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */,

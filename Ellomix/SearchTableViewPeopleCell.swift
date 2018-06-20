@@ -11,7 +11,7 @@ import UIKit
 
 class SearchTableViewPeopleCell: UITableViewCell {
     
-    @IBOutlet weak var profilePicImageView: UIImageView!
+    @IBOutlet weak var profilePicImageView: RoundImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var recentLabel: UILabel!
     

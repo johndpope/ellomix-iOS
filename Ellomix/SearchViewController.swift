@@ -99,7 +99,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             } else {
                 let url = user!["photo_url"]! as? String
                 cell.profilePicImageView.downloadedFrom(link: url!)
-                cell.profilePicImageView.circular()
             }
             
             return cell
