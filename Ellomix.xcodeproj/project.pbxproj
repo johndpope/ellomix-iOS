@@ -212,6 +212,106 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DB5FB81020E1FBAF00345BAC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DBB727E320AA91AC00419789 /* SplashController.swift */,
+				DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */,
+				DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */,
+				DB7BAA66202FD378005B7115 /* PasswordViewController.swift */,
+				E379E6231E08B69500B0256F /* LoginViewController.swift */,
+				DB0938641FD4FCD200DB64AA /* ContainerViewController.swift */,
+				DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */,
+				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
+				DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */,
+				DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */,
+				DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */,
+				DBCE53751FBABD06002B760C /* EditProfileController.swift */,
+				BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */,
+				BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */,
+				DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */,
+				BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */,
+				BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */,
+				BA3669A8205F431200DC4D54 /* SettingsViewController.swift */,
+				BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DB5FB81120E1FD4100345BAC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DB5FB81220E1FD6600345BAC /* Cells */,
+				E379E6251E08B69500B0256F /* Main.storyboard */,
+				E379E62A1E08B69500B0256F /* LaunchScreen.storyboard */,
+				DB2FE5CD20DA0CEA0018E402 /* RoundImageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DB5FB81220E1FD6600345BAC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DB2DB00D204B7ADD00E0935A /* SearchHeaderCell.swift */,
+				DB0A47A91EBEBBCA004FBF41 /* SearchTableViewMusicCell.swift */,
+				DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */,
+				BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */,
+				DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */,
+				BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */,
+				DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */,
+				167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		DB5FB81320E1FE9D00345BAC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB22FB7A1F5377E000AF384B /* EllomixUser.swift */,
+				DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */,
+				DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */,
+				DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */,
+				DB7034DA20620F41003235EB /* Message.swift */,
+				DBFA76DC206F39DF00689D4F /* Group.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DB5FB81420E1FED300345BAC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DB5FB81520E1FEFE00345BAC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DB7BAA64202FC7F1005B7115 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DB5FB81620E2000700345BAC /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				DB052E321F6F7A6E00F32A70 /* Global.swift */,
+				DB0938661FD502F700DB64AA /* MusicPlayer.swift */,
+				DB42B5091FFDF28400AB7E1D /* YouTubePlayer.swift */,
+				DBC09BB120BE513A003EE29F /* Cache.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		DB5FB81720E200E400345BAC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		DBF94414205F5CFA0047A1EB /* Spotify Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,56 +348,20 @@
 		E379E6201E08B69500B0256F /* Ellomix */ = {
 			isa = PBXGroup;
 			children = (
-				167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */,
+				DB5FB81320E1FE9D00345BAC /* Models */,
+				DB5FB81120E1FD4100345BAC /* Views */,
+				DB5FB81020E1FBAF00345BAC /* Controllers */,
+				DB5FB81420E1FED300345BAC /* Services */,
+				DB5FB81720E200E400345BAC /* Helpers */,
+				DB5FB81620E2000700345BAC /* Global */,
+				DB5FB81520E1FEFE00345BAC /* Extensions */,
 				DBF94414205F5CFA0047A1EB /* Spotify Frameworks */,
+				E379E62D1E08B69500B0256F /* Info.plist */,
 				BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */,
 				E330802C1E342F2B0046D58F /* Bridging-Header.h */,
 				E379E6211E08B69500B0256F /* AppDelegate.swift */,
-				E379E6231E08B69500B0256F /* LoginViewController.swift */,
-				DB22FB7A1F5377E000AF384B /* EllomixUser.swift */,
-				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
-				DB052E321F6F7A6E00F32A70 /* Global.swift */,
-				DBC09BB120BE513A003EE29F /* Cache.swift */,
-				E379E6251E08B69500B0256F /* Main.storyboard */,
-				DBB727E320AA91AC00419789 /* SplashController.swift */,
-				DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */,
-				DB7BAA64202FC7F1005B7115 /* Extensions.swift */,
-				DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */,
-				DB2DB00D204B7ADD00E0935A /* SearchHeaderCell.swift */,
-				DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */,
-				DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */,
-				DB7BAA66202FD378005B7115 /* PasswordViewController.swift */,
-				DB0938661FD502F700DB64AA /* MusicPlayer.swift */,
-				DB0938641FD4FCD200DB64AA /* ContainerViewController.swift */,
-				DB42B5091FFDF28400AB7E1D /* YouTubePlayer.swift */,
 				DB42B5071FFDE37800AB7E1D /* YTPlayer.html */,
-				DBCE53751FBABD06002B760C /* EditProfileController.swift */,
-				DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */,
-				DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */,
-				DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */,
-				DB0A47A91EBEBBCA004FBF41 /* SearchTableViewMusicCell.swift */,
-				DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */,
-				DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */,
-				DB2FE5CD20DA0CEA0018E402 /* RoundImageView.swift */,
-				DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */,
-				DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */,
-				DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */,
 				E379E6281E08B69500B0256F /* Assets.xcassets */,
-				E379E62A1E08B69500B0256F /* LaunchScreen.storyboard */,
-				E379E62D1E08B69500B0256F /* Info.plist */,
-				BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */,
-				DBFA76DC206F39DF00689D4F /* Group.swift */,
-				BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */,
-				BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */,
-				BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */,
-				DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */,
-				DB7034DA20620F41003235EB /* Message.swift */,
-				BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */,
-				DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */,
-				BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */,
-				BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */,
-				BA3669A8205F431200DC4D54 /* SettingsViewController.swift */,
-				BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */,
 			);
 			path = Ellomix;
 			sourceTree = "<group>";
