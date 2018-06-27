@@ -215,7 +215,6 @@ class ChatFeedTableViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let group = groupChats[indexPath.row]
                 segueVC.group = group
-                segueVC.navigationItem.title = group.users?.groupNameFromUsers()
             }
         } else if (segue.identifier == "toComposeModal") {
             let segueVC = segue.destination as! ComposeMessageController

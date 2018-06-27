@@ -1323,10 +1323,22 @@
                             <constraint firstAttribute="trailing" secondItem="8Pe-tW-Pks" secondAttribute="trailing" id="wDl-UT-LPu"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="jBc-J2-OBm">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pbs-nt-8QM">
+                            <rect key="frame" x="133.5" y="5" width="108" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </navigationItem>
                     <connections>
                         <outlet property="chatTableView" destination="Zbu-1t-K3U" id="vYc-vX-jyV"/>
                         <outlet property="dockBottomConstraint" destination="ara-xV-lR9" id="q7n-S8-PTd"/>
                         <outlet property="dockView" destination="8Pe-tW-Pks" id="4dt-C9-PLM"/>
+                        <outlet property="groupNameButton" destination="Pbs-nt-8QM" id="G99-T6-KFE"/>
                         <outlet property="messageTextView" destination="8SX-oN-7zO" id="GDU-DY-X1k"/>
                     </connections>
                 </viewController>
@@ -2265,7 +2277,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wpc-gh-sEA"/>
+        <segue reference="VHZ-sW-aW3"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>

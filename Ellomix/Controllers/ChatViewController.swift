@@ -14,6 +14,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var dockView: UIView!
     @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var groupNameButton: UIButton!
     @IBOutlet weak var dockBottomConstraint: NSLayoutConstraint!
 
     private var FirebaseAPI: FirebaseApi!
@@ -49,6 +50,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (group == nil) {
             checkForExistingGroup()
         } else {
+            if let users = group!.users {
+                let groupTitle = users.groupNameFromUsers() + " >"
+                groupNameButton.setTitle(groupTitle, for: .normal)
+            }
             observeMessages()
         }
     }
@@ -72,6 +77,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func checkForExistingGroup() {
         FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+            var foundGroup = false
+            var counter = 0
+            let groupCount = snapshot.childrenCount
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let gid = child.key
 
@@ -86,18 +94,29 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             }
                             
                             if (Set(currentGroup) == Set(newGroup)) {
+                                foundGroup = true
                                 self.group = Group()
                                 self.group?.gid = gid
                                 self.group?.users = self.newChatGroup
                                 self.observeMessages()
                             }
-                            
-                            let groupName = dictionary["name"] as? String
-                            if (groupName == nil || (groupName?.isEmpty)!) {
-                                self.navigationItem.title = self.newChatGroup?.groupNameFromUsers()
-                            } else {
-                                self.navigationItem.title = groupName
+
+                            if (foundGroup) {
+                                let groupName = dictionary["name"] as? String
+                                var groupTitle = ""
+                                if (groupName == nil || (groupName?.isEmpty)!) {
+                                    groupTitle = (self.newChatGroup?.groupNameFromUsers())! + " >"
+                                } else {
+                                    groupTitle = groupName! + " >"
+                                }
+                                self.groupNameButton.setTitle(groupTitle, for: .normal)
+                                self.groupNameButton.isEnabled = true
+                            } else if (counter == (groupCount - 1)) {
+                                let groupTitle = self.newChatGroup?.groupNameFromUsers()
+                                self.groupNameButton.setTitle(groupTitle, for: .normal)
+                                self.groupNameButton.isEnabled = false
                             }
+                            counter+=1
                         }
                     }
                 })
