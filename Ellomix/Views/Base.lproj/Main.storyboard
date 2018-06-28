@@ -1192,6 +1192,42 @@
             </objects>
             <point key="canvasLocation" x="3306" y="86"/>
         </scene>
+        <!--Group Settings Table View Controller-->
+        <scene sceneID="2dl-Av-Nms">
+            <objects>
+                <tableViewController id="bst-GY-eNe" customClass="GroupSettingsTableViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OUB-8F-aXQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="th3-uR-qRr">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="th3-uR-qRr" id="KWz-D7-qtY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="BfD-cL-mZT">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BfD-cL-mZT" id="j25-BV-RL9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bst-GY-eNe" id="6HU-39-OaH"/>
+                            <outlet property="delegate" destination="bst-GY-eNe" id="O2x-UY-vmH"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WQp-SL-dt3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4822" y="270"/>
+        </scene>
         <!--Chat View Controller-->
         <scene sceneID="Cqv-bC-aKI">
             <objects>
@@ -1332,6 +1368,9 @@
                             <state key="normal">
                                 <color key="titleColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="groupNameButtonClicked:" destination="wre-Od-M5Z" eventType="touchUpInside" id="Vw8-XO-nuw"/>
+                            </connections>
                         </button>
                     </navigationItem>
                     <connections>
@@ -1340,6 +1379,7 @@
                         <outlet property="dockView" destination="8Pe-tW-Pks" id="4dt-C9-PLM"/>
                         <outlet property="groupNameButton" destination="Pbs-nt-8QM" id="G99-T6-KFE"/>
                         <outlet property="messageTextView" destination="8SX-oN-7zO" id="GDU-DY-X1k"/>
+                        <segue destination="bst-GY-eNe" kind="show" identifier="toGroupSettings" id="BNf-12-o8R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sts-26-cQo" userLabel="First Responder" sceneMemberID="firstResponder"/>

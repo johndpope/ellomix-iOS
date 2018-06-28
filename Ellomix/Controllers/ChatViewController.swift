@@ -185,6 +185,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func groupNameButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toGroupSettings", sender: self)
+    }
+    
+    
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
         if (!messageTextView.text.isEmpty) {
             if (group != nil) {
@@ -259,6 +264,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             messageTextView.isScrollEnabled = false
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toGroupSettings") {
+            let segueVC = segue.destination as! GroupSettingsTableViewController
+            if let groupInfo = group {
+                if let groupTitle = groupNameButton.titleLabel?.text {
+                    segueVC.navigationItem.title = String(describing: groupTitle.dropLast(2))
+                }
+                segueVC.group = groupInfo
+            }
+        }
+    }
 
 }
