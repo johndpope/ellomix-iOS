@@ -50,6 +50,7 @@
 		DBC09BB220BE513A003EE29F /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC09BB120BE513A003EE29F /* Cache.swift */; };
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */; };
+		DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */; };
 		DBF40DB120996B70000AD390 /* SearchTableViewPeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */; };
 		DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */; };
 		DBF94418205F5D220047A1EB /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94415205F5D210047A1EB /* SpotifyAudioPlayback.framework */; };
@@ -133,6 +134,7 @@
 		DBC09BB120BE513A003EE29F /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSettingsTableViewController.swift; path = Ellomix/Controllers/GroupSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsHeaderCell.swift; sourceTree = "<group>"; };
 		DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewPeopleCell.swift; sourceTree = "<group>"; };
 		DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyTrack.swift; sourceTree = "<group>"; };
 		DBF94415205F5D210047A1EB /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */,
 				DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */,
 				167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */,
+				DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
 				DBB727E420AA91AC00419789 /* SplashController.swift in Sources */,
+				DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */,
 				DBFA76DD206F39DF00689D4F /* Group.swift in Sources */,
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
