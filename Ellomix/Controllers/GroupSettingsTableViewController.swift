@@ -21,8 +21,8 @@ class GroupSettingsTableViewController: UITableViewController {
             }
         }
         
-        let nib = UINib(nibName: "SimpleTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "simpleCell")
+        tableView.register(UINib(nibName: "SimpleTableViewCell", bundle: nil), forCellReuseIdentifier: "leaveGroupCell")
+        tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "notificationsCell")
     }
     
     //Mark: Table View functions
@@ -35,18 +35,17 @@ class GroupSettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (!groupChat) {
-            return UITableViewCell()
-        }
-        
-        if (sections[indexPath.section] == "Name") {
-            return UITableViewCell()
-        } else if (sections[indexPath.section] == "Notifications") {
+        if (!groupChat || sections[indexPath.section] == "Notifications") {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "notificationsCell", for: indexPath) as! SwitchTableViewCell
+            cell.label.text = cell.toggle.isOn ? "On" : "Off"
+            
+            return cell
+        } else if (sections[indexPath.section] == "Name") {
             return UITableViewCell()
         } else if (sections[indexPath.section] == "Members") {
             return UITableViewCell()
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "simpleCell", for: indexPath) as! SimpleTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "leaveGroupCell", for: indexPath) as! SimpleTableViewCell
             cell.label.text = "Leave Group"
 
             return cell

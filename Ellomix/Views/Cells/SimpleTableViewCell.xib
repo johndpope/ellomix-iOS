@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEe-qN-raV">
-                            <rect key="frame" x="8" y="15" width="39.5" height="21"/>
+                            <rect key="frame" x="16" y="15" width="39.5" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -28,7 +28,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="MEe-qN-raV" firstAttribute="leading" secondItem="wZF-tP-i99" secondAttribute="leading" constant="8" id="Kpy-I7-Bpm"/>
+                        <constraint firstItem="MEe-qN-raV" firstAttribute="leading" secondItem="wZF-tP-i99" secondAttribute="leading" constant="16" id="Kpy-I7-Bpm"/>
                         <constraint firstItem="MEe-qN-raV" firstAttribute="top" secondItem="wZF-tP-i99" secondAttribute="top" constant="15" id="mxo-WL-6DQ"/>
                         <constraint firstAttribute="bottom" secondItem="MEe-qN-raV" secondAttribute="bottom" constant="14" id="vBR-RT-doy"/>
                     </constraints>
