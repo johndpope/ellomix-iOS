@@ -51,6 +51,8 @@
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */; };
 		DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */; };
+		DBEA17D120EB2DCD00A9294A /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEA17D020EB2DCC00A9294A /* SimpleTableViewCell.swift */; };
+		DBEA17D320EB328C00A9294A /* SimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEA17D220EB328C00A9294A /* SimpleTableViewCell.xib */; };
 		DBF40DB120996B70000AD390 /* SearchTableViewPeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */; };
 		DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */; };
 		DBF94418205F5D220047A1EB /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94415205F5D210047A1EB /* SpotifyAudioPlayback.framework */; };
@@ -135,6 +137,8 @@
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSettingsTableViewController.swift; path = Ellomix/Controllers/GroupSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsHeaderCell.swift; sourceTree = "<group>"; };
+		DBEA17D020EB2DCC00A9294A /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
+		DBEA17D220EB328C00A9294A /* SimpleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleTableViewCell.xib; sourceTree = "<group>"; };
 		DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewPeopleCell.swift; sourceTree = "<group>"; };
 		DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyTrack.swift; sourceTree = "<group>"; };
 		DBF94415205F5D210047A1EB /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
@@ -266,6 +270,8 @@
 				DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */,
 				167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */,
 				DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */,
+				DBEA17D020EB2DCC00A9294A /* SimpleTableViewCell.swift */,
+				DBEA17D220EB328C00A9294A /* SimpleTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 				BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */,
 				E379E6291E08B69500B0256F /* Assets.xcassets in Resources */,
 				E379E6271E08B69500B0256F /* Main.storyboard in Resources */,
+				DBEA17D320EB328C00A9294A /* SimpleTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +755,7 @@
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ReceivedChatTableViewCell.swift in Sources */,
+				DBEA17D120EB2DCD00A9294A /* SimpleTableViewCell.swift in Sources */,
 				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,
 				DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */,
 				DB7034DB20620F41003235EB /* Message.swift in Sources */,
