@@ -21,8 +21,9 @@ class GroupSettingsTableViewController: UITableViewController {
             }
         }
         
-        tableView.register(UINib(nibName: "SimpleTableViewCell", bundle: nil), forCellReuseIdentifier: "leaveGroupCell")
+        tableView.register(UINib(nibName: "LabelTableViewCell", bundle: nil), forCellReuseIdentifier: "leaveGroupCell")
         tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "notificationsCell")
+        tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "userCell")
     }
     
     //Mark: Table View functions
@@ -43,9 +44,15 @@ class GroupSettingsTableViewController: UITableViewController {
         } else if (sections[indexPath.section] == "Name") {
             return UITableViewCell()
         } else if (sections[indexPath.section] == "Members") {
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
+            if let users = group.users  {
+                let user = users[indexPath.row]
+                cell.userLabel.text = user!["name"] as? String
+            }
+            
+            return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "leaveGroupCell", for: indexPath) as! SimpleTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "leaveGroupCell", for: indexPath) as! LabelTableViewCell
             cell.label.text = "Leave Group"
 
             return cell

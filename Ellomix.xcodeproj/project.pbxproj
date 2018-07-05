@@ -51,8 +51,10 @@
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */; };
 		DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */; };
-		DBEA17D120EB2DCD00A9294A /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEA17D020EB2DCC00A9294A /* SimpleTableViewCell.swift */; };
-		DBEA17D320EB328C00A9294A /* SimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEA17D220EB328C00A9294A /* SimpleTableViewCell.xib */; };
+		DBE81D5620EDC92A00A27935 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE81D5520EDC92A00A27935 /* UserTableViewCell.xib */; };
+		DBE81D5820EDCA9700A27935 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE81D5720EDCA9700A27935 /* UserTableViewCell.swift */; };
+		DBEA17D120EB2DCD00A9294A /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEA17D020EB2DCC00A9294A /* LabelTableViewCell.swift */; };
+		DBEA17D320EB328C00A9294A /* LabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEA17D220EB328C00A9294A /* LabelTableViewCell.xib */; };
 		DBEA17D520EB392100A9294A /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEA17D420EB392100A9294A /* SwitchTableViewCell.xib */; };
 		DBEA17D720EB39E600A9294A /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEA17D620EB39E600A9294A /* SwitchTableViewCell.swift */; };
 		DBF40DB120996B70000AD390 /* SearchTableViewPeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */; };
@@ -139,8 +141,10 @@
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSettingsTableViewController.swift; path = Ellomix/Controllers/GroupSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsHeaderCell.swift; sourceTree = "<group>"; };
-		DBEA17D020EB2DCC00A9294A /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
-		DBEA17D220EB328C00A9294A /* SimpleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleTableViewCell.xib; sourceTree = "<group>"; };
+		DBE81D5520EDC92A00A27935 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		DBE81D5720EDCA9700A27935 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		DBEA17D020EB2DCC00A9294A /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
+		DBEA17D220EB328C00A9294A /* LabelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelTableViewCell.xib; sourceTree = "<group>"; };
 		DBEA17D420EB392100A9294A /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		DBEA17D620EB39E600A9294A /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		DBF40DB020996B70000AD390 /* SearchTableViewPeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewPeopleCell.swift; sourceTree = "<group>"; };
@@ -274,10 +278,12 @@
 				DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */,
 				167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */,
 				DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */,
-				DBEA17D020EB2DCC00A9294A /* SimpleTableViewCell.swift */,
+				DBEA17D020EB2DCC00A9294A /* LabelTableViewCell.swift */,
 				DBEA17D620EB39E600A9294A /* SwitchTableViewCell.swift */,
-				DBEA17D220EB328C00A9294A /* SimpleTableViewCell.xib */,
+				DBE81D5720EDCA9700A27935 /* UserTableViewCell.swift */,
+				DBEA17D220EB328C00A9294A /* LabelTableViewCell.xib */,
 				DBEA17D420EB392100A9294A /* SwitchTableViewCell.xib */,
+				DBE81D5520EDC92A00A27935 /* UserTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -526,11 +532,12 @@
 			files = (
 				E379E62C1E08B69500B0256F /* LaunchScreen.storyboard in Resources */,
 				DB42B5081FFDE37800AB7E1D /* YTPlayer.html in Resources */,
+				DBE81D5620EDC92A00A27935 /* UserTableViewCell.xib in Resources */,
 				BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */,
 				DBEA17D520EB392100A9294A /* SwitchTableViewCell.xib in Resources */,
 				E379E6291E08B69500B0256F /* Assets.xcassets in Resources */,
 				E379E6271E08B69500B0256F /* Main.storyboard in Resources */,
-				DBEA17D320EB328C00A9294A /* SimpleTableViewCell.xib in Resources */,
+				DBEA17D320EB328C00A9294A /* LabelTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,10 +766,11 @@
 				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
 				DB2DB00E204B7ADD00E0935A /* SearchHeaderCell.swift in Sources */,
 				DB7BAA63202FB731005B7115 /* GetStartedViewController.swift in Sources */,
+				DBE81D5820EDCA9700A27935 /* UserTableViewCell.swift in Sources */,
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ReceivedChatTableViewCell.swift in Sources */,
-				DBEA17D120EB2DCD00A9294A /* SimpleTableViewCell.swift in Sources */,
+				DBEA17D120EB2DCD00A9294A /* LabelTableViewCell.swift in Sources */,
 				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,
 				DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */,
 				DB7034DB20620F41003235EB /* Message.swift in Sources */,
