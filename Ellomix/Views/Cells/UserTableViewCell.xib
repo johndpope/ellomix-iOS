@@ -21,13 +21,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PPk-AW-Rif" customClass="RoundImageView" customModule="Ellomix" customModuleProvider="target">
-                            <rect key="frame" x="6" y="5" width="40" height="40"/>
+                            <rect key="frame" x="16" y="5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="PPk-AW-Rif" secondAttribute="height" multiplier="1:1" id="2xK-fv-J9t"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwf-oj-Thc">
-                            <rect key="frame" x="54" y="15" width="42" height="20"/>
+                            <rect key="frame" x="64" y="15" width="42" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                         <constraint firstItem="Qwf-oj-Thc" firstAttribute="top" secondItem="NrR-Ui-MBH" secondAttribute="top" constant="15" id="XEJ-b1-kJe"/>
                         <constraint firstItem="PPk-AW-Rif" firstAttribute="top" secondItem="NrR-Ui-MBH" secondAttribute="top" constant="5" id="ghz-UF-Lsy"/>
                         <constraint firstAttribute="bottom" secondItem="Qwf-oj-Thc" secondAttribute="bottom" constant="15" id="td5-2I-E5Q"/>
-                        <constraint firstItem="PPk-AW-Rif" firstAttribute="leading" secondItem="NrR-Ui-MBH" secondAttribute="leading" constant="6" id="vd7-18-vbA"/>
+                        <constraint firstItem="PPk-AW-Rif" firstAttribute="leading" secondItem="NrR-Ui-MBH" secondAttribute="leading" constant="16" id="vd7-18-vbA"/>
                         <constraint firstItem="Qwf-oj-Thc" firstAttribute="leading" secondItem="PPk-AW-Rif" secondAttribute="trailing" constant="8" id="yep-S3-Uaz"/>
                     </constraints>
                 </view>

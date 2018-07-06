@@ -19,7 +19,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     private var FirebaseAPI: FirebaseApi!
     private var messagesRefHandle: DatabaseHandle?
-    var currentUser:EllomixUser?
+    var currentUser: EllomixUser?
     var group: Group?
     var newChatGroup: [Dictionary<String, AnyObject>?]?
     

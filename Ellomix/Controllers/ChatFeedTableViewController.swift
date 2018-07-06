@@ -145,12 +145,7 @@ class ChatFeedTableViewController: UITableViewController {
         
         // Make a new array of users that excludes our user
         if (group.users != nil) {
-            for user in group.users! {
-                let uid = user!["uid"] as? String
-                if (uid != currentUser?.uid) {
-                    users.append(user!)
-                }
-            }
+            users = group.users!.omitCurrentUser()
         }
         
         if (users.count == 1) {

@@ -12,9 +12,11 @@ class GroupSettingsTableViewController: UITableViewController {
     
     var group: Group!
     var groupChat: Bool = false
+    var members: [Dictionary<String, AnyObject>]?
     let sections = ["Name", "Notifications", "Members", "Leave"]
     
     override func viewDidLoad() {
+        members = group.users?.omitCurrentUser()
         if let count = group.users?.count {
             if (count > 2) {
                groupChat = true
@@ -29,7 +31,7 @@ class GroupSettingsTableViewController: UITableViewController {
     //Mark: Table View functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (groupChat && sections[section] == "Members") {
-            return (group.users?.count)!
+            return (members?.count)! + 1
         }
         
         return 1
@@ -45,9 +47,17 @@ class GroupSettingsTableViewController: UITableViewController {
             return UITableViewCell()
         } else if (sections[indexPath.section] == "Members") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
-            if let users = group.users  {
-                let user = users[indexPath.row]
-                cell.userLabel.text = user!["name"] as? String
+            if (indexPath.row == 0) {
+                cell.userLabel.text = "Add Member"
+                cell.userImageView.image = #imageLiteral(resourceName: "attach")
+            } else if (members != nil) {
+                let user = members![indexPath.row - 1]
+                cell.userLabel.text = user["name"] as? String
+                if let photoURL = user["photo_url"] as? String, !photoURL.isEmpty {
+                    cell.userImageView.downloadedFrom(link: photoURL)
+                } else {
+                    cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+                }
             }
             
             return cell
@@ -65,6 +75,10 @@ class GroupSettingsTableViewController: UITableViewController {
         }
         
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

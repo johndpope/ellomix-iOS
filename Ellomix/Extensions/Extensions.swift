@@ -84,6 +84,20 @@ extension Array {
         
         return names.joined(separator: ", ")
     }
+    
+    func omitCurrentUser() -> [Dictionary<String, AnyObject>] {
+        var users = [Dictionary<String, AnyObject>]()
+        for i in 0..<self.count {
+            if let user = self[i] as? Dictionary<String, AnyObject> {
+                let uid = user["uid"] as? String
+                if (uid != Global.sharedGlobal.user?.uid) {
+                    users.append(user)
+                }
+            }
+        }
+
+        return users
+    }
 }
 
 extension Date {
