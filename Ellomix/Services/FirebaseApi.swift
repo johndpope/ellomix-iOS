@@ -74,4 +74,11 @@ class FirebaseApi {
         let newUserRef = ref.child(USERS).child(user.uid)
         newUserRef.setValue(user.toDictionary())
     }
+    
+    func updateGroupChat(group: Group) {
+        let groupChatRef = ref.child(GROUPS).child(group.gid!)
+        if let name = group.name {
+            groupChatRef.child("name").setValue(name)
+        }
+    }
 }

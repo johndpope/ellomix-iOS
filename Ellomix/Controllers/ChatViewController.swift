@@ -268,6 +268,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toGroupSettings") {
             let segueVC = segue.destination as! GroupSettingsTableViewController
+            segueVC.delegate = self
             if let groupInfo = group {
                 if let groupTitle = groupNameButton.titleLabel?.text {
                     segueVC.navigationItem.title = String(describing: groupTitle.dropLast(2))

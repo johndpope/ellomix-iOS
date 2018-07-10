@@ -8,14 +8,22 @@
 
 import UIKit
 
-class GroupSettingsTableViewController: UITableViewController {
+class GroupSettingsTableViewController: UITableViewController, UITextFieldDelegate {
     
+    var doneButton: UIBarButtonItem!
     var group: Group!
     var groupChat: Bool = false
     var members: [Dictionary<String, AnyObject>]?
+    var delegate: ChatViewController?
     let sections = ["Name", "Notifications", "Members", "Leave"]
     
+    private var FirebaseAPI: FirebaseApi!
+    
     override func viewDidLoad() {
+        FirebaseAPI = FirebaseApi()
+        doneButton = navigationItem.rightBarButtonItem
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.title = "Details"
         members = group.users?.omitCurrentUser()
         if let count = group.users?.count {
             if (count > 2) {
@@ -26,6 +34,7 @@ class GroupSettingsTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "LabelTableViewCell", bundle: nil), forCellReuseIdentifier: "leaveGroupCell")
         tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "notificationsCell")
         tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "userCell")
+        tableView.register(UINib(nibName: "FieldTableViewCell", bundle: nil), forCellReuseIdentifier: "nameCell")
     }
     
     //Mark: Table View functions
@@ -44,7 +53,17 @@ class GroupSettingsTableViewController: UITableViewController {
             
             return cell
         } else if (sections[indexPath.section] == "Name") {
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! FieldTableViewCell
+            cell.textField.delegate = self
+            if (group.name == nil || group.name!.isEmpty) {
+                cell.textField.textColor = .lightGray
+                cell.textField.text = "Enter a group name..."
+            } else {
+                cell.textField.textColor = .black
+                cell.textField.text = group.name!
+            }
+            
+            return cell
         } else if (sections[indexPath.section] == "Members") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
             if (indexPath.row == 0) {
@@ -99,6 +118,26 @@ class GroupSettingsTableViewController: UITableViewController {
             return 0
         }
         
-        return 18
+        return 20
+    }
+    
+    //MARK: Text Field Functions
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    @IBAction func doneButtonClicked(_ sender: Any) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as! FieldTableViewCell
+        group.name = cell.textField.text
+        view.endEditing(true)
+        navigationItem.rightBarButtonItem = nil
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if (delegate != nil) {
+            delegate!.group = group
+        }
+        FirebaseAPI.updateGroupChat(group: group)
     }
 }

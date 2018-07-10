@@ -1257,6 +1257,14 @@
                             <outlet property="delegate" destination="bst-GY-eNe" id="O2x-UY-vmH"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="oii-tz-MW0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="iaL-Ba-4uJ">
+                            <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="doneButtonClicked:" destination="bst-GY-eNe" id="Zcb-C8-VVu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WQp-SL-dt3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2351,7 +2359,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wpc-gh-sEA"/>
+        <segue reference="VHZ-sW-aW3"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>
