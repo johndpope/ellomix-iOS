@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NqC-Nm-ZnW" customClass="UserTableViewCell" customModule="Ellomix" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrR-Ui-MBH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PPk-AW-Rif" customClass="RoundImageView" customModule="Ellomix" customModuleProvider="target">
+                            <rect key="frame" x="16" y="5" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="PPk-AW-Rif" secondAttribute="height" multiplier="1:1" id="2xK-fv-J9t"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwf-oj-Thc">
+                            <rect key="frame" x="64" y="15" width="42" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="PPk-AW-Rif" secondAttribute="bottom" constant="5" id="UPn-4I-Yng"/>
+                        <constraint firstItem="Qwf-oj-Thc" firstAttribute="top" secondItem="NrR-Ui-MBH" secondAttribute="top" constant="15" id="XEJ-b1-kJe"/>
+                        <constraint firstItem="PPk-AW-Rif" firstAttribute="top" secondItem="NrR-Ui-MBH" secondAttribute="top" constant="5" id="ghz-UF-Lsy"/>
+                        <constraint firstAttribute="bottom" secondItem="Qwf-oj-Thc" secondAttribute="bottom" constant="15" id="td5-2I-E5Q"/>
+                        <constraint firstItem="PPk-AW-Rif" firstAttribute="leading" secondItem="NrR-Ui-MBH" secondAttribute="leading" constant="16" id="vd7-18-vbA"/>
+                        <constraint firstItem="Qwf-oj-Thc" firstAttribute="leading" secondItem="PPk-AW-Rif" secondAttribute="trailing" constant="8" id="yep-S3-Uaz"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="NrR-Ui-MBH" firstAttribute="leading" secondItem="ce3-gR-eHL" secondAttribute="leading" id="A43-l1-6up"/>
+                <constraint firstItem="NrR-Ui-MBH" firstAttribute="trailing" secondItem="ce3-gR-eHL" secondAttribute="trailing" id="DfG-qh-b7L"/>
+                <constraint firstItem="NrR-Ui-MBH" firstAttribute="top" secondItem="ce3-gR-eHL" secondAttribute="top" id="LHB-yF-vBk"/>
+                <constraint firstItem="NrR-Ui-MBH" firstAttribute="bottom" secondItem="ce3-gR-eHL" secondAttribute="bottom" id="kBN-fi-ohm"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="ce3-gR-eHL"/>
+            <connections>
+                <outlet property="userImageView" destination="PPk-AW-Rif" id="LL6-J9-b3m"/>
+                <outlet property="userLabel" destination="Qwf-oj-Thc" id="Do7-rH-4uW"/>
+            </connections>
+            <point key="canvasLocation" x="59.5" y="60"/>
+        </view>
+    </objects>
+</document>
