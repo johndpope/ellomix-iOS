@@ -22,7 +22,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
     var chatFeedDelegate: ChatFeedTableViewController?
-    var followingUsers = [Dictionary<String, AnyObject>?]()
+    var followingUsers = Dictionary<String, AnyObject>()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
     var selected:[String:Bool] = [:]
     
@@ -48,10 +48,8 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     
     func retrieveFollowingUsers() {
         FirebaseAPI.getFollowingRef().child("\((currentUser?.uid)!)").queryOrdered(byChild: "name").observe(.childAdded, with: { (snapshot) in
-            let user = snapshot.value as? Dictionary<String, AnyObject>
-            let uid = user?["uid"] as? String
-            self.followingUsers.append(user)
-            self.selected[uid!] = false
+            self.followingUsers[snapshot.key] = snapshot.value as AnyObject
+            self.selected[snapshot.key] = false
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -116,16 +114,20 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     }
     
     @IBAction func nextButtonClicked(_ sender: Any) {
-        var newChatGroup = [Dictionary<String, AnyObject>?]()
-        for user in followingUsers {
-            if (selected[(user!["uid"] as? String)!])! {
-                newChatGroup.append(user)
+        var newChatGroup = Dictionary<String, AnyObject>()
+        for (uid, val) in followingUsers {
+            if (selected[uid])! {
+                newChatGroup[uid] = val
             }
         }
         
         // Add current user to the new chat group
-        let currentUser = ["uid": self.currentUser?.uid, "name": self.currentUser?.getName(), "photo_url": self.currentUser?.profilePicLink] as Dictionary<String, AnyObject>
-        newChatGroup.append(currentUser)
+        if (currentUser != nil) {
+             newChatGroup[currentUser!.uid] = [
+                "name": currentUser!.getName(),
+                "photo_url": currentUser!.profilePicLink
+            ] as AnyObject
+        }
         
         chatFeedDelegate?.performSegue(withIdentifier: "toSendNewMessage", sender: newChatGroup)
         dismiss(animated: true, completion: nil)
@@ -140,8 +142,8 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     
     //MARK: Helpers
     func filterUsers(searchText: String) {
-        filteredUsers = followingUsers.filter{ user in
-            let name = user!["name"] as? String
+        filteredUsers = followingUsers.usersArray().filter{ user in
+            let name = user["name"] as? String
             return (name?.lowercased().contains(searchText.lowercased()))!
         }
     }

@@ -11,6 +11,7 @@ import UIKit
 class GroupSettingsTableViewController: UITableViewController, UITextFieldDelegate {
     
     var doneButton: UIBarButtonItem!
+    var currentUser: EllomixUser?
     var group: Group!
     var groupChat: Bool = false
     var members: [Dictionary<String, AnyObject>]?
@@ -21,10 +22,13 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
+        currentUser = Global.sharedGlobal.user
         doneButton = navigationItem.rightBarButtonItem
         navigationItem.rightBarButtonItem = nil
         navigationItem.title = "Details"
-        members = group.users?.omitCurrentUser()
+        var membersDictionary = group.users!
+        membersDictionary.removeValue(forKey: (currentUser?.uid)!)
+        members = membersDictionary.usersArray()
         if let count = group.users?.count {
             if (count > 2) {
                groupChat = true
@@ -49,6 +53,13 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (!groupChat || sections[indexPath.section] == "Notifications") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "notificationsCell", for: indexPath) as! SwitchTableViewCell
+            if let users = group.users {
+                if let userInfo = users[currentUser!.uid] as? Dictionary<String, AnyObject> {
+                    if let notifications = userInfo["notifications"] as? Bool {
+                        cell.toggle.isOn = notifications
+                    }
+                }
+            }
             cell.label.text = cell.toggle.isOn ? "On" : "Off"
             
             return cell
@@ -138,6 +149,16 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         if (delegate != nil) {
             delegate!.group = group
         }
+        
+        let notificationsSection = groupChat ? 1 : 0
+        let notificationsIndexPath = IndexPath(row: 0, section: notificationsSection)
+        let cell = tableView.cellForRow(at: notificationsIndexPath) as! SwitchTableViewCell
+        if (group.users != nil) {
+            var userInfo = group.users![currentUser!.uid] as? Dictionary<String, AnyObject>
+            userInfo!["notifications"] = cell.toggle.isOn as AnyObject
+            group.users![currentUser!.uid] = userInfo as AnyObject
+        }
+        
         FirebaseAPI.updateGroupChat(group: group)
     }
 }

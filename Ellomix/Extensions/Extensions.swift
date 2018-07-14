@@ -70,33 +70,30 @@ extension UIImageView {
     }
 }
 
-extension Array {
+extension Dictionary {
     func groupNameFromUsers() -> String {
         var names = [String]()
-        
-        for i in 0..<self.count {
-            if let user = self[i] as? Dictionary<String, AnyObject> {
-                if let name = user["name"] as? String, name != Global.sharedGlobal.user?.getName() {
-                    names.append(name)
-                }
+
+        for val in self.values {
+            let obj = val as AnyObject
+            if let name = obj["name"] as? String, name != Global.sharedGlobal.user?.getName() {
+                names.append(name)
             }
         }
         
         return names.joined(separator: ", ")
     }
     
-    func omitCurrentUser() -> [Dictionary<String, AnyObject>] {
-        var users = [Dictionary<String, AnyObject>]()
-        for i in 0..<self.count {
-            if let user = self[i] as? Dictionary<String, AnyObject> {
-                let uid = user["uid"] as? String
-                if (uid != Global.sharedGlobal.user?.uid) {
-                    users.append(user)
-                }
+    func usersArray() -> [Dictionary<String, AnyObject>] {
+        var arr = [Dictionary<String, AnyObject>]()
+        for (key, val) in self {
+            if var dict = val as? Dictionary<String, AnyObject> {
+                dict["uid"] = key as AnyObject
+                arr.append(dict)
             }
         }
-
-        return users
+        
+        return arr
     }
 }
 

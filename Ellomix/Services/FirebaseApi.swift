@@ -80,5 +80,8 @@ class FirebaseApi {
         if let name = group.name {
             groupChatRef.child("name").setValue(name)
         }
+        if let users = group.users {
+            groupChatRef.child("users").updateChildValues(users)
+        }
     }
 }
