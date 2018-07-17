@@ -25,6 +25,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     @IBOutlet weak var followingCountButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var settingsButton: UIBarButtonItem!
+    @IBOutlet weak var verticalLayoutConstraint: NSLayoutConstraint!
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
@@ -201,6 +202,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
                 }
                 self.recentlyListenedSongs.reverse()
                 self.collectionView.reloadData()
+                self.verticalLayoutConstraint.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height;
         })
     }
     
