@@ -16,6 +16,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     var groupChat: Bool = false
     var members: [Dictionary<String, AnyObject>]?
     var delegate: ChatViewController?
+    var leaveGroupAlert: UIAlertController?
     let sections = ["Name", "Notifications", "Members", "Leave"]
     
     private var FirebaseAPI: FirebaseApi!
@@ -34,6 +35,10 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
                groupChat = true
             }
         }
+        
+        leaveGroupAlert = UIAlertController(title: "Leave group?", message: "The group conversation and playlist will be deleted from your inbox.", preferredStyle: .alert)
+        leaveGroupAlert!.addAction(UIAlertAction(title: "Leave", style: .default, handler: leaveGroup))
+        leaveGroupAlert!.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         tableView.register(UINib(nibName: "LabelTableViewCell", bundle: nil), forCellReuseIdentifier: "leaveGroupCell")
         tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "notificationsCell")
@@ -99,6 +104,12 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (sections[indexPath.section] == "Leave") {
+            self.present(leaveGroupAlert!, animated: true)
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         if (groupChat) {
             return sections.count
@@ -143,6 +154,12 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         group.name = cell.textField.text
         view.endEditing(true)
         navigationItem.rightBarButtonItem = nil
+    }
+    
+    func leaveGroup(alert: UIAlertAction!) {
+//        if let index = currentUser?.groups.index(of: group.gid!) {
+//            currentUser?.groups.remove(at: index)
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
