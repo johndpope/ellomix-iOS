@@ -14,6 +14,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     var currentUser: EllomixUser?
     var group: Group!
     var groupChat: Bool = false
+    var leavingGroup: Bool = false
     var members: [Dictionary<String, AnyObject>]?
     var delegate: ChatViewController?
     var leaveGroupAlert: UIAlertController?
@@ -157,12 +158,11 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     }
     
     func leaveGroup(alert: UIAlertAction!) {
-//        if let index = currentUser?.groups.index(of: group.gid!) {
-//            currentUser?.groups.remove(at: index)
-//        }
+        leavingGroup = true
+        navigationController?.popToRootViewController(animated: true)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    func saveSettings() {
         if (delegate != nil) {
             delegate!.group = group
         }
@@ -177,5 +177,17 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         }
         
         FirebaseAPI.updateGroupChat(group: group)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if (leavingGroup) {
+            if let index = currentUser?.groups.index(of: group.gid!) {
+                currentUser?.groups.remove(at: index)
+                group.users?.removeValue(forKey: (currentUser?.uid)!)
+                FirebaseAPI.leaveGroupChat(group: group, uid: (currentUser?.uid)!)
+            }
+        } else {
+            saveSettings()
+        }
     }
 }
