@@ -22,12 +22,12 @@ class SpotifyLoginViewController: UIViewController, SPTAudioStreamingPlaybackDel
     //TODO: Move spotify login to before search and see how to refresh access token from within search screen and player VC
     
     @IBOutlet weak var loginButton: UIButton!
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        loginButton.isHidden = false
+        //loginButton.isHidden = false
         setup()
         NotificationCenter.default.addObserver(self, selector: #selector(SpotifyLoginViewController.updateAfterFirstLogin), name: NSNotification.Name(rawValue: "loginSuccessfull"), object: nil)
     }
@@ -119,26 +119,25 @@ class SpotifyLoginViewController: UIViewController, SPTAudioStreamingPlaybackDel
         
     }
     
-    
     @IBAction func loginButtonPressed(_ sender: Any) {
-        
+
         if UIApplication.shared.openURL(loginUrl!) {
-            
+
             if auth.canHandle(auth.redirectURL) {
                 // To do - build in error handling
-                
+
                 // handle callback in closure
                 auth.handleAuthCallback(withTriggeredAuthURL: auth.redirectURL, callback: { (error, session) in
-                    
+
                     print("Login button auth handle successful")
                     // handle error
                     if error != nil {
                         print("error!")
                     }
                     print("callback called")
-                    
+
                 })
-                
+
             }
         }
     }

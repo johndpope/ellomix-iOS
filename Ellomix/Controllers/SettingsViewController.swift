@@ -47,6 +47,7 @@ class SettingsViewController: UITableViewController {
     
     //clear search history --> push button
     
+    
     @IBAction func logout(_ sender: Any) {
         if (AccessToken.current != nil) {
             LoginManager().logOut()
