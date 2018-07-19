@@ -41,7 +41,7 @@ class SettingsViewController: UITableViewController {
     //blog
     //TODO:Change to IBACTION
     @IBAction func openBlog(_ sender: Any) {
-        UIApplication.shared.openURL(URL(string: "http://www.Ellomix.com")!)
+        UIApplication.shared.openURL(URL(string: "http://ellomix.com/blog/index.html")!)
 
     }
     
