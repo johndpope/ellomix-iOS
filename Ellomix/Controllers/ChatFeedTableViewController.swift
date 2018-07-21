@@ -26,13 +26,23 @@ class ChatFeedTableViewController: UITableViewController {
         currentUser = Global.sharedGlobal.user
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         var groupChatDictionary = Dictionary<String, Group>()
-        for group in groupChats {
-            groupChatDictionary[group.gid!] = group
-        }
-        let currentGIDs = Array(groupChatDictionary.keys)
+        var removeIndices = [Int]()
 
+        for i in 0..<groupChats.count {
+            let group = groupChats[i]
+            if (!(group.users!.keys.contains(currentUser!.uid))) {
+                removeIndices.append(i)
+            } else {
+                groupChatDictionary[group.gid!] = group
+            }
+        }
+        for index in removeIndices {
+            groupChats.remove(at: index)
+        }
+        
+        let currentGIDs = Array(groupChatDictionary.keys)
         for gid in (self.currentUser?.groups)! {
             if (!currentGIDs.contains(gid)) {
                 let group = Group()
@@ -43,6 +53,7 @@ class ChatFeedTableViewController: UITableViewController {
                 observeChat(group: groupChatDictionary[gid]!)
             }
         }
+        
         observeNewChats()
     }
     
