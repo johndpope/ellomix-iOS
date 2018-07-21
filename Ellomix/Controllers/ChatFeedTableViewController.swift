@@ -95,16 +95,8 @@ class ChatFeedTableViewController: UITableViewController {
     
     func setGroupProperties(group: Group, groupDictionary: Dictionary<String, AnyObject>) {
         group.name = groupDictionary["name"] as? String
-        group.notifications = groupDictionary["notifications"] as? Bool
         if let users = groupDictionary["users"] as? Dictionary<String, AnyObject> {
-            var usersArray = [Dictionary<String, AnyObject>?]()
-            for user in users {
-                if var userDictionary = user.value as? Dictionary<String, AnyObject> {
-                    userDictionary["uid"] = user.key as AnyObject
-                    usersArray.append(userDictionary)
-                }
-            }
-            group.users = usersArray
+            group.users = users
         }
         
         let lastMessage = Message()
@@ -143,9 +135,11 @@ class ChatFeedTableViewController: UITableViewController {
         let group = groupChats[indexPath.row]
         var users = [Dictionary<String, AnyObject>]()
         
-        // Make a new array of users that excludes our user
+        // Make a new dictionary of users that excludes our user
         if (group.users != nil) {
-            users = group.users!.omitCurrentUser()
+            var otherUsers = group.users!
+            otherUsers.removeValue(forKey: (currentUser?.uid)!)
+            users = otherUsers.usersArray()
         }
         
         if (users.count == 1) {
@@ -216,7 +210,7 @@ class ChatFeedTableViewController: UITableViewController {
             segueVC.chatFeedDelegate = self
         } else if (segue.identifier == "toSendNewMessage") {
             let segueVC = segue.destination as! ChatViewController
-            if let newChatGroup = sender as? [Dictionary<String, AnyObject>?] {
+            if let newChatGroup = sender as? Dictionary<String, AnyObject>? {
                 segueVC.newChatGroup = newChatGroup
             }
         }

@@ -11,25 +11,35 @@ import UIKit
 class GroupSettingsTableViewController: UITableViewController, UITextFieldDelegate {
     
     var doneButton: UIBarButtonItem!
+    var currentUser: EllomixUser?
     var group: Group!
     var groupChat: Bool = false
+    var leavingGroup: Bool = false
     var members: [Dictionary<String, AnyObject>]?
     var delegate: ChatViewController?
+    var leaveGroupAlert: UIAlertController?
     let sections = ["Name", "Notifications", "Members", "Leave"]
     
     private var FirebaseAPI: FirebaseApi!
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
+        currentUser = Global.sharedGlobal.user
         doneButton = navigationItem.rightBarButtonItem
         navigationItem.rightBarButtonItem = nil
         navigationItem.title = "Details"
-        members = group.users?.omitCurrentUser()
+        var membersDictionary = group.users!
+        membersDictionary.removeValue(forKey: (currentUser?.uid)!)
+        members = membersDictionary.usersArray()
         if let count = group.users?.count {
             if (count > 2) {
                groupChat = true
             }
         }
+        
+        leaveGroupAlert = UIAlertController(title: "Leave group?", message: "The group conversation and playlist will be deleted from your inbox.", preferredStyle: .alert)
+        leaveGroupAlert!.addAction(UIAlertAction(title: "Leave", style: .default, handler: leaveGroup))
+        leaveGroupAlert!.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         tableView.register(UINib(nibName: "LabelTableViewCell", bundle: nil), forCellReuseIdentifier: "leaveGroupCell")
         tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "notificationsCell")
@@ -49,6 +59,13 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (!groupChat || sections[indexPath.section] == "Notifications") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "notificationsCell", for: indexPath) as! SwitchTableViewCell
+            if let users = group.users {
+                if let userInfo = users[currentUser!.uid] as? Dictionary<String, AnyObject> {
+                    if let notifications = userInfo["notifications"] as? Bool {
+                        cell.toggle.isOn = notifications
+                    }
+                }
+            }
             cell.label.text = cell.toggle.isOn ? "On" : "Off"
             
             return cell
@@ -85,6 +102,12 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
             cell.label.text = "Leave Group"
 
             return cell
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (sections[indexPath.section] == "Leave") {
+            self.present(leaveGroupAlert!, animated: true)
         }
     }
     
@@ -134,10 +157,37 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         navigationItem.rightBarButtonItem = nil
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    func leaveGroup(alert: UIAlertAction!) {
+        leavingGroup = true
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func saveSettings() {
         if (delegate != nil) {
             delegate!.group = group
         }
+        
+        let notificationsSection = groupChat ? 1 : 0
+        let notificationsIndexPath = IndexPath(row: 0, section: notificationsSection)
+        let cell = tableView.cellForRow(at: notificationsIndexPath) as! SwitchTableViewCell
+        if (group.users != nil) {
+            var userInfo = group.users![currentUser!.uid] as? Dictionary<String, AnyObject>
+            userInfo!["notifications"] = cell.toggle.isOn as AnyObject
+            group.users![currentUser!.uid] = userInfo as AnyObject
+        }
+        
         FirebaseAPI.updateGroupChat(group: group)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if (leavingGroup) {
+            if let index = currentUser?.groups.index(of: group.gid!) {
+                currentUser?.groups.remove(at: index)
+                group.users?.removeValue(forKey: (currentUser?.uid)!)
+                FirebaseAPI.leaveGroupChat(group: group, uid: (currentUser?.uid)!)
+            }
+        } else {
+            saveSettings()
+        }
     }
 }

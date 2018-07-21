@@ -80,5 +80,16 @@ class FirebaseApi {
         if let name = group.name {
             groupChatRef.child("name").setValue(name)
         }
+        if let users = group.users {
+            groupChatRef.child("users").updateChildValues(users)
+        }
+    }
+    
+    func leaveGroupChat(group: Group, uid: String) {
+        let groupChatRef = ref.child(GROUPS).child(group.gid!)
+        let userRef = ref.child(USERS).child(uid)
+        
+        groupChatRef.child("users").child(uid).removeValue()
+        userRef.child("groups").child(group.gid!).removeValue()
     }
 }

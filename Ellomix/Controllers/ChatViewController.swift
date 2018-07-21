@@ -21,7 +21,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var messagesRefHandle: DatabaseHandle?
     var currentUser: EllomixUser?
     var group: Group?
-    var newChatGroup: [Dictionary<String, AnyObject>?]?
+    var newChatGroup: Dictionary<String, AnyObject>?
     
     var messages = [Message]()
     
@@ -87,11 +87,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
                         if let users = dictionary["users"] as? Dictionary<String, AnyObject> {
                             let currentGroup = Array(users.keys)
-                            
-                            var newGroup = [String]()
-                            for user in self.newChatGroup! {
-                                newGroup.append(user!["uid"] as! String)
-                            }
+                            let newGroup = Array(self.newChatGroup!.keys)
                             
                             if (Set(currentGroup) == Set(newGroup)) {
                                 foundGroup = true
@@ -164,10 +160,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! RecievedChatTableViewCell
             cell.messageTextView.layer.cornerRadius = 8.0
             cell.messageTextView.text = message.content!
-            for user in (self.group?.users)! {
-                let uid = user!["uid"] as? String
-                if (uid! == message.uid!) {
-                    if let photoURL = user!["photo_url"] as? String, !photoURL.isEmpty {
+            for (uid, val) in (self.group?.users)! {
+                if (uid == message.uid!) {
+                    if let photoURL = val["photo_url"] as? String, !photoURL.isEmpty {
                         cell.profilePic.downloadedFrom(link: photoURL)
                     } else {
                         cell.profilePic.image = #imageLiteral(resourceName: "ellomix_logo_bw")
@@ -200,17 +195,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.group?.gid = snapshot.key
                     self.observeMessages()
                     
-                    var usersData = [String: AnyObject]()
-                    for user in self.newChatGroup! {
-                        let uid = user!["uid"] as? String
-                        usersData[uid!] = ["name": user!["name"], "photo_url": user!["photo_url"]] as AnyObject
-                        self.FirebaseAPI.getUsersRef().child(uid!).child("groups").child((self.group?.gid)!).setValue(true)
+                    var usersData = Dictionary<String, AnyObject>()
+                    for (uid, val) in self.newChatGroup! {
+                        if var newVal = val as? Dictionary<String, AnyObject> {
+                            newVal["notifications"] = true as AnyObject
+                            usersData[uid] = newVal as AnyObject
+                            self.FirebaseAPI.getUsersRef().child(uid).child("groups").child((self.group?.gid)!).setValue(true)
+                        }
                     }
                     self.currentUser?.groups.append((self.group?.gid)!)
                     self.group?.users = self.newChatGroup
-                    let groupValues = ["notifications": true, "users": usersData] as [String : AnyObject]
                     
-                    self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).updateChildValues(groupValues)
+                    self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).child("users").updateChildValues(usersData)
                     self.sendMessage()
                 })
             }
@@ -219,7 +215,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func sendMessage() {
         let timestamp:Int = Int(Date().timeIntervalSince1970)
-        let messageValues = ["uid": self.currentUser?.uid, "content": self.messageTextView.text, "timestamp": timestamp] as [String : AnyObject]
+        let messageValues = [
+                "uid": self.currentUser?.uid,
+                "content": self.messageTextView.text,
+                "timestamp": timestamp
+            ] as [String : AnyObject]
         self.FirebaseAPI.getMessagesRef().child((self.group?.gid)!).childByAutoId().updateChildValues(messageValues)
         self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).child("last_message").updateChildValues(messageValues)
         messageTextView.text = ""
