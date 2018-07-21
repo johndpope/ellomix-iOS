@@ -11,6 +11,7 @@ import AVFoundation
 import Firebase
 import Soundcloud
 import FacebookCore
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseAPI = FirebaseApi()
         loginOrHome()
+        
+        // Notifications
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+                print("granted: (\(granted)")
+            }
+        } else {
+            // Fallback on earlier versions
+        }
 
         return true
     }
