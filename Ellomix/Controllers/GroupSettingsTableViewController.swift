@@ -106,7 +106,11 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (sections[indexPath.section] == "Leave") {
+        if (sections[indexPath.section] == "Members") {
+            if (indexPath.row == 0) {
+                self.performSegue(withIdentifier: "toAddMember", sender: nil)
+            }
+        } else if (sections[indexPath.section] == "Leave") {
             self.present(leaveGroupAlert!, animated: true)
         }
     }
@@ -190,4 +194,5 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
             saveSettings()
         }
     }
+    
 }

@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-BoldItalic</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Container View Controller-->
         <scene sceneID="0on-NI-TzP">
@@ -1051,7 +1056,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbc-Rz-LXB">
-                                                    <rect key="frame" x="1" y="6" width="73" height="26.5"/>
+                                                    <rect key="frame" x="1" y="9" width="73" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="OYA-pw-p3S"/>
                                                     </constraints>
@@ -1060,7 +1065,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OfJ-eK-njM">
-                                                    <rect key="frame" x="88" y="3.5" width="286" height="35"/>
+                                                    <rect key="frame" x="88" y="6" width="286" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1261,6 +1266,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="AWE-Sa-5E6" kind="presentation" identifier="toAddMember" id="3Py-UO-IU4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WQp-SL-dt3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1423,6 +1431,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sts-26-cQo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4082.6086956521744" y="809.51086956521749"/>
+        </scene>
+        <!--Add Member-->
+        <scene sceneID="tYC-Es-BBf">
+            <objects>
+                <viewController title="Add Member" id="AWE-Sa-5E6" customClass="AddMemberController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v0E-qU-yVS"/>
+                        <viewControllerLayoutGuide type="bottom" id="eeQ-gJ-lOE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2kJ-v7-6ac">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hd1-tp-uzI">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Add Member" id="CZ6-l6-lPS">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="1KU-GQ-QKb">
+                                            <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" id="gOO-bX-rdW">
+                                            <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="luG-4e-y2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4822" y="1133"/>
         </scene>
         <!--Get Started View Controller-->
         <scene sceneID="GvW-GO-UIT">
@@ -1743,7 +1785,7 @@
                                 <rect key="frame" x="32" y="258" width="311" height="253"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                <mutableString key="text">Thank you for using Ellomx. Ellomix is a service provided by Ellomix LLC. There are no age restriction in order to use Ellomix. If you are considered a minor in your country you must have your parent or legal guardian's permission to use Ellomix. The content provided on Ellomix is done through the use of Youtube, Spotify and Soundcloud, where all provider's terms of services have been met.If there is a change in these terms of service there will be a 30 day notice before the new changes go into effect. Thank you for using Ellomix!</mutableString>
+                                <string key="text">Thank you for using Ellomx. Ellomix is a service provided by Ellomix LLC. There are no age restriction in order to use Ellomix. If you are considered a minor in your country you must have your parent or legal guardian's permission to use Ellomix. The content provided on Ellomix is done through the use of Youtube, Spotify and Soundcloud, where all provider's terms of services have been met.If there is a change in these terms of service there will be a 30 day notice before the new changes go into effect. Thank you for using Ellomix!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
