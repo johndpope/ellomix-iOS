@@ -57,4 +57,8 @@ class AddMemberController: UIViewController, UITableViewDataSource, UITableViewD
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        dismissKeyboard()
+    }
 }

@@ -164,4 +164,8 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        dismissKeyboard()
+    }
+    
 }

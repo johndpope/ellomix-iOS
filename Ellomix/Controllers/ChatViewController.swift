@@ -44,8 +44,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         chatTableView.rowHeight = UITableViewAutomaticDimension
         
         self.hideKeyboardWhenTappedAround()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         if (group == nil) {
             checkForExistingGroup()
@@ -59,6 +57,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         if (messages.count > 0) {
             let indexPath = IndexPath(row: messages.count - 1, section: 0)
             chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
@@ -67,9 +67,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    deinit {
         if let refHandle = messagesRefHandle {
             FirebaseAPI.getMessagesRef().child((group?.gid)!).removeObserver(withHandle: refHandle)
         }
