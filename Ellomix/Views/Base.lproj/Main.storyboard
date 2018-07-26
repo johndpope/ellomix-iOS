@@ -1425,6 +1425,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuF-EJ-1nU" userLabel="Search Users View">
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Aur-8L-4U9">
+                                        <rect key="frame" x="8" y="5" width="359" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7qj-TP-hs7"/>
+                                    <constraint firstAttribute="bottom" secondItem="Aur-8L-4U9" secondAttribute="bottom" constant="5" id="F6p-s3-ueg"/>
+                                    <constraint firstItem="Aur-8L-4U9" firstAttribute="top" secondItem="nuF-EJ-1nU" secondAttribute="top" constant="5" id="Fra-3K-UJJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Aur-8L-4U9" secondAttribute="trailing" constant="8" id="aQS-SR-g0c"/>
+                                    <constraint firstItem="Aur-8L-4U9" firstAttribute="leading" secondItem="nuF-EJ-1nU" secondAttribute="leading" constant="8" id="fQG-W4-mLj"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-mP-om2">
+                                <rect key="frame" x="0.0" y="95" width="375" height="572"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hd1-tp-uzI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
@@ -1444,19 +1467,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nuF-EJ-1nU" firstAttribute="trailing" secondItem="hDj-0Q-llN" secondAttribute="trailing" id="1PU-fd-UXF"/>
                             <constraint firstItem="hDj-0Q-llN" firstAttribute="top" secondItem="hd1-tp-uzI" secondAttribute="top" constant="20" id="1V6-dZ-hVn"/>
                             <constraint firstItem="hDj-0Q-llN" firstAttribute="trailing" secondItem="hd1-tp-uzI" secondAttribute="trailing" id="Htj-pe-GYa"/>
+                            <constraint firstItem="Omb-mP-om2" firstAttribute="top" secondItem="nuF-EJ-1nU" secondAttribute="bottom" constant="1" id="PXO-f8-JWu"/>
+                            <constraint firstItem="nuF-EJ-1nU" firstAttribute="leading" secondItem="hDj-0Q-llN" secondAttribute="leading" id="R7d-d4-rCb"/>
+                            <constraint firstItem="Omb-mP-om2" firstAttribute="leading" secondItem="hDj-0Q-llN" secondAttribute="leading" id="RBW-au-NAx"/>
+                            <constraint firstItem="nuF-EJ-1nU" firstAttribute="top" secondItem="hd1-tp-uzI" secondAttribute="bottom" id="aOW-BH-LlB"/>
+                            <constraint firstItem="Omb-mP-om2" firstAttribute="trailing" secondItem="hDj-0Q-llN" secondAttribute="trailing" id="awO-Wl-A70"/>
                             <constraint firstItem="hd1-tp-uzI" firstAttribute="leading" secondItem="hDj-0Q-llN" secondAttribute="leading" id="wUh-Fm-5wG"/>
+                            <constraint firstItem="Omb-mP-om2" firstAttribute="bottom" secondItem="hDj-0Q-llN" secondAttribute="bottom" id="y7c-Mc-Kc2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hDj-0Q-llN"/>
                     </view>
                     <connections>
                         <outlet property="navigationBar" destination="hd1-tp-uzI" id="bvv-IU-zuB"/>
+                        <outlet property="searchTextView" destination="Aur-8L-4U9" id="uES-Km-D7S"/>
+                        <outlet property="searchUsersView" destination="nuF-EJ-1nU" id="SBa-7a-jRf"/>
+                        <outlet property="tableView" destination="Omb-mP-om2" id="OFI-Rz-7b4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luG-4e-y2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4822" y="1133"/>
+            <point key="canvasLocation" x="4821.6000000000004" y="1132.9835082458771"/>
         </scene>
         <!--Get Started View Controller-->
         <scene sceneID="GvW-GO-UIT">

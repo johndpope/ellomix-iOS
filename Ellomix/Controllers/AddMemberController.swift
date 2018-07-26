@@ -8,12 +8,23 @@
 
 import UIKit
 
-class AddMemberController: UIViewController, UINavigationBarDelegate {
+class AddMemberController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UINavigationBarDelegate {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var searchUsersView: UIView!
+    @IBOutlet weak var searchTextView: UITextView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         setupNavigationBar()
+        tableView.dataSource = self
+        tableView.delegate = self
+        searchTextView.delegate = self
+        
+        let border = CALayer()
+        border.frame = CGRect.init(x: 0, y: searchUsersView.frame.height, width: searchUsersView.frame.width, height: 1)
+        border.backgroundColor = UIColor.lightGray.cgColor
+        searchUsersView.layer.addSublayer(border)
     }
     
     func setupNavigationBar() {
@@ -29,6 +40,20 @@ class AddMemberController: UIViewController, UINavigationBarDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    //MARK: TableView functions
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    //MARK: Navigation Bar functions
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
