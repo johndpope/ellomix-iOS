@@ -15,7 +15,6 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser?
 
-
     @IBOutlet weak var searchUsersView: UIView!
     @IBOutlet weak var searchTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
