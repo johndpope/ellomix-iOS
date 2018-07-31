@@ -48,11 +48,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (group == nil) {
             checkForExistingGroup()
         } else {
-            if let users = group!.users {
-                let groupTitle = users.groupNameFromUsers() + " >"
-                groupNameButton.setTitle(groupTitle, for: .normal)
-            }
+            setChatTitle()
             observeMessages()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if (group != nil) {
+            setChatTitle()
         }
     }
     
@@ -69,6 +72,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.removeObserver(self)
         if let refHandle = messagesRefHandle {
             FirebaseAPI.getMessagesRef().child((group?.gid)!).removeObserver(withHandle: refHandle)
+        }
+    }
+    
+    func setChatTitle() {
+        if (group!.name == nil || group!.name!.isEmpty) {
+            if let users = group!.users {
+                let groupTitle = users.groupNameFromUsers() + " >"
+                groupNameButton.setTitle(groupTitle, for: .normal)
+            }
+        } else {
+            groupNameButton.setTitle(group!.name! + " >", for: .normal)
         }
     }
     

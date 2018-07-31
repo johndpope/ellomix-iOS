@@ -28,14 +28,6 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         doneButton = navigationItem.rightBarButtonItem
         navigationItem.rightBarButtonItem = nil
         navigationItem.title = "Details"
-        var membersDictionary = group.users!
-        membersDictionary.removeValue(forKey: (currentUser?.uid)!)
-        members = membersDictionary.usersArray()
-        if let count = group.users?.count {
-            if (count > 2) {
-               groupChat = true
-            }
-        }
         
         leaveGroupAlert = UIAlertController(title: "Leave group?", message: "The group conversation and playlist will be deleted from your inbox.", preferredStyle: .alert)
         leaveGroupAlert!.addAction(UIAlertAction(title: "Leave", style: .default, handler: leaveGroup))
@@ -45,6 +37,18 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         tableView.register(UINib(nibName: "SwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "notificationsCell")
         tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "userCell")
         tableView.register(UINib(nibName: "FieldTableViewCell", bundle: nil), forCellReuseIdentifier: "nameCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        var membersDictionary = group.users!
+        membersDictionary.removeValue(forKey: (currentUser?.uid)!)
+        members = membersDictionary.usersArray()
+        if let count = group.users?.count {
+            if (count > 2) {
+                groupChat = true
+            }
+        }
+        tableView.reloadData()
     }
     
     //Mark: Table View functions
@@ -181,6 +185,14 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         }
         
         FirebaseAPI.updateGroupChat(group: group)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toAddMember") {
+            let segueVC = segue.destination as! AddMemberController
+            segueVC.group = group
+            segueVC.delegate = self
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
