@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-BoldItalic</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Container View Controller-->
         <scene sceneID="0on-NI-TzP">
@@ -715,8 +720,29 @@
                                     <outlet property="recentLabel" destination="ziN-3y-qb1" id="HYn-it-cGG"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noSearchFoundCell" id="wxA-u1-DK4">
+                                <rect key="frame" x="0.0" y="164" width="375" height="61"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wxA-u1-DK4" id="oKh-a8-9yt">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No search found." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oX-WS-EjN">
+                                            <rect key="frame" x="16" y="20" width="343" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="3oX-WS-EjN" secondAttribute="trailing" id="GxX-45-22Z"/>
+                                        <constraint firstItem="3oX-WS-EjN" firstAttribute="centerY" secondItem="oKh-a8-9yt" secondAttribute="centerY" id="T1a-Sy-GnY"/>
+                                        <constraint firstItem="3oX-WS-EjN" firstAttribute="leading" secondItem="oKh-a8-9yt" secondAttribute="leadingMargin" id="aOB-rz-Dmh"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchHeaderCell" rowHeight="75" id="Skh-XL-gt1" customClass="SearchHeaderCell" customModule="Ellomix" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="164" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="225" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Skh-XL-gt1" id="WgB-A1-rnL">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -1051,7 +1077,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbc-Rz-LXB">
-                                                    <rect key="frame" x="1" y="6" width="73" height="26.5"/>
+                                                    <rect key="frame" x="1" y="9" width="73" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="OYA-pw-p3S"/>
                                                     </constraints>
@@ -1060,7 +1086,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OfJ-eK-njM">
-                                                    <rect key="frame" x="88" y="3.5" width="286" height="35"/>
+                                                    <rect key="frame" x="88" y="6" width="286" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1743,7 +1769,7 @@
                                 <rect key="frame" x="32" y="258" width="311" height="253"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                <mutableString key="text">Thank you for using Ellomx. Ellomix is a service provided by Ellomix LLC. There are no age restriction in order to use Ellomix. If you are considered a minor in your country you must have your parent or legal guardian's permission to use Ellomix. The content provided on Ellomix is done through the use of Youtube, Spotify and Soundcloud, where all provider's terms of services have been met.If there is a change in these terms of service there will be a 30 day notice before the new changes go into effect. Thank you for using Ellomix!</mutableString>
+                                <string key="text">Thank you for using Ellomx. Ellomix is a service provided by Ellomix LLC. There are no age restriction in order to use Ellomix. If you are considered a minor in your country you must have your parent or legal guardian's permission to use Ellomix. The content provided on Ellomix is done through the use of Youtube, Spotify and Soundcloud, where all provider's terms of services have been met.If there is a change in these terms of service there will be a 30 day notice before the new changes go into effect. Thank you for using Ellomix!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
