@@ -44,21 +44,24 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         chatTableView.rowHeight = UITableViewAutomaticDimension
         
         self.hideKeyboardWhenTappedAround()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         if (group == nil) {
             checkForExistingGroup()
         } else {
-            if let users = group!.users {
-                let groupTitle = users.groupNameFromUsers() + " >"
-                groupNameButton.setTitle(groupTitle, for: .normal)
-            }
+            setChatTitle()
             observeMessages()
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if (group != nil) {
+            setChatTitle()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         if (messages.count > 0) {
             let indexPath = IndexPath(row: messages.count - 1, section: 0)
             chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
@@ -67,11 +70,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    deinit {
         if let refHandle = messagesRefHandle {
             FirebaseAPI.getMessagesRef().child((group?.gid)!).removeObserver(withHandle: refHandle)
+        }
+    }
+    
+    func setChatTitle() {
+        if (group!.name == nil || group!.name!.isEmpty) {
+            if let users = group!.users {
+                let groupTitle = users.groupNameFromUsers() + " >"
+                groupNameButton.setTitle(groupTitle, for: .normal)
+            }
+        } else {
+            groupNameButton.setTitle(group!.name! + " >", for: .normal)
         }
     }
     

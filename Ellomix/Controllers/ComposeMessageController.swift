@@ -10,16 +10,16 @@ import UIKit
 import Alamofire
 import Soundcloud
 
-class ComposeMessageController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+class ComposeMessageController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UINavigationBarDelegate {
 
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser?
-
 
     @IBOutlet weak var searchUsersView: UIView!
     @IBOutlet weak var searchTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     var chatFeedDelegate: ChatFeedTableViewController?
     var followingUsers = Dictionary<String, AnyObject>()
@@ -34,6 +34,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         tableView.delegate = self
         searchTextView.delegate = self
         nextButton.isEnabled = false
+        setupNavigationBar()
         
         let border = CALayer()
         border.frame = CGRect.init(x: 0, y: searchUsersView.frame.height, width: searchUsersView.frame.width, height: 1)
@@ -140,12 +141,30 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         tableView.reloadData()
     }
     
+    //MARK: Navigation Bar functions
+    func setupNavigationBar() {
+        if #available(iOS 11.0, *) {
+            navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        } else {
+            navigationBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        }
+        navigationBar.delegate = self
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
+    
     //MARK: Helpers
     func filterUsers(searchText: String) {
         filteredUsers = followingUsers.usersArray().filter{ user in
             let name = user["name"] as? String
             return (name?.lowercased().contains(searchText.lowercased()))!
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        dismissKeyboard()
     }
     
 }

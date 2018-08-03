@@ -53,6 +53,7 @@
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */; };
 		DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */; };
+		DBDFCA002103FFA100229A45 /* AddMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDFC9FF2103FFA100229A45 /* AddMemberController.swift */; };
 		DBE81D5620EDC92A00A27935 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE81D5520EDC92A00A27935 /* UserTableViewCell.xib */; };
 		DBE81D5820EDCA9700A27935 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE81D5720EDCA9700A27935 /* UserTableViewCell.swift */; };
 		DBEA17D120EB2DCD00A9294A /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEA17D020EB2DCC00A9294A /* LabelTableViewCell.swift */; };
@@ -145,6 +146,7 @@
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSettingsTableViewController.swift; path = Ellomix/Controllers/GroupSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsHeaderCell.swift; sourceTree = "<group>"; };
+		DBDFC9FF2103FFA100229A45 /* AddMemberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberController.swift; sourceTree = "<group>"; };
 		DBE81D5520EDC92A00A27935 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		DBE81D5720EDCA9700A27935 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		DBEA17D020EB2DCC00A9294A /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */,
 				BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */,
 				DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */,
+				DBDFC9FF2103FFA100229A45 /* AddMemberController.swift */,
 				BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */,
 				BA3669A8205F431200DC4D54 /* SettingsViewController.swift */,
 				BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */,
@@ -765,6 +768,7 @@
 				DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */,
 				DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */,
 				DB7BAA67202FD378005B7115 /* PasswordViewController.swift in Sources */,
+				DBDFCA002103FFA100229A45 /* AddMemberController.swift in Sources */,
 				DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */,
 				BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */,
 				DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */,

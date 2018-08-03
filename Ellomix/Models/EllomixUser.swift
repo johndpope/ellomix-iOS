@@ -24,6 +24,7 @@ class EllomixUser {
     var followingCount:Int?
     var followersCount:Int?
     var groups:[String] = []
+    var recentlyListenedSongs:[Any] = []
     
     init(uid: String) {
         self.uid = uid
@@ -132,6 +133,6 @@ class EllomixUser {
             password = "N/A"
         }
 
-        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender, "birthday": birthday, "password": password, "following_count": followingCount, "followers_count": followersCount, "groups": groupsDictionary()]
+        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender, "birthday": birthday, "password": password, "following_count": followingCount, "followers_count": followersCount, "groups": groupsDictionary(), "recently_listened": recentlyListenedSongs]
     }
 }
