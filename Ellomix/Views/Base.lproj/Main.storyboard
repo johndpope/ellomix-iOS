@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-BoldItalic</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Container View Controller-->
         <scene sceneID="0on-NI-TzP">
@@ -1072,7 +1077,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbc-Rz-LXB">
-                                                    <rect key="frame" x="1" y="6" width="73" height="26.5"/>
+                                                    <rect key="frame" x="1" y="9" width="73" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="OYA-pw-p3S"/>
                                                     </constraints>
@@ -1081,7 +1086,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OfJ-eK-njM">
-                                                    <rect key="frame" x="88" y="3.5" width="286" height="35"/>
+                                                    <rect key="frame" x="88" y="6" width="286" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1431,6 +1436,11 @@
                                 <action selector="groupNameButtonClicked:" destination="wre-Od-M5Z" eventType="touchUpInside" id="Vw8-XO-nuw"/>
                             </connections>
                         </button>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="1Mk-h3-L8a">
+                            <connections>
+                                <segue destination="dgc-TA-EeW" kind="show" identifier="toGroupPlaylist" id="QrA-NB-UlG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chatTableView" destination="Zbu-1t-K3U" id="vYc-vX-jyV"/>
@@ -1444,6 +1454,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sts-26-cQo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4082.6086956521744" y="809.51086956521749"/>
+        </scene>
+        <!--Group Playlist Table View Controller-->
+        <scene sceneID="SLn-bA-c5o">
+            <objects>
+                <tableViewController id="dgc-TA-EeW" customClass="GroupPlaylistTableViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gJ1-kC-9xF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="dgc-TA-EeW" id="x07-ae-DRr"/>
+                            <outlet property="delegate" destination="dgc-TA-EeW" id="S26-Rf-ZuS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zOF-va-fF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4822" y="1052"/>
         </scene>
         <!--Get Started View Controller-->
         <scene sceneID="GvW-GO-UIT">
@@ -2390,12 +2418,12 @@
         <image name="repeat" width="24" height="24"/>
         <image name="rewind" width="24" height="24"/>
         <image name="search" width="24" height="24"/>
-        <image name="settings" width="64" height="64"/>
+        <image name="settings" width="20" height="20"/>
         <image name="share" width="28" height="24"/>
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NQM-Qj-Y2t"/>
+        <segue reference="wpc-gh-sEA"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>
