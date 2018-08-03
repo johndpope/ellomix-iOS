@@ -403,6 +403,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     }
     
     func filterUsers(searchText: String) {
+        isSearchUserDone = false
         filteredUsers = allUsers.filter{ user in
             if let name = user!["name"] as? String {
                 return name.lowercased().contains(searchText.lowercased())
