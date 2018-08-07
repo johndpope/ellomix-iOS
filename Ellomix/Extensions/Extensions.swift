@@ -27,8 +27,14 @@ extension UILabel {
     }
 }
 
+extension UIButton {
+    func circular() {
+        self.layer.cornerRadius = self.frame.height / 2
+    }
+}
+
 extension UITextField {
-    func underlined(){
+    func underlined() {
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = UIColor.lightGray.cgColor
@@ -140,5 +146,13 @@ extension YouTubePlayerView {
         } else {
             button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         }
+    }
+}
+
+//Mark: Color Palette
+
+extension UIColor {
+    class func ellomixBlue() -> UIColor {
+        return UIColor(red:0.40, green:0.56, blue:0.94, alpha:1.0)
     }
 }

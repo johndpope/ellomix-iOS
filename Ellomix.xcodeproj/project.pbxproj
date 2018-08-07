@@ -382,7 +382,6 @@
 		E379E6201E08B69500B0256F /* Ellomix */ = {
 			isa = PBXGroup;
 			children = (
-				16C583BE211908AC0035BE35 /* Ellomix.entitlements */,
 				DB5FB81320E1FE9D00345BAC /* Models */,
 				DB5FB81120E1FD4100345BAC /* Views */,
 				DB5FB81020E1FBAF00345BAC /* Controllers */,
@@ -392,6 +391,7 @@
 				DB5FB81520E1FEFE00345BAC /* Extensions */,
 				DBF94414205F5CFA0047A1EB /* Spotify Frameworks */,
 				E379E62D1E08B69500B0256F /* Info.plist */,
+				16C583BE211908AC0035BE35 /* Ellomix.entitlements */,
 				BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */,
 				E330802C1E342F2B0046D58F /* Bridging-Header.h */,
 				E379E6211E08B69500B0256F /* AppDelegate.swift */,
@@ -496,7 +496,7 @@
 				TargetAttributes = {
 					E379E61D1E08B69500B0256F = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 6T6766AMSR;
+						DevelopmentTeam = QFBNLQV3XJ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -952,7 +952,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ellomix/Ellomix.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6T6766AMSR;
+				DEVELOPMENT_TEAM = QFBNLQV3XJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -976,7 +976,7 @@
 				INFOPLIST_FILE = Ellomix/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.EllomixKev;
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.Ellomix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -990,7 +990,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ellomix/Ellomix.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 6T6766AMSR;
+				DEVELOPMENT_TEAM = QFBNLQV3XJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1014,7 +1014,7 @@
 				INFOPLIST_FILE = Ellomix/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.EllomixKev;
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.Ellomix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
