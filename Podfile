@@ -11,6 +11,8 @@ target 'Ellomix' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'
+    pod 'Firebase/Messaging'
+    pod 'FirebaseInstanceID', '= 2.0.0'
     pod 'FacebookCore', '~> 0.3'
     pod 'FacebookLogin', '~> 0.3'
     pod 'SwiftyJSON'
