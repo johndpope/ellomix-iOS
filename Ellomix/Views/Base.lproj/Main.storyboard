@@ -1470,10 +1470,21 @@
                             <outlet property="delegate" destination="dgc-TA-EeW" id="S26-Rf-ZuS"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="3xW-SK-mKt" kind="presentation" identifier="toAddSongsToPlaylist" id="ZnQ-5b-fH7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOF-va-fF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4822" y="1052"/>
+        </scene>
+        <!--SearchSongs-->
+        <scene sceneID="dLO-Yh-9Le">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SearchSongs" id="3xW-SK-mKt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SB5-KI-aw4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5514" y="1051"/>
         </scene>
         <!--Get Started View Controller-->
         <scene sceneID="GvW-GO-UIT">
@@ -1734,14 +1745,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellomix_logo" translatesAutoresizingMaskIntoConstraints="NO" id="9gG-Zp-5dU">
-                                <rect key="frame" x="102" y="113" width="170" height="170"/>
+                                <rect key="frame" x="102" y="69" width="170" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="Fca-bk-uvM"/>
                                     <constraint firstAttribute="width" constant="170" id="Zcz-KG-ayh"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="735" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIY-ts-hFd">
-                                <rect key="frame" x="30" y="376" width="314" height="16"/>
+                                <rect key="frame" x="30" y="332" width="314" height="60"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Log in with Facebook">
@@ -1783,7 +1794,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" image="ellomix_logo" translatesAutoresizingMaskIntoConstraints="NO" id="tiM-4K-eoh">
-                                <rect key="frame" x="102" y="102" width="170" height="170"/>
+                                <rect key="frame" x="102" y="58" width="170" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="170" id="RsP-ft-WV6"/>
                                     <constraint firstAttribute="height" constant="170" id="opq-FG-l96"/>
@@ -1791,7 +1802,7 @@
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QUb-aP-vd7">
-                                <rect key="frame" x="32" y="302" width="311" height="209"/>
+                                <rect key="frame" x="32" y="258" width="311" height="253"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <string key="text">Thank you for using Ellomx. Ellomix is a service provided by Ellomix LLC. There are no age restriction in order to use Ellomix. If you are considered a minor in your country you must have your parent or legal guardian's permission to use Ellomix. The content provided on Ellomix is done through the use of Youtube, Spotify and Soundcloud, where all provider's terms of services have been met.If there is a change in these terms of service there will be a 30 day notice before the new changes go into effect. Thank you for using Ellomix!</string>
@@ -2426,6 +2437,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wpc-gh-sEA"/>
-        <segue reference="KcT-l4-FZP"/>
+        <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -46,6 +46,8 @@
 		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
 		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
+		DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */; };
+		DBAC7BC4211D38AB0008978E /* SearchSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */; };
 		DBB727E420AA91AC00419789 /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB727E320AA91AC00419789 /* SplashController.swift */; };
 		DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */; };
 		DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */; };
@@ -140,6 +142,8 @@
 		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
 		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
+		DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchSongs.storyboard; sourceTree = "<group>"; };
+		DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSongsTableViewController.swift; sourceTree = "<group>"; };
 		DBB727E320AA91AC00419789 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		DBB85B102068A2EB00E99648 /* SentChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentChatTableViewCell.swift; sourceTree = "<group>"; };
 		DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */,
 				BA3669A8205F431200DC4D54 /* SettingsViewController.swift */,
 				BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */,
+				DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 			children = (
 				DB5FB81220E1FD6600345BAC /* Cells */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */,
 				E379E62A1E08B69500B0256F /* LaunchScreen.storyboard */,
 				DB2FE5CD20DA0CEA0018E402 /* RoundImageView.swift */,
 			);
@@ -551,6 +557,7 @@
 				BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */,
 				DBEA17D520EB392100A9294A /* SwitchTableViewCell.xib in Resources */,
 				E379E6291E08B69500B0256F /* Assets.xcassets in Resources */,
+				DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */,
 				E379E6271E08B69500B0256F /* Main.storyboard in Resources */,
 				DBEA17D320EB328C00A9294A /* LabelTableViewCell.xib in Resources */,
 			);
@@ -763,6 +770,7 @@
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */,
+				DBAC7BC4211D38AB0008978E /* SearchSongsTableViewController.swift in Sources */,
 				DB2FE5CE20DA0CEA0018E402 /* RoundImageView.swift in Sources */,
 				E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */,
 				DBF40DB120996B70000AD390 /* SearchTableViewPeopleCell.swift in Sources */,

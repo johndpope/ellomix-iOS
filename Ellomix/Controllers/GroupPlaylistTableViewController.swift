@@ -35,16 +35,19 @@ class GroupPlaylistTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if (songs.count == 0) {
-            emptyPlaylistButton = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
+            emptyPlaylistButton = UIButton(frame: CGRect(x: 0, y: 50, width: 150, height: 50))
             emptyPlaylistButton.setTitle("Add Songs", for: .normal)
             emptyPlaylistButton.backgroundColor = UIColor.ellomixBlue()
             emptyPlaylistButton.circular()
             emptyPlaylistButton.center = tableView.center
+            emptyPlaylistButton.addTarget(self, action: #selector(addSongsButtonClicked), for: .touchUpInside)
             emptyPlaylistView.addSubview(emptyPlaylistButton)
             
-//            emptyPlaylistLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-//            emptyPlaylistLabel.text = "Put the group on to some new songs."
-//            emptyPlaylistView.addSubview(emptyPlaylistLabel)
+            emptyPlaylistLabel = UILabel(frame: CGRect(x: 0, y: emptyPlaylistButton.frame.origin.y - 100, width: tableView.bounds.size.width, height: 100))
+            emptyPlaylistLabel.textAlignment = .center
+            emptyPlaylistLabel.font = UIFont.boldSystemFont(ofSize: 16)
+            emptyPlaylistLabel.text = "Put the group on to some new songs."
+            emptyPlaylistView.addSubview(emptyPlaylistLabel)
             
             tableView.backgroundView = emptyPlaylistView
         } else {
@@ -53,6 +56,12 @@ class GroupPlaylistTableViewController: UITableViewController {
         
         return 1
     }
-
-
+    
+    func addSongsButtonClicked() {
+        performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
 }
