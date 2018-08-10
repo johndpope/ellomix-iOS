@@ -202,7 +202,6 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
                 }
                 self.recentlyListenedSongs.reverse()
                 self.currentUser?.recentlyListenedSongs = self.recentlyListenedSongs.reversed()
-                print(self.currentUser?.recentlyListenedSongs)
                 self.collectionView.reloadData()
                 self.verticalLayoutConstraint.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height;
         })
