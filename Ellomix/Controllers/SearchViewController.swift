@@ -77,7 +77,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             }
         }
         
-        
         return (isSearchUserDone && filteredUsers.count == 0) ? 1 : filteredUsers.count
         
     }
@@ -148,7 +147,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     baseDelegate?.activatePlaybar(track: track)
                 }
             } else if (indexPath.section == 2) {
-                if songs["Youtube"]!.count > 0 {
+                if songs["YouTube"]!.count > 0 {
                     let track = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
                     baseDelegate?.activatePlaybar(track: track)
                 }
