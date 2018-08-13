@@ -26,6 +26,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     var isSearchYTDone = false // Youtube search flag
     var isSearchUserDone = false //user filter flag
     
+    let searchLimit = 3
+    
     var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
     private var FirebaseAPI: FirebaseApi!
@@ -61,6 +63,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         }
     }
     
+    
+    
     //MARK: TableView functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Check if download is complete and check if the result is zero (aka create a cell with "No search results." label
@@ -70,10 +74,23 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 return spotifySongCount
             } else if (section == 1) {
                 let soundcloudSongCount = songs["Soundcloud"]!.count
-                return (isSearchSCDone && soundcloudSongCount == 0) ? 1 : soundcloudSongCount
+                if isSearchSCDone {
+                    if soundcloudSongCount == 0 {
+                        return 1
+                    }
+                    return soundcloudSongCount > searchLimit ? searchLimit : soundcloudSongCount
+                }
+                return soundcloudSongCount
+                
             } else {
                 let youtubeSongCount = songs["YouTube"]!.count
-                return (isSearchYTDone && youtubeSongCount == 0) ? 1 : youtubeSongCount
+                if isSearchYTDone {
+                    if youtubeSongCount == 0 {
+                        return 1
+                    }
+                    return youtubeSongCount > searchLimit ? searchLimit : youtubeSongCount
+                }
+                return youtubeSongCount
             }
         }
         
