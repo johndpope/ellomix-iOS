@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TrackTableViewCell" customModule="Ellomix" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BrN-d6-AS2">
+                    <rect key="frame" x="8" y="5" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="BrN-d6-AS2" secondAttribute="height" multiplier="1:1" id="kA0-cl-a0j"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czi-D4-66m">
+                    <rect key="frame" x="66" y="10" width="268" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="BrN-d6-AS2" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="E44-Vc-GsY"/>
+                <constraint firstItem="BrN-d6-AS2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="Es2-he-8bd"/>
+                <constraint firstItem="BrN-d6-AS2" firstAttribute="top" secondItem="Czi-D4-66m" secondAttribute="bottom" constant="-26" id="KUT-ik-Rnf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="BrN-d6-AS2" secondAttribute="bottom" constant="5" id="N7k-HQ-Id3"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Czi-D4-66m" secondAttribute="trailing" constant="41" id="fq4-n2-Rx2"/>
+                <constraint firstItem="Czi-D4-66m" firstAttribute="leading" secondItem="BrN-d6-AS2" secondAttribute="trailing" constant="8" id="lmT-oj-fVl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="trackThumbnail" destination="BrN-d6-AS2" id="xjI-Xu-dUW"/>
+                <outlet property="trackTitle" destination="Czi-D4-66m" id="Xct-ED-Kgj"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </view>
+    </objects>
+</document>
