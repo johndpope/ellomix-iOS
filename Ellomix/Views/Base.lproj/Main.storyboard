@@ -2258,7 +2258,7 @@
         <!--Pop Up Player-->
         <scene sceneID="5JA-RM-YmQ">
             <objects>
-                <viewController storyboardIdentifier="popUpPlayerController" title="Pop Up Player" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xTc-iN-yhZ" customClass="PopUpPlayerController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popUpPlayerController" title="Pop Up Player" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xTc-iN-yhZ" customClass="PopUpPlayerController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xaP-l8-g24"/>
                         <viewControllerLayoutGuide type="bottom" id="sDK-t6-iZQ"/>
@@ -2329,6 +2329,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="dbe-m0-khX" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leadingMargin" id="BPO-Rk-0Ft"/>
                             <constraint firstAttribute="trailing" secondItem="fY8-to-qf7" secondAttribute="trailing" id="C1S-W8-aQb"/>
@@ -2356,6 +2357,9 @@
                             <constraint firstItem="LqT-eZ-bJY" firstAttribute="top" secondItem="mmj-ks-Nqg" secondAttribute="bottom" constant="7" id="tpO-ef-p4Q"/>
                             <constraint firstItem="1fG-Qe-QmX" firstAttribute="leading" secondItem="QVl-gY-VqO" secondAttribute="leading" constant="-2" id="vkQ-qS-2yK"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="mVb-Di-Adj" appends="YES" id="KKZ-Vi-tfu"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="artistField" destination="LqT-eZ-bJY" id="J4T-DS-dSv"/>
@@ -2365,6 +2369,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQR-eR-30N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="mVb-Di-Adj">
+                    <connections>
+                        <action selector="panGestureHandler:" destination="xTc-iN-yhZ" id="uRA-Gx-Vqb"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-639.13043478260875" y="2460.326086956522"/>
         </scene>
