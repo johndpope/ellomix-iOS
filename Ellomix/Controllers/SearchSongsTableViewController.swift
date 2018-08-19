@@ -30,6 +30,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         definesPresentationContext = true
         
         tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
+        tableView.register(UINib(nibName: "SectionLabelTableViewCell", bundle: nil), forCellReuseIdentifier: "headerCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +83,34 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! SectionLabelTableViewCell
+        headerCell.label.text = sections[section]
+        
+        return headerCell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0
+        case 1:
+            if (!songs["Soundcloud"]!.isEmpty) {
+                return 75
+            }
+            
+            return 0
+        case 2:
+            if (!songs["YouTube"]!.isEmpty) {
+                return 75
+            }
+            
+            return 0
+        default:
+            return 0
+        }
     }
     
     //MARK: Searchbar
