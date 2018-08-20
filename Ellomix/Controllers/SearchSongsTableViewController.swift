@@ -11,12 +11,14 @@ import UIKit
 class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
 
     private var ytService: YoutubeService!
+    private var scService: SoundcloudService!
     let searchController = UISearchController(searchResultsController: nil)
     let sections = ["Spotify", "Soundcloud", "YouTube"]
     var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
     override func viewDidLoad() {
         ytService = YoutubeService()
+        scService = SoundcloudService()
         
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
@@ -31,6 +33,11 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         
         tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
         tableView.register(UINib(nibName: "SectionLabelTableViewCell", bundle: nil), forCellReuseIdentifier: "headerCell")
+        
+        // Workaround for disabling sticky header cells
+        let dummyViewHeight = CGFloat(70)
+        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: dummyViewHeight))
+        self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +74,9 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
         
         if (indexPath.section == 1) {
-            
+            let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
+            cell.trackTitle.text = scTrack?.title
+            cell.trackThumbnail.image = scTrack?.thumbnailImage
         } else if (indexPath.section == 2) {
             let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
             cell.trackTitle.text = ytVideo?.videoTitle
@@ -119,6 +128,10 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
             let searchString = searchBar.text!
             
             clearSongs()
+            scService.search(query: searchString) { (songs) -> () in
+                self.songs["Soundcloud"] = songs
+                self.tableView.reloadData()
+            }
             ytService.search(query: searchString) { (videos) -> () in
                 self.songs["YouTube"] = videos
                 self.tableView.reloadData()

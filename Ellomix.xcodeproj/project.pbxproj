@@ -40,6 +40,7 @@
 		DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */; };
 		DB451D2320F46EC900A56EB4 /* FieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */; };
 		DB451D2520F46FF200A56EB4 /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB451D2420F46FF200A56EB4 /* FieldTableViewCell.swift */; };
+		DB49DC88212A7AEB00DB3E8B /* SoundcloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */; };
 		DB7034DB20620F41003235EB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7034DA20620F41003235EB /* Message.swift */; };
 		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
 		DB7B0BD21F7CB35300BB2707 /* SoundcloudTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */; };
@@ -141,6 +142,7 @@
 		DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldTableViewCell.xib; sourceTree = "<group>"; };
 		DB451D2420F46FF200A56EB4 /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
+		DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundcloudService.swift; sourceTree = "<group>"; };
 		DB7034DA20620F41003235EB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
 		DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundcloudTrack.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			children = (
 				BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */,
 				DB16728C2123BF2600A368FC /* YoutubeService.swift */,
+				DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				DB42B50A1FFDF28400AB7E1D /* YouTubePlayer.swift in Sources */,
 				DB451D2520F46FF200A56EB4 /* FieldTableViewCell.swift in Sources */,
 				DBC09BB220BE513A003EE29F /* Cache.swift in Sources */,
+				DB49DC88212A7AEB00DB3E8B /* SoundcloudService.swift in Sources */,
 				DB1672912123C22100A368FC /* TrackTableViewCell.swift in Sources */,
 				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
 				DB2DB00E204B7ADD00E0935A /* SearchHeaderCell.swift in Sources */,

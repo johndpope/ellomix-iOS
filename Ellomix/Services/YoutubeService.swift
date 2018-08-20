@@ -41,6 +41,7 @@ class YoutubeService {
                         if let ytVideoThumbnail = ytVideo.videoThumbnailURL, let data = try? Data(contentsOf: URL(string: ytVideoThumbnail)!) {
                             DispatchQueue.main.async {
                                 ytVideo.videoThumbnailImage = UIImage(data: data)
+                                completed(videos)
                             }
                         }
                     }
