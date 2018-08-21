@@ -14,7 +14,11 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     private var scService: SoundcloudService!
     let searchController = UISearchController(searchResultsController: nil)
     let sections = ["Spotify", "Soundcloud", "YouTube"]
-    var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
+    var songs: [String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
+    var selected: [String:[String:Bool]] = ["Spotify":[:], "Soundcloud":[:], "YouTube":[:]]
+    
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         ytService = YoutubeService()
@@ -30,6 +34,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
             tableView.tableHeaderView = searchController.searchBar
         }
         definesPresentationContext = true
+        doneButton.isEnabled = false
         
         tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
         tableView.register(UINib(nibName: "SectionLabelTableViewCell", bundle: nil), forCellReuseIdentifier: "headerCell")
@@ -52,6 +57,14 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         }
     }
     
+    @IBAction func cancelButtonClicked(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func doneButtonClicked(_ sender: Any) {
+        
+    }
+    
     //MARK: TableView functions
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -71,23 +84,66 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var type = ""
+        var id = ""
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
+        cell.selectionStyle = .none
         
         if (indexPath.section == 1) {
             let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
             cell.trackTitle.text = scTrack?.title
             cell.trackThumbnail.image = scTrack?.thumbnailImage
+            id = scTrack!.id!
+            type = "Soundcloud"
         } else if (indexPath.section == 2) {
             let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
             cell.trackTitle.text = ytVideo?.videoTitle
             cell.trackThumbnail.image = ytVideo?.videoThumbnailImage
+            id = ytVideo!.videoID!
+            type = "YouTube"
+        }
+        
+        if (selected[type]![id] != nil && selected[type]![id]!) {
+            cell.trackTitle.isEnabled = false
+            cell.trackThumbnail.alpha = 0.5
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        } else {
+            cell.trackTitle.isEnabled = true
+            cell.trackThumbnail.alpha = 1.0
+            cell.accessoryType = UITableViewCellAccessoryType.none
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var type = ""
+        var id = ""
+        let cell = tableView.cellForRow(at: indexPath) as! TrackTableViewCell
         
+        if (indexPath.section == 1 && songs["Soundcloud"]!.count > 0) {
+            if let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack {
+                id = scTrack.id!
+                type = "Soundcloud"
+            }
+        } else if (indexPath.section == 2 && songs["YouTube"]!.count > 0) {
+            if let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo {
+                id = ytVideo.videoID!
+                type = "YouTube"
+            }
+        }
+        
+        if (selected[type]![id] != nil && selected[type]![id]!) {
+            cell.trackTitle.isEnabled = true
+            cell.trackThumbnail.alpha = 1.0
+            cell.accessoryType = UITableViewCellAccessoryType.none
+            selected[type]![id] = false
+        } else {
+            cell.trackTitle.isEnabled = false
+            cell.trackThumbnail.alpha = 0.5
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            selected[type]![id] = true
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
