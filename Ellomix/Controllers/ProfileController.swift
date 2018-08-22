@@ -30,6 +30,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
     var recentlyListenedSongs: [Any] = []
+    var baseDelegate:ContainerViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,6 +174,43 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             cell.thumbnail.contentMode = .scaleAspectFill
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let track = self.recentlyListenedSongs[indexPath.item] as? Dictionary<String, Any>
+        let trackSource = track!["source"] as? String
+        if trackSource == "soundcloud" {
+            let scTrack = SoundcloudTrack()
+            
+            scTrack.artist = track!["artist"] as? String
+            scTrack.title = track!["title"] as? String
+            scTrack.url = track!["stream_uri"] as? URL
+            
+            if (track!["artwork_url"] != nil) {
+                scTrack.thumbnailURL = track!["artwork_url"] as? URL
+            } else {
+                scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
+            }
+            
+            if (scTrack.thumbnailURL != nil) {
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: scTrack.thumbnailURL!) {
+                        DispatchQueue.main.async {
+                            scTrack.thumbnailImage = UIImage(data: data)
+                        }
+                    }
+                }
+            }
+//            ContainerViewController().activatePlaybar(track: scTrack)
+        } else {
+            let ytVideo = YouTubeVideo()
+            
+            ytVideo.videoChannel = track!["artist"] as? String
+            ytVideo.videoTitle = track!["title"] as? String
+            ytVideo.videoID = track!["stream_uri"] as? String
+            
+//            ContainerViewController().activatePlaybar(track: ytVideo)
+        }
     }
 
     //MARK: Navigation
