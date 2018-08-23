@@ -30,6 +30,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     private var FirebaseAPI: FirebaseApi!
     var currentUser:EllomixUser?
     var recentlyListenedSongs: [Any] = []
+    
     var baseDelegate:ContainerViewController?
     
     override func viewDidLoad() {
@@ -184,10 +185,10 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             
             scTrack.artist = track!["artist"] as? String
             scTrack.title = track!["title"] as? String
-            scTrack.url = track!["stream_uri"] as? URL
+            scTrack.url = NSURL(string: track!["stream_uri"] as! String) as URL?
             
             if (track!["artwork_url"] != nil) {
-                scTrack.thumbnailURL = track!["artwork_url"] as? URL
+                scTrack.thumbnailURL = NSURL(string: track!["artwork_url"] as! String) as URL?
             } else {
                 scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
@@ -201,15 +202,16 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
                     }
                 }
             }
-//            ContainerViewController().activatePlaybar(track: scTrack)
+            baseDelegate?.activatePlaybar(track: scTrack)
         } else {
             let ytVideo = YouTubeVideo()
             
             ytVideo.videoChannel = track!["artist"] as? String
             ytVideo.videoTitle = track!["title"] as? String
             ytVideo.videoID = track!["stream_uri"] as? String
+            ytVideo.videoThumbnailURL = track!["artwork_url"] as? String
             
-//            ContainerViewController().activatePlaybar(track: ytVideo)
+            baseDelegate?.activatePlaybar(track: ytVideo)
         }
     }
 

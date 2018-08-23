@@ -83,6 +83,10 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
                 let searchVC = navController.topViewController as! SearchViewController
                 searchVC.baseDelegate = self
             }
+            if let navController = homeTabBarVC.viewControllers?.last as? UINavigationController {
+                let profileVC = navController.topViewController as! ProfileController
+                profileVC.baseDelegate = self
+            }
         } else if let playBarVC = segue.destination as? PlayBarController {
             playBarController = playBarVC
         }
