@@ -57,11 +57,20 @@ class GroupPlaylistTableViewController: UITableViewController {
         return 1
     }
     
+    func addSongsToPlaylist(selectedSongs: [String:Dictionary<String, AnyObject>]) {
+        let tracks = selectedSongs["Spotify"]!.toArray() + selectedSongs["Soundcloud"]!.toArray() + selectedSongs["YouTube"]!.toArray()
+        print(tracks)
+    }
+    
     func addSongsButtonClicked() {
         performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if (segue.identifier == "toAddSongsToPlaylist") {
+            let navVC = segue.destination as! UINavigationController
+            let segueVC = navVC.topViewController as! SearchSongsTableViewController
+            segueVC.delegate = self
+        }
     }
 }

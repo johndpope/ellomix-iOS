@@ -92,4 +92,8 @@ class FirebaseApi {
         groupChatRef.child("users").child(uid).removeValue()
         userRef.child("groups").child(group.gid!).removeValue()
     }
+    
+    func updateGroupPlaylist(group: Group, data: Dictionary<String, AnyObject>) {
+        let groupPlaylistRef = ref.child(GROUP_PLAYLISTS).child(group.gid!)
+    }
 }

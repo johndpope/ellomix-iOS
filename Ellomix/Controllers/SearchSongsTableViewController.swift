@@ -15,7 +15,8 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     let searchController = UISearchController(searchResultsController: nil)
     let sections = ["Spotify", "Soundcloud", "YouTube"]
     var songs: [String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
-    var selected: [String:[String:Bool]] = ["Spotify":[:], "Soundcloud":[:], "YouTube":[:]]
+    var selected: [String:Dictionary<String, AnyObject>] = ["Spotify":[:], "Soundcloud":[:], "YouTube":[:]]
+    var delegate: GroupPlaylistTableViewController?
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
@@ -62,7 +63,9 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     }
     
     @IBAction func doneButtonClicked(_ sender: Any) {
-        
+        if (delegate != nil) {
+            delegate!.addSongsToPlaylist(selectedSongs: selected)
+        }
     }
     
     //MARK: TableView functions
@@ -103,7 +106,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
             type = "YouTube"
         }
         
-        if (selected[type]![id] != nil && selected[type]![id]!) {
+        if (selected[type]![id] != nil) {
             cell.trackTitle.isEnabled = false
             cell.trackThumbnail.alpha = 0.5
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
@@ -119,30 +122,54 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var type = ""
         var id = ""
+        var track: AnyObject?
         let cell = tableView.cellForRow(at: indexPath) as! TrackTableViewCell
         
         if (indexPath.section == 1 && songs["Soundcloud"]!.count > 0) {
             if let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack {
-                id = scTrack.id!
                 type = "Soundcloud"
+                id = scTrack.id!
+                track = [
+                    "artist": scTrack.artist,
+                    "title": scTrack.title,
+                    "artwork_url": scTrack.thumbnailURL?.absoluteString,
+                    "stream_uri": scTrack.url?.absoluteString,
+                    "source": "soundcloud"
+                ] as AnyObject
             }
         } else if (indexPath.section == 2 && songs["YouTube"]!.count > 0) {
             if let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo {
-                id = ytVideo.videoID!
                 type = "YouTube"
+                id = ytVideo.videoID!
+                track = [
+                    "artist": ytVideo.videoChannel,
+                    "title": ytVideo.videoTitle,
+                    "artwork_url": ytVideo.videoThumbnailURL,
+                    "stream_uri": ytVideo.videoID,
+                    "source": "youtube"
+                ] as AnyObject
             }
         }
         
-        if (selected[type]![id] != nil && selected[type]![id]!) {
+        if (selected[type]![id] != nil) {
             cell.trackTitle.isEnabled = true
             cell.trackThumbnail.alpha = 1.0
             cell.accessoryType = UITableViewCellAccessoryType.none
-            selected[type]![id] = false
+            selected[type]!.removeValue(forKey: id)
         } else {
             cell.trackTitle.isEnabled = false
             cell.trackThumbnail.alpha = 0.5
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
-            selected[type]![id] = true
+            selected[type]![id] = track
+        }
+        
+        let spotifyEmpty = selected["Spotify"]!.values.isEmpty
+        let soundcloudEmpty = selected["Soundcloud"]!.values.isEmpty
+        let youtubeEmpty = selected["YouTube"]!.values.isEmpty
+        if (!spotifyEmpty || !soundcloudEmpty || !youtubeEmpty) {
+            doneButton.isEnabled = true
+        } else {
+            doneButton.isEnabled = false
         }
     }
     
