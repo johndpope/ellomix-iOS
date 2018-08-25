@@ -38,7 +38,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
-        self.definesPresentationContext = true
+        definesPresentationContext = true
         
         // Search bar initialization
         searchController = UISearchController(searchResultsController: nil)
@@ -47,12 +47,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         tableView.tableHeaderView = searchController?.searchBar
         searchController?.searchBar.scopeButtonTitles = searchFilters
         searchController?.searchBar.delegate = self
-        self.tableView.backgroundView = UIView()
+        tableView.backgroundView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.allUsers.removeAll()
         retrieveUsers()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        searchController?.searchBar.sizeToFit()
     }
 
     func retrieveUsers() {
@@ -262,7 +266,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        if (scope == "People") {
+        if (scope == "People" && !(searchController.searchBar.text!.isEmpty)) {
             filterUsers(searchText: searchController.searchBar.text!)
             self.tableView.reloadData()
         }

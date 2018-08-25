@@ -101,6 +101,17 @@ extension Dictionary {
         
         return arr
     }
+    
+    func toArray() ->  [Dictionary<String, AnyObject>] {
+        var arr = [Dictionary<String, AnyObject>]()
+        for (_, val) in self {
+            if let dict = val as? Dictionary<String, AnyObject> {
+                arr.append(dict)
+            }
+        }
+        
+        return arr
+    }
 }
 
 extension Date {
