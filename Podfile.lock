@@ -1,23 +1,26 @@
 PODS:
   - 1PasswordExtension (1.8.4)
   - Alamofire (4.5.1)
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
-  - FacebookCore (0.2.0):
+  - Bolts/Tasks (1.9.0)
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
+  - Fabric (1.7.11)
+  - FacebookCore (0.3.2):
     - Bolts (~> 1.8)
-    - FBSDKCoreKit (~> 4.15)
-  - FacebookLogin (0.2.0):
+    - FBSDKCoreKit (~> 4.35)
+  - FacebookLogin (0.3.2):
     - Bolts (~> 1.8)
-    - FacebookCore (~> 0.2)
-    - FBSDKCoreKit (~> 4.15)
-    - FBSDKLoginKit (~> 4.15)
-  - FBSDKCoreKit (4.27.0):
+    - FacebookCore (~> 0.3.2)
+    - FBSDKCoreKit (~> 4.35)
+    - FBSDKLoginKit (~> 4.35)
+  - FBSDKCoreKit (4.35.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.27.0):
+  - FBSDKLoginKit (4.35.0):
     - FBSDKCoreKit
   - Firebase/Auth (4.2.0):
     - Firebase/Core
@@ -28,26 +31,35 @@ PODS:
   - Firebase/Database (4.2.0):
     - Firebase/Core
     - FirebaseDatabase (= 4.0.3)
+  - Firebase/Messaging (4.2.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 2.0.3)
   - Firebase/Storage (4.2.0):
     - Firebase/Core
     - FirebaseStorage (= 2.0.2)
   - FirebaseAnalytics (4.0.3):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseAuth (4.2.0):
     - FirebaseAnalytics (~> 4.0)
-    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (4.0.7):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseDatabase (4.0.3):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - leveldb-library (~> 1.18)
   - FirebaseInstanceID (2.0.3)
+  - FirebaseMessaging (2.0.3):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
   - FirebaseStorage (2.0.2):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
@@ -55,13 +67,15 @@ PODS:
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+  - GoogleToolboxForMac/Logger (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.1)":
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1)":
     - GoogleToolboxForMac/DebugUtils (= 2.1.1)
     - GoogleToolboxForMac/Defines (= 2.1.1)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.1.1)"
   - GTMSessionFetcher/Core (1.1.12)
   - KeychainAccess (3.1.0)
   - leveldb-library (1.18.3)
@@ -70,6 +84,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Protobuf (3.6.1)
   - Soundcloud (1.1.0):
     - 1PasswordExtension (~> 1.8.3)
     - KeychainAccess (~> 3.0)
@@ -77,38 +92,73 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
-  - FacebookCore
-  - FacebookLogin
+  - Crashlytics (~> 3.10.7)
+  - Fabric (~> 1.7.11)
+  - FacebookCore (~> 0.3)
+  - FacebookLogin (~> 0.3)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/Messaging
   - Firebase/Storage
   - Soundcloud
   - SwiftyJSON
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - 1PasswordExtension
+    - Alamofire
+    - Bolts
+    - Crashlytics
+    - Fabric
+    - FacebookCore
+    - FacebookLogin
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseDatabase
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FirebaseStorage
+    - GoogleToolboxForMac
+    - GTMSessionFetcher
+    - KeychainAccess
+    - leveldb-library
+    - nanopb
+    - Protobuf
+    - Soundcloud
+    - SwiftyJSON
+
 SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
-  FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
-  FBSDKCoreKit: ebc6c5f5b3f0e72396041050e2266781a38ac587
-  FBSDKLoginKit: 887be4b7452e1c5a3cc4485ce152529965a0c41e
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  FacebookCore: fe93222bb70346730ef33b061d493e9e7a7cb1f5
+  FacebookLogin: a4e225974791c82836765a294582b4778baffc07
+  FBSDKCoreKit: 1a5b2e3ceb5ca827a53c54aa5f4a3480efff80d2
+  FBSDKLoginKit: 00a3d65d1226852f9d76dcddff01981e5e6d9c38
   Firebase: 9548cae14d69718add12d75a5b312893f7ef89c7
   FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
   FirebaseAuth: 22f8a5170f31d1f111141950590f071f35df3229
   FirebaseCore: 9a6cc1e3eaf75905390f9220596ad4fd8f92faee
   FirebaseDatabase: 03940adcac54ce30db06f1fc2136f8581734ce2c
   FirebaseInstanceID: a4fc702b5a026f7322964376047f1a3f1f7cc6ff
+  FirebaseMessaging: eaf1bfff0193170c04ea3ba3bfe983f68f893118
   FirebaseStorage: 0cca42d9b889a0227c3a50121f45a4469fc9eb27
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Soundcloud: 476ba41826b4968a963048e76303056dbe529b64
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 049f2fe827d61d90255ed5939cc693ea2821472e
+PODFILE CHECKSUM: 08f4f79dc87640d2c7dccbb07682bd8d590dbfe5
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.5.3
