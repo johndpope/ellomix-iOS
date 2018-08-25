@@ -93,7 +93,14 @@ class FirebaseApi {
         userRef.child("groups").child(group.gid!).removeValue()
     }
     
-    func updateGroupPlaylist(group: Group, data: Dictionary<String, AnyObject>) {
+    func updateGroupPlaylist(group: Group, data: [Dictionary<String, AnyObject>]) {
         let groupPlaylistRef = ref.child(GROUP_PLAYLISTS).child(group.gid!)
+        var values = Dictionary<String, AnyObject>()
+        
+        for i in 0..<data.count {
+            let key = groupPlaylistRef.childByAutoId().key
+            values[key] = data[i] as AnyObject
+        }
+        groupPlaylistRef.updateChildValues(values)
     }
 }

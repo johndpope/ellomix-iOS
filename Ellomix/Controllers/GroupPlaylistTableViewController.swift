@@ -10,14 +10,15 @@ import UIKit
 
 class GroupPlaylistTableViewController: UITableViewController {
     
+    private var FirebaseAPI: FirebaseApi!
+    var group: Group!
     var emptyPlaylistButton = UIButton()
     var emptyPlaylistLabel = UILabel()
     var emptyPlaylistView = UIView()
-
     var songs = [Dictionary<String, AnyObject>]()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        FirebaseAPI = FirebaseApi()
     }
 
     //MARK: TableView functions
@@ -58,8 +59,13 @@ class GroupPlaylistTableViewController: UITableViewController {
     }
     
     func addSongsToPlaylist(selectedSongs: [String:Dictionary<String, AnyObject>]) {
-        let tracks = selectedSongs["Spotify"]!.toArray() + selectedSongs["Soundcloud"]!.toArray() + selectedSongs["YouTube"]!.toArray()
-        print(tracks)
+        var tracks = selectedSongs["Spotify"]!.toArray() + selectedSongs["Soundcloud"]!.toArray() + selectedSongs["YouTube"]!.toArray()
+        var order = songs.count
+        for i in 0..<tracks.count {
+            tracks[i]["order"] = order as AnyObject
+            order += 1
+        }
+        FirebaseAPI.updateGroupPlaylist(group: group, data: tracks)
     }
     
     func addSongsButtonClicked() {

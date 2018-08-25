@@ -9,7 +9,7 @@ target 'Ellomix' do
 
     pod 'Firebase/Core'
     pod 'Firebase/Performance'
-    pod 'Firebase/Database'
+    pod 'Firebase/Database', '<= 4.0.3'
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'
     pod 'Firebase/Messaging'

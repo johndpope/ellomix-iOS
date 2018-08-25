@@ -286,6 +286,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 segueVC.group = groupInfo
             }
+        } else if (segue.identifier == "toGroupPlaylist") {
+            let segueVC = segue.destination as! GroupPlaylistTableViewController
+            if let groupInfo = group {
+                segueVC.group = groupInfo
+            }
         }
     }
 
