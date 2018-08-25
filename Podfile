@@ -8,6 +8,7 @@ target 'Ellomix' do
   # Pods for Ellomix
 
     pod 'Firebase/Core'
+    pod 'Firebase/Performance'
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'

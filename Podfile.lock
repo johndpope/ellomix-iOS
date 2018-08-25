@@ -34,6 +34,9 @@ PODS:
   - Firebase/Messaging (4.2.0):
     - Firebase/Core
     - FirebaseMessaging (= 2.0.3)
+  - Firebase/Performance (4.2.0):
+    - Firebase/Core
+    - FirebasePerformance (= 1.0.5)
   - Firebase/Storage (4.2.0):
     - Firebase/Core
     - FirebaseStorage (= 2.0.2)
@@ -59,6 +62,13 @@ PODS:
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
+  - FirebasePerformance (1.0.5):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.1)
   - FirebaseStorage (2.0.2):
     - FirebaseAnalytics (~> 4.0)
@@ -100,6 +110,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Messaging
+  - Firebase/Performance
   - Firebase/Storage
   - Soundcloud
   - SwiftyJSON
@@ -122,6 +133,7 @@ SPEC REPOS:
     - FirebaseDatabase
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FirebasePerformance
     - FirebaseStorage
     - GoogleToolboxForMac
     - GTMSessionFetcher
@@ -149,6 +161,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 03940adcac54ce30db06f1fc2136f8581734ce2c
   FirebaseInstanceID: a4fc702b5a026f7322964376047f1a3f1f7cc6ff
   FirebaseMessaging: eaf1bfff0193170c04ea3ba3bfe983f68f893118
+  FirebasePerformance: d0dc2a1d3dc1bca249d154cb40ee4eae25b455ad
   FirebaseStorage: 0cca42d9b889a0227c3a50121f45a4469fc9eb27
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
@@ -159,6 +172,6 @@ SPEC CHECKSUMS:
   Soundcloud: 476ba41826b4968a963048e76303056dbe529b64
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 08f4f79dc87640d2c7dccbb07682bd8d590dbfe5
+PODFILE CHECKSUM: ffb152ec89ad60ee606c74ae26f3031c1f09e93c
 
 COCOAPODS: 1.5.3
