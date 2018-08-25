@@ -15,10 +15,10 @@ target 'Ellomix' do
     pod 'Firebase/Messaging'
     pod 'Fabric', '~> 1.7.11'
     pod 'Crashlytics', '~> 3.10.7'
-    pod 'FacebookCore', '~> 0.3'
-    pod 'FacebookLogin', '~> 0.3'
+    pod 'FacebookCore', '<= 0.3'
+    pod 'FacebookLogin', '<= 0.3.0'
     pod 'SwiftyJSON'
-    pod 'Alamofire', '~> 4.3'
+    pod 'Alamofire', '<= 4.3'
     pod 'Soundcloud'
 
   target 'EllomixTests' do
