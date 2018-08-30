@@ -184,24 +184,18 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             let scTrack = SoundcloudTrack()
             
             scTrack.artist = track!["artist"] as? String
+    
             scTrack.title = track!["title"] as? String
             scTrack.url = NSURL(string: track!["stream_uri"] as! String) as URL?
             
             if (track!["artwork_url"] != nil) {
                 scTrack.thumbnailURL = NSURL(string: track!["artwork_url"] as! String) as URL?
+                let imageData = try! Data(contentsOf: scTrack.thumbnailURL!)
+                scTrack.thumbnailImage = UIImage(data: imageData)
             } else {
                 scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
             
-            if (scTrack.thumbnailURL != nil) {
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: scTrack.thumbnailURL!) {
-                        DispatchQueue.main.async {
-                            scTrack.thumbnailImage = UIImage(data: data)
-                        }
-                    }
-                }
-            }
             baseDelegate?.activatePlaybar(track: scTrack)
         } else {
             let ytVideo = YouTubeVideo()
