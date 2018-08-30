@@ -34,6 +34,10 @@ class FirebaseApi {
     func getGroupsRef() -> DatabaseReference {
         return ref.child(GROUPS)
     }
+    
+    func getGroupPlaylistsRef() -> DatabaseReference {
+        return ref.child(GROUP_PLAYLISTS)
+    }
 
     func getUsersRef() -> DatabaseReference {
         return ref.child(USERS)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class GroupPlaylistTableViewController: UITableViewController {
     
@@ -19,15 +20,49 @@ class GroupPlaylistTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
+        
+        tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadPlaylist()
+    }
+    
+    func loadPlaylist() {
+        FirebaseAPI.getGroupPlaylistsRef().child(group.gid!).observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                var track = Dictionary<String, AnyObject>()
+                track[child.key] = child.value as AnyObject
+                self.songs.append(track)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
     }
 
     //MARK: TableView functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return songs.count + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if (indexPath.row == 0) {
+            // Return playlist controls
+            return UITableViewCell()
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
+//            let track = songs[indexPath.row - 1]
+//            cell.trackTitle.text = track["title"] as? String
+//            let artworkUrl = track["artwork_url"] as? String
+//            if (artworkUrl == nil) {
+//                cell.trackThumbnail.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+//            } else {
+//                cell.trackThumbnail.downloadedFrom(link: artworkUrl!)
+//            }
+            
+            return cell
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
