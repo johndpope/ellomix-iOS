@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue-BoldItalic</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Container View Controller-->
         <scene sceneID="0on-NI-TzP">
@@ -62,6 +57,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcU-go-ZmW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-639" y="1532"/>
+        </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="wqP-3J-G9G">
+            <objects>
+                <viewController storyboardIdentifier="loadingViewController" id="Ox8-dL-TAa" customClass="LoadingViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hGd-7g-4Fo"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Gk-Ar-xpV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ybw-Yl-yPA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LkZ-kJ-A23" userLabel="Container View">
+                                <rect key="frame" x="129.5" y="276" width="115" height="114"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3aS-5r-wXt">
+                                        <rect key="frame" x="20" y="20" width="75" height="74"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="SZn-NK-M29">
+                                                <rect key="frame" x="19" y="0.0" width="37" height="37"/>
+                                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2o-DX-mXW">
+                                                <rect key="frame" x="0.0" y="37" width="75" height="37"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="3aS-5r-wXt" firstAttribute="leading" secondItem="LkZ-kJ-A23" secondAttribute="leading" constant="20" id="E3n-WM-UWa"/>
+                                    <constraint firstItem="3aS-5r-wXt" firstAttribute="top" secondItem="LkZ-kJ-A23" secondAttribute="top" constant="20" id="I7Y-z0-kHu"/>
+                                    <constraint firstAttribute="bottom" secondItem="3aS-5r-wXt" secondAttribute="bottom" constant="20" id="O6r-1g-nUT"/>
+                                    <constraint firstAttribute="trailing" secondItem="3aS-5r-wXt" secondAttribute="trailing" constant="20" id="VWN-fp-5rf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LkZ-kJ-A23" firstAttribute="centerY" secondItem="ybw-Yl-yPA" secondAttribute="centerY" id="7wM-dz-Ym5"/>
+                            <constraint firstItem="LkZ-kJ-A23" firstAttribute="centerX" secondItem="ybw-Yl-yPA" secondAttribute="centerX" id="NwE-14-bjl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="LkZ-kJ-A23" id="ag2-xr-CO8"/>
+                        <outlet property="loadingIndicator" destination="SZn-NK-M29" id="PiJ-GW-whK"/>
+                        <outlet property="messageLabel" destination="q2o-DX-mXW" id="CH9-ai-gKI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2fi-eU-1Jd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1462" y="809"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1079,7 +1130,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbc-Rz-LXB">
-                                                    <rect key="frame" x="1" y="9" width="73" height="21"/>
+                                                    <rect key="frame" x="1" y="6" width="73" height="26.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="OYA-pw-p3S"/>
                                                     </constraints>
@@ -1088,7 +1139,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OfJ-eK-njM">
-                                                    <rect key="frame" x="88" y="6" width="286" height="30"/>
+                                                    <rect key="frame" x="88" y="3.5" width="286" height="35"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
