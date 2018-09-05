@@ -1522,13 +1522,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gko-wI-Rok">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="playlistControlsCell" rowHeight="80" id="gko-wI-Rok" customClass="GroupPlaylistControlsTableViewCell" customModule="Ellomix" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gko-wI-Rok" id="9en-21-eqd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxd-70-MA3">
+                                            <rect key="frame" x="40" y="15" width="120" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="OYZ-al-n84"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <state key="normal" title="Play"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnQ-kI-25U">
+                                            <rect key="frame" x="215" y="15" width="120" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="obk-XI-keH"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <state key="normal" title="Shuffle"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="TnQ-kI-25U" firstAttribute="centerY" secondItem="Pxd-70-MA3" secondAttribute="centerY" id="2UL-fV-EDG"/>
+                                        <constraint firstAttribute="bottom" secondItem="Pxd-70-MA3" secondAttribute="bottom" constant="15" id="8KZ-SN-uzf"/>
+                                        <constraint firstItem="Pxd-70-MA3" firstAttribute="top" secondItem="9en-21-eqd" secondAttribute="top" constant="15" id="BYe-4v-f8W"/>
+                                        <constraint firstAttribute="trailing" secondItem="TnQ-kI-25U" secondAttribute="trailing" constant="40" id="bCR-X3-9qD"/>
+                                        <constraint firstItem="TnQ-kI-25U" firstAttribute="top" secondItem="Pxd-70-MA3" secondAttribute="top" id="eL8-K2-JDb"/>
+                                        <constraint firstItem="Pxd-70-MA3" firstAttribute="leading" secondItem="9en-21-eqd" secondAttribute="leading" constant="40" id="qcb-eJ-o8J"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="playButton" destination="Pxd-70-MA3" id="HjW-GH-Ejo"/>
+                                    <outlet property="shuffleButton" destination="TnQ-kI-25U" id="xy0-nk-dYc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1542,7 +1572,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOF-va-fF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4822" y="1052"/>
+            <point key="canvasLocation" x="4821.6000000000004" y="1051.1244377811095"/>
         </scene>
         <!--SearchSongs-->
         <scene sceneID="dLO-Yh-9Le">
