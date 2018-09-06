@@ -656,6 +656,14 @@
             </objects>
             <point key="canvasLocation" x="812" y="-705"/>
         </scene>
+        <!--SeeAll-->
+        <scene sceneID="b1q-29-X1g">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SeeAll" id="Dh3-gd-PnT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jML-rw-86d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1290" y="2726"/>
+        </scene>
         <!--Search-->
         <scene sceneID="4cV-9I-B29">
             <objects>
@@ -818,6 +826,9 @@
                                             <state key="normal" title="See All">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="Dh3-gd-PnT" kind="presentation" id="2SG-Al-vtk"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
