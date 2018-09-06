@@ -46,6 +46,10 @@ class GroupPlaylistTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "playlistControlsCell") as! GroupPlaylistControlsTableViewCell
+            let border = CALayer()
+            border.frame = CGRect.init(x: 0, y: cell.frame.height - 1, width: tableView.frame.width, height: 1)
+            border.backgroundColor = UIColor.lightGray.cgColor
+            cell.layer.addSublayer(border)
 
             return cell
         } else {
@@ -84,11 +88,13 @@ class GroupPlaylistTableViewController: UITableViewController {
             emptyPlaylistView.addSubview(emptyPlaylistLabel)
             
             tableView.backgroundView = emptyPlaylistView
+            
+            return 0
         } else {
             tableView.backgroundView = nil
+            
+            return 1
         }
-        
-        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,6 +116,10 @@ class GroupPlaylistTableViewController: UITableViewController {
     }
     
     func addSongsButtonClicked() {
+        performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
+    }
+    
+    @IBAction func barAddSongsButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
     }
     

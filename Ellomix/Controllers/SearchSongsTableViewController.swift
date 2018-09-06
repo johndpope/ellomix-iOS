@@ -65,6 +65,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     @IBAction func doneButtonClicked(_ sender: Any) {
         if (delegate != nil) {
             delegate!.addSongsToPlaylist(selectedSongs: selected)
+            dismiss(animated: true, completion: nil)
         }
     }
     

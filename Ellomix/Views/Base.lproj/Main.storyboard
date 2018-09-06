@@ -1513,7 +1513,7 @@
             </objects>
             <point key="canvasLocation" x="4082.6086956521744" y="809.51086956521749"/>
         </scene>
-        <!--Group Playlist Table View Controller-->
+        <!--Playlist-->
         <scene sceneID="SLn-bA-c5o">
             <objects>
                 <tableViewController id="dgc-TA-EeW" customClass="GroupPlaylistTableViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
@@ -1530,17 +1530,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxd-70-MA3">
-                                            <rect key="frame" x="40" y="15" width="120" height="50"/>
+                                            <rect key="frame" x="25" y="15" width="150" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="OYZ-al-n84"/>
+                                                <constraint firstAttribute="width" constant="150" id="OYZ-al-n84"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Play"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnQ-kI-25U">
-                                            <rect key="frame" x="215" y="15" width="120" height="50"/>
+                                            <rect key="frame" x="200" y="15" width="150" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="obk-XI-keH"/>
+                                                <constraint firstAttribute="width" constant="150" id="obk-XI-keH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Shuffle"/>
@@ -1550,9 +1550,9 @@
                                         <constraint firstItem="TnQ-kI-25U" firstAttribute="centerY" secondItem="Pxd-70-MA3" secondAttribute="centerY" id="2UL-fV-EDG"/>
                                         <constraint firstAttribute="bottom" secondItem="Pxd-70-MA3" secondAttribute="bottom" constant="15" id="8KZ-SN-uzf"/>
                                         <constraint firstItem="Pxd-70-MA3" firstAttribute="top" secondItem="9en-21-eqd" secondAttribute="top" constant="15" id="BYe-4v-f8W"/>
-                                        <constraint firstAttribute="trailing" secondItem="TnQ-kI-25U" secondAttribute="trailing" constant="40" id="bCR-X3-9qD"/>
+                                        <constraint firstAttribute="trailing" secondItem="TnQ-kI-25U" secondAttribute="trailing" constant="25" id="bCR-X3-9qD"/>
                                         <constraint firstItem="TnQ-kI-25U" firstAttribute="top" secondItem="Pxd-70-MA3" secondAttribute="top" id="eL8-K2-JDb"/>
-                                        <constraint firstItem="Pxd-70-MA3" firstAttribute="leading" secondItem="9en-21-eqd" secondAttribute="leading" constant="40" id="qcb-eJ-o8J"/>
+                                        <constraint firstItem="Pxd-70-MA3" firstAttribute="leading" secondItem="9en-21-eqd" secondAttribute="leading" constant="25" id="qcb-eJ-o8J"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1566,6 +1566,13 @@
                             <outlet property="delegate" destination="dgc-TA-EeW" id="S26-Rf-ZuS"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Playlist" id="Zkv-Fa-5Kv">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="aNt-rY-YtL">
+                            <connections>
+                                <action selector="barAddSongsButtonClicked:" destination="dgc-TA-EeW" id="8mD-qy-Oe7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="3xW-SK-mKt" kind="presentation" identifier="toAddSongsToPlaylist" id="ZnQ-5b-fH7"/>
                     </connections>
@@ -2541,7 +2548,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wpc-gh-sEA"/>
+        <segue reference="NQM-Qj-Y2t"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>
