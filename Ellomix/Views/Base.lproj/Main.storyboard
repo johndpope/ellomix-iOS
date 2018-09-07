@@ -659,7 +659,9 @@
         <!--SeeAll-->
         <scene sceneID="b1q-29-X1g">
             <objects>
-                <viewControllerPlaceholder storyboardName="SeeAll" id="Dh3-gd-PnT" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SeeAll" id="Dh3-gd-PnT" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="qoI-Ff-xJS"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jML-rw-86d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1290" y="2726"/>
@@ -827,7 +829,7 @@
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <segue destination="Dh3-gd-PnT" kind="presentation" id="2SG-Al-vtk"/>
+                                                <segue destination="Dh3-gd-PnT" kind="push" id="Rz3-D4-jQS"/>
                                             </connections>
                                         </button>
                                     </subviews>
