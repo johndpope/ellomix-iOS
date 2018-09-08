@@ -12,6 +12,7 @@ import Firebase
 class GroupPlaylistTableViewController: UITableViewController {
     
     private var FirebaseAPI: FirebaseApi!
+    private var groupPlaylistRefHandle: DatabaseHandle?
     var group: Group!
     var emptyPlaylistButton = UIButton()
     var emptyPlaylistLabel = UILabel()
@@ -25,13 +26,22 @@ class GroupPlaylistTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadPlaylist()
+        if (groupPlaylistRefHandle == nil) {
+            loadPlaylist()
+        }
+    }
+    
+    deinit {
+        if let refHandle = groupPlaylistRefHandle {
+            FirebaseAPI.getGroupPlaylistsRef().child(group.gid!).removeObserver(withHandle: refHandle)
+        }
     }
     
     func loadPlaylist() {
-        FirebaseAPI.getGroupPlaylistsRef().child(group.gid!).queryOrdered(byChild: "order").observe(.childAdded, with: { (snapshot) in
+        groupPlaylistRefHandle = FirebaseAPI.getGroupPlaylistsRef().child(group.gid!).observe(.childAdded, with: { (snapshot) in
             let track = snapshot.value as! Dictionary<String, AnyObject>
             self.songs.append(track)
+            self.songs = self.songs.sorted {($0["order"]! as! Int) < ($1["order"]! as! Int)}
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
