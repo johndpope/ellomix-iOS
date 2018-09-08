@@ -97,7 +97,7 @@ class FirebaseApi {
         userRef.child("groups").child(group.gid!).removeValue()
     }
     
-    func updateGroupPlaylist(group: Group, data: [Dictionary<String, AnyObject>]) {
+    func addToGroupPlaylist(group: Group, data: [Dictionary<String, AnyObject>]) {
         let groupPlaylistRef = ref.child(GROUP_PLAYLISTS).child(group.gid!)
         var values = Dictionary<String, AnyObject>()
         
@@ -106,5 +106,22 @@ class FirebaseApi {
             values[key] = data[i] as AnyObject
         }
         groupPlaylistRef.updateChildValues(values)
+    }
+    
+    func orderGroupPlaylist(group: Group, data: [Dictionary<String, AnyObject>]) {
+        let groupPlaylistRef = ref.child(GROUP_PLAYLISTS).child(group.gid!)
+        
+        for track in data {
+            let key = track["key"] as! String
+            let order = track["order"] as! Int
+            groupPlaylistRef.child(key).child("order").setValue(order)
+        }
+    }
+    
+    func removeFromGroupPlaylist(group: Group, key: String, data: [Dictionary<String, AnyObject>]) {
+        let groupPlaylistRef = ref.child(GROUP_PLAYLISTS).child(group.gid!)
+        
+        groupPlaylistRef.child(key).removeValue()
+        orderGroupPlaylist(group: group, data: data)
     }
 }

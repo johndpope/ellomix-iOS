@@ -39,7 +39,8 @@ class GroupPlaylistTableViewController: UITableViewController {
     
     func loadPlaylist() {
         groupPlaylistRefHandle = FirebaseAPI.getGroupPlaylistsRef().child(group.gid!).observe(.childAdded, with: { (snapshot) in
-            let track = snapshot.value as! Dictionary<String, AnyObject>
+            var track = snapshot.value as! Dictionary<String, AnyObject>
+            track["key"] = snapshot.key as AnyObject
             self.songs.append(track)
             self.songs = self.songs.sorted {($0["order"]! as! Int) < ($1["order"]! as! Int)}
             DispatchQueue.main.async {
@@ -114,6 +115,25 @@ class GroupPlaylistTableViewController: UITableViewController {
         
         return 50
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (indexPath.row == 0) {
+            return false
+        }
+        
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            let track = songs.remove(at: indexPath.row - 1)
+            for i in 0..<songs.count {
+                songs[i]["order"] = i as AnyObject
+            }
+            FirebaseAPI.removeFromGroupPlaylist(group: group, key: track["key"] as! String, data: songs)
+            tableView.reloadData()
+        }
+    }
 
     func addSongsToPlaylist(selectedSongs: [String:Dictionary<String, AnyObject>]) {
         var tracks = selectedSongs["Spotify"]!.toArray() + selectedSongs["Soundcloud"]!.toArray() + selectedSongs["YouTube"]!.toArray()
@@ -122,7 +142,7 @@ class GroupPlaylistTableViewController: UITableViewController {
             tracks[i]["order"] = order as AnyObject
             order += 1
         }
-        FirebaseAPI.updateGroupPlaylist(group: group, data: tracks)
+        FirebaseAPI.addToGroupPlaylist(group: group, data: tracks)
     }
     
     func addSongsButtonClicked() {
