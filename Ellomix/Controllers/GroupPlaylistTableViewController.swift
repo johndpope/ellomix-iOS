@@ -14,6 +14,9 @@ class GroupPlaylistTableViewController: UITableViewController {
     private var FirebaseAPI: FirebaseApi!
     private var groupPlaylistRefHandle: DatabaseHandle?
     var group: Group!
+    var cellSnapShot: UIView?
+    var initialIndexPath: IndexPath?
+    var hideCellAllowed: Bool!
     var emptyPlaylistButton = UIButton()
     var emptyPlaylistLabel = UILabel()
     var emptyPlaylistView = UIView()
@@ -21,6 +24,9 @@ class GroupPlaylistTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
+        
+        let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
+        tableView.addGestureRecognizer(longpress)
         
         tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
     }
@@ -133,6 +139,82 @@ class GroupPlaylistTableViewController: UITableViewController {
             FirebaseAPI.removeFromGroupPlaylist(group: group, key: track["key"] as! String, data: songs)
             tableView.reloadData()
         }
+    }
+    
+    //MARK: LongPress functions
+    func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+        let longpress = gestureRecognizer as! UILongPressGestureRecognizer
+        let state = longpress.state
+        let locationInView = longpress.location(in: self.tableView)
+        var indexPath = tableView.indexPathForRow(at: locationInView)
+        hideCellAllowed = true
+        
+        switch state {
+        case .began:
+            if (indexPath != nil) {
+                initialIndexPath = indexPath
+                let cell = self.tableView.cellForRow(at: indexPath!) as! TrackTableViewCell
+                cellSnapShot = snapshopOfCell(inputView: cell)
+                var center = cell.center
+                cellSnapShot?.center = center
+                cellSnapShot?.alpha = 0.0
+                tableView.addSubview(cellSnapShot!)
+                
+                UIView.animate(withDuration: 0.25, animations: {
+                    center.y = locationInView.y
+                    self.cellSnapShot?.center = center
+                    self.cellSnapShot?.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                    self.cellSnapShot?.alpha = 0.98
+                    cell.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    if (finished && self.hideCellAllowed) {
+                        cell.isHidden = true
+                    }
+                })
+            }
+        case .changed:
+            var center = cellSnapShot?.center
+            center?.y = locationInView.y
+            cellSnapShot?.center = center!
+            if ((indexPath != nil) && (indexPath != initialIndexPath)) {
+                songs.swapAt((indexPath?.row)! - 1, (initialIndexPath?.row)! - 1)
+                tableView.moveRow(at: initialIndexPath!, to: indexPath!)
+                initialIndexPath = indexPath
+            }
+        default:
+            let cell = tableView.cellForRow(at: initialIndexPath!) as! TrackTableViewCell
+            hideCellAllowed = false
+            cell.isHidden = false
+            cell.alpha = 0.0
+            UIView.animate(withDuration: 0.25, animations: {
+                self.cellSnapShot?.center = cell.center
+                self.cellSnapShot?.transform = .identity
+                self.cellSnapShot?.alpha = 0.0
+                cell.alpha = 1.0
+            }, completion: { (finished) -> Void in
+                if (finished) {
+                    self.initialIndexPath = nil
+                    self.cellSnapShot?.removeFromSuperview()
+                    self.cellSnapShot = nil
+                }
+            })
+        }
+        
+    }
+    
+    func snapshopOfCell(inputView: UIView) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        let cellSnapshot : UIView = UIImageView(image: image)
+        cellSnapshot.layer.masksToBounds = false
+        cellSnapshot.layer.cornerRadius = 0.0
+        cellSnapshot.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
+        cellSnapshot.layer.shadowRadius = 5.0
+        cellSnapshot.layer.shadowOpacity = 0.4
+
+        return cellSnapshot
     }
 
     func addSongsToPlaylist(selectedSongs: [String:Dictionary<String, AnyObject>]) {
