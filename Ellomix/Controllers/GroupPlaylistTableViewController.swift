@@ -176,10 +176,15 @@ class GroupPlaylistTableViewController: UITableViewController {
             var center = cellSnapShot?.center
             center?.y = locationInView.y
             cellSnapShot?.center = center!
-            if ((indexPath != nil) && (indexPath != initialIndexPath)) {
+            if ((indexPath != nil) && (indexPath != initialIndexPath) && (indexPath!.row > 0)) {
                 songs.swapAt((indexPath?.row)! - 1, (initialIndexPath?.row)! - 1)
                 tableView.moveRow(at: initialIndexPath!, to: indexPath!)
                 initialIndexPath = indexPath
+                if (indexPath == tableView.indexPathsForVisibleRows?.last && (indexPath!.row + 1 < songs.count)) {
+                    var nextIndexPath = indexPath!
+                    nextIndexPath.row = nextIndexPath.row + 1
+                    tableView.scrollToRow(at: nextIndexPath, at: .bottom, animated: true)
+                }
             }
         default:
             let cell = tableView.cellForRow(at: initialIndexPath!) as! TrackTableViewCell
