@@ -1558,6 +1558,9 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Play"/>
+                                            <connections>
+                                                <action selector="playButtonClicked:" destination="dgc-TA-EeW" eventType="touchUpInside" id="LNI-Sw-59p"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnQ-kI-25U">
                                             <rect key="frame" x="200" y="15" width="150" height="50"/>
@@ -1566,6 +1569,9 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Shuffle"/>
+                                            <connections>
+                                                <action selector="shuffleButtonClicked:" destination="dgc-TA-EeW" eventType="touchUpInside" id="cUh-eT-5gX"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

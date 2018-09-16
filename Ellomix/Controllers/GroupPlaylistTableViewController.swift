@@ -37,6 +37,10 @@ class GroupPlaylistTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        FirebaseAPI.orderGroupPlaylist(group: group, data: songs)
+    }
+    
     deinit {
         if let refHandle = groupPlaylistRefHandle {
             FirebaseAPI.getGroupPlaylistsRef().child(group.gid!).removeObserver(withHandle: refHandle)
@@ -54,7 +58,13 @@ class GroupPlaylistTableViewController: UITableViewController {
             }
         })
     }
-
+    
+    @IBAction func playButtonClicked(_ sender: Any) {
+    }
+    
+    @IBAction func shuffleButtonClicked(_ sender: Any) {
+    }
+    
     //MARK: TableView functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count + 1
@@ -177,13 +187,24 @@ class GroupPlaylistTableViewController: UITableViewController {
             center?.y = locationInView.y
             cellSnapShot?.center = center!
             if ((indexPath != nil) && (indexPath != initialIndexPath) && (indexPath!.row > 0)) {
-                songs.swapAt((indexPath?.row)! - 1, (initialIndexPath?.row)! - 1)
+                let newRow = (indexPath?.row)! - 1
+                let initialRow = (initialIndexPath?.row)! - 1
+                songs.swapAt(newRow, initialRow)
+                let oldOrder = songs[newRow]["order"]
+                songs[newRow]["order"] = songs[initialRow]["order"]
+                songs[initialRow]["order"] = oldOrder
                 tableView.moveRow(at: initialIndexPath!, to: indexPath!)
                 initialIndexPath = indexPath
-                if (indexPath == tableView.indexPathsForVisibleRows?.last && (indexPath!.row + 1 < songs.count)) {
+
+                // Handle autoscroll
+                if ((indexPath == tableView.indexPathsForVisibleRows?.last) && (indexPath!.row + 1 <= songs.count)) {
                     var nextIndexPath = indexPath!
                     nextIndexPath.row = nextIndexPath.row + 1
                     tableView.scrollToRow(at: nextIndexPath, at: .bottom, animated: true)
+                } else if (((tableView.indexPathsForVisibleRows?.first?.row)! > 0) && (indexPath!.row - 1 == (tableView.indexPathsForVisibleRows?.first?.row)!)) {
+                    var prevIndexPath = indexPath!
+                    prevIndexPath.row = prevIndexPath.row - 1
+                    tableView.scrollToRow(at: prevIndexPath, at: .top, animated: true)
                 }
             }
         default:
