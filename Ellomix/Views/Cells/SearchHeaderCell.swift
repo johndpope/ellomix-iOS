@@ -13,6 +13,12 @@ class SearchHeaderCell: UITableViewCell {
     
     @IBOutlet weak var sectionTitleLabel: UILabel!
     
+    var buttonAction: ((Any) -> Void)?
+    
+    @IBAction func seeAllButtonPressed(_ sender: Any) {
+        self.buttonAction?(sender)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

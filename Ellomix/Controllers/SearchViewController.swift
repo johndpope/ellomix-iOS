@@ -30,6 +30,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     
     var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
+    var sectionForSeeAll: Int = 0
+    
     private var FirebaseAPI: FirebaseApi!
     var allUsers = [Dictionary<String, AnyObject>?]()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
@@ -205,6 +207,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         
         if (scope == "Music") {
             headerCell.sectionTitleLabel.text = sections[section]
+            headerCell.buttonAction = { sender in
+                if (headerCell.sectionTitleLabel.text == "Soundcloud") {
+                    self.sectionForSeeAll = 1
+                }
+                if (headerCell.sectionTitleLabel.text == "YouTube") {
+                    self.sectionForSeeAll = 2
+                }
+            }
         } else {
             headerCell.sectionTitleLabel.text = "People"
         }
@@ -411,6 +421,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             if let user = sender as? EllomixUser {
                 let userProfileVC = segue.destination as! ProfileController
                 userProfileVC.currentUser = user
+            }
+        }
+        if (segue.identifier == "toSeeAll") {
+            let destinationVC = segue.destination as! SeeAllTableViewController
+            destinationVC.sectionForSeeAll = sectionForSeeAll
+            //print(sectionForSeeAll) //-> Bug: have to go Back a second time to get correct Section Int
+            
+            if (destinationVC.sectionForSeeAll == 1) {
+                destinationVC.seeAllSongs = songs["Soundcloud"]!
+            }
+            if (destinationVC.sectionForSeeAll == 2) {
+                destinationVC.seeAllSongs = songs["YouTube"]!
             }
         }
     }

@@ -10,42 +10,42 @@ import UIKit
 
 class SeeAllTableViewController: UITableViewController {
 
+    var sectionForSeeAll: Int = 0
+    var seeAllSongs: [AnyObject] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.seeAllSongs.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
+        
+        if (sectionForSeeAll == 1) {
+            let scTrack = seeAllSongs[indexPath.row] as? SoundcloudTrack
+            cell.trackTitle.text = scTrack?.title
+            cell.trackThumbnail.image = scTrack?.thumbnailImage
+        } else if (sectionForSeeAll == 2) {
+            let ytVideo = seeAllSongs[indexPath.row] as? YouTubeVideo
+            cell.trackTitle.text = ytVideo?.videoTitle
+            cell.trackThumbnail.image = ytVideo?.videoThumbnailImage
+        }
+        
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -830,7 +830,8 @@
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <segue destination="Dh3-gd-PnT" kind="push" id="Rz3-D4-jQS"/>
+                                                <action selector="seeAllButtonPressed:" destination="Skh-XL-gt1" eventType="touchUpInside" id="rf6-gz-ran"/>
+                                                <segue destination="Dh3-gd-PnT" kind="push" identifier="toSeeAll" id="Rz3-D4-jQS"/>
                                             </connections>
                                         </button>
                                     </subviews>
