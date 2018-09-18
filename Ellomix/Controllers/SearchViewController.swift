@@ -210,9 +210,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             headerCell.buttonAction = { sender in
                 if (headerCell.sectionTitleLabel.text == "Soundcloud") {
                     self.sectionForSeeAll = 1
+                    self.performSegue(withIdentifier: "toSeeAll", sender: nil)
                 }
                 if (headerCell.sectionTitleLabel.text == "YouTube") {
                     self.sectionForSeeAll = 2
+                    self.performSegue(withIdentifier: "toSeeAll", sender: nil)
                 }
             }
         } else {

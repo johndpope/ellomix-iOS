@@ -831,7 +831,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="seeAllButtonPressed:" destination="Skh-XL-gt1" eventType="touchUpInside" id="rf6-gz-ran"/>
-                                                <segue destination="Dh3-gd-PnT" kind="push" identifier="toSeeAll" id="Rz3-D4-jQS"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -860,6 +859,7 @@
                     <navigationItem key="navigationItem" id="nF5-fN-bgL"/>
                     <connections>
                         <segue destination="c2z-7a-Mcr" kind="show" identifier="toProfile" id="khl-Z7-w1b"/>
+                        <segue destination="Dh3-gd-PnT" kind="push" identifier="toSeeAll" id="Ypc-Ff-ujX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3P7-RJ-OiZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
