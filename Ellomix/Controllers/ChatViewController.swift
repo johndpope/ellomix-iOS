@@ -20,6 +20,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var FirebaseAPI: FirebaseApi!
     private var messagesRefHandle: DatabaseHandle?
     var currentUser: EllomixUser?
+    var baseDelegate: ContainerViewController!
     var group: Group?
     var newChatGroup: Dictionary<String, AnyObject>?
     
@@ -288,6 +289,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         } else if (segue.identifier == "toGroupPlaylist") {
             let segueVC = segue.destination as! GroupPlaylistTableViewController
+            segueVC.baseDelegate = baseDelegate
             if let groupInfo = group {
                 segueVC.group = groupInfo
             }

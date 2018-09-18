@@ -9,17 +9,56 @@
 import UIKit
 import AVFoundation
 
-class ContainerViewController: UIViewController, YouTubePlayerDelegate {
+class ContainerViewController: UIViewController, YouTubePlayerDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var playBarView: UIView!
     
     var playBarController: PlayBarController!
     private var FirebaseAPI: FirebaseApi!
+    private var queue = [Dictionary<String, AnyObject>]()
+    private var queueIndex: Int!
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
         playBarView.isHidden = true
         playBarController.placeholderView.isHidden = true
+    }
+    
+    func playQueue(queue: [Dictionary<String, AnyObject>], startingIndex: Int) {
+        queueIndex = startingIndex
+        let track = queue[startingIndex]
+        
+        switch track["source"] as! String {
+        case "soundcloud":
+            let scTrack = SoundcloudTrack()
+            scTrack.artist = track["artist"] as? String
+            scTrack.title = track["title"] as? String
+            scTrack.url = NSURL(string: track["stream_uri"] as! String) as URL?
+            let artworkUrl = track["artwork_url"] as? String
+            
+            if (artworkUrl == nil) {
+                scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
+            } else {
+                scTrack.thumbnailURL = NSURL(string: artworkUrl!) as URL?
+                let imageData = try! Data(contentsOf: scTrack.thumbnailURL!)
+                scTrack.thumbnailImage = UIImage(data: imageData)
+            }
+            
+            activatePlaybar(track: scTrack)
+        case "youtube":
+            let ytVideo = YouTubeVideo()
+            
+            ytVideo.videoChannel = track["artist"] as? String
+            ytVideo.videoTitle = track["title"] as? String
+            ytVideo.videoID = track["stream_uri"] as? String
+            ytVideo.videoThumbnailURL = track["artwork_url"] as? String
+            
+            activatePlaybar(track: ytVideo)
+        default:
+            print("Unable to play queue.")
+        }
+        
+        self.queue = queue
     }
     
     func activatePlaybar(track: Any?) {
@@ -76,14 +115,23 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
         Global.sharedGlobal.youtubePlayer?.play()
     }
     
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Finished playing track.")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let homeTabBarVC = segue.destination as? HomeTabBarController {
+            print(homeTabBarVC.selectedIndex)
             playBarView.transform = playBarView.transform.translatedBy(x: 0, y: -homeTabBarVC.tabBar.frame.height)
-            if let navController = homeTabBarVC.viewControllers?.first as? UINavigationController {
+            if let navController = homeTabBarVC.viewControllers?[0] as? UINavigationController {
                 let searchVC = navController.topViewController as! SearchViewController
                 searchVC.baseDelegate = self
             }
-            if let navController = homeTabBarVC.viewControllers?.last as? UINavigationController {
+            if let navController = homeTabBarVC.viewControllers?[1] as? UINavigationController {
+                let chatFeedVC = navController.topViewController as! ChatFeedTableViewController
+                chatFeedVC.baseDelegate = self
+            }
+            if let navController = homeTabBarVC.viewControllers?[2] as? UINavigationController {
                 let profileVC = navController.topViewController as! ProfileController
                 profileVC.baseDelegate = self
             }

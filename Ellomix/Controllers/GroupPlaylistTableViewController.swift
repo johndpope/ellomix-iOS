@@ -13,6 +13,7 @@ class GroupPlaylistTableViewController: UITableViewController {
     
     private var FirebaseAPI: FirebaseApi!
     private var groupPlaylistRefHandle: DatabaseHandle?
+    var baseDelegate: ContainerViewController!
     var group: Group!
     var cellSnapShot: UIView?
     var initialIndexPath: IndexPath?
@@ -60,9 +61,11 @@ class GroupPlaylistTableViewController: UITableViewController {
     }
     
     @IBAction func playButtonClicked(_ sender: Any) {
+        baseDelegate.playQueue(queue: songs, startingIndex: 0)
     }
     
     @IBAction func shuffleButtonClicked(_ sender: Any) {
+
     }
     
     //MARK: TableView functions
@@ -95,7 +98,9 @@ class GroupPlaylistTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if (indexPath.row > 0) {
+            baseDelegate.playQueue(queue: songs, startingIndex: indexPath.row - 1)
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

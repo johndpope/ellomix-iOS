@@ -15,7 +15,8 @@ class ChatFeedTableViewController: UITableViewController {
     private var currentChatObservers = Dictionary<String, DatabaseHandle>()
     private var FirebaseAPI: FirebaseApi!
 
-    var currentUser:EllomixUser?
+    var currentUser: EllomixUser?
+    var baseDelegate: ContainerViewController!
     
     var groupChats = [Group]()
 
@@ -212,6 +213,7 @@ class ChatFeedTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toChatDetail") {
             let segueVC = segue.destination as! ChatViewController
+            segueVC.baseDelegate = baseDelegate
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let group = groupChats[indexPath.row]
                 segueVC.group = group
