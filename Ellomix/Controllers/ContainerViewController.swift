@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ContainerViewController: UIViewController, YouTubePlayerDelegate, AVAudioPlayerDelegate {
+class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
     @IBOutlet weak var playBarView: UIView!
     
@@ -22,11 +22,17 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate, AVAudioP
         FirebaseAPI = FirebaseApi()
         playBarView.isHidden = true
         playBarController.placeholderView.isHidden = true
+        Global.sharedGlobal.musicPlayer.baseDelegate = self
     }
     
     func playQueue(queue: [Dictionary<String, AnyObject>], startingIndex: Int) {
+        self.queue = queue
         queueIndex = startingIndex
-        let track = queue[startingIndex]
+        queueTrack()
+    }
+    
+    func queueTrack() {
+        let track = queue[queueIndex]
         
         switch track["source"] as! String {
         case "soundcloud":
@@ -57,11 +63,15 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate, AVAudioP
         default:
             print("Unable to play queue.")
         }
-        
-        self.queue = queue
     }
     
-    func activatePlaybar(track: Any?) {
+    func playTrack(track: Any?) {
+        queue = []
+        queueIndex = 0
+        activatePlaybar(track: track)
+    }
+    
+    private func activatePlaybar(track: Any?) {
         if (playBarController.currentTrack is YouTubeVideo) {
             Global.sharedGlobal.youtubePlayer?.stop()
         } else if (Global.sharedGlobal.musicPlayer.isPlaying()) {
@@ -115,8 +125,20 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate, AVAudioP
         Global.sharedGlobal.youtubePlayer?.play()
     }
     
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        print("Finished playing track.")
+    func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
+        if (playerState == YouTubePlayerState.Ended) {
+            queueIndex = queueIndex + 1
+            if (queueIndex < queue.count) {
+                queueTrack()
+            }
+        }
+    }
+    
+    public func musicPlayerFinishedPlaying(sender: NSNotification) {
+        queueIndex = queueIndex + 1
+        if (queueIndex < queue.count) {
+            queueTrack()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

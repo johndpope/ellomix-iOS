@@ -196,7 +196,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
                 scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
             
-            baseDelegate?.activatePlaybar(track: scTrack)
+            baseDelegate?.playTrack(track: scTrack)
         } else {
             let ytVideo = YouTubeVideo()
             
@@ -205,7 +205,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             ytVideo.videoID = track!["stream_uri"] as? String
             ytVideo.videoThumbnailURL = track!["artwork_url"] as? String
             
-            baseDelegate?.activatePlaybar(track: ytVideo)
+            baseDelegate?.playTrack(track: ytVideo)
         }
     }
 

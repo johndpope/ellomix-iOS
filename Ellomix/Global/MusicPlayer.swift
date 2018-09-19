@@ -11,11 +11,13 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-class MusicPlayer {
+class MusicPlayer: NSObject {
     
     var player: AVPlayer?
+    var baseDelegate: ContainerViewController!
     
-    init() {
+    override init() {
+        super.init()
         commandCenterHandlers()
     }
     
@@ -24,6 +26,8 @@ class MusicPlayer {
         initPlayer()
         let asset = AVAsset(url: url)
         let playerItem = AVPlayerItem(asset: asset)
+        NotificationCenter.default.addObserver(baseDelegate, selector: #selector(ContainerViewController.musicPlayerFinishedPlaying(sender:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+        
         player?.replaceCurrentItem(with: playerItem)
         player?.rate = 1.0;
         player?.play()

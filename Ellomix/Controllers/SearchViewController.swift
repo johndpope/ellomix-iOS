@@ -167,12 +167,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             if (indexPath.section == 1) {
                 if songs["Soundcloud"]!.count > 0 {
                     let track = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
-                    baseDelegate?.activatePlaybar(track: track)
+                    baseDelegate?.playTrack(track: track)
                 }
             } else if (indexPath.section == 2) {
                 if songs["YouTube"]!.count > 0 {
                     let track = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
-                    baseDelegate?.activatePlaybar(track: track)
+                    baseDelegate?.playTrack(track: track)
                 }
             }
         } else {
