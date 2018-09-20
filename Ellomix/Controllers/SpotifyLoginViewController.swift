@@ -49,25 +49,25 @@ class SpotifyLoginViewController: UIViewController, SPTAudioStreamingPlaybackDel
         auth.requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope]
         loginUrl = auth.spotifyWebAuthenticationURL()
         
-        
-        
-        //
-        if UIApplication.shared.openURL(loginUrl!) {
-            
+        if UIApplication.shared.canOpenURL(loginUrl!),
+            UIApplication.shared.openURL(loginUrl!) {
+
+            print("open url")
             if auth.canHandle(auth.redirectURL) {
-                
+
+                print("can handle url")
                 // handle callback in closure
                 auth.handleAuthCallback(withTriggeredAuthURL: auth.redirectURL, callback: { (error, session) in
-                    
+
                     print("setup auth handle successful")
                     // handle error
                     if error != nil {
                         print("error!")
                     }
                     print("callback called")
-                    
+
                 })
-                
+
             }
         }
         
@@ -127,6 +127,7 @@ class SpotifyLoginViewController: UIViewController, SPTAudioStreamingPlaybackDel
                 // To do - build in error handling
 
                 // handle callback in closure
+                
                 auth.handleAuthCallback(withTriggeredAuthURL: auth.redirectURL, callback: { (error, session) in
 
                     print("Login button auth handle successful")

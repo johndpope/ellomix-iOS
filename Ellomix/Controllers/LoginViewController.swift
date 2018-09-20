@@ -31,8 +31,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func fbButtonClicked(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.showLoadingScreen(parentVC: self, message: "Login in...")
         let loginManager = LoginManager()
         loginManager.logIn(readPermissions: [.publicProfile, .email, .userFriends], viewController: self) { loginResult in
+            
+            appDelegate.dismissLoadingScreen()
             switch loginResult {
             case .failed(let error):
                 print("Error logging in with Facebook: \(error)")
@@ -78,6 +82,7 @@ class LoginViewController: UIViewController {
                     }
                     // User is signed in
                     print("Firebase Authenticated succeeded.")
+                    self.performSegue(withIdentifier: "toHomeTabBar", sender: self)
                 }
             }
         }
@@ -86,7 +91,10 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonClicked(_ sender: Any) {
         let email = emailField.text!
         let password = passwordField.text!
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.showLoadingScreen(parentVC: self, message: "Login in...")
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            appDelegate.dismissLoadingScreen()
             if let error = error {
                 print("Firebase Authentication failed: \(error)")
             }

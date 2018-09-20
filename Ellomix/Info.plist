@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<true/>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -32,10 +28,20 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.spotify.spotify-action</string>
+			<string>Ellomix.Ellomix</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>Ellomix</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Ellomix.Ellomix</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>spotify-action</string>
 			</array>
 		</dict>
 	</array>
@@ -45,6 +51,10 @@
 	<string>714928195322801</string>
 	<key>FacebookDisplayName</key>
 	<string>Ellomix</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbauth2</string>

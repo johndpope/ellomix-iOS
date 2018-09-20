@@ -20,12 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     var storyboard: UIStoryboard?
+    var auth = SPTAuth()
     private var FirebaseAPI: FirebaseApi!
-
+    lazy var loadingIndicatorView: LoadingViewController = {
+        return self.storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as! LoadingViewController
+        }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+       
+        let redirectURL = "Ellomix://returnAfterLogin"
+        //Spotify setup
+        auth.redirectURL = URL(string: redirectURL)
+        auth.sessionUserDefaultsKey = "current session"
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // Music Player configuration
@@ -61,6 +69,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let handler = SDKApplicationDelegate.shared.application(app, open: url, options: options)
+        
+        // 2- check if app can handle redirect URL
+        if auth.canHandle(auth.redirectURL) {
+            // 3 - handle callback in closure
+            auth.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
+                // 4- handle error
+                if error != nil {
+                    print("error!")
+                }
+                // 5- Add session to User Defaults
+                let userDefaults = UserDefaults.standard
+                let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
+                userDefaults.set(sessionData, forKey: "SpotifySession")
+                userDefaults.synchronize()
+                // 6 - Tell notification center login is successful
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "loginSuccessfull"), object: nil)
+            })
+            return true
+        }
         
         return handler
     }
@@ -218,6 +245,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func loadHomeScreen() {
         let containerController = storyboard?.instantiateViewController(withIdentifier: "containerController")
         window?.rootViewController = containerController
+    }
+    
+    //MARK: Loading helper methods
+    func showLoadingScreen(parentVC: UIViewController, message: String) {
+        DispatchQueue.main.async {
+            self.loadingIndicatorView.setMessage(forLabel: message)
+            self.loadingIndicatorView.showLoadingIndicator(parent: parentVC)
+        }
+    }
+    
+    func dismissLoadingScreen() {
+        DispatchQueue.main.async {
+            self.loadingIndicatorView.dismissLoadingIndicator()
+        }
     }
 
 }

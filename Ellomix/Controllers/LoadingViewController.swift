@@ -45,13 +45,13 @@ class LoadingViewController: UIViewController {
     func showLoadingIndicator(parent: UIViewController) {
         parent.addChildViewController(self)
         
-        if messageLabel != nil {
-            messageLabel.text = message
-        }
-        
         self.view.frame = parent.view.frame
         parent.view.addSubview(self.view)
         self.didMove(toParentViewController: parent)
+        
+        if messageLabel != nil {
+            messageLabel.text = message
+        }
     }
     
     func dismissLoadingIndicator() {

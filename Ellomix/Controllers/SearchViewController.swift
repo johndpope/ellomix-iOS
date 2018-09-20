@@ -271,6 +271,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 clearSongs()
                 soundcloudRequest(query: searchString)
                 youtubeRequest(query: searchString)
+                spotifyRequest(query: searchString)
             } else {
                 
             }
@@ -377,8 +378,19 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         })
     }
     
+    func spotifyRequest(query: String) {
+        print("spotify request")
+        SpotifyService.search(query: query) {
+            data in
+            if let data = data {
+                self.parseSpotify(JSONData: data)
+            }
+        }
+    }
+    
     //MARK: Spotify Data:
     func parseSpotify(JSONData : Data) {
+    
         do {
             var readableJSON =
                 try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as! JSONStandard
@@ -405,6 +417,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                                 let mainImage = UIImage(data: mainImageData as! Data)
                                 self.songs["Spotify"]?.append(spTrack)
                             }
+                        }
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
                         }
                     }
                 }
