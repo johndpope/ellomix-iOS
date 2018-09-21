@@ -65,7 +65,9 @@ class GroupPlaylistTableViewController: UITableViewController {
     }
     
     @IBAction func shuffleButtonClicked(_ sender: Any) {
-
+        if let shuffledTracks = songs.shuffle() as? [Dictionary<String, AnyObject>] {
+            baseDelegate.playQueue(queue: shuffledTracks, startingIndex: 0)
+        }
     }
     
     //MARK: TableView functions

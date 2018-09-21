@@ -76,6 +76,27 @@ extension UIImageView {
     }
 }
 
+extension Array {
+    // Fisher–Yates shuffle
+    func shuffle() -> [AnyObject] {
+        var arr = self as [AnyObject]
+        var temporaryValue: AnyObject!
+        var randomIndex = 0
+        var currentIndex = arr.count
+        
+        while (currentIndex != 0) {
+            randomIndex = Int(floor((Float(arc4random()) / Float(UINT32_MAX)) * Float(currentIndex)))
+            currentIndex-=1
+            
+            temporaryValue = arr[currentIndex] as AnyObject
+            arr[currentIndex] = arr[randomIndex] as AnyObject
+            arr[randomIndex] = temporaryValue
+        }
+        
+        return arr
+    }
+}
+
 extension Dictionary {
     func groupNameFromUsers() -> String {
         var names = [String]()
