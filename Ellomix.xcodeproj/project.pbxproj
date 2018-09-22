@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DC4048B21531C2800BACFC4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC4048A21531C2800BACFC4 /* LoadingViewController.swift */; };
+		0DC4048D2153246100BACFC4 /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC4048C2153246100BACFC4 /* SpotifyService.swift */; };
 		167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */; };
 		16D2405B21433E810013B2AF /* SeeAllTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2405A21433E810013B2AF /* SeeAllTableViewController.swift */; };
 		16D2405D21433EAC0013B2AF /* SeeAll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16D2405C21433EAC0013B2AF /* SeeAll.storyboard */; };
@@ -105,6 +107,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DC4048A21531C2800BACFC4 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		0DC4048C2153246100BACFC4 /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
 		12016942F6C44225458DBBAF /* Pods-Ellomix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix.debug.xcconfig"; sourceTree = "<group>"; };
 		167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyListenedCollectionViewCell.swift; sourceTree = "<group>"; };
 		16C583BE211908AC0035BE35 /* Ellomix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ellomix.entitlements; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 		DB5FB81020E1FBAF00345BAC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0DC4048A21531C2800BACFC4 /* LoadingViewController.swift */,
 				DBB727E320AA91AC00419789 /* SplashController.swift */,
 				DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */,
 				DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */,
@@ -348,6 +353,7 @@
 				BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */,
 				DB16728C2123BF2600A368FC /* YoutubeService.swift */,
 				DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */,
+				0DC4048C2153246100BACFC4 /* SpotifyService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -719,10 +725,12 @@
 				DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */,
 				DBFA76DD206F39DF00689D4F /* Group.swift in Sources */,
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
+				0DC4048B21531C2800BACFC4 /* LoadingViewController.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */,
 				DBAC7BC4211D38AB0008978E /* SearchSongsTableViewController.swift in Sources */,
 				DB2FE5CE20DA0CEA0018E402 /* RoundImageView.swift in Sources */,
+				0DC4048D2153246100BACFC4 /* SpotifyService.swift in Sources */,
 				E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */,
 				DBF40DB120996B70000AD390 /* SearchTableViewPeopleCell.swift in Sources */,
 				DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */,
