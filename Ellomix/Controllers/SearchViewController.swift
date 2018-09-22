@@ -437,6 +437,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         if (segue.identifier == "toProfile") {
             if let user = sender as? EllomixUser {
                 let userProfileVC = segue.destination as! ProfileController
+                userProfileVC.baseDelegate = baseDelegate
                 userProfileVC.currentUser = user
             }
         }
