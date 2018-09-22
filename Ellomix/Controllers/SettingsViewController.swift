@@ -39,15 +39,11 @@ class SettingsViewController: UITableViewController {
     //push to the phone? message alerts?
     
     //blog
-    //TODO:Change to IBACTION
     @IBAction func openBlog(_ sender: Any) {
         UIApplication.shared.openURL(URL(string: "http://ellomix.com/blog/index.html")!)
-
     }
     
     //clear search history --> push button
-    
-    
     @IBAction func logout(_ sender: Any) {
         if (AccessToken.current != nil) {
             LoginManager().logOut()
@@ -63,6 +59,9 @@ class SettingsViewController: UITableViewController {
         } catch let signOutError {
             print ("Error signing out of Firebase: \(signOutError)")
         }
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: false)
     }
 
 }
