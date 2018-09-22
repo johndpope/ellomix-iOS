@@ -17,9 +17,16 @@ import FirebaseAuth
 
 class LinkedAccountViewController: UIViewController {
     
+    @IBOutlet weak var spotifyButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        spotifyButton.layer.cornerRadius = spotifyButton.frame.height / 2
+        facebookButton.layer.cornerRadius = facebookButton.frame.height / 2
     }
 
     
