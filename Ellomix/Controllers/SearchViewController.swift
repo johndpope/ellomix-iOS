@@ -443,8 +443,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         if (segue.identifier == "toSeeAll") {
             let destinationVC = segue.destination as! SeeAllTableViewController
             destinationVC.sectionForSeeAll = sectionForSeeAll
-            //print(sectionForSeeAll) //-> Bug: have to go Back a second time to get correct Section Int
-            
+            destinationVC.baseDelegate = baseDelegate
             if (destinationVC.sectionForSeeAll == 1) {
                 destinationVC.seeAllSongs = songs["Soundcloud"]!
             }
