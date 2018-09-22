@@ -2125,8 +2125,8 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QUb-aP-vd7">
-                                <rect key="frame" x="32" y="258" width="311" height="253"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUb-aP-vd7">
+                                <rect key="frame" x="32" y="258" width="311" height="344"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <string key="text">Thank you for using Ellomx. Ellomix is a service provided by Ellomix LLC. There are no age restriction in order to use Ellomix. If you are considered a minor in your country you must have your parent or legal guardian's permission to use Ellomix. The content provided on Ellomix is done through the use of Youtube, Spotify and Soundcloud, where all provider's terms of services have been met.If there is a change in these terms of service there will be a 30 day notice before the new changes go into effect. Thank you for using Ellomix!</string>
@@ -2136,12 +2136,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="tiM-4K-eoh" secondAttribute="trailing" constant="87" id="HLe-h4-lAc"/>
                             <constraint firstItem="tiM-4K-eoh" firstAttribute="top" secondItem="0jm-61-Bca" secondAttribute="bottom" constant="38" id="I4J-uV-l19"/>
-                            <constraint firstItem="uf1-jg-VXx" firstAttribute="top" secondItem="QUb-aP-vd7" secondAttribute="bottom" constant="107" id="PBV-Ma-zQ7"/>
+                            <constraint firstItem="uf1-jg-VXx" firstAttribute="top" secondItem="QUb-aP-vd7" secondAttribute="bottom" constant="16" id="PBV-Ma-zQ7"/>
                             <constraint firstItem="QUb-aP-vd7" firstAttribute="top" secondItem="tiM-4K-eoh" secondAttribute="bottom" constant="30" id="a8Z-gL-BOO"/>
                             <constraint firstItem="QUb-aP-vd7" firstAttribute="leading" secondItem="l4o-ac-yNv" secondAttribute="leadingMargin" constant="16" id="fBd-Ky-K8n"/>
-                            <constraint firstItem="tiM-4K-eoh" firstAttribute="centerX" secondItem="QUb-aP-vd7" secondAttribute="centerX" constant="-0.5" id="lzB-bs-Rbw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QUb-aP-vd7" secondAttribute="trailing" constant="16" id="gys-hf-Zg3"/>
+                            <constraint firstItem="tiM-4K-eoh" firstAttribute="centerX" secondItem="QUb-aP-vd7" secondAttribute="centerX" id="lzB-bs-Rbw"/>
                         </constraints>
                     </view>
                 </viewController>
