@@ -92,18 +92,21 @@ class LoginViewController: UIViewController {
         let email = emailField.text!
         let password = passwordField.text!
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.showLoadingScreen(parentVC: self, message: "Login in...")
+        appDelegate.showLoadingScreen(parentVC: self, message: "Logging in...")
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             appDelegate.dismissLoadingScreen()
             if let error = error {
                 print("Firebase Authentication failed: \(error)")
+                //TODO: Show error message to user
+            } else {
+                // User is signed in
+                print("Firebase Authenticated succeeded.")
+                self.performSegue(withIdentifier: "toHomeTabBar", sender: self)
             }
-            // User is signed in
-            print("Firebase Authenticated succeeded.")
-            self.performSegue(withIdentifier: "toHomeTabBar", sender: self)
         }
     }
-// Firebase forgot password functionality
+
+    // Firebase forgot password functionality
     @IBAction func forgotPasswordTap(_ sender: Any) {
         let forgotPasswordAlert = UIAlertController(title: "Forgot password?", message: "Enter email address", preferredStyle: .alert)
         forgotPasswordAlert.addTextField { (textField) in
