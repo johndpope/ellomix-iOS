@@ -398,6 +398,9 @@
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="followersButtonClicked:" destination="c2z-7a-Mcr" eventType="touchUpInside" id="r5Q-4r-BQS"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pT9-uW-BsU" userLabel="Following Count">
                                                 <rect key="frame" x="260" y="113" width="30" height="30"/>
@@ -408,6 +411,9 @@
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="followingButtonClicked:" destination="c2z-7a-Mcr" eventType="touchUpInside" id="3vh-Xw-3P8"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S38-AA-nfk" userLabel="Following">
                                                 <rect key="frame" x="237" y="137" width="79" height="22"/>
@@ -485,6 +491,7 @@
                         <outlet property="profilePic" destination="Ibv-p9-Zq3" id="X09-6q-lIs"/>
                         <outlet property="settingsButton" destination="gC9-i5-rCf" id="BEH-YP-g9b"/>
                         <outlet property="verticalLayoutConstraint" destination="ROr-es-5p2" id="EHQ-z0-fkr"/>
+                        <segue destination="t0e-RA-ahi" kind="push" identifier="toSeeFollowersFollowing" id="xKj-8p-M3f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xo-Mq-yfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2529,6 +2536,16 @@
             </objects>
             <point key="canvasLocation" x="1670" y="1531"/>
         </scene>
+        <!--SeeFollowersFollowing-->
+        <scene sceneID="z8f-LM-vTt">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SeeFollowersFollowing" id="t0e-RA-ahi" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ltL-4v-Hfe"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OCZ-i9-AdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2473" y="1327"/>
+        </scene>
         <!--Play Bar Controller-->
         <scene sceneID="izp-xg-Iw3">
             <objects>
@@ -2810,7 +2827,7 @@
         <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NQM-Qj-Y2t"/>
+        <segue reference="wpc-gh-sEA"/>
         <segue reference="khl-Z7-w1b"/>
     </inferredMetricsTieBreakers>
 </document>

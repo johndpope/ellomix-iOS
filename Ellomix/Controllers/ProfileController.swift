@@ -152,6 +152,15 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         }
     }
     
+    @IBAction func followersButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toSeeFollowersFollowing", sender: nil)
+    }
+    
+    @IBAction func followingButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "toSeeFollowersFollowing", sender: nil)
+    }
+    
+    
     //Number of views
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.recentlyListenedSongs.count
