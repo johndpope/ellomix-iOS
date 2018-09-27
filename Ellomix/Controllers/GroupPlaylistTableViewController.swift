@@ -33,6 +33,7 @@ class GroupPlaylistTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        baseDelegate.playBarViewBottomConstraint.constant = -(self.tabBarController?.tabBar.frame.height)!
         if (groupPlaylistRefHandle == nil) {
             loadPlaylist()
         }
@@ -40,6 +41,7 @@ class GroupPlaylistTableViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         FirebaseAPI.orderGroupPlaylist(group: group, data: songs)
+        baseDelegate.playBarViewBottomConstraint.constant = 0
     }
     
     deinit {

@@ -16,6 +16,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     var groupChat: Bool = false
     var leavingGroup: Bool = false
     var members: [Dictionary<String, AnyObject>]?
+    var baseDelegate: ContainerViewController!
     var delegate: ChatViewController?
     var leaveGroupAlert: UIAlertController?
     let sections = ["Name", "Notifications", "Members", "Leave"]
@@ -40,6 +41,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        baseDelegate.playBarViewBottomConstraint.constant = -(self.tabBarController?.tabBar.frame.height)!
         var membersDictionary = group.users!
         membersDictionary.removeValue(forKey: (currentUser?.uid)!)
         members = membersDictionary.usersArray()
@@ -51,6 +53,19 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         tableView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        baseDelegate.playBarViewBottomConstraint.constant = 0
+        if (leavingGroup) {
+            if let index = currentUser?.groups.index(of: group.gid!) {
+                currentUser?.groups.remove(at: index)
+                group.users?.removeValue(forKey: (currentUser?.uid)!)
+                FirebaseAPI.leaveGroupChat(group: group, uid: (currentUser?.uid)!)
+            }
+        } else {
+            saveSettings()
+        }
+    }
+
     //Mark: Table View functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (groupChat && sections[section] == "Members") {
@@ -192,18 +207,6 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
             let segueVC = segue.destination as! AddMemberController
             segueVC.group = group
             segueVC.delegate = self
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        if (leavingGroup) {
-            if let index = currentUser?.groups.index(of: group.gid!) {
-                currentUser?.groups.remove(at: index)
-                group.users?.removeValue(forKey: (currentUser?.uid)!)
-                FirebaseAPI.leaveGroupChat(group: group, uid: (currentUser?.uid)!)
-            }
-        } else {
-            saveSettings()
         }
     }
     

@@ -58,6 +58,7 @@
                     </view>
                     <connections>
                         <outlet property="playBarView" destination="ePa-CF-63K" id="Lie-m7-3gR"/>
+                        <outlet property="playBarViewBottomConstraint" destination="00W-11-bJf" id="6ll-eZ-obu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcU-go-ZmW" userLabel="First Responder" sceneMemberID="firstResponder"/>

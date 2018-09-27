@@ -12,6 +12,7 @@ import AVFoundation
 class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
     @IBOutlet weak var playBarView: UIView!
+    @IBOutlet weak var playBarViewBottomConstraint: NSLayoutConstraint!
     
     var playBarController: PlayBarController!
     private var FirebaseAPI: FirebaseApi!
