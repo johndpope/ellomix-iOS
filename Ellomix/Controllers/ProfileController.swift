@@ -152,12 +152,28 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         }
     }
     
-    @IBAction func followersButtonClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSeeFollowersFollowing", sender: nil)
+    @IBAction func followersButtonClicked(_ sender: AnyObject) {
+        var followers: [Any] = []
+        FirebaseAPI.getFollowersRef()
+            .child((currentUser?.uid)!)
+            .observe(.value, with: { (snapshot) in
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    followers.append(child.value!)
+                }
+                self.performSegue(withIdentifier: "toSeeFollowersFollowing", sender: followers)
+            })
     }
     
     @IBAction func followingButtonClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSeeFollowersFollowing", sender: nil)
+        var following: [Any] = []
+        FirebaseAPI.getFollowingRef()
+            .child((currentUser?.uid)!)
+            .observe(.value, with: { (snapshot) in
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    following.append(child.value!)
+                }
+                self.performSegue(withIdentifier: "toSeeFollowersFollowing", sender: following)
+            })
     }
     
     
@@ -234,6 +250,12 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
                 ] as AnyObject
             
             chatVC.newChatGroup = newChatGroup
+        }
+        if (segue.identifier == "toSeeFollowersFollowing") {
+            let destinationVC = segue.destination as! SeeFollowersFollowingTableViewController
+            if let users = sender as? [Any] {
+                destinationVC.users = users
+            }
         }
     }
     
