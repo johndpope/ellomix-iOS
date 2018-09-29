@@ -2637,128 +2637,6 @@
             </objects>
             <point key="canvasLocation" x="-639" y="2027"/>
         </scene>
-        <!--Pop Up Player-->
-        <scene sceneID="5JA-RM-YmQ">
-            <objects>
-                <viewController storyboardIdentifier="popUpPlayerController" title="Pop Up Player" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xTc-iN-yhZ" customClass="PopUpPlayerController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xaP-l8-g24"/>
-                        <viewControllerLayoutGuide type="bottom" id="sDK-t6-iZQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xia-77-rPF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmj-ks-Nqg">
-                                <rect key="frame" x="47" y="449" width="281" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="281" id="ra6-fG-9pK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqT-eZ-bJY">
-                                <rect key="frame" x="47" y="485" width="281" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="281" id="Xp6-lN-jBM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fY8-to-qf7">
-                                <rect key="frame" x="0.0" y="65" width="375" height="361"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXb-Qo-i99" userLabel="Next">
-                                <rect key="frame" x="234.5" y="573" width="24" height="24"/>
-                                <state key="normal" image="forward"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5s-d9-Tqa" userLabel="Previous">
-                                <rect key="frame" x="116.5" y="573" width="24" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" image="rewind"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVl-gY-VqO" userLabel="Shuffle">
-                                <rect key="frame" x="331" y="451" width="28" height="24"/>
-                                <state key="normal" image="shuffle"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbe-m0-khX" userLabel="Repeat">
-                                <rect key="frame" x="16" y="451" width="24" height="24"/>
-                                <state key="normal" image="repeat"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4A-1w-3eO" userLabel="Play Pause">
-                                <rect key="frame" x="170.5" y="566" width="34" height="39"/>
-                                <state key="normal" image="pause"/>
-                                <connections>
-                                    <action selector="playPause:" destination="xTc-iN-yhZ" eventType="touchUpInside" id="Ngh-Nt-RdE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eae-yn-Fd5" userLabel="Dismiss Player">
-                                <rect key="frame" x="11" y="30" width="24" height="24"/>
-                                <state key="normal" image="caret"/>
-                                <connections>
-                                    <action selector="dismissPlayer:" destination="xTc-iN-yhZ" eventType="touchUpInside" id="wX2-FE-Yjz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fG-Qe-QmX">
-                                <rect key="frame" x="329" y="573" width="28" height="24"/>
-                                <state key="normal" image="share"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eK2-XV-waa">
-                                <rect key="frame" x="18" y="573" width="24" height="24"/>
-                                <state key="normal" image="heart_outline"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="dbe-m0-khX" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leadingMargin" id="BPO-Rk-0Ft"/>
-                            <constraint firstAttribute="trailing" secondItem="fY8-to-qf7" secondAttribute="trailing" id="C1S-W8-aQb"/>
-                            <constraint firstItem="dbe-m0-khX" firstAttribute="centerY" secondItem="mmj-ks-Nqg" secondAttribute="centerY" id="C88-1x-cIB"/>
-                            <constraint firstItem="eae-yn-Fd5" firstAttribute="top" secondItem="xaP-l8-g24" secondAttribute="bottom" constant="10" id="Krw-gH-G0y"/>
-                            <constraint firstItem="gXb-Qo-i99" firstAttribute="centerY" secondItem="h4A-1w-3eO" secondAttribute="centerY" id="Qqg-rE-9i2"/>
-                            <constraint firstItem="fY8-to-qf7" firstAttribute="top" secondItem="xaP-l8-g24" secondAttribute="bottom" constant="45" id="SKO-kb-x0d"/>
-                            <constraint firstItem="h4A-1w-3eO" firstAttribute="leading" secondItem="n5s-d9-Tqa" secondAttribute="trailing" constant="30" id="SeB-zy-3Oc"/>
-                            <constraint firstItem="eae-yn-Fd5" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leading" constant="11" id="Uvq-95-wmO"/>
-                            <constraint firstItem="1fG-Qe-QmX" firstAttribute="trailing" secondItem="QVl-gY-VqO" secondAttribute="trailing" constant="-2" id="YaF-hY-FuI"/>
-                            <constraint firstItem="gXb-Qo-i99" firstAttribute="top" secondItem="1fG-Qe-QmX" secondAttribute="top" id="coS-Ty-Heb"/>
-                            <constraint firstItem="dbe-m0-khX" firstAttribute="top" secondItem="QVl-gY-VqO" secondAttribute="top" id="dar-5s-Jea"/>
-                            <constraint firstItem="LqT-eZ-bJY" firstAttribute="centerX" secondItem="xia-77-rPF" secondAttribute="centerX" id="fSD-PC-483"/>
-                            <constraint firstItem="eK2-XV-waa" firstAttribute="top" secondItem="n5s-d9-Tqa" secondAttribute="top" id="gWR-gg-KlJ"/>
-                            <constraint firstItem="eK2-XV-waa" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leadingMargin" constant="2" id="hFw-Uz-0Np"/>
-                            <constraint firstItem="h4A-1w-3eO" firstAttribute="centerX" secondItem="xia-77-rPF" secondAttribute="centerX" id="p3C-q2-psz"/>
-                            <constraint firstItem="dbe-m0-khX" firstAttribute="top" secondItem="fY8-to-qf7" secondAttribute="bottom" constant="25" id="pCk-oD-us7"/>
-                            <constraint firstItem="gXb-Qo-i99" firstAttribute="leading" secondItem="h4A-1w-3eO" secondAttribute="trailing" constant="30" id="qiu-h2-Pvp"/>
-                            <constraint firstItem="QVl-gY-VqO" firstAttribute="trailing" secondItem="xia-77-rPF" secondAttribute="trailingMargin" id="qlL-NH-oLs"/>
-                            <constraint firstItem="gXb-Qo-i99" firstAttribute="top" secondItem="n5s-d9-Tqa" secondAttribute="top" id="r4a-eq-1xT"/>
-                            <constraint firstItem="sDK-t6-iZQ" firstAttribute="top" secondItem="dbe-m0-khX" secondAttribute="bottom" constant="192" id="rAC-Op-ckQ"/>
-                            <constraint firstItem="fY8-to-qf7" firstAttribute="leading" secondItem="xia-77-rPF" secondAttribute="leading" id="s9X-IC-xWM"/>
-                            <constraint firstItem="h4A-1w-3eO" firstAttribute="top" secondItem="LqT-eZ-bJY" secondAttribute="bottom" constant="60" id="tP0-ZQ-n5p"/>
-                            <constraint firstItem="mmj-ks-Nqg" firstAttribute="centerX" secondItem="xia-77-rPF" secondAttribute="centerX" id="tnJ-qH-O2X"/>
-                            <constraint firstItem="LqT-eZ-bJY" firstAttribute="top" secondItem="mmj-ks-Nqg" secondAttribute="bottom" constant="7" id="tpO-ef-p4Q"/>
-                            <constraint firstItem="1fG-Qe-QmX" firstAttribute="leading" secondItem="QVl-gY-VqO" secondAttribute="leading" constant="-2" id="vkQ-qS-2yK"/>
-                        </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="mVb-Di-Adj" appends="YES" id="KKZ-Vi-tfu"/>
-                        </connections>
-                    </view>
-                    <connections>
-                        <outlet property="artistField" destination="LqT-eZ-bJY" id="J4T-DS-dSv"/>
-                        <outlet property="artworkImage" destination="fY8-to-qf7" id="dic-vK-65q"/>
-                        <outlet property="playPauseButton" destination="h4A-1w-3eO" id="bKs-f3-zbq"/>
-                        <outlet property="titleField" destination="mmj-ks-Nqg" id="659-B7-JLE"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eQR-eR-30N" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="mVb-Di-Adj">
-                    <connections>
-                        <action selector="panGestureHandler:" destination="xTc-iN-yhZ" id="uRA-Gx-Vqb"/>
-                    </connections>
-                </panGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="-639.13043478260875" y="2460.326086956522"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="wJj-kf-fav">
             <objects>
@@ -2810,21 +2688,14 @@
     </scenes>
     <resources>
         <image name="attach" width="25" height="25"/>
-        <image name="caret" width="24" height="24"/>
         <image name="dots" width="24" height="24"/>
         <image name="ellomix_logo" width="83" height="83"/>
         <image name="facebook" width="1024" height="1024"/>
-        <image name="forward" width="24" height="24"/>
-        <image name="heart_outline" width="24" height="24"/>
         <image name="messages" width="25" height="20"/>
         <image name="pause" width="34" height="39"/>
         <image name="profile" width="19" height="25"/>
-        <image name="repeat" width="24" height="24"/>
-        <image name="rewind" width="24" height="24"/>
         <image name="search" width="24" height="24"/>
         <image name="settings" width="20" height="20"/>
-        <image name="share" width="28" height="24"/>
-        <image name="shuffle" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wpc-gh-sEA"/>

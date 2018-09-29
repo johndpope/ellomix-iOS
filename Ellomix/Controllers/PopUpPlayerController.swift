@@ -16,10 +16,12 @@ class PopUpPlayerController: UIViewController {
     @IBOutlet weak var artworkImage: UIImageView!
     var currentTrack: Any?
     var playbar: PlayBarController?
+    var selectUsersOrGroupsControllerNavController: UINavigationController!
     var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
     
     override func viewDidLoad() {
-
+        let storyboard = UIStoryboard(name: "SelectUsersOrGroups", bundle: nil)
+        selectUsersOrGroupsControllerNavController = storyboard.instantiateViewController(withIdentifier: "selectUsersOrGroupsNavController") as? UINavigationController
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +71,11 @@ class PopUpPlayerController: UIViewController {
             print("Unable to play or pause current track.")
         }
     }
+    
+    @IBAction func shareTrackClicked(_ sender: Any) {
+        present(selectUsersOrGroupsControllerNavController, animated: true, completion: nil)
+    }
+    
     
     @IBAction func panGestureHandler(_ sender: UIPanGestureRecognizer) {
         let touchPoint = sender.location(in: self.view?.window)

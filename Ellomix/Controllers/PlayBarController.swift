@@ -21,7 +21,7 @@ class PlayBarController: UIViewController {
     //let transition = PopUpAnimator()
     
     override func viewDidLoad() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "PopUpPlayer", bundle: nil)
         popUpPlayer = storyboard.instantiateViewController(withIdentifier: "popUpPlayerController") as? PopUpPlayerController
 //        transition.dismissCompletion = {
 //            self.view.isHidden = false

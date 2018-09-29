@@ -54,6 +54,9 @@
 		DB7BAA63202FB731005B7115 /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */; };
 		DB7BAA65202FC7F1005B7115 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BAA64202FC7F1005B7115 /* Extensions.swift */; };
 		DB7BAA67202FD378005B7115 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BAA66202FD378005B7115 /* PasswordViewController.swift */; };
+		DB8E1BFA215F28AA003F65DE /* SelectUsersOrGroups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */; };
+		DB8E1BFC215F2930003F65DE /* PopUpPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */; };
+		DB8E1BFE215F2E72003F65DE /* SelectUsersOrGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */; };
 		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
 		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
@@ -164,6 +167,9 @@
 		DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		DB7BAA64202FC7F1005B7115 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DB7BAA66202FD378005B7115 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectUsersOrGroups.storyboard; sourceTree = "<group>"; };
+		DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUpPlayer.storyboard; sourceTree = "<group>"; };
+		DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsersOrGroupsController.swift; sourceTree = "<group>"; };
 		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
 		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 				DB43785D1F567F38001BD2F1 /* HomeTabBarController.swift */,
 				DB0938621FD4F54C00DB64AA /* PlayBarController.swift */,
 				DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */,
+				DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */,
 				DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */,
 				DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */,
 				DBCE53751FBABD06002B760C /* EditProfileController.swift */,
@@ -305,11 +312,13 @@
 			children = (
 				DB5FB81220E1FD6600345BAC /* Cells */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */,
 				DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */,
 				E379E62A1E08B69500B0256F /* LaunchScreen.storyboard */,
 				DB2FE5CD20DA0CEA0018E402 /* RoundImageView.swift */,
 				16D2405C21433EAC0013B2AF /* SeeAll.storyboard */,
 				1621BF3D215D975600C6F901 /* SeeFollowersFollowing.storyboard */,
+				DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -598,8 +607,10 @@
 				DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */,
 				E379E6271E08B69500B0256F /* Main.storyboard in Resources */,
 				1621BF3E215D975600C6F901 /* SeeFollowersFollowing.storyboard in Resources */,
+				DB8E1BFA215F28AA003F65DE /* SelectUsersOrGroups.storyboard in Resources */,
 				DBF53C322129081700AB1E81 /* SectionLabelTableViewCell.xib in Resources */,
 				DBEA17D320EB328C00A9294A /* LabelTableViewCell.xib in Resources */,
+				DB8E1BFC215F2930003F65DE /* PopUpPlayer.storyboard in Resources */,
 				16D2405D21433EAC0013B2AF /* SeeAll.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,6 +780,7 @@
 				DBE81D5820EDCA9700A27935 /* UserTableViewCell.swift in Sources */,
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */,
+				DB8E1BFE215F2E72003F65DE /* SelectUsersOrGroupsController.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ReceivedChatTableViewCell.swift in Sources */,
 				DBEA17D120EB2DCD00A9294A /* LabelTableViewCell.swift in Sources */,
 				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,
