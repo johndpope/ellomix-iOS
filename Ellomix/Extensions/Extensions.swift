@@ -133,6 +133,25 @@ extension Dictionary {
         
         return arr
     }
+    
+    func toEllomixUser() -> EllomixUser? {
+        let userDict = self as! Dictionary<String, AnyObject>
+        if let uid = userDict["uid"] as? String {
+            let user = EllomixUser(uid: uid)
+            if let name = userDict["name"] as? String { user.setName(name: name) }
+            if let photoUrl = userDict["photo_url"] as? String { user.setProfilePicLink(link: photoUrl) }
+            //TODO: Set the rest of the properties
+            
+            return user
+        }
+        
+        return nil
+    }
+    
+    func toGroup() -> Group? {
+        //TODO: Set group properties
+        return nil
+    }
 }
 
 extension Date {
