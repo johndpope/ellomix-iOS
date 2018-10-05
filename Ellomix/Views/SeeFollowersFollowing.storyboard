@@ -32,10 +32,23 @@
                             <outlet property="delegate" destination="05b-ii-aBY" id="jEd-8A-0Ey"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="dtK-Q7-cwb" kind="push" identifier="toProfile" id="hzb-5N-gyI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1L-IG-A7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="97" y="150"/>
+        </scene>
+        <!--profileController-->
+        <scene sceneID="7fT-tb-hFC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="profileController" id="dtK-Q7-cwb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="LTh-SI-FTw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RJn-cd-lR8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="150"/>
         </scene>
     </scenes>
 </document>
