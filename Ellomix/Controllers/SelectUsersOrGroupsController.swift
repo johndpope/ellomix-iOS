@@ -33,6 +33,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
         definesPresentationContext = true
 
         tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "userCell")
+        tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +61,22 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             print(error.localizedDescription)
         }
         
-        //TODO: Retrieve groups
+        for gid in (currentUser?.groups)! {
+            FirebaseAPI.getGroupsRef().child(gid).observe(.value, with: { (snapshot) in
+                var groupDict = snapshot.value as? Dictionary<String, AnyObject>
+                groupDict!["gid"] = snapshot.key as AnyObject
+                if let group = groupDict?.toGroup() {
+                    self.groupsAndFollowingUsers.append(group)
+                    self.filteredGroupsAndFollowingUsers.append(group)
+                    self.selected[gid] = false
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }) { (error) in
+               print(error.localizedDescription)
+            }
+        }
     }
     
     //Mark: Table View functions
@@ -84,7 +100,69 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             
             return cell
         } else {
-            // Set group cell
+            let group = userOrGroup as! Group
+            
+            if (group.users != nil) {
+                // Make a new array of users that excludes our user
+                var users = [EllomixUser]()
+                for user in group.users! {
+                    if (user.key != (currentUser?.uid)!) {
+                        var userDict = user.value as? Dictionary<String, AnyObject>
+                        userDict!["uid"] = user.key as AnyObject
+                        if let ellomixUser = userDict!.toEllomixUser() {
+                            users.append(ellomixUser)
+                        }
+                    }
+                }
+                
+                if (users.count == 1) {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
+                    let user = users[0]
+                    
+                    cell.userLabel.text = user.getName()
+                    if (!user.profilePicLink.isEmpty) {
+                        cell.userImageView.downloadedFrom(link: user.profilePicLink)
+                    } else {
+                        cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+                    }
+                    
+                    return cell
+                } else if (users.count > 1) {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as! GroupTableViewCell
+                    let firstUser = users[0]
+                    let secondUser = users[1]
+                    
+                    if (!firstUser.profilePicLink.isEmpty) {
+                        cell.bottomLeftImageView.downloadedFrom(link: firstUser.profilePicLink)
+                    } else {
+                        cell.bottomLeftImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+                    }
+                    
+                    if (!secondUser.profilePicLink.isEmpty) {
+                        cell.topRightImageView.downloadedFrom(link: secondUser.profilePicLink)
+                    } else {
+                        cell.topRightImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+                    }
+                    
+                    if (users.count > 2) {
+                        let additionalUsersCount = users.count - 2
+                        cell.numberLabel.text = "+\(additionalUsersCount)"
+                        cell.numberLabel.circular()
+                        cell.numberLabel.isHidden = false
+                        let widthDifference = cell.imageContainerView.frame.size.width - cell.topRightImageView.frame.size.width
+                        cell.topRightImageLeadingConstraint.constant -= (widthDifference / 2)
+                    }
+                    
+                    if (group.name == nil || group.name!.isEmpty) {
+                        cell.groupNameLabel.text = group.users?.groupNameFromUsers()
+                    } else {
+                        cell.groupNameLabel.text = group.name!
+                    }
+                    
+                    return cell
+                }
+            }
+            
             return UITableViewCell()
         }
     }

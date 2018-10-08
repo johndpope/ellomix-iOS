@@ -149,7 +149,22 @@ extension Dictionary {
     }
     
     func toGroup() -> Group? {
-        //TODO: Set group properties
+        let groupDict = self as! Dictionary<String, AnyObject>
+        if let gid = groupDict["gid"] as? String {
+            let group = Group()
+            group.gid = gid
+            if let name = groupDict["name"] as? String { group.name = name }
+            if let users = groupDict["users"] as? Dictionary<String, AnyObject> { group.users = users }
+            if let lastMessageDictionary = groupDict["last_message"] as? Dictionary<String, AnyObject> {
+                let lastMessage = Message()
+                lastMessage.content = lastMessageDictionary["content"] as? String
+                lastMessage.timestamp = lastMessageDictionary["timestamp"] as? Int
+                group.lastMessage = lastMessage
+            }
+            
+            return group
+        }
+        
         return nil
     }
 }
