@@ -10,9 +10,11 @@ import UIKit
 
 class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
 
+    @IBOutlet weak var sendButton: UIButton!
+    
     var groupsAndFollowingUsers = [AnyObject]()
     var filteredGroupsAndFollowingUsers = [AnyObject]()
-    var selected:[String:Bool] = [:]
+    var selected:[String:AnyObject] = [:]
     let searchController = UISearchController(searchResultsController: nil)
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser?
@@ -52,7 +54,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             if let ellomixUser = userDict!.toEllomixUser() {
                 self.groupsAndFollowingUsers.append(ellomixUser)
                 self.filteredGroupsAndFollowingUsers.append(ellomixUser)
-                self.selected[ellomixUser.uid] = false
+                self.selected[ellomixUser.uid] = ellomixUser
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -68,7 +70,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                 if let group = groupDict?.toGroup() {
                     self.groupsAndFollowingUsers.append(group)
                     self.filteredGroupsAndFollowingUsers.append(group)
-                    self.selected[gid] = false
+                    self.selected[gid] = group
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -91,6 +93,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
             let ellomixUser = userOrGroup as! EllomixUser
             
+            cell.selectionStyle = .none
             cell.userLabel.text = ellomixUser.getName()
             if (!ellomixUser.profilePicLink.isEmpty) {
                 cell.userImageView.downloadedFrom(link: ellomixUser.profilePicLink)
@@ -119,6 +122,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                     let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
                     let user = users[0]
                     
+                    cell.selectionStyle = .none
                     cell.userLabel.text = user.getName()
                     if (!user.profilePicLink.isEmpty) {
                         cell.userImageView.downloadedFrom(link: user.profilePicLink)
@@ -132,6 +136,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                     let firstUser = users[0]
                     let secondUser = users[1]
                     
+                    cell.selectionStyle = .none
                     if (!firstUser.profilePicLink.isEmpty) {
                         cell.bottomLeftImageView.downloadedFrom(link: firstUser.profilePicLink)
                     } else {
@@ -168,7 +173,31 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        let userOrGroup = filteredGroupsAndFollowingUsers[indexPath.row]
+        
+        if (userOrGroup is EllomixUser) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
+            let ellomixUser = userOrGroup as! EllomixUser
+            
+            if (selected[ellomixUser.uid] != nil) {
+                cell.accessoryType = UITableViewCellAccessoryType.none
+                selected.removeValue(forKey: ellomixUser.uid)
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                selected[ellomixUser.uid] = ellomixUser
+            }
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as! GroupTableViewCell
+            let group = userOrGroup as! Group
+            
+            if (selected[group.gid!] != nil) {
+                cell.accessoryType = UITableViewCellAccessoryType.none
+                selected.removeValue(forKey: group.gid!)
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                selected[group.gid!] = group
+            }
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
