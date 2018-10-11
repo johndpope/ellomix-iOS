@@ -39,18 +39,15 @@
                                 <action selector="dismissButtonClicked:" destination="IKs-ol-N8f" id="26B-AX-IY6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="c1o-n1-J0A">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sOX-tv-eU8">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Send">
-                                    <color key="titleColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="N2U-RF-QKq">
+                            <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="dismissButtonClicked:" destination="IKs-ol-N8f" id="E7F-jg-oJ9"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="sendButton" destination="sOX-tv-eU8" id="12f-3m-CAm"/>
+                        <outlet property="sendButton" destination="N2U-RF-QKq" id="tui-y8-SUX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMD-ih-C7O" userLabel="First Responder" sceneMemberID="firstResponder"/>

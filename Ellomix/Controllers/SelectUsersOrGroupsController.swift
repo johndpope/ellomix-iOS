@@ -9,9 +9,9 @@
 import UIKit
 
 class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
-
-    @IBOutlet weak var sendButton: UIButton!
     
+    @IBOutlet weak var sendButton: UIBarButtonItem!
+
     var groupsAndFollowingUsers = [AnyObject]()
     var filteredGroupsAndFollowingUsers = [AnyObject]()
     var selected:[String:AnyObject] = [:]
