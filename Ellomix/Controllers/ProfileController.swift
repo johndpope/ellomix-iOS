@@ -40,7 +40,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        if (currentUser == nil) {
+        if (currentUser == nil) || (currentUser?.uid == Global.sharedGlobal.user?.uid) {
             // Viewing our profile
             currentUser = Global.sharedGlobal.user
             followButton.isHidden = true
@@ -254,6 +254,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         if (segue.identifier == "toSeeFollowersFollowing") {
             let destinationVC = segue.destination as! SeeFollowersFollowingTableViewController
             if let users = sender as? [Any] {
+                destinationVC.baseDelegate = baseDelegate
                 destinationVC.users = users
             }
         }
