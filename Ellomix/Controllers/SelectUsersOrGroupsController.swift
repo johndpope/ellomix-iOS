@@ -40,6 +40,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         groupsAndFollowingUsers.removeAll()
+        selected.removeAll()
         retrieveGroupsAndUsers()
     }
 
@@ -54,7 +55,6 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             if let ellomixUser = userDict!.toEllomixUser() {
                 self.groupsAndFollowingUsers.append(ellomixUser)
                 self.filteredGroupsAndFollowingUsers.append(ellomixUser)
-                self.selected[ellomixUser.uid] = ellomixUser
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -70,7 +70,6 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                 if let group = groupDict?.toGroup() {
                     self.groupsAndFollowingUsers.append(group)
                     self.filteredGroupsAndFollowingUsers.append(group)
-                    self.selected[gid] = group
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -101,12 +100,21 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                 cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
             
+            if (selected[ellomixUser.uid] != nil) {
+                // User is selected
+                cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            } else {
+                // User is not selected
+                cell.accessoryType = UITableViewCellAccessoryType.none
+            }
+            
             return cell
         } else {
             let group = userOrGroup as! Group
             
             if (group.users != nil) {
                 // Make a new array of users that excludes our user
+                //TODO: Change users property of group to an array of Ellomix users and add this as a method
                 var users = [EllomixUser]()
                 for user in group.users! {
                     if (user.key != (currentUser?.uid)!) {
@@ -128,6 +136,14 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                         cell.userImageView.downloadedFrom(link: user.profilePicLink)
                     } else {
                         cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+                    }
+                    
+                    if (selected[group.gid!] != nil) {
+                        // Group is selected
+                        cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                    } else {
+                        // Group is not selected
+                        cell.accessoryType = UITableViewCellAccessoryType.none
                     }
                     
                     return cell
@@ -164,6 +180,14 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                         cell.groupNameLabel.text = group.name!
                     }
                     
+                    if (selected[group.gid!] != nil) {
+                        // Group is selected
+                        cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                    } else {
+                        // Group is not selected
+                        cell.accessoryType = UITableViewCellAccessoryType.none
+                    }
+                    
                     return cell
                 }
             }
@@ -173,30 +197,35 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var cell: UITableViewCell!
+        var id: String!
         let userOrGroup = filteredGroupsAndFollowingUsers[indexPath.row]
         
         if (userOrGroup is EllomixUser) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
             let ellomixUser = userOrGroup as! EllomixUser
-            
-            if (selected[ellomixUser.uid] != nil) {
-                cell.accessoryType = UITableViewCellAccessoryType.none
-                selected.removeValue(forKey: ellomixUser.uid)
-            } else {
-                cell.accessoryType = UITableViewCellAccessoryType.checkmark
-                selected[ellomixUser.uid] = ellomixUser
-            }
+            id = ellomixUser.uid
+            cell = tableView.cellForRow(at: indexPath) as! UserTableViewCell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as! GroupTableViewCell
             let group = userOrGroup as! Group
+            id = group.gid!
             
-            if (selected[group.gid!] != nil) {
-                cell.accessoryType = UITableViewCellAccessoryType.none
-                selected.removeValue(forKey: group.gid!)
+            if (group.users != nil && group.users!.count == 2) {
+                //TODO: Change this to 1 once a group's users property is converted to Ellomix users
+                // If there's only one user in the group, we use the UserTableViewCell
+                cell = tableView.cellForRow(at: indexPath) as! UserTableViewCell
             } else {
-                cell.accessoryType = UITableViewCellAccessoryType.checkmark
-                selected[group.gid!] = group
+                cell = tableView.cellForRow(at: indexPath) as! GroupTableViewCell
             }
+        }
+        
+        if (selected[id] != nil) {
+            // This user/group is already selected
+            cell.accessoryType = UITableViewCellAccessoryType.none
+            selected.removeValue(forKey: id)
+        } else {
+            // This user/group hasn't been selected
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            selected[id] = userOrGroup
         }
     }
     
@@ -228,7 +257,14 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                 name = user.getName()
             } else {
                 // Parse group name
+                let group = groupOrUser as! Group
+                if (group.name == nil || group.name!.isEmpty) {
+                    name = (group.users?.groupNameFromUsers())!
+                } else {
+                    name = group.name!
+                }
             }
+            
             return name.lowercased().contains(searchText.lowercased())
         }
     }
