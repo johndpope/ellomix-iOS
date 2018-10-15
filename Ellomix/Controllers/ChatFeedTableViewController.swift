@@ -148,6 +148,7 @@ class ChatFeedTableViewController: UITableViewController {
         var users = [Dictionary<String, AnyObject>]()
         
         // Make a new dictionary of users that excludes our user
+        //TODO: Change users property of group to an array of Ellomix users
         if (group.users != nil) {
             var otherUsers = group.users!
             otherUsers.removeValue(forKey: (currentUser?.uid)!)
