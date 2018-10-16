@@ -18,11 +18,12 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     let searchController = UISearchController(searchResultsController: nil)
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser?
+    var track: Any!
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
         currentUser = Global.sharedGlobal.user
-
+        
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
@@ -39,6 +40,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        sendButton.isEnabled = false
         groupsAndFollowingUsers.removeAll()
         filteredGroupsAndFollowingUsers.removeAll()
         selected.removeAll()
@@ -48,7 +50,25 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     @IBAction func dismissButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
+    @IBAction func sendButtonClicked(_ sender: Any) {
+        let selectedUserOrGroup = selected.first?.value
+        let message = Message()
+        
+        message.uid = currentUser?.uid
+        message.type = "track"
+        message.content = "www.streamurl.com"
+        message.timestamp = Int(Date().timeIntervalSince1970)
+        
+        if (selectedUserOrGroup is EllomixUser) {
+            
+        } else {
+            let group = selectedUserOrGroup as! Group
+            
+            FirebaseAPI.sendMessageToGroupChat(group: group, message: message)
+        }
+    }
+    
     func retrieveGroupsAndUsers() {
         FirebaseAPI.getFollowingRef().child("\((currentUser?.uid)!)").queryOrdered(byChild: "name").observe(.childAdded, with: { (snapshot) in
             var userDict = snapshot.value as? Dictionary<String, AnyObject>
@@ -218,6 +238,12 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             // This user/group hasn't been selected
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
             selected[id] = userOrGroup
+        }
+        
+        if (selected.isEmpty) {
+            sendButton.isEnabled = false
+        } else {
+            sendButton.isEnabled = true
         }
         
         // Reload data to disable appropriate cells

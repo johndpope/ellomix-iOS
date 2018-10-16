@@ -73,6 +73,8 @@ class PopUpPlayerController: UIViewController {
     }
     
     @IBAction func shareTrackClicked(_ sender: Any) {
+        let selectUsersOrGroupsVC = selectUsersOrGroupsControllerNavController.topViewController as! SelectUsersOrGroupsController
+        selectUsersOrGroupsVC.track = currentTrack
         present(selectUsersOrGroupsControllerNavController, animated: true, completion: nil)
     }
     

@@ -42,7 +42,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Send" id="N2U-RF-QKq">
                             <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="dismissButtonClicked:" destination="IKs-ol-N8f" id="E7F-jg-oJ9"/>
+                                <action selector="sendButtonClicked:" destination="IKs-ol-N8f" id="iDo-HG-Y70"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

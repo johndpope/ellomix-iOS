@@ -10,11 +10,20 @@ import Foundation
 
 internal class Message {
     
-    var uid:String?
-    var type:String?
-    var content:String?
-    var timestamp:Int?
-    var isRead:Bool?
-    var image:UIImage?
+    var uid: String?
+    var type: String!
+    var content: String?
+    var timestamp: Int?
+    var isRead: Bool?
+    var image: UIImage?
+    
+    func toDictionary() -> Dictionary<String, AnyObject>  {
+        return [
+            "uid": uid! as AnyObject,
+            "content": content! as AnyObject,
+            "type": type as AnyObject,
+            "timestamp": timestamp! as AnyObject
+        ]
+    }
     
 }

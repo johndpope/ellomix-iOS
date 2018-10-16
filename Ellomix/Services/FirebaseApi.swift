@@ -97,6 +97,18 @@ class FirebaseApi {
         userRef.child("groups").child(group.gid!).removeValue()
     }
     
+    func sendMessageToUsers() {
+        
+    }
+    
+    func sendMessageToGroupChat(group: Group, message: Message) {
+        let messagesRef = ref.child(MESSAGES).child(group.gid!)
+        let lastMessageRef = ref.child(GROUPS).child(group.gid!).child("last_message")
+        
+        messagesRef.childByAutoId().updateChildValues(message.toDictionary())
+        lastMessageRef.updateChildValues(message.toDictionary())
+    }
+    
     func addToGroupPlaylist(group: Group, data: [Dictionary<String, AnyObject>]) {
         let groupPlaylistRef = ref.child(GROUP_PLAYLISTS).child(group.gid!)
         var values = Dictionary<String, AnyObject>()
