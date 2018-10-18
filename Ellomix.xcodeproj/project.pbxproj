@@ -67,6 +67,7 @@
 		DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */; };
 		DBBEA825213F969600BF4AD2 /* GroupPlaylistControlsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEA824213F969600BF4AD2 /* GroupPlaylistControlsTableViewCell.swift */; };
 		DBC09BB220BE513A003EE29F /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC09BB120BE513A003EE29F /* Cache.swift */; };
+		DBCCAF6021783C7B0061C6D4 /* BaseTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCAF5F21783C7B0061C6D4 /* BaseTrack.swift */; };
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */; };
 		DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */; };
@@ -182,6 +183,7 @@
 		DBB8B45F1EA9976E0021E0F6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DBBEA824213F969600BF4AD2 /* GroupPlaylistControlsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPlaylistControlsTableViewCell.swift; sourceTree = "<group>"; };
 		DBC09BB120BE513A003EE29F /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		DBCCAF5F21783C7B0061C6D4 /* BaseTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTrack.swift; sourceTree = "<group>"; };
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSettingsTableViewController.swift; path = Ellomix/Controllers/GroupSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsHeaderCell.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				DB22FB7A1F5377E000AF384B /* EllomixUser.swift */,
+				DBCCAF5F21783C7B0061C6D4 /* BaseTrack.swift */,
 				DBF9440F205F4DF80047A1EB /* SpotifyTrack.swift */,
 				DB0A47A71EBEB7AC004FBF41 /* YouTubeVideo.swift */,
 				DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */,
@@ -783,6 +786,7 @@
 				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
 				0D4B01882156EA5200DDDBBC /* LinkedAccountsViewController.swift in Sources */,
 				DB2DB00E204B7ADD00E0935A /* SearchHeaderCell.swift in Sources */,
+				DBCCAF6021783C7B0061C6D4 /* BaseTrack.swift in Sources */,
 				DB7BAA63202FB731005B7115 /* GetStartedViewController.swift in Sources */,
 				DBE81D5820EDCA9700A27935 /* UserTableViewCell.swift in Sources */,
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,

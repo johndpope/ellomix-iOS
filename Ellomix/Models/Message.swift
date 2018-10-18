@@ -16,14 +16,18 @@ internal class Message {
     var timestamp: Int?
     var isRead: Bool?
     var image: UIImage?
+    var track: BaseTrack?
     
     func toDictionary() -> Dictionary<String, AnyObject>  {
-        return [
-            "uid": uid! as AnyObject,
-            "content": content! as AnyObject,
-            "type": type as AnyObject,
-            "timestamp": timestamp! as AnyObject
-        ]
+        var dict = Dictionary<String, AnyObject>()
+    
+        if (uid != nil) { dict["uid"] = uid! as AnyObject }
+        if (timestamp != nil) { dict["timestamp"] = timestamp! as AnyObject }
+        if (track != nil) { dict["track"] = track!.toDictionary() as AnyObject }
+        dict["content"] = (content != nil) ? content! as AnyObject : "" as AnyObject // Make content non-optional
+        dict["type"] = type as AnyObject
+
+        return dict
     }
     
 }
