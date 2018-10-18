@@ -134,15 +134,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func observeMessages() {
         messagesRefHandle = FirebaseAPI.getMessagesRef().child((group?.gid)!).observe(.childAdded, with: { (snapshot)  in
-            if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
-                let message = Message()
-                message.uid = dictionary["uid"] as? String
-                message.content = dictionary["content"] as? String
-                message.timestamp = dictionary["timestamp"] as? Int
-                self.messages.append(message)
-
-                DispatchQueue.main.async {
-                    self.chatTableView.reloadData()
+            if let messageDict = snapshot.value as? Dictionary<String, AnyObject> {
+                if let message = messageDict.toMessage() {
+                    self.messages.append(message)
+                    DispatchQueue.main.async {
+                        self.chatTableView.reloadData()
+                    }
                 }
             }
         }) { (error) in
@@ -165,13 +162,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (message.uid == currentUser?.uid) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "sentMessageCell", for: indexPath) as! SentChatTableViewCell
             cell.messageTextView.layer.cornerRadius = 8.0
-            cell.messageTextView.text = message.content!
+            cell.messageTextView.text = message.content
 
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! RecievedChatTableViewCell
             cell.messageTextView.layer.cornerRadius = 8.0
-            cell.messageTextView.text = message.content!
+            cell.messageTextView.text = message.content
             for (uid, val) in (self.group?.users)! {
                 if (uid == message.uid!) {
                     if let photoURL = val["photo_url"] as? String, !photoURL.isEmpty {

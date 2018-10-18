@@ -167,6 +167,33 @@ extension Dictionary {
         
         return nil
     }
+    
+    func toMessage() -> Message? {
+        let messageDict = self as! Dictionary<String, AnyObject>
+        
+        let message = Message()
+        if let uid = messageDict["uid"] as? String { message.uid = uid }
+        if let type = messageDict["type"] as? String { message.type = type }
+        if let content = messageDict["content"] as? String { message.content = content }
+        if let trackDict = messageDict["track"] as? Dictionary<String, AnyObject> { message.track = trackDict.toBaseTrack() }
+        if let timestamp = messageDict["timestamp"] as? Int { message.timestamp = timestamp }
+        
+        return message
+    }
+    
+    func toBaseTrack() -> BaseTrack? {
+        let trackDict = self as! Dictionary<String, AnyObject>
+        
+        let track = BaseTrack()
+        if let id = trackDict["id"] as? String { track.id = id }
+        if let title = trackDict["title"] as? String { track.title = title }
+        if let arist = trackDict["artist"] as? String { track.artist = arist }
+        if let source = trackDict["source"] as? String { track.source = source }
+        if let thumbnailURL = trackDict["thumbnail_url"] as? String { track.thumbnailURL = thumbnailURL }
+        
+        return track
+    }
+    
 }
 
 extension Date {

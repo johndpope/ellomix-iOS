@@ -68,6 +68,7 @@
 		DBBEA825213F969600BF4AD2 /* GroupPlaylistControlsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEA824213F969600BF4AD2 /* GroupPlaylistControlsTableViewCell.swift */; };
 		DBC09BB220BE513A003EE29F /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC09BB120BE513A003EE29F /* Cache.swift */; };
 		DBCCAF6021783C7B0061C6D4 /* BaseTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCAF5F21783C7B0061C6D4 /* BaseTrack.swift */; };
+		DBCCAF6221784DE70061C6D4 /* EllomixAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCAF6121784DE70061C6D4 /* EllomixAlertController.swift */; };
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */; };
 		DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */; };
@@ -184,6 +185,7 @@
 		DBBEA824213F969600BF4AD2 /* GroupPlaylistControlsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPlaylistControlsTableViewCell.swift; sourceTree = "<group>"; };
 		DBC09BB120BE513A003EE29F /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		DBCCAF5F21783C7B0061C6D4 /* BaseTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTrack.swift; sourceTree = "<group>"; };
+		DBCCAF6121784DE70061C6D4 /* EllomixAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllomixAlertController.swift; sourceTree = "<group>"; };
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSettingsTableViewController.swift; path = Ellomix/Controllers/GroupSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsHeaderCell.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			children = (
 				0D4B01872156EA5200DDDBBC /* LinkedAccountsViewController.swift */,
 				0DC4048A21531C2800BACFC4 /* LoadingViewController.swift */,
+				DBCCAF6121784DE70061C6D4 /* EllomixAlertController.swift */,
 				DBB727E320AA91AC00419789 /* SplashController.swift */,
 				DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */,
 				DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */,
@@ -782,6 +785,7 @@
 				DBC09BB220BE513A003EE29F /* Cache.swift in Sources */,
 				1621BF40215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift in Sources */,
 				DB49DC88212A7AEB00DB3E8B /* SoundcloudService.swift in Sources */,
+				DBCCAF6221784DE70061C6D4 /* EllomixAlertController.swift in Sources */,
 				DB1672912123C22100A368FC /* TrackTableViewCell.swift in Sources */,
 				DB43785E1F567F38001BD2F1 /* HomeTabBarController.swift in Sources */,
 				0D4B01882156EA5200DDDBBC /* LinkedAccountsViewController.swift in Sources */,

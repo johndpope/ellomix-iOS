@@ -22,9 +22,9 @@ internal class Message {
         var dict = Dictionary<String, AnyObject>()
     
         if (uid != nil) { dict["uid"] = uid! as AnyObject }
+        if (content != nil) { dict["content"] = content! as AnyObject }
         if (timestamp != nil) { dict["timestamp"] = timestamp! as AnyObject }
         if (track != nil) { dict["track"] = track!.toDictionary() as AnyObject }
-        dict["content"] = (content != nil) ? content! as AnyObject : "" as AnyObject // Make content non-optional
         dict["type"] = type as AnyObject
 
         return dict

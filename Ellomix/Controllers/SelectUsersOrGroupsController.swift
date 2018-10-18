@@ -90,7 +90,11 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             FirebaseAPI.sendMessageToGroupChat(group: group, message: message)
         }
         
-        dismiss(animated: true, completion: nil)
+        let alertTitle = "Shared song"
+        let alertMessage = "Shared song to group chat!"
+        EllomixAlertController.showAlert(viewController: self, title: alertTitle, message: alertMessage, handler: { (UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
     }
     
     func retrieveGroupsAndUsers() {
