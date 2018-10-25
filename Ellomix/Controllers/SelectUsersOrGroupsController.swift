@@ -83,7 +83,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
         message.track = track
         
         if (selectedUserOrGroup is EllomixUser) {
-            
+            //TODO: Make firebase method that checks for existing groups/creates a new one to send the song too
         } else {
             let group = selectedUserOrGroup as! Group
             

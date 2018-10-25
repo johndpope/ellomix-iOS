@@ -57,6 +57,8 @@
 		DB8E1BFA215F28AA003F65DE /* SelectUsersOrGroups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */; };
 		DB8E1BFC215F2930003F65DE /* PopUpPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */; };
 		DB8E1BFE215F2E72003F65DE /* SelectUsersOrGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */; };
+		DB8FCA9E217ED950008BC0DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB8FCA9D217ED950008BC0DB /* MessageTableViewCell.xib */; };
+		DB8FCAA2217EE214008BC0DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8FCAA1217EE214008BC0DB /* MessageTableViewCell.swift */; };
 		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
 		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
@@ -174,6 +176,8 @@
 		DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectUsersOrGroups.storyboard; sourceTree = "<group>"; };
 		DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUpPlayer.storyboard; sourceTree = "<group>"; };
 		DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsersOrGroupsController.swift; sourceTree = "<group>"; };
+		DB8FCA9D217ED950008BC0DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
+		DB8FCAA1217EE214008BC0DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
 		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -352,7 +356,9 @@
 				DB1672902123C22100A368FC /* TrackTableViewCell.swift */,
 				DBF53C3321290AC200AB1E81 /* SectionLabelTableViewCell.swift */,
 				DBF933562165C67000D5C5BF /* GroupTableViewCell.swift */,
+				DB8FCAA1217EE214008BC0DB /* MessageTableViewCell.swift */,
 				DBEA17D220EB328C00A9294A /* LabelTableViewCell.xib */,
+				DB8FCA9D217ED950008BC0DB /* MessageTableViewCell.xib */,
 				DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */,
 				DBEA17D420EB392100A9294A /* SwitchTableViewCell.xib */,
 				DBE81D5520EDC92A00A27935 /* UserTableViewCell.xib */,
@@ -611,6 +617,7 @@
 				E379E62C1E08B69500B0256F /* LaunchScreen.storyboard in Resources */,
 				DB42B5081FFDE37800AB7E1D /* YTPlayer.html in Resources */,
 				DB451D2320F46EC900A56EB4 /* FieldTableViewCell.xib in Resources */,
+				DB8FCA9E217ED950008BC0DB /* MessageTableViewCell.xib in Resources */,
 				DB16728F2123C1FF00A368FC /* TrackTableViewCell.xib in Resources */,
 				DBF933552165C5C300D5C5BF /* GroupTableViewCell.xib in Resources */,
 				DBE81D5620EDC92A00A27935 /* UserTableViewCell.xib in Resources */,
@@ -781,6 +788,7 @@
 				BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */,
 				DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */,
 				DB42B50A1FFDF28400AB7E1D /* YouTubePlayer.swift in Sources */,
+				DB8FCAA2217EE214008BC0DB /* MessageTableViewCell.swift in Sources */,
 				DB451D2520F46FF200A56EB4 /* FieldTableViewCell.swift in Sources */,
 				DBC09BB220BE513A003EE29F /* Cache.swift in Sources */,
 				1621BF40215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift in Sources */,

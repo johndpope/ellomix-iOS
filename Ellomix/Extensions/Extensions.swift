@@ -248,4 +248,8 @@ extension UIColor {
     class func ellomixBlue() -> UIColor {
         return UIColor(red:0.40, green:0.56, blue:0.94, alpha:1.0)
     }
+    
+    class func ellomixLightGray() -> UIColor {
+        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
+    }
 }

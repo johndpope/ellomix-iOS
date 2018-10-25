@@ -43,6 +43,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         chatTableView.estimatedRowHeight = 40
         chatTableView.rowHeight = UITableViewAutomaticDimension
+        chatTableView.register(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "messageCell")
         
         self.hideKeyboardWhenTappedAround()
         
@@ -160,21 +161,22 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let message = self.messages[indexPath.row]
 
         if (message.uid == currentUser?.uid) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "sentMessageCell", for: indexPath) as! SentChatTableViewCell
-            cell.messageTextView.layer.cornerRadius = 8.0
-            cell.messageTextView.text = message.content
+            let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
+            cell.setupSentCell()
+            cell.textView.text = message.content
 
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! RecievedChatTableViewCell
-            cell.messageTextView.layer.cornerRadius = 8.0
-            cell.messageTextView.text = message.content
+            let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
+            
+            cell.setupReceivedCell()
+            cell.textView.text = message.content
             for (uid, val) in (self.group?.users)! {
                 if (uid == message.uid!) {
                     if let photoURL = val["photo_url"] as? String, !photoURL.isEmpty {
-                        cell.profilePic.downloadedFrom(link: photoURL)
+                        cell.userImageView.downloadedFrom(link: photoURL)
                     } else {
-                        cell.profilePic.image = #imageLiteral(resourceName: "ellomix_logo_bw")
+                        cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
                     }
                     break
                 }
