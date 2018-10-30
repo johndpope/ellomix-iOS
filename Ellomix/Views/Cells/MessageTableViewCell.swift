@@ -12,6 +12,7 @@ class MessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var userImageView: UIImageView!
     
+    var horizontalConstraint: NSLayoutConstraint!
     let textView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 14)
@@ -30,17 +31,22 @@ class MessageTableViewCell: UITableViewCell {
         addConstraint(NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: userImageView, attribute: .top, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: layoutMarginsGuide, attribute: .bottom, multiplier: 1, constant: 5))
         textView.widthAnchor.constraint(lessThanOrEqualToConstant: 230).isActive = true
-
     }
     
+    override func prepareForReuse() {
+        removeConstraint(horizontalConstraint)
+    }
+        
     func setupSentCell() {
         textView.backgroundColor = UIColor.ellomixBlue()
-        addConstraint(NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: layoutMarginsGuide, attribute: .trailing, multiplier: 1, constant: 11))
+        horizontalConstraint = NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: layoutMarginsGuide, attribute: .trailing, multiplier: 1, constant: 11)
+        addConstraint(horizontalConstraint)
     }
     
     func setupReceivedCell() {
         textView.backgroundColor = UIColor.ellomixLightGray()
-        addConstraint(NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: userImageView, attribute: .trailing, multiplier: 1, constant: 8))
+        horizontalConstraint = NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: userImageView, attribute: .trailing, multiplier: 1, constant: 8)
+        addConstraint(horizontalConstraint)
     }
 
 }
