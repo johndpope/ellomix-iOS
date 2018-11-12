@@ -75,6 +75,8 @@
 		DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */; };
 		DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */; };
 		DBDFCA002103FFA100229A45 /* AddMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDFC9FF2103FFA100229A45 /* AddMemberController.swift */; };
+		DBE384102193FC35008E3FAD /* TrackPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE3840F2193FC35008E3FAD /* TrackPreview.xib */; };
+		DBE384122193FD35008E3FAD /* TrackPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE384112193FD35008E3FAD /* TrackPreview.swift */; };
 		DBE81D5620EDC92A00A27935 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE81D5520EDC92A00A27935 /* UserTableViewCell.xib */; };
 		DBE81D5820EDCA9700A27935 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE81D5720EDCA9700A27935 /* UserTableViewCell.swift */; };
 		DBEA17D120EB2DCD00A9294A /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEA17D020EB2DCC00A9294A /* LabelTableViewCell.swift */; };
@@ -194,6 +196,8 @@
 		DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSettingsTableViewController.swift; path = Ellomix/Controllers/GroupSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsHeaderCell.swift; sourceTree = "<group>"; };
 		DBDFC9FF2103FFA100229A45 /* AddMemberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberController.swift; sourceTree = "<group>"; };
+		DBE3840F2193FC35008E3FAD /* TrackPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackPreview.xib; sourceTree = "<group>"; };
+		DBE384112193FD35008E3FAD /* TrackPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPreview.swift; sourceTree = "<group>"; };
 		DBE81D5520EDC92A00A27935 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		DBE81D5720EDCA9700A27935 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		DBEA17D020EB2DCC00A9294A /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 				16D2405C21433EAC0013B2AF /* SeeAll.storyboard */,
 				1621BF3D215D975600C6F901 /* SeeFollowersFollowing.storyboard */,
 				DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */,
+				DBE3840F2193FC35008E3FAD /* TrackPreview.xib */,
+				DBE384112193FD35008E3FAD /* TrackPreview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -616,6 +622,7 @@
 			files = (
 				E379E62C1E08B69500B0256F /* LaunchScreen.storyboard in Resources */,
 				DB42B5081FFDE37800AB7E1D /* YTPlayer.html in Resources */,
+				DBE384102193FC35008E3FAD /* TrackPreview.xib in Resources */,
 				DB451D2320F46EC900A56EB4 /* FieldTableViewCell.xib in Resources */,
 				DB8FCA9E217ED950008BC0DB /* MessageTableViewCell.xib in Resources */,
 				DB16728F2123C1FF00A368FC /* TrackTableViewCell.xib in Resources */,
@@ -759,6 +766,7 @@
 				E379E6241E08B69500B0256F /* LoginViewController.swift in Sources */,
 				DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */,
 				167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */,
+				DBE384122193FD35008E3FAD /* TrackPreview.swift in Sources */,
 				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
 				DBB727E420AA91AC00419789 /* SplashController.swift in Sources */,

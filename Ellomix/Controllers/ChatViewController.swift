@@ -159,18 +159,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = self.messages[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
+        let type = message.type == nil ? "text" : message.type
 
         if (message.uid == currentUser?.uid) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
-            cell.setupSentCell()
-            cell.textView.text = message.content
-
-            return cell
+            cell.setupSentCell(type: type!)
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
+            cell.setupReceivedCell(type: type!)
             
-            cell.setupReceivedCell()
-            cell.textView.text = message.content
             for (uid, val) in (self.group?.users)! {
                 if (uid == message.uid!) {
                     if let photoURL = val["photo_url"] as? String, !photoURL.isEmpty {
@@ -181,9 +177,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     break
                 }
             }
-
-            return cell
         }
+        
+        if (type == "track") {
+            if let track = message.track {
+                cell.trackPreview.trackTitle.text = track.title
+                //cell.trackPreview.trackArtist.text = track.artist
+                //cell.trackPreview.trackThumbnail.downloadedFrom(link: track.thumbnailURL!)
+            }
+        } else {
+            cell.textView.text = message.content
+        }
+        
+        return cell
     }
 
     override func didReceiveMemoryWarning() {
