@@ -27,9 +27,8 @@ class MessageTableViewCell: UITableViewCell {
     }()
     let trackPreview: TrackPreview = {
         let preview = TrackPreview()
-        preview.translatesAutoresizingMaskIntoConstraints = false
-        preview.frame = CGRect(x: 0 , y: 0, width: 230, height: 60)
-        preview.layer.cornerRadius = 8
+        preview.contentView.translatesAutoresizingMaskIntoConstraints = false
+        preview.contentView.layer.cornerRadius = 8
         
         return preview
     }()
@@ -40,11 +39,11 @@ class MessageTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        removeConstraint(horizontalConstraint)
+        
         if (lastType == "track") {
-            removeConstraint(horizontalConstraint)
+            removeTrackPreview()
             addTextView()
-        } else {
-            removeConstraint(horizontalConstraint)
         }
     }
         
@@ -52,7 +51,7 @@ class MessageTableViewCell: UITableViewCell {
         if (type == "track") {
             removeTextView()
             addTrackPreview()
-            horizontalConstraint = NSLayoutConstraint(item: trackPreview, attribute: .leading, relatedBy: .equal, toItem: userImageView, attribute: .trailing, multiplier: 1, constant: 8)
+            horizontalConstraint = NSLayoutConstraint(item: trackPreview.contentView, attribute: .leading, relatedBy: .equal, toItem: userImageView, attribute: .trailing, multiplier: 1, constant: 8)
             addConstraint(horizontalConstraint)
             trackPreview.contentView.backgroundColor = UIColor.ellomixBlue()
         } else {
@@ -68,7 +67,7 @@ class MessageTableViewCell: UITableViewCell {
         if (type == "track") {
             removeTextView()
             addTrackPreview()
-            horizontalConstraint = NSLayoutConstraint(item: trackPreview, attribute: .leading, relatedBy: .equal, toItem: userImageView, attribute: .trailing, multiplier: 1, constant: 8)
+            horizontalConstraint = NSLayoutConstraint(item: trackPreview.contentView, attribute: .leading, relatedBy: .equal, toItem: userImageView, attribute: .trailing, multiplier: 1, constant: 8)
             addConstraint(horizontalConstraint)
             trackPreview.contentView.backgroundColor = UIColor.ellomixLightGray()
         } else {
@@ -99,9 +98,10 @@ class MessageTableViewCell: UITableViewCell {
     }
     
     func addTrackPreview() {
+        heightAnchor.constraint(equalToConstant: (60)).isActive = true
         addSubview(trackPreview)
-        topConstraint = NSLayoutConstraint(item: trackPreview, attribute: .top, relatedBy: .equal, toItem: userImageView, attribute: .top, multiplier: 1, constant: 0)
-        bottomConstraint = NSLayoutConstraint(item: trackPreview, attribute: .bottom, relatedBy: .equal, toItem: layoutMarginsGuide, attribute: .bottom, multiplier: 1, constant: 5)
+        topConstraint = NSLayoutConstraint(item: trackPreview.contentView, attribute: .top, relatedBy: .equal, toItem: userImageView, attribute: .top, multiplier: 1, constant: 0)
+        bottomConstraint = NSLayoutConstraint(item: trackPreview.contentView, attribute: .bottom, relatedBy: .equal, toItem: layoutMarginsGuide, attribute: .bottom, multiplier: 1, constant: 5)
         addConstraint(topConstraint)
         addConstraint(bottomConstraint)
     }
@@ -110,6 +110,7 @@ class MessageTableViewCell: UITableViewCell {
         removeConstraint(topConstraint)
         removeConstraint(bottomConstraint)
         trackPreview.removeFromSuperview()
+        heightAnchor.constraint(equalToConstant: (60)).isActive = false
     }
 
 }

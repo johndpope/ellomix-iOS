@@ -14,6 +14,8 @@ class TrackPreview: UIView {
     
     @IBOutlet var contentView: UIView!
     @IBOutlet var trackTitle: UILabel!
+    @IBOutlet weak var trackArtist: UILabel!
+    @IBOutlet weak var trackThumbnail: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,6 +31,5 @@ class TrackPreview: UIView {
         Bundle.main.loadNibNamed("TrackPreview", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }

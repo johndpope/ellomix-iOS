@@ -14,6 +14,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackPreview" customModule="Ellomix" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Hp7-72-C1X"/>
+                <outlet property="trackArtist" destination="Xzb-zL-P0y" id="bQ1-4e-jeg"/>
+                <outlet property="trackThumbnail" destination="HVI-hT-tE7" id="15U-Hk-JJw"/>
                 <outlet property="trackTitle" destination="Kqh-n4-AcV" id="zDv-Bg-g6E"/>
             </connections>
         </placeholder>

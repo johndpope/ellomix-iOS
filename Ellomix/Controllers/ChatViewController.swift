@@ -182,8 +182,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (type == "track") {
             if let track = message.track {
                 cell.trackPreview.trackTitle.text = track.title
-                //cell.trackPreview.trackArtist.text = track.artist
-                //cell.trackPreview.trackThumbnail.downloadedFrom(link: track.thumbnailURL!)
+                cell.trackPreview.trackArtist.text = track.artist
+                cell.trackPreview.trackThumbnail.downloadedFrom(link: track.thumbnailURL!)
             }
         } else {
             cell.textView.text = message.content
