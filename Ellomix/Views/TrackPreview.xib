@@ -31,14 +31,14 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqh-n4-AcV">
-                    <rect key="frame" x="49" y="15" width="175" height="17"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <rect key="frame" x="49" y="15" width="175" height="14.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzb-zL-P0y">
-                    <rect key="frame" x="49" y="34" width="175" height="14.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <rect key="frame" x="49" y="31.5" width="175" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

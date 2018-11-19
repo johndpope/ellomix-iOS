@@ -51,7 +51,7 @@ class MessageTableViewCell: UITableViewCell {
         if (type == "track") {
             removeTextView()
             addTrackPreview()
-            horizontalConstraint = NSLayoutConstraint(item: trackPreview.contentView, attribute: .leading, relatedBy: .equal, toItem: userImageView, attribute: .trailing, multiplier: 1, constant: 8)
+            horizontalConstraint = NSLayoutConstraint(item: trackPreview.contentView, attribute: .trailing, relatedBy: .equal, toItem: layoutMarginsGuide, attribute: .trailing, multiplier: 1, constant: 11)
             addConstraint(horizontalConstraint)
             trackPreview.contentView.backgroundColor = UIColor.ellomixBlue()
         } else {
@@ -98,19 +98,19 @@ class MessageTableViewCell: UITableViewCell {
     }
     
     func addTrackPreview() {
-        heightAnchor.constraint(equalToConstant: (60)).isActive = true
         addSubview(trackPreview)
         topConstraint = NSLayoutConstraint(item: trackPreview.contentView, attribute: .top, relatedBy: .equal, toItem: userImageView, attribute: .top, multiplier: 1, constant: 0)
         bottomConstraint = NSLayoutConstraint(item: trackPreview.contentView, attribute: .bottom, relatedBy: .equal, toItem: layoutMarginsGuide, attribute: .bottom, multiplier: 1, constant: 5)
         addConstraint(topConstraint)
         addConstraint(bottomConstraint)
+        trackPreview.contentView.widthAnchor.constraint(equalToConstant: 230).isActive = true
     }
     
     func removeTrackPreview() {
         removeConstraint(topConstraint)
         removeConstraint(bottomConstraint)
+        trackPreview.contentView.widthAnchor.constraint(equalToConstant: 230).isActive = false
         trackPreview.removeFromSuperview()
-        heightAnchor.constraint(equalToConstant: (60)).isActive = false
     }
 
 }

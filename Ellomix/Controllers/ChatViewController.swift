@@ -191,6 +191,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let message = self.messages[indexPath.row]
+        let type = message.type == nil ? "text" : message.type
+        
+        if (type == "track") {
+            return 80
+        }
+        
+        return UITableViewAutomaticDimension
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
