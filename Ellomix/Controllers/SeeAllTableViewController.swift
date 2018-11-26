@@ -12,12 +12,34 @@ class SeeAllTableViewController: UITableViewController {
 
     var sectionForSeeAll: Int = 0
     var seeAllSongs: [AnyObject] = []
+    private var queue = [Dictionary<String, AnyObject>]()
     
     var baseDelegate: ContainerViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        var track: AnyObject?
+        for i in 0...(seeAllSongs.count - 1) {
+            if let scTrack = seeAllSongs[i] as? SoundcloudTrack {
+                track = [
+                    "artist": scTrack.artist,
+                    "title": scTrack.title,
+                    "artwork_url": scTrack.thumbnailURL?.absoluteString,
+                    "stream_uri": scTrack.url?.absoluteString,
+                    "source": "soundcloud"
+                    ] as AnyObject
+            }
+            if let ytVideo = seeAllSongs[i] as? YouTubeVideo {
+                track = [
+                    "artist": ytVideo.videoChannel,
+                    "title": ytVideo.videoTitle,
+                    "artwork_url": ytVideo.videoThumbnailURL,
+                    "stream_uri": ytVideo.videoID,
+                    "source": "youtube"
+                    ] as AnyObject
+            }
+            queue.append(track as! [String : AnyObject])
+        }
         tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
     }
 
@@ -50,13 +72,7 @@ class SeeAllTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (sectionForSeeAll == 1) {
-            let track = seeAllSongs[indexPath.row] as? SoundcloudTrack
-            baseDelegate?.playTrack(track: track)
-        } else if (sectionForSeeAll == 2) {
-            let track = seeAllSongs[indexPath.row] as? YouTubeVideo
-            baseDelegate?.playTrack(track: track)
-        }
+        baseDelegate?.playQueue(queue: queue, startingIndex: indexPath.row)
     }
 
 }
