@@ -184,6 +184,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.trackPreview.trackTitle.text = track.title
                 cell.trackPreview.trackArtist.text = track.artist
                 cell.trackPreview.trackThumbnail.downloadedFrom(link: track.thumbnailURL!)
+                switch track.source {
+                case "soundcloud":
+                    cell.trackPreview.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
+                case "youtube":
+                    cell.trackPreview.serviceIcon.image = #imageLiteral(resourceName: "youtube")
+                default:
+                    cell.trackPreview.serviceIcon.image = UIImage()
+                }
             }
         } else {
             cell.textView.text = message.content

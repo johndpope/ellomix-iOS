@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackPreview" customModule="Ellomix" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Hp7-72-C1X"/>
+                <outlet property="serviceIcon" destination="hRY-6C-PiP" id="y6j-Lu-pSy"/>
                 <outlet property="trackArtist" destination="Xzb-zL-P0y" id="bQ1-4e-jeg"/>
                 <outlet property="trackThumbnail" destination="HVI-hT-tE7" id="15U-Hk-JJw"/>
                 <outlet property="trackTitle" destination="Kqh-n4-AcV" id="zDv-Bg-g6E"/>
@@ -25,40 +26,40 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HVI-hT-tE7" userLabel="Artwork">
-                    <rect key="frame" x="5" y="15" width="40" height="40"/>
+                    <rect key="frame" x="5" y="18" width="37" height="37"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="HVI-hT-tE7" secondAttribute="height" multiplier="1:1" id="QWZ-q6-zk8"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqh-n4-AcV">
-                    <rect key="frame" x="49" y="15" width="175" height="14.5"/>
+                    <rect key="frame" x="46" y="18" width="178" height="14.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzb-zL-P0y">
-                    <rect key="frame" x="49" y="31.5" width="175" height="12"/>
+                    <rect key="frame" x="46" y="34.5" width="178" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRY-6C-PiP" userLabel="Type">
-                    <rect key="frame" x="203" y="2" width="24" height="11"/>
+                    <rect key="frame" x="208" y="4" width="17" height="8"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Kqh-n4-AcV" firstAttribute="top" secondItem="hRY-6C-PiP" secondAttribute="bottom" constant="2" id="39E-FN-uQR"/>
-                <constraint firstItem="hRY-6C-PiP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="203" id="4BT-6c-n13"/>
+                <constraint firstItem="Kqh-n4-AcV" firstAttribute="top" secondItem="hRY-6C-PiP" secondAttribute="bottom" constant="6" id="39E-FN-uQR"/>
+                <constraint firstItem="hRY-6C-PiP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="208" id="4BT-6c-n13"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xzb-zL-P0y" secondAttribute="trailing" constant="6" id="82D-mY-sYT"/>
-                <constraint firstItem="HVI-hT-tE7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="Cif-oG-IoE"/>
+                <constraint firstItem="HVI-hT-tE7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="Cif-oG-IoE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="HVI-hT-tE7" secondAttribute="bottom" constant="5" id="IRM-IN-qJs"/>
                 <constraint firstItem="Kqh-n4-AcV" firstAttribute="top" secondItem="HVI-hT-tE7" secondAttribute="top" id="LOW-0V-mv5"/>
                 <constraint firstItem="Xzb-zL-P0y" firstAttribute="top" secondItem="Kqh-n4-AcV" secondAttribute="bottom" constant="2" id="Ozj-Mq-oKe"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hRY-6C-PiP" secondAttribute="trailing" constant="3" id="QDx-cw-GQQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hRY-6C-PiP" secondAttribute="trailing" constant="5" id="QDx-cw-GQQ"/>
                 <constraint firstItem="Kqh-n4-AcV" firstAttribute="leading" secondItem="HVI-hT-tE7" secondAttribute="trailing" constant="4" id="Qnp-7e-GrU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kqh-n4-AcV" secondAttribute="trailing" constant="6" id="T1s-2D-bEk"/>
-                <constraint firstItem="hRY-6C-PiP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="2" id="mwo-TJ-lMS"/>
+                <constraint firstItem="hRY-6C-PiP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="mwo-TJ-lMS"/>
                 <constraint firstItem="HVI-hT-tE7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="u1f-kJ-6t9"/>
                 <constraint firstItem="Xzb-zL-P0y" firstAttribute="leading" secondItem="HVI-hT-tE7" secondAttribute="trailing" constant="4" id="zhU-g7-q3e"/>
             </constraints>

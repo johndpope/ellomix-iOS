@@ -16,6 +16,7 @@ class TrackPreview: UIView {
     @IBOutlet var trackTitle: UILabel!
     @IBOutlet weak var trackArtist: UILabel!
     @IBOutlet weak var trackThumbnail: UIImageView!
+    @IBOutlet weak var serviceIcon: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
