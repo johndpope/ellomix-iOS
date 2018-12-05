@@ -15,6 +15,7 @@ class MessageTableViewCell: UITableViewCell {
     var horizontalConstraint: NSLayoutConstraint!
     var topConstraint: NSLayoutConstraint!
     var bottomConstraint: NSLayoutConstraint!
+    var trackPreviewButton: UIButton!
     var lastType: String!
     let textView: UITextView = {
         let textView = UITextView()
@@ -104,9 +105,19 @@ class MessageTableViewCell: UITableViewCell {
         addConstraint(topConstraint)
         addConstraint(bottomConstraint)
         trackPreview.contentView.widthAnchor.constraint(equalToConstant: 230).isActive = true
+        
+        // Add invisible button on top of track preview for playback
+        trackPreviewButton = UIButton(frame: CGRect(x: trackPreview.contentView.frame.origin.x, y: trackPreview.contentView.frame.origin.y, width: trackPreview.contentView.frame.width, height: trackPreview.contentView.frame.height))
+        trackPreviewButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(trackPreviewButton)
+        addConstraint(NSLayoutConstraint(item: trackPreviewButton, attribute: .bottom, relatedBy: .equal, toItem: trackPreview.contentView, attribute: .bottom, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: trackPreviewButton, attribute: .top, relatedBy: .equal, toItem: trackPreview.contentView, attribute: .top, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: trackPreviewButton, attribute: .leading, relatedBy: .equal, toItem: trackPreview.contentView, attribute: .leading, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: trackPreviewButton, attribute: .trailing, relatedBy: .equal, toItem: trackPreview.contentView, attribute: .trailing, multiplier: 1, constant: 0))
     }
     
     func removeTrackPreview() {
+        trackPreviewButton.removeFromSuperview()
         removeConstraint(topConstraint)
         removeConstraint(bottomConstraint)
         trackPreview.contentView.widthAnchor.constraint(equalToConstant: 230).isActive = false

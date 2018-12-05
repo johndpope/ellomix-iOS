@@ -192,6 +192,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 default:
                     cell.trackPreview.serviceIcon.image = UIImage()
                 }
+                
+                cell.trackPreviewButton.addTarget(self, action: #selector(playTrack(sender:)), for: .touchUpInside)
             }
         } else {
             cell.textView.text = message.content
@@ -209,6 +211,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         return UITableViewAutomaticDimension
+    }
+    
+    func playTrack(sender: UIButton) {
+        if let cell = sender.superview as? MessageTableViewCell {
+            print("Play \(cell.trackPreview.trackTitle.text)")
+        }
     }
 
     override func didReceiveMemoryWarning() {
