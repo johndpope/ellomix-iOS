@@ -49,4 +49,12 @@ class SoundcloudService {
         }
     }
     
+    func getTrackById(id: Int, completed: @escaping (Track) -> ()) {
+        Track.track(identifier: id, completion: {(result: SimpleAPIResponse<Track>) -> Void in
+            if let track = result.response.result {
+                completed(track)
+            }
+        })
+    }
+    
 }

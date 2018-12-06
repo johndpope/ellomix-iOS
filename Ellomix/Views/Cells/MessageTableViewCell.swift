@@ -17,6 +17,7 @@ class MessageTableViewCell: UITableViewCell {
     var bottomConstraint: NSLayoutConstraint!
     var trackPreviewButton: UIButton!
     var lastType: String!
+    var track: BaseTrack!
     let textView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false

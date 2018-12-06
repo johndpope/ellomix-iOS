@@ -19,6 +19,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     private var FirebaseAPI: FirebaseApi!
     private var messagesRefHandle: DatabaseHandle?
+    private var ytService: YoutubeService!
+    private var scService: SoundcloudService!
     var currentUser: EllomixUser?
     var baseDelegate: ContainerViewController!
     var group: Group?
@@ -29,6 +31,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
+        ytService = YoutubeService()
+        scService = SoundcloudService()
         currentUser = Global.sharedGlobal.user
         
         chatTableView.delegate = self
@@ -181,6 +185,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if (type == "track") {
             if let track = message.track {
+                cell.track = track
                 cell.trackPreview.trackTitle.text = track.title
                 cell.trackPreview.trackArtist.text = track.artist
                 cell.trackPreview.trackThumbnail.downloadedFrom(link: track.thumbnailURL!)
@@ -215,7 +220,29 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func playTrack(sender: UIButton) {
         if let cell = sender.superview as? MessageTableViewCell {
-            print("Play \(cell.trackPreview.trackTitle.text)")
+            //TODO: Send baseTrack to baseDelegate.playTrack() once other track classes extend BaseTrack
+            if let baseTrack = cell.track {
+                if (baseTrack.source == "soundcloud") {
+                    let scTrack = SoundcloudTrack()
+                    
+                    scTrack.title = baseTrack.title
+                    scTrack.artist = baseTrack.artist
+                    if (baseTrack.thumbnailURL != nil) {
+                        scTrack.thumbnailURL = URL(string: baseTrack.thumbnailURL!)
+                        let imageData = try! Data(contentsOf: scTrack.thumbnailURL!)
+                        scTrack.thumbnailImage = UIImage(data: imageData)
+                    } else {
+                        scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
+                    }
+
+                    scService.getTrackById(id: Int(baseTrack.id)!) { (track) -> () in
+                        scTrack.url = track.streamURL
+                        self.baseDelegate?.playTrack(track: scTrack)
+                    }
+                } else if (baseTrack.source == "youtube") {
+                    let ytTrack = YouTubeVideo()
+                }
+            }
         }
     }
 
