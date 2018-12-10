@@ -77,11 +77,6 @@ class MusicPlayer: NSObject {
         }
         self.player?.allowsExternalPlayback = true
         self.player?.usesExternalPlaybackWhileExternalScreenIsActive = true
-        
-        if (AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback) {
-            let _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            let _ = try? AVAudioSession.sharedInstance().setActive(true)
-        }
     }
     
     private func commandCenterHandlers() {

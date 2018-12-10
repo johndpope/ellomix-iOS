@@ -189,13 +189,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.trackPreview.trackTitle.text = track.title
                 cell.trackPreview.trackArtist.text = track.artist
                 cell.trackPreview.trackThumbnail.downloadedFrom(link: track.thumbnailURL!)
-                switch track.source {
-                case "soundcloud":
+                
+                if (track.source == "soundcloud") {
                     cell.trackPreview.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
-                case "youtube":
+                } else if (track.source == "youtube") {
                     cell.trackPreview.serviceIcon.image = #imageLiteral(resourceName: "youtube")
-                default:
-                    cell.trackPreview.serviceIcon.image = UIImage()
                 }
                 
                 cell.trackPreviewButton.addTarget(self, action: #selector(playTrack(sender:)), for: .touchUpInside)
@@ -241,6 +239,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 } else if (baseTrack.source == "youtube") {
                     let ytTrack = YouTubeVideo()
+                    
+                    ytTrack.videoTitle = baseTrack.title
+                    ytTrack.videoChannel = baseTrack.artist
+                    ytTrack.videoThumbnailURL = baseTrack.thumbnailURL != nil ? baseTrack.thumbnailURL! : ""
+                    ytTrack.videoID = baseTrack.id
+                    
+                    self.baseDelegate?.playTrack(track: ytTrack)
                 }
             }
         }
