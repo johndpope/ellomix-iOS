@@ -73,6 +73,11 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     }
     
     private func activatePlaybar(track: Any?) {
+        if (AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback) {
+            let _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            let _ = try? AVAudioSession.sharedInstance().setActive(true)
+        }
+        
         if (playBarController.currentTrack is YouTubeVideo) {
             Global.sharedGlobal.youtubePlayer?.stop()
         } else if (Global.sharedGlobal.musicPlayer.isPlaying()) {

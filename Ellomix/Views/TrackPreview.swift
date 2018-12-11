@@ -17,6 +17,10 @@ class TrackPreview: UIView {
     @IBOutlet weak var trackArtist: UILabel!
     @IBOutlet weak var trackThumbnail: UIImageView!
     @IBOutlet weak var serviceIcon: UIImageView!
+    @IBOutlet weak var playPauseIcon: UIImageView!
+    
+    var playIcon: UIImage!
+    var pauseIcon: UIImage!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,5 +36,22 @@ class TrackPreview: UIView {
         Bundle.main.loadNibNamed("TrackPreview", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
+        
+        playIcon = #imageLiteral(resourceName: "play").withRenderingMode(.alwaysTemplate)
+        pauseIcon = #imageLiteral(resourceName: "pause").withRenderingMode(.alwaysTemplate)
+        playPauseIcon.image = playIcon
+        playPauseIcon.tintColor = UIColor.white
+    }
+    
+    func isPlaying() -> Bool {
+        return playPauseIcon.image == playIcon
+    }
+    
+    func play() {
+        playPauseIcon.image = playIcon
+    }
+    
+    func pause() {
+        playPauseIcon.image = pauseIcon
     }
 }

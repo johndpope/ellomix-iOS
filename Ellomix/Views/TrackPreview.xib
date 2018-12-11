@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackPreview" customModule="Ellomix" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Hp7-72-C1X"/>
+                <outlet property="playPauseIcon" destination="jFO-Ri-jdO" id="sdm-VN-kx5"/>
                 <outlet property="serviceIcon" destination="hRY-6C-PiP" id="y6j-Lu-pSy"/>
                 <outlet property="trackArtist" destination="Xzb-zL-P0y" id="bQ1-4e-jeg"/>
                 <outlet property="trackThumbnail" destination="HVI-hT-tE7" id="15U-Hk-JJw"/>
@@ -46,12 +47,20 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRY-6C-PiP" userLabel="Type">
                     <rect key="frame" x="208" y="4" width="17" height="8"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="jFO-Ri-jdO" userLabel="Play Pause">
+                    <rect key="frame" x="20" y="32" width="8" height="8"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="jFO-Ri-jdO" secondAttribute="height" multiplier="1:1" id="hLD-ex-uxe"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="jFO-Ri-jdO" firstAttribute="centerX" secondItem="HVI-hT-tE7" secondAttribute="centerX" id="1kM-vM-1Nz"/>
                 <constraint firstItem="Kqh-n4-AcV" firstAttribute="top" secondItem="hRY-6C-PiP" secondAttribute="bottom" constant="6" id="39E-FN-uQR"/>
                 <constraint firstItem="hRY-6C-PiP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="208" id="4BT-6c-n13"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xzb-zL-P0y" secondAttribute="trailing" constant="6" id="82D-mY-sYT"/>
+                <constraint firstItem="jFO-Ri-jdO" firstAttribute="leading" secondItem="HVI-hT-tE7" secondAttribute="leading" constant="15" id="AfE-R4-7d3"/>
                 <constraint firstItem="HVI-hT-tE7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="Cif-oG-IoE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="HVI-hT-tE7" secondAttribute="bottom" constant="5" id="IRM-IN-qJs"/>
                 <constraint firstItem="Kqh-n4-AcV" firstAttribute="top" secondItem="HVI-hT-tE7" secondAttribute="top" id="LOW-0V-mv5"/>
@@ -59,7 +68,9 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hRY-6C-PiP" secondAttribute="trailing" constant="5" id="QDx-cw-GQQ"/>
                 <constraint firstItem="Kqh-n4-AcV" firstAttribute="leading" secondItem="HVI-hT-tE7" secondAttribute="trailing" constant="4" id="Qnp-7e-GrU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kqh-n4-AcV" secondAttribute="trailing" constant="6" id="T1s-2D-bEk"/>
+                <constraint firstItem="jFO-Ri-jdO" firstAttribute="bottom" secondItem="HVI-hT-tE7" secondAttribute="bottom" constant="-15" id="XMu-JJ-RJo"/>
                 <constraint firstItem="hRY-6C-PiP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="mwo-TJ-lMS"/>
+                <constraint firstItem="jFO-Ri-jdO" firstAttribute="centerY" secondItem="HVI-hT-tE7" secondAttribute="centerY" id="tSP-C5-Va2"/>
                 <constraint firstItem="HVI-hT-tE7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="u1f-kJ-6t9"/>
                 <constraint firstItem="Xzb-zL-P0y" firstAttribute="leading" secondItem="HVI-hT-tE7" secondAttribute="trailing" constant="4" id="zhU-g7-q3e"/>
             </constraints>
@@ -67,4 +78,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
+    <resources>
+        <image name="play" width="29" height="37"/>
+    </resources>
 </document>

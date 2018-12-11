@@ -24,6 +24,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var currentUser: EllomixUser?
     var baseDelegate: ContainerViewController!
     var group: Group?
+    var currentTrackCell: MessageTableViewCell!
     var newChatGroup: Dictionary<String, AnyObject>?
     
     var messages = [Message]()
@@ -246,6 +247,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     ytTrack.videoID = baseTrack.id
                     
                     self.baseDelegate?.playTrack(track: ytTrack)
+                }
+                
+                if (currentTrackCell != cell) {
+                    if (currentTrackCell != nil) {
+                        currentTrackCell.trackPreview.play()
+                    }
+                    
+                    if (cell.trackPreview.isPlaying()) {
+                        cell.trackPreview.pause()
+                    } else {
+                        cell.trackPreview.play()
+                    }
+
+                    currentTrackCell = cell
                 }
             }
         }
