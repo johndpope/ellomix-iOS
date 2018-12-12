@@ -97,8 +97,51 @@ class FirebaseApi {
         userRef.child("groups").child(group.gid!).removeValue()
     }
     
-    func sendMessageToUsers() {
+    func sendMessageToUsers(sender: EllomixUser, users: [EllomixUser], message: Message) {
+        var groupToCheck = users
+        groupToCheck.append(sender)
+        checkForExistingGroup(uid: sender.uid, groupToCheck: groupToCheck) { (existingGroupGid) -> () in
+            if (existingGroupGid != nil) {
+                print("Send to existing group")
+            } else {
+                print("Send to new group")
+            }
+        }
+    }
+    
+    func checkForExistingGroup(uid: String, groupToCheck: [EllomixUser], completed: @escaping (String?) -> ()) {
+        let usersRef = ref.child(USERS).child(uid)
+        let groupsRef = ref.child(GROUPS)
         
+        var userIds = [String]()
+        groupToCheck.forEach { userIds.append($0.uid) }
+        usersRef.child("groups").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+            var counter = 0
+            var foundGroup = false
+            let groupCount = snapshot.childrenCount
+            
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let gid = child.key
+                
+                groupsRef.child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if (!foundGroup) {
+                        if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
+                            if let users = dictionary["users"] as? Dictionary<String, AnyObject> {
+                                let currentGroup = Array(users.keys)
+                                
+                                if (Set(currentGroup) == Set(userIds)) {
+                                    foundGroup = true
+                                    completed(gid)
+                                } else if (counter == (groupCount - 1)) {
+                                    completed(nil)
+                                }
+                                counter+=1
+                            }
+                        }
+                    }
+                })
+            }
+        })
     }
     
     func sendMessageToGroupChat(group: Group, message: Message) {

@@ -93,6 +93,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    //TODO: Refactor to use the version of this function in FirebaseApi.swift
     func checkForExistingGroup() {
         FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             var foundGroup = false
