@@ -89,7 +89,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
         } else {
             let group = selectedUserOrGroup as! Group
             
-            FirebaseAPI.sendMessageToGroupChat(group: group, message: message)
+            FirebaseAPI.sendMessageToGroupChat(gid: group.gid!, message: message)
         }
         
         let alertTitle = "Shared song"

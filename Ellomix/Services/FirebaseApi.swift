@@ -102,11 +102,41 @@ class FirebaseApi {
         groupToCheck.append(sender)
         checkForExistingGroup(uid: sender.uid, groupToCheck: groupToCheck) { (existingGroupGid) -> () in
             if (existingGroupGid != nil) {
-                print("Send to existing group")
+                self.sendMessageToGroupChat(gid: existingGroupGid!, message: message)
             } else {
-                print("Send to new group")
+                self.sendMessageToNewGroupChat(users: groupToCheck, message: message)
             }
         }
+    }
+    
+    func sendMessageToNewGroupChat(users: [EllomixUser], message: Message) {
+        let groupChatRef = ref.child(GROUPS)
+        let usersRef = ref.child(USERS)
+        
+        groupChatRef.childByAutoId().observeSingleEvent(of: .value, with: { (snapshot) in
+            let gid = snapshot.key
+            var usersData = Dictionary<String, AnyObject>()
+            
+            for user in users {
+                usersData[user.uid] = [
+                    "name": user.name,
+                    "photo_url": user.profilePicLink,
+                    "notifications": true
+                ] as AnyObject
+                usersRef.child(user.uid).child("groups").child(gid).setValue(true)
+            }
+            
+            groupChatRef.child(gid).child("users").updateChildValues(usersData)
+            self.sendMessageToGroupChat(gid: gid, message: message)
+        })
+    }
+    
+    func sendMessageToGroupChat(gid: String, message: Message) {
+        let messagesRef = ref.child(MESSAGES).child(gid)
+        let lastMessageRef = ref.child(GROUPS).child(gid).child("last_message")
+        
+        messagesRef.childByAutoId().updateChildValues(message.toDictionary())
+        lastMessageRef.updateChildValues(message.toDictionary())
     }
     
     func checkForExistingGroup(uid: String, groupToCheck: [EllomixUser], completed: @escaping (String?) -> ()) {
@@ -142,14 +172,6 @@ class FirebaseApi {
                 })
             }
         })
-    }
-    
-    func sendMessageToGroupChat(group: Group, message: Message) {
-        let messagesRef = ref.child(MESSAGES).child(group.gid!)
-        let lastMessageRef = ref.child(GROUPS).child(group.gid!).child("last_message")
-        
-        messagesRef.childByAutoId().updateChildValues(message.toDictionary())
-        lastMessageRef.updateChildValues(message.toDictionary())
     }
     
     func addToGroupPlaylist(group: Group, data: [Dictionary<String, AnyObject>]) {

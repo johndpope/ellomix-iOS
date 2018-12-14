@@ -282,6 +282,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if (group != nil) {
                 sendMessage()
             } else {
+                //TODO: Use FirebaseAPI function
                 FirebaseAPI.getGroupsRef().childByAutoId().observeSingleEvent(of: .value, with: { (snapshot) in
                     self.group = Group()
                     self.group?.gid = snapshot.key
@@ -306,6 +307,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func sendMessage() {
+        //TODO: Use FirebaseAPI function
         let timestamp:Int = Int(Date().timeIntervalSince1970)
         let messageValues = [
                 "uid": self.currentUser?.uid,
