@@ -195,8 +195,16 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         let cell = tableView.cellForRow(at: notificationsIndexPath) as! SwitchTableViewCell
         if (group.users != nil) {
             var userInfo = group.users![currentUser!.uid] as? Dictionary<String, AnyObject>
-            userInfo!["notifications"] = cell.toggle.isOn as AnyObject
-            group.users![currentUser!.uid] = userInfo as AnyObject
+            
+            if (userInfo!["notifications"] as! Bool != cell.toggle.isOn) {
+                userInfo!["notifications"] = cell.toggle.isOn as AnyObject
+                group.users![currentUser!.uid] = userInfo as AnyObject
+                if (cell.toggle.isOn) {
+                    FirebaseAPI.subscribeToGroupChatNotifications(gid: group.gid!)
+                } else {
+                    FirebaseAPI.unsubscribeFromGroupChatNotifications(gid: group.gid!)
+                }
+            }
         }
         
         FirebaseAPI.updateGroupChat(group: group)

@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseMessaging
 import UIKit
 
 class FirebaseApi {
@@ -200,5 +201,29 @@ class FirebaseApi {
         
         groupPlaylistRef.child(key).removeValue()
         orderGroupPlaylist(group: group, data: data)
+    }
+    
+    func setupGroupChatNotifications(user: EllomixUser, gids: [String]) {
+        let groupsRef = ref.child(GROUPS)
+        
+        for gid in gids {
+            groupsRef.child(gid).child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
+                    if let subscribeToGroupChat = userDict["notifications"] as? Bool {
+                        if (subscribeToGroupChat) {
+                            self.subscribeToGroupChatNotifications(gid: gid)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func subscribeToGroupChatNotifications(gid: String) {
+        Messaging.messaging().subscribe(toTopic: gid)
+    }
+    
+    func unsubscribeFromGroupChatNotifications(gid: String) {
+        Messaging.messaging().unsubscribe(fromTopic: gid)
     }
 }

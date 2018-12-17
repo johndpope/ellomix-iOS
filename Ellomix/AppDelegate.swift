@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         loginOrHome()
         
         // Notifications
-        
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -55,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 options: authOptions,
                 completionHandler: {_, _ in })
             
-            // For iOS 10 data message (sent via FCM
+            // For iOS 10 data message (sent via FCM)
             Messaging.messaging().delegate = self
         } else {
             let settings: UIUserNotificationSettings =
@@ -188,9 +187,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if (birthday != nil) { loadedUser.setBirthday(birthday: birthday!)}
         if (followersCount != nil) { loadedUser.setFollowersCount(count: followersCount!) }
         if (followingCount != nil) { loadedUser.setFollowingCount(count: followingCount!) }
-        if (groups != nil) { loadedUser.groups = Array(groups!.keys)}
+        if (groups != nil) {
+            loadedUser.groups = Array(groups!.keys)
+            FirebaseAPI.setupGroupChatNotifications(user: loadedUser, gids: loadedUser.groups)
+        }
+
         Global.sharedGlobal.user = loadedUser
-        
         loadHomeScreen()
     }
     

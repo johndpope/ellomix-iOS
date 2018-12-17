@@ -16,16 +16,21 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var blogButton: UIButton!
     
     private var FirebaseAPI: FirebaseApi!
-    var currentUser:EllomixUser?
+    var currentUser:EllomixUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
+        currentUser = Global.sharedGlobal.user
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: false)
     }
     
     //make account private: TODO:
@@ -56,12 +61,13 @@ class SettingsViewController: UITableViewController {
                 let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")
                 window!.rootViewController = getStartedNavController
             }
+            
+            for gid in currentUser.groups {
+                FirebaseAPI.unsubscribeFromGroupChatNotifications(gid: gid)
+            }
         } catch let signOutError {
             print ("Error signing out of Firebase: \(signOutError)")
         }
-    }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: false)
     }
 
 }
