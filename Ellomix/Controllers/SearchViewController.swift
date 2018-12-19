@@ -24,7 +24,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     var isSearchSPDone = false // Spotify search flag
     var isSearchSCDone = false // Soundcloud search flag
     var isSearchYTDone = false // Youtube search flag
-    var isSearchUserDone = false //user filter flag
+    var isSearchUserDone = false // user filter flag
     
     let searchLimit = 3
     
@@ -73,7 +73,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     
     //MARK: TableView functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Check if download is complete and check if the result is zero (aka create a cell with "No search results." label
+        //Check if download is complete and check if the result is zero (aka create a cell with "No search results." label)
         if (scope == "Music") {
             if (section == 0) {
                 let spotifySongCount = songs["Spotify"]!.count
@@ -110,7 +110,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             // Check which section to add to and then check if the search is done and if there are any results
             let cell = tableView.dequeueReusableCell(withIdentifier: "searchMusicCell") as! SearchTableViewMusicCell
             
-            if indexPath.section == 1 {
+            if (indexPath.section == 1) {
                 let scCount = (songs["Soundcloud"]?.count)!
                 if isSearchSCDone && scCount == 0 {
                     return tableView.dequeueReusableCell(withIdentifier: "noSearchFoundCell")!
@@ -124,8 +124,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     cell.thumbnail.image = scTrack?.thumbnailImage
                     
                 }
-            }
-            else if indexPath.section == 2 {
+            } else if (indexPath.section == 2) {
                 let ytCount = songs["YouTube"]!.count
                 if isSearchYTDone && ytCount == 0 {
                     return tableView.dequeueReusableCell(withIdentifier: "noSearchFoundCell")!
@@ -140,9 +139,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     
                 }
             }
+            cell.optionsButton.addTarget(self, action: #selector(showOptionsMenu(sender:)), for: .touchUpInside)
+            
             return cell
-        }
-        else {
+        } else {
             let userCount = filteredUsers.count
             if isSearchUserDone && userCount == 0 {
                 return tableView.dequeueReusableCell(withIdentifier: "noSearchFoundCell")!
@@ -260,6 +260,20 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
 //
             return 0
         }
+    }
+    
+    func showOptionsMenu(sender: UIButton) {
+        var actions = [UIAlertAction]()
+        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+            print("Share")
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Cancel")
+        }
+        
+        actions.append(shareAction)
+        actions.append(cancelAction)
+        EllomixAlertController.showActionSheet(viewController: self, actions: actions)
     }
     
     //MARK: Searchbar

@@ -17,4 +17,13 @@ class EllomixAlertController {
         viewController.present(alert, animated: true, completion: completion)
     }
     
+    static func showActionSheet(viewController: UIViewController, actions: [UIAlertAction], handler: ((UIAlertAction) -> ())? = nil, completion: (() -> ())? = nil) {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        for action in actions {
+            alert.addAction(action)
+        }
+        
+        viewController.present(alert, animated: true, completion: completion)
+    }
 }
