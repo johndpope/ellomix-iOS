@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var storyboard: UIStoryboard?
     var auth = SPTAuth()
     private var FirebaseAPI: FirebaseApi!
+    private var userLoggedIn: Bool = false
     lazy var loadingIndicatorView: LoadingViewController = {
         return self.storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as! LoadingViewController
         }()
@@ -141,6 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 } else {
                     // User must login
+                    self.userLoggedIn = true
                     let getStartedNavController = self.storyboard?.instantiateViewController(withIdentifier: "getStartedNavController")
                     window.rootViewController = getStartedNavController
                 }
@@ -189,7 +191,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if (followingCount != nil) { loadedUser.setFollowingCount(count: followingCount!) }
         if (groups != nil) {
             loadedUser.groups = Array(groups!.keys)
-            FirebaseAPI.setupGroupChatNotifications(user: loadedUser, gids: loadedUser.groups)
+            if (self.userLoggedIn) {
+                // Only set up group notifications when user logs in for the first time
+                FirebaseAPI.setupGroupChatNotifications(user: loadedUser, gids: loadedUser.groups)
+                self.userLoggedIn = false
+            }
         }
 
         Global.sharedGlobal.user = loadedUser

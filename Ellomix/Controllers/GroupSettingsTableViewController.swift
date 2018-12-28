@@ -182,6 +182,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     
     func leaveGroup(alert: UIAlertAction!) {
         leavingGroup = true
+        FirebaseAPI.unsubscribeFromGroupChatNotifications(gid: group.gid!)
         navigationController?.popToRootViewController(animated: true)
     }
     
