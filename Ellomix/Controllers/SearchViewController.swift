@@ -17,7 +17,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     var youtubeSearchURL = "https://www.googleapis.com/youtube/v3/search"
     var spotifySearchURL = "https://api.spotify.com/v1/search"
     typealias JSONStandard = [String : AnyObject]
-    var searchController:UISearchController?
+    var searchController: UISearchController?
+    var selectUsersOrGroupsControllerNavController: UINavigationController!
     let sections = ["Spotify", "Soundcloud", "YouTube"]
     let searchFilters = ["Music", "People"]
     var scope = "Music"
@@ -50,6 +51,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         searchController?.searchBar.scopeButtonTitles = searchFilters
         searchController?.searchBar.delegate = self
         tableView.backgroundView = UIView()
+        
+        let storyboard = UIStoryboard(name: "SelectUsersOrGroups", bundle: nil)
+        selectUsersOrGroupsControllerNavController = storyboard.instantiateViewController(withIdentifier: "selectUsersOrGroupsNavController") as? UINavigationController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,7 +126,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     cell.artist.text = scTrack?.artist
                     cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
                     cell.thumbnail.image = scTrack?.thumbnailImage
-                    
+                    cell.track = scTrack
                 }
             } else if (indexPath.section == 2) {
                 let ytCount = songs["YouTube"]!.count
@@ -136,7 +140,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     cell.artist.text = ytVideo?.videoChannel
                     cell.serviceIcon.image = #imageLiteral(resourceName: "youtube")
                     cell.thumbnail.image = ytVideo?.videoThumbnailImage
-                    
+                    cell.track = ytVideo
                 }
             }
             cell.optionsButton.addTarget(self, action: #selector(showOptionsMenu(sender:)), for: .touchUpInside)
@@ -265,11 +269,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     func showOptionsMenu(sender: UIButton) {
         var actions = [UIAlertAction]()
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
-            print("Share")
+            let selectUsersOrGroupsVC = self.selectUsersOrGroupsControllerNavController.topViewController as! SelectUsersOrGroupsController
+            if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
+                selectUsersOrGroupsVC.currentTrack = cell.track
+                self.present(self.selectUsersOrGroupsControllerNavController, animated: true, completion: nil)
+            }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            print("Cancel")
-        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         actions.append(shareAction)
         actions.append(cancelAction)

@@ -16,5 +16,6 @@ class SearchTableViewMusicCell: UITableViewCell {
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var serviceIcon: UIImageView!
     @IBOutlet weak var optionsButton: UIButton!
+    var track: Any! //TODO: Change to BaseTrack
     
 }
