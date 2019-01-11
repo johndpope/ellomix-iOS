@@ -57,7 +57,7 @@ class PopUpPlayerController: UIViewController {
                 let progress = CMTimeGetSeconds(duration)
                 let minutes = floor(progress / 60)
                 let seconds = round(progress - minutes * 60)
-                timeDuration.text = String(format:"%.0f:%.0f", minutes, seconds)
+                timeDuration.text = String(format:"%.0f:%02.0f", minutes, seconds)
             }
         case is YouTubeVideo:
             Global.sharedGlobal.youtubePlayer?.setButton(button: playPauseButton)
