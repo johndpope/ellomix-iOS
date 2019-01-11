@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMedia
 
 class PopUpPlayerController: UIViewController {
     
@@ -14,6 +15,8 @@ class PopUpPlayerController: UIViewController {
     @IBOutlet weak var titleField: UILabel!
     @IBOutlet weak var artistField: UILabel!
     @IBOutlet weak var artworkImage: UIImageView!
+    @IBOutlet var timeDuration: UILabel!
+    
     var currentTrack: Any?
     var playbar: PlayBarController?
     var selectUsersOrGroupsControllerNavController: UINavigationController!
@@ -50,12 +53,23 @@ class PopUpPlayerController: UIViewController {
             artworkImage.image = track.thumbnailImage
             titleField.text = track.title
             artistField.text = track.artist
+            if let duration = Global.sharedGlobal.musicPlayer.player?.currentItem?.duration {
+                let progress = CMTimeGetSeconds(duration)
+                let minutes = floor(progress / 60)
+                let seconds = round(progress - minutes * 60)
+                timeDuration.text = String(format:"%.0f:%.0f", minutes, seconds)
+            }
         case is YouTubeVideo:
             Global.sharedGlobal.youtubePlayer?.setButton(button: playPauseButton)
             artworkImage.isHidden = true
             let track = currentTrack as! YouTubeVideo
             titleField.text = track.videoTitle
             artistField.text = track.videoChannel
+            if let duration = Int((Global.sharedGlobal.youtubePlayer?.getDuration())!) {
+                let minutes = duration / 60
+                let seconds = duration - minutes * 60
+                timeDuration.text = String(format:"%0d:%.2d", minutes, seconds)
+            }
         default:
             print("Unable to load track info.")
         }

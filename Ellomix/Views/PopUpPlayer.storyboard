@@ -45,11 +45,11 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="361"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnd-7R-xpK" userLabel="Next">
-                                <rect key="frame" x="234.5" y="573" width="24" height="24"/>
+                                <rect key="frame" x="235" y="573" width="24" height="24"/>
                                 <state key="normal" image="forward"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4v8-ec-69P" userLabel="Previous">
-                                <rect key="frame" x="116.5" y="573" width="24" height="24"/>
+                                <rect key="frame" x="117" y="573" width="24" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" image="rewind"/>
                             </button>
@@ -62,7 +62,7 @@
                                 <state key="normal" image="repeat"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGq-3l-3SG" userLabel="Play Pause">
-                                <rect key="frame" x="170.5" y="566" width="34" height="39"/>
+                                <rect key="frame" x="171" y="566" width="34" height="39"/>
                                 <state key="normal" image="pause"/>
                                 <connections>
                                     <action selector="playPause:" destination="Tq7-Gl-Xmw" eventType="touchUpInside" id="lb1-8h-fHB"/>
@@ -86,6 +86,12 @@
                                 <rect key="frame" x="18" y="573" width="24" height="24"/>
                                 <state key="normal" image="heart_outline"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wn7-HE-Xpr">
+                                <rect key="frame" x="288" y="434" width="66" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -100,11 +106,13 @@
                             <constraint firstItem="kN0-d9-e4v" firstAttribute="leading" secondItem="T30-1G-2Vg" secondAttribute="leadingMargin" id="BIe-CT-9hE"/>
                             <constraint firstItem="eeG-QZ-kcG" firstAttribute="trailing" secondItem="T30-1G-2Vg" secondAttribute="trailingMargin" id="Bij-fz-g9s"/>
                             <constraint firstItem="HUH-Nl-WOJ" firstAttribute="top" secondItem="Ri1-9s-ar7" secondAttribute="bottom" constant="10" id="GyA-Su-qJE"/>
+                            <constraint firstItem="wn7-HE-Xpr" firstAttribute="top" secondItem="0BM-8k-eJI" secondAttribute="bottom" constant="8" id="JhB-V2-kPb"/>
                             <constraint firstItem="0BM-8k-eJI" firstAttribute="leading" secondItem="T30-1G-2Vg" secondAttribute="leading" id="MpU-mT-4Sy"/>
                             <constraint firstItem="HUH-Nl-WOJ" firstAttribute="leading" secondItem="T30-1G-2Vg" secondAttribute="leading" constant="11" id="NIx-cG-hY5"/>
                             <constraint firstItem="kN0-d9-e4v" firstAttribute="centerY" secondItem="RIr-PT-qCj" secondAttribute="centerY" id="P1X-ZC-ceq"/>
                             <constraint firstItem="RIr-PT-qCj" firstAttribute="centerX" secondItem="T30-1G-2Vg" secondAttribute="centerX" id="TE1-4J-yXM"/>
                             <constraint firstItem="ozF-Nr-EXw" firstAttribute="top" secondItem="kN0-d9-e4v" secondAttribute="bottom" constant="192" id="Ucg-Ez-Ubo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wn7-HE-Xpr" secondAttribute="trailing" constant="5" id="XVh-xp-6t4"/>
                             <constraint firstItem="kN0-d9-e4v" firstAttribute="top" secondItem="eeG-QZ-kcG" secondAttribute="top" id="YVA-Vt-nu1"/>
                             <constraint firstItem="Xnd-7R-xpK" firstAttribute="leading" secondItem="YGq-3l-3SG" secondAttribute="trailing" constant="30" id="Z5d-HG-Xqv"/>
                             <constraint firstItem="DoE-ne-HRH" firstAttribute="top" secondItem="4v8-ec-69P" secondAttribute="top" id="ZBG-na-5fw"/>
@@ -115,6 +123,7 @@
                             <constraint firstItem="ALI-qb-VeD" firstAttribute="top" secondItem="RIr-PT-qCj" secondAttribute="bottom" constant="7" id="qgL-Bs-r3G"/>
                             <constraint firstItem="DoE-ne-HRH" firstAttribute="leading" secondItem="T30-1G-2Vg" secondAttribute="leadingMargin" constant="2" id="tdK-JV-zpo"/>
                             <constraint firstItem="MoN-p7-fMI" firstAttribute="trailing" secondItem="eeG-QZ-kcG" secondAttribute="trailing" constant="-2" id="z4O-Lo-K3q"/>
+                            <constraint firstItem="wn7-HE-Xpr" firstAttribute="centerX" secondItem="MoN-p7-fMI" secondAttribute="centerX" constant="-22" id="zLR-UO-26q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AES-3n-RIi"/>
                         <connections>
@@ -125,6 +134,7 @@
                         <outlet property="artistField" destination="ALI-qb-VeD" id="oLy-T7-Z3i"/>
                         <outlet property="artworkImage" destination="0BM-8k-eJI" id="ja4-yL-dQP"/>
                         <outlet property="playPauseButton" destination="YGq-3l-3SG" id="nca-kS-ZdQ"/>
+                        <outlet property="timeDuration" destination="wn7-HE-Xpr" id="2eT-Qa-3Gk"/>
                         <outlet property="titleField" destination="RIr-PT-qCj" id="tDF-KM-Vsa"/>
                     </connections>
                 </viewController>
@@ -135,7 +145,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-482" y="1787"/>
+            <point key="canvasLocation" x="-482.39999999999998" y="1786.9565217391305"/>
         </scene>
     </scenes>
     <resources>
