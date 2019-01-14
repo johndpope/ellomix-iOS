@@ -92,6 +92,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvC-CQ-48K" userLabel="Current Time">
+                                <rect key="frame" x="18" y="434" width="32" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -117,11 +123,13 @@
                             <constraint firstItem="Xnd-7R-xpK" firstAttribute="leading" secondItem="YGq-3l-3SG" secondAttribute="trailing" constant="30" id="Z5d-HG-Xqv"/>
                             <constraint firstItem="DoE-ne-HRH" firstAttribute="top" secondItem="4v8-ec-69P" secondAttribute="top" id="ZBG-na-5fw"/>
                             <constraint firstItem="YGq-3l-3SG" firstAttribute="centerX" secondItem="T30-1G-2Vg" secondAttribute="centerX" id="cDk-30-3bD"/>
+                            <constraint firstItem="MvC-CQ-48K" firstAttribute="baseline" secondItem="wn7-HE-Xpr" secondAttribute="baseline" id="dYR-vW-eF2"/>
                             <constraint firstItem="Xnd-7R-xpK" firstAttribute="centerY" secondItem="YGq-3l-3SG" secondAttribute="centerY" id="eZ5-1H-4cm"/>
                             <constraint firstItem="ALI-qb-VeD" firstAttribute="centerX" secondItem="T30-1G-2Vg" secondAttribute="centerX" id="ofi-ra-aS4"/>
                             <constraint firstItem="kN0-d9-e4v" firstAttribute="top" secondItem="0BM-8k-eJI" secondAttribute="bottom" constant="25" id="qRN-Qf-MKS"/>
                             <constraint firstItem="ALI-qb-VeD" firstAttribute="top" secondItem="RIr-PT-qCj" secondAttribute="bottom" constant="7" id="qgL-Bs-r3G"/>
                             <constraint firstItem="DoE-ne-HRH" firstAttribute="leading" secondItem="T30-1G-2Vg" secondAttribute="leadingMargin" constant="2" id="tdK-JV-zpo"/>
+                            <constraint firstItem="MvC-CQ-48K" firstAttribute="leading" secondItem="DoE-ne-HRH" secondAttribute="leading" id="ukP-yC-Nk3"/>
                             <constraint firstItem="MoN-p7-fMI" firstAttribute="trailing" secondItem="eeG-QZ-kcG" secondAttribute="trailing" constant="-2" id="z4O-Lo-K3q"/>
                             <constraint firstItem="wn7-HE-Xpr" firstAttribute="centerX" secondItem="MoN-p7-fMI" secondAttribute="centerX" constant="-22" id="zLR-UO-26q"/>
                         </constraints>
@@ -133,6 +141,7 @@
                     <connections>
                         <outlet property="artistField" destination="ALI-qb-VeD" id="oLy-T7-Z3i"/>
                         <outlet property="artworkImage" destination="0BM-8k-eJI" id="ja4-yL-dQP"/>
+                        <outlet property="currentTime" destination="MvC-CQ-48K" id="BJj-mV-jdf"/>
                         <outlet property="playPauseButton" destination="YGq-3l-3SG" id="nca-kS-ZdQ"/>
                         <outlet property="timeDuration" destination="wn7-HE-Xpr" id="2eT-Qa-3Gk"/>
                         <outlet property="titleField" destination="RIr-PT-qCj" id="tDF-KM-Vsa"/>
