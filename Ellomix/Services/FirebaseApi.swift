@@ -203,27 +203,9 @@ class FirebaseApi {
         orderGroupPlaylist(group: group, data: data)
     }
     
-    func setupGroupChatNotifications(user: EllomixUser, gids: [String]) {
-        let groupsRef = ref.child(GROUPS)
+    func updateUserDeviceToken(uid: String, token: String) {
+        let userRef = ref.child(USERS).child(uid)
         
-        for gid in gids {
-            groupsRef.child(gid).child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
-                    if let subscribeToGroupChat = userDict["notifications"] as? Bool {
-                        if (subscribeToGroupChat) {
-                            self.subscribeToGroupChatNotifications(gid: gid)
-                        }
-                    }
-                }
-            })
-        }
-    }
-    
-    func subscribeToGroupChatNotifications(gid: String) {
-        Messaging.messaging().subscribe(toTopic: gid)
-    }
-    
-    func unsubscribeFromGroupChatNotifications(gid: String) {
-        Messaging.messaging().unsubscribe(fromTopic: gid)
+        userRef.child("device_token").setValue(token)
     }
 }

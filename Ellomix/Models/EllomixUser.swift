@@ -21,6 +21,7 @@ class EllomixUser {
     var gender:String = ""
     var birthday:String = ""
     var password:String = ""
+    var deviceToken:String!
     var followingCount:Int?
     var followersCount:Int?
     var groups:[String] = []

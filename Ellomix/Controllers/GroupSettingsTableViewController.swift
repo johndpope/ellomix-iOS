@@ -182,7 +182,6 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     
     func leaveGroup(alert: UIAlertAction!) {
         leavingGroup = true
-        FirebaseAPI.unsubscribeFromGroupChatNotifications(gid: group.gid!)
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -197,15 +196,8 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         if (group.users != nil) {
             var userInfo = group.users![currentUser!.uid] as? Dictionary<String, AnyObject>
             
-            if (userInfo!["notifications"] as! Bool != cell.toggle.isOn) {
-                userInfo!["notifications"] = cell.toggle.isOn as AnyObject
-                group.users![currentUser!.uid] = userInfo as AnyObject
-                if (cell.toggle.isOn) {
-                    FirebaseAPI.subscribeToGroupChatNotifications(gid: group.gid!)
-                } else {
-                    FirebaseAPI.unsubscribeFromGroupChatNotifications(gid: group.gid!)
-                }
-            }
+            userInfo!["notifications"] = cell.toggle.isOn as AnyObject
+            group.users![currentUser!.uid] = userInfo as AnyObject
         }
         
         FirebaseAPI.updateGroupChat(group: group)

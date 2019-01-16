@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var storyboard: UIStoryboard?
     var auth = SPTAuth()
     private var FirebaseAPI: FirebaseApi!
-    private var userLoggedIn: Bool = false
+    private var fcmToken: String!
     lazy var loadingIndicatorView: LoadingViewController = {
         return self.storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as! LoadingViewController
         }()
@@ -54,15 +54,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions,
                 completionHandler: {_, _ in })
-            
-            // For iOS 10 data message (sent via FCM)
-            Messaging.messaging().delegate = self
         } else {
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
 
         return true
     }
@@ -94,6 +92,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        if let refreshedToken = InstanceID.instanceID().token() {
+            print("FCM Token: \(refreshedToken)")
+            fcmToken = refreshedToken
+        }
     }
     
     // The callback to handle data message received via FCM for devices running iOS 10 or above.
@@ -142,7 +147,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 } else {
                     // User must login
-                    self.userLoggedIn = true
                     let getStartedNavController = self.storyboard?.instantiateViewController(withIdentifier: "getStartedNavController")
                     window.rootViewController = getStartedNavController
                 }
@@ -177,6 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let followersCount = userData["followers_count"] as? Int
         let followingCount = userData["following_count"] as? Int
         let groups = userData["groups"] as? Dictionary<String, AnyObject>
+        let deviceToken = userData["device_token"] as? String
         
         let loadedUser = EllomixUser(uid: uid)
         loadedUser.setName(name: name!)
@@ -189,13 +194,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if (birthday != nil) { loadedUser.setBirthday(birthday: birthday!)}
         if (followersCount != nil) { loadedUser.setFollowersCount(count: followersCount!) }
         if (followingCount != nil) { loadedUser.setFollowingCount(count: followingCount!) }
-        if (groups != nil) {
-            loadedUser.groups = Array(groups!.keys)
-            if (self.userLoggedIn) {
-                // Only set up group notifications when user logs in for the first time
-                FirebaseAPI.setupGroupChatNotifications(user: loadedUser, gids: loadedUser.groups)
-                self.userLoggedIn = false
-            }
+        if (groups != nil) { loadedUser.groups = Array(groups!.keys)}
+        if (deviceToken != fcmToken) {
+            self.FirebaseAPI.updateUserDeviceToken(uid: uid, token: fcmToken)
+        } else {
+            loadedUser.deviceToken = deviceToken
         }
 
         Global.sharedGlobal.user = loadedUser

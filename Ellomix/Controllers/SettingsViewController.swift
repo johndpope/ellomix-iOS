@@ -16,12 +16,10 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var blogButton: UIButton!
     
     private var FirebaseAPI: FirebaseApi!
-    var currentUser:EllomixUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
-        currentUser = Global.sharedGlobal.user
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,10 +58,6 @@ class SettingsViewController: UITableViewController {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let getStartedNavController = storyboard.instantiateViewController(withIdentifier: "getStartedNavController")
                 window!.rootViewController = getStartedNavController
-            }
-            
-            for gid in currentUser.groups {
-                FirebaseAPI.unsubscribeFromGroupChatNotifications(gid: gid)
             }
         } catch let signOutError {
             print ("Error signing out of Firebase: \(signOutError)")
