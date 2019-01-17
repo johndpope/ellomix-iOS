@@ -126,7 +126,8 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
         if (currentUser != nil) {
              newChatGroup[currentUser!.uid] = [
                 "name": currentUser!.getName(),
-                "photo_url": currentUser!.profilePicLink
+                "photo_url": currentUser!.profilePicLink,
+                "device_token": currentUser!.deviceToken
             ] as AnyObject
         }
         

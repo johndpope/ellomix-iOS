@@ -310,7 +310,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //TODO: Use FirebaseAPI function
         let timestamp:Int = Int(Date().timeIntervalSince1970)
         let messageValues = [
-                "uid": self.currentUser?.uid,
+                "uid": self.currentUser?.uid as AnyObject,
+                "device_token": self.currentUser?.deviceToken as AnyObject,
                 "content": self.messageTextView.text,
                 "timestamp": timestamp
             ] as [String : AnyObject]
