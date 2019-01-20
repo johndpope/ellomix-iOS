@@ -156,6 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func loadUser(user: Firebase.User) {
         FirebaseAPI.getUsersRef().observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+            //TODO: Handle edge case when users are authenticated with Firebase but don't have accounts
             if (snapshot.hasChild(user.uid)) {
                 print("User was loaded from Firebase")
                 
