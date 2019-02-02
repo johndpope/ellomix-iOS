@@ -48,6 +48,8 @@
 		DB451D2320F46EC900A56EB4 /* FieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */; };
 		DB451D2520F46FF200A56EB4 /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB451D2420F46FF200A56EB4 /* FieldTableViewCell.swift */; };
 		DB49DC88212A7AEB00DB3E8B /* SoundcloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */; };
+		DB5AAD6D22057A8100BA69BA /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */; };
+		DB5AAD6F22057B0100BA69BA /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */; };
 		DB7034DB20620F41003235EB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7034DA20620F41003235EB /* Message.swift */; };
 		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
 		DB7B0BD21F7CB35300BB2707 /* SoundcloudTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */; };
@@ -169,6 +171,8 @@
 		DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldTableViewCell.xib; sourceTree = "<group>"; };
 		DB451D2420F46FF200A56EB4 /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
 		DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundcloudService.swift; sourceTree = "<group>"; };
+		DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
+		DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
 		DB7034DA20620F41003235EB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
 		DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundcloudTrack.swift; sourceTree = "<group>"; };
@@ -320,6 +324,7 @@
 				DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */,
 				16D2405A21433E810013B2AF /* SeeAllTableViewController.swift */,
 				1621BF3F215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift */,
+				DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 			children = (
 				DB5FB81220E1FD6600345BAC /* Cells */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
+				DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */,
 				DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */,
 				DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */,
 				E379E62A1E08B69500B0256F /* LaunchScreen.storyboard */,
@@ -637,6 +643,7 @@
 				DB8E1BFA215F28AA003F65DE /* SelectUsersOrGroups.storyboard in Resources */,
 				DBF53C322129081700AB1E81 /* SectionLabelTableViewCell.xib in Resources */,
 				DBEA17D320EB328C00A9294A /* LabelTableViewCell.xib in Resources */,
+				DB5AAD6D22057A8100BA69BA /* Timeline.storyboard in Resources */,
 				DB8E1BFC215F2930003F65DE /* PopUpPlayer.storyboard in Resources */,
 				16D2405D21433EAC0013B2AF /* SeeAll.storyboard in Resources */,
 			);
@@ -795,6 +802,7 @@
 				DB16728D2123BF2600A368FC /* YoutubeService.swift in Sources */,
 				BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */,
 				DBB8B4601EA9976E0021E0F6 /* SearchViewController.swift in Sources */,
+				DB5AAD6F22057B0100BA69BA /* TimelineTableViewController.swift in Sources */,
 				DB42B50A1FFDF28400AB7E1D /* YouTubePlayer.swift in Sources */,
 				DB8FCAA2217EE214008BC0DB /* MessageTableViewCell.swift in Sources */,
 				DB451D2520F46FF200A56EB4 /* FieldTableViewCell.swift in Sources */,

@@ -638,6 +638,7 @@
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="kJE-CN-ncD" kind="relationship" relationship="viewControllers" id="6go-vZ-e67"/>
                         <segue destination="lVH-qC-MVQ" kind="relationship" relationship="viewControllers" id="m3R-hZ-v19"/>
                         <segue destination="xW1-F6-z08" kind="relationship" relationship="viewControllers" id="QC7-xk-bUF"/>
                         <segue destination="UGU-FQ-1dq" kind="relationship" relationship="viewControllers" id="deB-Z2-rRq"/>
@@ -2683,6 +2684,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hx4-jF-IPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2188" y="86"/>
+        </scene>
+        <!--Timeline-->
+        <scene sceneID="G0I-4k-p1W">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Timeline" id="kJE-CN-ncD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="eA6-ji-F00"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HQU-Aw-1Y0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="115" y="1982"/>
         </scene>
     </scenes>
     <resources>
