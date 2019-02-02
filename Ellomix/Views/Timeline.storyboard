@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Timeline Table View Controller-->
+        <!--ellomix-->
         <scene sceneID="6SI-Mu-f2J">
             <objects>
                 <tableViewController id="dkI-AX-9ge" customClass="TimelineTableViewController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,11 +32,26 @@
                             <outlet property="delegate" destination="dkI-AX-9ge" id="uTt-ZT-4DI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="oTx-1s-yDA"/>
+                    <navigationItem key="navigationItem" title="ellomix" id="oTx-1s-yDA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ArJ-38-e6j">
+                            <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="0QB-bb-0Ms" kind="presentation" identifier="toCreateNewPost" id="SKV-DQ-lx3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQ5-Au-v9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="863" y="2268"/>
+        </scene>
+        <!--SearchSongs-->
+        <scene sceneID="bGI-q1-pLp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SearchSongs" id="0QB-bb-0Ms" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7gs-hd-chH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1443" y="2265"/>
         </scene>
         <!--Home-->
         <scene sceneID="Vzz-CW-hML">

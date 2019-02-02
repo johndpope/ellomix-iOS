@@ -275,6 +275,7 @@ class GroupPlaylistTableViewController: UITableViewController {
             let navVC = segue.destination as! UINavigationController
             let segueVC = navVC.topViewController as! SearchSongsTableViewController
             segueVC.delegate = self
+            segueVC.doneButton.title = "Done"
         }
     }
 }
