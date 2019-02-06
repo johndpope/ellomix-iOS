@@ -291,7 +291,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 clearSongs()
                 soundcloudRequest(query: searchString)
                 youtubeRequest(query: searchString)
-                spotifyRequest(query: searchString)
+                //spotifyRequest(query: searchString)
             } else {
                 
             }
@@ -398,6 +398,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         })
     }
     
+    /*
     func spotifyRequest(query: String) {
         print("spotify request")
         SpotifyService.search(query: query) {
@@ -407,6 +408,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             }
         }
     }
+    */
     
     //MARK: Spotify Data:
     func parseSpotify(JSONData : Data) {

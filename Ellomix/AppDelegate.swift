@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     var storyboard: UIStoryboard?
-    var auth = SPTAuth()
     private var FirebaseAPI: FirebaseApi!
     private var fcmToken: String!
     lazy var loadingIndicatorView: LoadingViewController = {
@@ -30,12 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-       
-        let redirectURL = "ellomix://return-after-login"
-        //Spotify setup
-        auth.redirectURL = URL(string: redirectURL)
-        auth.sessionUserDefaultsKey = "current session"
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // Spotify setup
+        setupSpotify()
         
         // Music Player configuration
         UIApplication.shared.beginReceivingRemoteControlEvents()
@@ -65,26 +61,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        //let handler = SDKApplicationDelegate.shared.application(app, open: url, options: options)
+    func setupSpotify() {
+        SPTAuth.defaultInstance().clientID = Constants.clientID
+        SPTAuth.defaultInstance().redirectURL = Constants.redirectURI
+        SPTAuth.defaultInstance().sessionUserDefaultsKey = Constants.sessionKey
         
-        // 2- check if app can handle redirect URL
-        if auth.canHandle(auth.redirectURL) {
-            // 3 - handle callback in closure
-            auth.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
-                // 4- handle error
-                if error != nil {
-                    print("error!")
-                }
-                // 5- Add session to User Defaults
-                let userDefaults = UserDefaults.standard
-                let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
-                print(sessionData)
-                userDefaults.set(sessionData, forKey: "SpotifySession")
-                userDefaults.synchronize()
-                // 6 - Tell notification center login is successful
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "loginSuccessful"), object: nil)
-            })
+        SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope, SPTAuthUserLibraryReadScope]
+        
+        // Start the player (this is only need for applications that using streaming, which we will use
+        // in this tutorial)
+        do {
+            try SPTAudioStreamingController.sharedInstance().start(withClientId: Constants.clientID)
+        } catch {
+            fatalError("Couldn't start Spotify SDK")
+        }
+    }
+    
+    // This function is called when the app is opened by a URL
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        // Check if this URL was sent from the Spotify app or website
+        if SPTAuth.defaultInstance().canHandle(url) {
+            
+            // Send out a notification which we can listen for in our sign in view controller
+            NotificationCenter.default.post(name: NSNotification.Name.Spotify.authURLOpened, object: url)
+            
             return true
         }
         
