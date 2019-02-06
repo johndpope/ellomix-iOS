@@ -48,11 +48,20 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="xSe-ux-Fdn" id="grh-97-vAA"/>
+                        <segue destination="A5Z-KC-ZA6" kind="show" identifier="toSharePost" id="WlE-VO-32c"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmo-VH-9ZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="104.8" y="20.239880059970016"/>
+        </scene>
+        <!--SharePost-->
+        <scene sceneID="PJp-hD-AVD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SharePost" id="A5Z-KC-ZA6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JyH-Nc-Je8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="788" y="20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l3t-D9-Hpu">

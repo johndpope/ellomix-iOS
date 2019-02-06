@@ -3,7 +3,7 @@
 //  Ellomix
 //
 //  Created by Kevin Avila on 2/2/19.
-//  Copyright © 2019 Akshay Vyas. All rights reserved.
+//  Copyright © 2019 Ellomix. All rights reserved.
 //
 
 import UIKit

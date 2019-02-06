@@ -22,7 +22,6 @@
 		BA37F5CB1E5D600C00C937CD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */; };
 		BA37F5CF1E5D658300C937CD /* ReceivedChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */; };
 		BA4E4BB51E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */; };
-		BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */; };
 		BA4E4C061E63924700A4C4B9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */; };
 		BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */; };
 		BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */; };
@@ -48,9 +47,10 @@
 		DB451D2320F46EC900A56EB4 /* FieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */; };
 		DB451D2520F46FF200A56EB4 /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB451D2420F46FF200A56EB4 /* FieldTableViewCell.swift */; };
 		DB49DC88212A7AEB00DB3E8B /* SoundcloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */; };
+		DB576F62220AA3A600142A02 /* SharePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB576F61220AA3A600142A02 /* SharePostController.swift */; };
 		DB5AAD6D22057A8100BA69BA /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */; };
 		DB5AAD6F22057B0100BA69BA /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */; };
-		DB5AAD7122065E2600BA69BA /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD7022065E2600BA69BA /* NewPost.storyboard */; };
+		DB5AAD7122065E2600BA69BA /* SharePost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD7022065E2600BA69BA /* SharePost.storyboard */; };
 		DB7034DB20620F41003235EB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7034DA20620F41003235EB /* Message.swift */; };
 		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
 		DB7B0BD21F7CB35300BB2707 /* SoundcloudTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */; };
@@ -145,7 +145,6 @@
 		BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedChatTableViewCell.swift; sourceTree = "<group>"; };
 		BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPlaylistTableViewController.swift; sourceTree = "<group>"; };
-		BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLoginViewController.swift; sourceTree = "<group>"; };
 		BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFeedTableViewController.swift; sourceTree = "<group>"; };
 		BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -172,9 +171,10 @@
 		DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldTableViewCell.xib; sourceTree = "<group>"; };
 		DB451D2420F46FF200A56EB4 /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
 		DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundcloudService.swift; sourceTree = "<group>"; };
+		DB576F61220AA3A600142A02 /* SharePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePostController.swift; sourceTree = "<group>"; };
 		DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
-		DB5AAD7022065E2600BA69BA /* NewPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
+		DB5AAD7022065E2600BA69BA /* SharePost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SharePost.storyboard; sourceTree = "<group>"; };
 		DB7034DA20620F41003235EB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
 		DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundcloudTrack.swift; sourceTree = "<group>"; };
@@ -322,11 +322,11 @@
 				DBDFC9FF2103FFA100229A45 /* AddMemberController.swift */,
 				BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */,
 				BA3669A8205F431200DC4D54 /* SettingsViewController.swift */,
-				BA4E4BFD1E63763800A4C4B9 /* SpotifyLoginViewController.swift */,
 				DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */,
 				16D2405A21433E810013B2AF /* SeeAllTableViewController.swift */,
 				1621BF3F215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift */,
 				DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */,
+				DB576F61220AA3A600142A02 /* SharePostController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -337,7 +337,7 @@
 				DB5FB81220E1FD6600345BAC /* Cells */,
 				E379E6251E08B69500B0256F /* Main.storyboard */,
 				DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */,
-				DB5AAD7022065E2600BA69BA /* NewPost.storyboard */,
+				DB5AAD7022065E2600BA69BA /* SharePost.storyboard */,
 				DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */,
 				DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */,
 				E379E62A1E08B69500B0256F /* LaunchScreen.storyboard */,
@@ -577,7 +577,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Akshay Vyas";
+				ORGANIZATIONNAME = Ellomix;
 				TargetAttributes = {
 					E379E61D1E08B69500B0256F = {
 						CreatedOnToolsVersion = 8.2;
@@ -641,7 +641,7 @@
 				DBEA17D520EB392100A9294A /* SwitchTableViewCell.xib in Resources */,
 				E379E6291E08B69500B0256F /* Assets.xcassets in Resources */,
 				DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */,
-				DB5AAD7122065E2600BA69BA /* NewPost.storyboard in Resources */,
+				DB5AAD7122065E2600BA69BA /* SharePost.storyboard in Resources */,
 				E379E6271E08B69500B0256F /* Main.storyboard in Resources */,
 				1621BF3E215D975600C6F901 /* SeeFollowersFollowing.storyboard in Resources */,
 				DB8E1BFA215F28AA003F65DE /* SelectUsersOrGroups.storyboard in Resources */,
@@ -778,7 +778,6 @@
 				DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */,
 				167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */,
 				DBE384122193FD35008E3FAD /* TrackPreview.swift in Sources */,
-				BA4E4BFE1E63763800A4C4B9 /* SpotifyLoginViewController.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
 				DBB727E420AA91AC00419789 /* SplashController.swift in Sources */,
 				16D2405B21433E810013B2AF /* SeeAllTableViewController.swift in Sources */,
@@ -810,6 +809,7 @@
 				DB42B50A1FFDF28400AB7E1D /* YouTubePlayer.swift in Sources */,
 				DB8FCAA2217EE214008BC0DB /* MessageTableViewCell.swift in Sources */,
 				DB451D2520F46FF200A56EB4 /* FieldTableViewCell.swift in Sources */,
+				DB576F62220AA3A600142A02 /* SharePostController.swift in Sources */,
 				DBC09BB220BE513A003EE29F /* Cache.swift in Sources */,
 				1621BF40215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift in Sources */,
 				DB49DC88212A7AEB00DB3E8B /* SoundcloudService.swift in Sources */,
