@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         FirebaseApp.configure()
        
-        let redirectURL = "Ellomix://returnAfterLogin"
+        let redirectURL = "ellomix://return-after-login"
         //Spotify setup
         auth.redirectURL = URL(string: redirectURL)
         auth.sessionUserDefaultsKey = "current session"
@@ -65,8 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let handler = SDKApplicationDelegate.shared.application(app, open: url, options: options)
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        //let handler = SDKApplicationDelegate.shared.application(app, open: url, options: options)
         
         // 2- check if app can handle redirect URL
         if auth.canHandle(auth.redirectURL) {
@@ -79,15 +79,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 // 5- Add session to User Defaults
                 let userDefaults = UserDefaults.standard
                 let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
+                print(sessionData)
                 userDefaults.set(sessionData, forKey: "SpotifySession")
                 userDefaults.synchronize()
                 // 6 - Tell notification center login is successful
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "loginSuccessfull"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "loginSuccessful"), object: nil)
             })
             return true
         }
         
-        return handler
+        return false
     }
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
