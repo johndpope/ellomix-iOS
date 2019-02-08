@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineTableViewController: UITableViewController {
+class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     
     var baseDelegate: ContainerViewController!
     
@@ -16,11 +16,17 @@ class TimelineTableViewController: UITableViewController {
         
     }
     
+    func doneSelecting(selected: [String : Dictionary<String, AnyObject>]) {
+        let navVC = presentedViewController as! UINavigationController
+        let searchSongsVC = navVC.topViewController as! SearchSongsTableViewController
+        searchSongsVC.performSegue(withIdentifier: "toSharePost", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toCreateNewPost") {
             let navVC = segue.destination as! UINavigationController
             let segueVC = navVC.topViewController as! SearchSongsTableViewController
-            //segueVC.delegate = self
+            segueVC.searchSongsDelegate = self
             segueVC.doneButton.title = "Next"
         }
     }

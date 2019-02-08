@@ -48,6 +48,7 @@
 		DB451D2520F46FF200A56EB4 /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB451D2420F46FF200A56EB4 /* FieldTableViewCell.swift */; };
 		DB49DC88212A7AEB00DB3E8B /* SoundcloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */; };
 		DB576F62220AA3A600142A02 /* SharePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB576F61220AA3A600142A02 /* SharePostController.swift */; };
+		DB576F65220D3E3B00142A02 /* SearchSongsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB576F64220D3E3B00142A02 /* SearchSongsDelegate.swift */; };
 		DB5AAD6D22057A8100BA69BA /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */; };
 		DB5AAD6F22057B0100BA69BA /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */; };
 		DB5AAD7122065E2600BA69BA /* SharePost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD7022065E2600BA69BA /* SharePost.storyboard */; };
@@ -172,6 +173,7 @@
 		DB451D2420F46FF200A56EB4 /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
 		DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundcloudService.swift; sourceTree = "<group>"; };
 		DB576F61220AA3A600142A02 /* SharePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePostController.swift; sourceTree = "<group>"; };
+		DB576F64220D3E3B00142A02 /* SearchSongsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSongsDelegate.swift; sourceTree = "<group>"; };
 		DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
 		DB5AAD7022065E2600BA69BA /* SharePost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SharePost.storyboard; sourceTree = "<group>"; };
@@ -295,9 +297,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DB576F63220D3E1600142A02 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				DB576F64220D3E3B00142A02 /* SearchSongsDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		DB5FB81020E1FBAF00345BAC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DB576F63220D3E1600142A02 /* Delegates */,
 				0D4B01872156EA5200DDDBBC /* LinkedAccountsViewController.swift */,
 				0DC4048A21531C2800BACFC4 /* LoadingViewController.swift */,
 				DBCCAF6121784DE70061C6D4 /* EllomixAlertController.swift */,
@@ -828,6 +839,7 @@
 				DBF933572165C67000D5C5BF /* GroupTableViewCell.swift in Sources */,
 				DBEA17D120EB2DCD00A9294A /* LabelTableViewCell.swift in Sources */,
 				DB0938631FD4F54C00DB64AA /* PlayBarController.swift in Sources */,
+				DB576F65220D3E3B00142A02 /* SearchSongsDelegate.swift in Sources */,
 				DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */,
 				DBF53C3421290AC200AB1E81 /* SectionLabelTableViewCell.swift in Sources */,
 				DB7034DB20620F41003235EB /* Message.swift in Sources */,

@@ -16,7 +16,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     let sections = ["Spotify", "Soundcloud", "YouTube"]
     var songs: [String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     var selected: [String:Dictionary<String, AnyObject>] = ["Spotify":[:], "Soundcloud":[:], "YouTube":[:]]
-    var delegate: GroupPlaylistTableViewController?
+    var searchSongsDelegate: SearchSongsDelegate?
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
@@ -63,10 +63,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     }
     
     @IBAction func doneButtonClicked(_ sender: Any) {
-        if (delegate != nil) {
-            delegate!.addSongsToPlaylist(selectedSongs: selected)
-            dismiss(animated: true, completion: nil)
-        }
+        searchSongsDelegate?.doneSelecting(selected: selected)
     }
     
     //MARK: TableView functions

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class GroupPlaylistTableViewController: UITableViewController {
+class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelegate {
     
     private var FirebaseAPI: FirebaseApi!
     private var groupPlaylistRefHandle: DatabaseHandle?
@@ -266,6 +266,11 @@ class GroupPlaylistTableViewController: UITableViewController {
         performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
     }
     
+    func doneSelecting(selected: [String : Dictionary<String, AnyObject>]) {
+        addSongsToPlaylist(selectedSongs: selected)
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func barAddSongsButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
     }
@@ -274,7 +279,7 @@ class GroupPlaylistTableViewController: UITableViewController {
         if (segue.identifier == "toAddSongsToPlaylist") {
             let navVC = segue.destination as! UINavigationController
             let segueVC = navVC.topViewController as! SearchSongsTableViewController
-            segueVC.delegate = self
+            segueVC.searchSongsDelegate = self
             segueVC.doneButton.title = "Done"
         }
     }
