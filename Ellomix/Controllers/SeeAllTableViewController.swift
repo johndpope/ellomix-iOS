@@ -24,8 +24,8 @@ class SeeAllTableViewController: UITableViewController {
                 track = [
                     "artist": scTrack.artist,
                     "title": scTrack.title,
-                    "artwork_url": scTrack.thumbnailURL?.absoluteString,
-                    "stream_uri": scTrack.url?.absoluteString,
+                    "thumbnail_url": scTrack.thumbnailURL?.absoluteString,
+                    "id": scTrack.url?.absoluteString,
                     "source": "soundcloud"
                     ] as AnyObject
             }
@@ -33,8 +33,8 @@ class SeeAllTableViewController: UITableViewController {
                 track = [
                     "artist": ytVideo.videoChannel,
                     "title": ytVideo.videoTitle,
-                    "artwork_url": ytVideo.videoThumbnailURL,
-                    "stream_uri": ytVideo.videoID,
+                    "thumbnail_url": ytVideo.videoThumbnailURL,
+                    "id": ytVideo.videoID,
                     "source": "youtube"
                     ] as AnyObject
             }

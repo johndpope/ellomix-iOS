@@ -134,8 +134,8 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
                 track = [
                     "artist": scTrack.artist,
                     "title": scTrack.title,
-                    "artwork_url": scTrack.thumbnailURL?.absoluteString,
-                    "stream_uri": scTrack.url?.absoluteString,
+                    "thumbnail_url": scTrack.thumbnailURL?.absoluteString,
+                    "id": scTrack.url?.absoluteString,
                     "source": "soundcloud"
                 ] as AnyObject
             }
@@ -146,8 +146,8 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
                 track = [
                     "artist": ytVideo.videoChannel,
                     "title": ytVideo.videoTitle,
-                    "artwork_url": ytVideo.videoThumbnailURL,
-                    "stream_uri": ytVideo.videoID,
+                    "thumbnail_url": ytVideo.videoThumbnailURL,
+                    "id": ytVideo.videoID,
                     "source": "youtube"
                 ] as AnyObject
             }
@@ -242,5 +242,15 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     
     func numberOfSelectedSongs() -> Int {
         return selected["Spotify"]!.values.count + selected["Soundcloud"]!.values.count + selected["YouTube"]!.values.count
+    }
+    
+    //MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toSharePost") {
+            let segueVC = segue.destination as! SharePostController
+            let tracks = selected["Spotify"]!.toArray() + selected["Soundcloud"]!.toArray() + selected["YouTube"]!.toArray()
+            
+            segueVC.track = tracks.first?.toBaseTrack()
+        }
     }
 }

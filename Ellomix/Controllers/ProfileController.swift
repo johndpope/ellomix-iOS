@@ -199,7 +199,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             let track = self.recentlyListenedSongs[indexPath.item] as? Dictionary<String, Any>
 
             cell.artist.text = track!["artist"] as? String
-            let url = track!["artwork_url"] as? String
+            let url = track!["thumbnail_url"] as? String
             if (url != nil) {
                 cell.thumbnail.downloadedFrom(link: url!)
             } else {
@@ -221,10 +221,10 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             scTrack.artist = track!["artist"] as? String
     
             scTrack.title = track!["title"] as? String
-            scTrack.url = NSURL(string: track!["stream_uri"] as! String) as URL?
+            scTrack.url = NSURL(string: track!["id"] as! String) as URL?
             
-            if (track!["artwork_url"] != nil) {
-                scTrack.thumbnailURL = NSURL(string: track!["artwork_url"] as! String) as URL?
+            if (track!["thumbnail_url"] != nil) {
+                scTrack.thumbnailURL = NSURL(string: track!["thumbnail_url"] as! String) as URL?
                 let imageData = try! Data(contentsOf: scTrack.thumbnailURL!)
                 scTrack.thumbnailImage = UIImage(data: imageData)
             } else {
@@ -237,8 +237,8 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             
             ytVideo.videoChannel = track!["artist"] as? String
             ytVideo.videoTitle = track!["title"] as? String
-            ytVideo.videoID = track!["stream_uri"] as? String
-            ytVideo.videoThumbnailURL = track!["artwork_url"] as? String
+            ytVideo.videoID = track!["id"] as? String
+            ytVideo.videoThumbnailURL = track!["thumbnail_url"] as? String
             
             baseDelegate?.playTrack(track: ytVideo)
         }

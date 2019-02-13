@@ -40,8 +40,8 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             let scTrack = SoundcloudTrack()
             scTrack.artist = track["artist"] as? String
             scTrack.title = track["title"] as? String
-            scTrack.url = NSURL(string: track["stream_uri"] as! String) as URL?
-            let artworkUrl = track["artwork_url"] as? String
+            scTrack.url = NSURL(string: track["id"] as! String) as URL?
+            let artworkUrl = track["thumbnail_url"] as? String
             
             if (artworkUrl == nil) {
                 scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
@@ -57,8 +57,8 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             
             ytVideo.videoChannel = track["artist"] as? String
             ytVideo.videoTitle = track["title"] as? String
-            ytVideo.videoID = track["stream_uri"] as? String
-            ytVideo.videoThumbnailURL = track["artwork_url"] as? String
+            ytVideo.videoID = track["id"] as? String
+            ytVideo.videoThumbnailURL = track["thumbnail_url"] as? String
             
             activatePlaybar(track: ytVideo)
         default:
@@ -97,7 +97,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarArtist.text = track.artist
             playBarController.playbarArtwork.image = track.thumbnailImage
             
-            let recentlyListenedValues = ["artist": track.artist, "title": track.title, "artwork_url": track.thumbnailURL?.absoluteString, "stream_uri": track.url?.absoluteString, "source": "soundcloud"] as [String : AnyObject]
+            let recentlyListenedValues = ["artist": track.artist, "title": track.title, "thumbnail_url": track.thumbnailURL?.absoluteString, "id": track.url?.absoluteString, "source": "soundcloud"] as [String : AnyObject]
             FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
     
         case is YouTubeVideo:
@@ -118,7 +118,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarTitle.text = track.videoTitle
             playBarController.playbarArtist.text = track.videoChannel
             
-            let recentlyListenedValues = ["artist": track.videoChannel, "title": track.videoTitle, "artwork_url": track.videoThumbnailURL, "stream_uri": track.videoID, "source": "youtube"] as [String : AnyObject]
+            let recentlyListenedValues = ["artist": track.videoChannel, "title": track.videoTitle, "thumbnail_url": track.videoThumbnailURL, "id": track.videoID, "source": "youtube"] as [String : AnyObject]
             FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
         default:
             print("Unable to play selected track.")

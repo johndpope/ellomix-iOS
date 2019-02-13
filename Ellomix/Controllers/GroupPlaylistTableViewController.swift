@@ -90,7 +90,7 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
             let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
             let track = songs[indexPath.row - 1]
             cell.trackTitle.text = track["title"] as? String
-            let artworkUrl = track["artwork_url"] as? String
+            let artworkUrl = track["thumbnail_url"] as? String
             if (artworkUrl == nil) {
                 cell.trackThumbnail.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             } else {
