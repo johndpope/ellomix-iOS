@@ -17,10 +17,11 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     var songs: [String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     var selected: [String:Dictionary<String, AnyObject>] = ["Spotify":[:], "Soundcloud":[:], "YouTube":[:]]
     var searchSongsDelegate: SearchSongsDelegate?
+    var selectLimit: Int?
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    
+
     override func viewDidLoad() {
         ytService = YoutubeService()
         scService = SoundcloudService()
@@ -50,6 +51,9 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false
         }
+        
+        clearSelected()
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -161,10 +165,9 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
             selected[type]![id] = track
         }
         
-        let spotifyEmpty = selected["Spotify"]!.values.isEmpty
-        let soundcloudEmpty = selected["Soundcloud"]!.values.isEmpty
-        let youtubeEmpty = selected["YouTube"]!.values.isEmpty
-        if (!spotifyEmpty || !soundcloudEmpty || !youtubeEmpty) {
+        if (selectLimit != nil && selectLimit! == numberOfSelectedSongs()) {
+            searchSongsDelegate?.doneSelecting(selected: selected)
+        } else if (numberOfSelectedSongs() > 0) {
             doneButton.isEnabled = true
         } else {
             doneButton.isEnabled = false
@@ -229,5 +232,15 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         self.songs["Spotify"] = []
         self.songs["Soundcloud"] = []
         self.songs["YouTube"] = []
+    }
+    
+    func clearSelected() {
+        self.selected["Spotify"] = [:]
+        self.selected["Soundcloud"] = [:]
+        self.selected["YouTube"] = [:]
+    }
+    
+    func numberOfSelectedSongs() -> Int {
+        return selected["Spotify"]!.values.count + selected["Soundcloud"]!.values.count + selected["YouTube"]!.values.count
     }
 }
