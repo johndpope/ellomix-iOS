@@ -12,6 +12,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
 
     private var ytService: YoutubeService!
     private var scService: SoundcloudService!
+    private var spService: SpotifyService!
     let searchController = UISearchController(searchResultsController: nil)
     let sections = ["Spotify", "Soundcloud", "YouTube"]
     var songs: [String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
@@ -20,11 +21,11 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     var selectLimit: Int?
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
-    
 
     override func viewDidLoad() {
         ytService = YoutubeService()
         scService = SoundcloudService()
+        spService = SpotifyService()
         
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
@@ -212,6 +213,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
             let searchString = searchBar.text!
             
             clearSongs()
+            spService.search(query: searchString)
             scService.search(query: searchString) { (songs) -> () in
                 self.songs["Soundcloud"] = songs
                 self.tableView.reloadData()

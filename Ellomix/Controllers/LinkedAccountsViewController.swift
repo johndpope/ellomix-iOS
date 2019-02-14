@@ -17,14 +17,18 @@ import AVFoundation
 // This is for linking accounts if a person has already logged in with one account.
 // FACEBOOK and SPOTIFY
 
-class LinkedAccountViewController: UIViewController {
+class LinkedAccountViewController: UIViewController, SPTAudioStreamingDelegate {
     
     @IBOutlet weak var spotifyButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
     
+    private var spService: SpotifyService!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        spService = SpotifyService()
         
         spotifyButton.layer.cornerRadius = spotifyButton.frame.height / 2
         facebookButton.layer.cornerRadius = facebookButton.frame.height / 2
@@ -50,7 +54,6 @@ class LinkedAccountViewController: UIViewController {
         }
     }
     
-    
     func receievedUrlFromSpotify(_ notification: Notification) {
         guard let url = notification.object as? URL else { return }
                 
@@ -67,10 +70,11 @@ class LinkedAccountViewController: UIViewController {
             }
             
             if let session = session {
+                self.spService.accessToken = session.accessToken
                 // The streaming login is asyncronious and will alert us if the user
                 // was logged in through a delegate, so we need to implement those methods
                 SPTAudioStreamingController.sharedInstance().delegate = self
-                SPTAudioStreamingController.sharedInstance().login(withAccessToken: session.accessToken)
+                SPTAudioStreamingController.sharedInstance().login(withAccessToken: self.spService.accessToken)
             }
         }
     }
@@ -99,22 +103,20 @@ class LinkedAccountViewController: UIViewController {
         
         DispatchQueue.main.async {
             // Present next view controller or use performSegue(withIdentifier:, sender:)
-            self.present(LoginViewController(), animated: true, completion: nil)
+            // self.present(LoginViewController(), animated: true, completion: nil)
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
-
-extension LinkedAccountViewController: SPTAudioStreamingDelegate {
     func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
         self.successfulLogin()
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
         displayErrorMessage(error: error)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

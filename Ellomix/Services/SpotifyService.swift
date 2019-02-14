@@ -22,5 +22,18 @@ extension Notification.Name {
 }
 
 class SpotifyService {
+    var accessToken: String! // Look over how authentication is being handled. This may not be needed. 
     
+    func search(query: String) {
+        let auth: SPTAuth = SPTAuth.defaultInstance()
+        let token = auth.session.accessToken
+        
+        SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
+            let songs = result as! SPTListPage
+            for song in songs.items {
+                let song = song as! SPTPartialTrack
+                print(song.name)
+            }
+        }
+    }
 }
