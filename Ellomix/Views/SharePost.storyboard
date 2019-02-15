@@ -18,24 +18,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Za-HW-8D9" userLabel="Artwork Image">
-                                <rect key="frame" x="0.0" y="20" width="375" height="375"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Za-HW-8D9" userLabel="Artwork Image">
+                                <rect key="frame" x="0.0" y="20" width="375" height="376"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="coL-5p-41C">
-                                <rect key="frame" x="16" y="403" width="343" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKx-HJ-GO9">
+                                <rect key="frame" x="16" y="404" width="343" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4T-na-kZi">
+                                <rect key="frame" x="16" y="430" width="343" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="coL-5p-41C">
+                                <rect key="frame" x="11" y="455" width="353" height="197"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Za-HW-8D9" firstAttribute="trailing" secondItem="KPX-WG-Sb9" secondAttribute="trailing" id="7Dd-Pg-5LU"/>
+                            <constraint firstItem="KPX-WG-Sb9" firstAttribute="trailing" secondItem="o4T-na-kZi" secondAttribute="trailing" constant="16" id="8dT-TB-4yf"/>
+                            <constraint firstItem="BKx-HJ-GO9" firstAttribute="top" secondItem="8Za-HW-8D9" secondAttribute="bottom" constant="8" id="9CA-M9-z1z"/>
+                            <constraint firstItem="KPX-WG-Sb9" firstAttribute="trailing" secondItem="BKx-HJ-GO9" secondAttribute="trailing" constant="16" id="Auy-Rc-QgW"/>
+                            <constraint firstItem="KPX-WG-Sb9" firstAttribute="bottom" secondItem="coL-5p-41C" secondAttribute="bottom" constant="15" id="BBF-Nq-JnU"/>
+                            <constraint firstItem="coL-5p-41C" firstAttribute="leading" secondItem="KPX-WG-Sb9" secondAttribute="leading" constant="11" id="C9T-0s-4kv"/>
+                            <constraint firstItem="BKx-HJ-GO9" firstAttribute="top" secondItem="8Za-HW-8D9" secondAttribute="bottom" constant="8" id="LpL-r0-43C"/>
+                            <constraint firstItem="KPX-WG-Sb9" firstAttribute="bottom" secondItem="o4T-na-kZi" secondAttribute="bottom" constant="220" id="T1B-ek-0EQ"/>
+                            <constraint firstItem="o4T-na-kZi" firstAttribute="top" secondItem="BKx-HJ-GO9" secondAttribute="bottom" constant="2" id="ZQC-wL-ahc"/>
+                            <constraint firstItem="8Za-HW-8D9" firstAttribute="leading" secondItem="KPX-WG-Sb9" secondAttribute="leading" id="euP-cS-Tzo"/>
+                            <constraint firstItem="BKx-HJ-GO9" firstAttribute="leading" secondItem="KPX-WG-Sb9" secondAttribute="leading" constant="16" id="l6L-6b-DU1"/>
+                            <constraint firstItem="KPX-WG-Sb9" firstAttribute="trailing" secondItem="coL-5p-41C" secondAttribute="trailing" constant="11" id="m8g-kT-Ace"/>
+                            <constraint firstItem="8Za-HW-8D9" firstAttribute="top" secondItem="KPX-WG-Sb9" secondAttribute="top" id="mMe-qM-8Xh"/>
+                            <constraint firstItem="coL-5p-41C" firstAttribute="top" secondItem="o4T-na-kZi" secondAttribute="bottom" constant="8" id="nho-3T-13m"/>
+                            <constraint firstItem="o4T-na-kZi" firstAttribute="leading" secondItem="KPX-WG-Sb9" secondAttribute="leading" constant="16" id="oVR-Fd-rc0"/>
+                            <constraint firstItem="o4T-na-kZi" firstAttribute="top" secondItem="BKx-HJ-GO9" secondAttribute="bottom" constant="2" id="ohG-jT-uF9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="KPX-WG-Sb9"/>
                     </view>
                     <connections>
+                        <outlet property="artistLabel" destination="o4T-na-kZi" id="6t6-2S-Ypc"/>
                         <outlet property="artworkImage" destination="8Za-HW-8D9" id="fpN-B5-cRP"/>
                         <outlet property="captionTextView" destination="coL-5p-41C" id="NgJ-lL-Ula"/>
+                        <outlet property="trackTitleLabel" destination="BKx-HJ-GO9" id="CfK-g2-lG8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gE4-Ww-9jy" userLabel="First Responder" sceneMemberID="firstResponder"/>
