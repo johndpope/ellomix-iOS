@@ -28,12 +28,18 @@ class SpotifyService {
         let auth: SPTAuth = SPTAuth.defaultInstance()
         let token = auth.session.accessToken
         
-        SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
-            let songs = result as! SPTListPage
-            for song in songs.items {
-                let song = song as! SPTPartialTrack
-                print(song.name)
+        if (token != nil) {
+            SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
+                print("--------------REQUESTING FROM SPOTIFY---------------")
+                if let songs = result as? SPTListPage {
+                    for song in songs.items {
+                        let song = song as! SPTPartialTrack
+                        print(song.name)
+                    }
+                }
             }
+        } else {
+            print("Spotify not authenticated.")
         }
     }
 }
