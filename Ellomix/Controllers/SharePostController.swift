@@ -17,10 +17,12 @@ class SharePostController: UIViewController {
     @IBOutlet weak var captionTextView: UITextView!
     
     private var FirebaseAPI: FirebaseApi!
+    var currentUser: EllomixUser!
     var track: BaseTrack!
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
+        currentUser = Global.sharedGlobal.user
         
         captionTextView.textColor = UIColor.lightGray
         captionTextView.text = "Write a caption..."
@@ -42,6 +44,11 @@ class SharePostController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    @IBAction func shareButtonClicked(_ sender: Any) {
+        FirebaseAPI.sharePost(track: track, uid: currentUser.uid)
+    }
+    
     
     //MARK: Keyboard handling
     func handleKeyboardNotification(notification: Notification) {

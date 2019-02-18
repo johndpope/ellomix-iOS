@@ -21,6 +21,8 @@ class FirebaseApi {
     private let GROUP_PLAYLISTS = "GroupPlaylists"
     private let FOLLOWING = "Following"
     private let FOLLOWERS = "Followers"
+    private let POSTS = "Posts"
+    private let TIMELINE = "Timeline"
     
     private var storageRef: StorageReference = Storage.storage().reference()
 
@@ -50,6 +52,14 @@ class FirebaseApi {
     
     func getFollowersRef() -> DatabaseReference {
         return ref.child(FOLLOWERS)
+    }
+    
+    func getPostsRef() -> DatabaseReference {
+        return ref.child(POSTS)
+    }
+    
+    func getTimelineRef() -> DatabaseReference {
+        return ref.child(TIMELINE)
     }
     
     func getUserStorageRef(uid: String) -> StorageReference {
@@ -201,6 +211,10 @@ class FirebaseApi {
         
         groupPlaylistRef.child(key).removeValue()
         orderGroupPlaylist(group: group, data: data)
+    }
+    
+    func sharePost(track: BaseTrack, uid: String) {
+        let postsRef = ref.child(POSTS).child(uid)
     }
     
     func updateUserDeviceToken(uid: String, token: String) {

@@ -52,6 +52,7 @@
 		DB5AAD6D22057A8100BA69BA /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */; };
 		DB5AAD6F22057B0100BA69BA /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */; };
 		DB5AAD7122065E2600BA69BA /* SharePost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD7022065E2600BA69BA /* SharePost.storyboard */; };
+		DB5EF7B6221A855000C95D26 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EF7B5221A855000C95D26 /* Post.swift */; };
 		DB7034DB20620F41003235EB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7034DA20620F41003235EB /* Message.swift */; };
 		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
 		DB7B0BD21F7CB35300BB2707 /* SoundcloudTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */; };
@@ -177,6 +178,7 @@
 		DB5AAD6C22057A8100BA69BA /* Timeline.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
 		DB5AAD7022065E2600BA69BA /* SharePost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SharePost.storyboard; sourceTree = "<group>"; };
+		DB5EF7B5221A855000C95D26 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DB7034DA20620F41003235EB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
 		DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundcloudTrack.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				DB7B0BD11F7CB35300BB2707 /* SoundcloudTrack.swift */,
 				DB7034DA20620F41003235EB /* Message.swift */,
 				DBFA76DC206F39DF00689D4F /* Group.swift */,
+				DB5EF7B5221A855000C95D26 /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 				DBFA76DD206F39DF00689D4F /* Group.swift in Sources */,
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				0DC4048B21531C2800BACFC4 /* LoadingViewController.swift in Sources */,
+				DB5EF7B6221A855000C95D26 /* Post.swift in Sources */,
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */,
 				DBAC7BC4211D38AB0008978E /* SearchSongsTableViewController.swift in Sources */,

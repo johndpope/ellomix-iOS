@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Share Post Controller-->
+        <!--New Post-->
         <scene sceneID="Zyd-yD-dpG">
             <objects>
                 <viewController id="HIs-K6-RbE" customClass="SharePostController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,6 +61,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KPX-WG-Sb9"/>
                     </view>
+                    <navigationItem key="navigationItem" title="New Post" id="xSa-ed-1Yx">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="35Z-1n-KWv">
+                            <connections>
+                                <action selector="shareButtonClicked:" destination="HIs-K6-RbE" id="YaF-A0-Fpg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="artistLabel" destination="o4T-na-kZi" id="6t6-2S-Ypc"/>
                         <outlet property="artworkImage" destination="8Za-HW-8D9" id="fpN-B5-cRP"/>

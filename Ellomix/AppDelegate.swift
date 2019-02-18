@@ -29,16 +29,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        FirebaseAPI = FirebaseApi()
         
-        // Spotify setup
+        // Global appearance configuration
+        UINavigationBar.appearance().tintColor = .black
+        
+        // Spotify
         setupSpotify()
+        
+        // Soundcloud
+        Soundcloud.clientIdentifier = "3e7f2924c47462bf79720ae5995194de"
         
         // Music Player configuration
         UIApplication.shared.beginReceivingRemoteControlEvents()
         
-        Soundcloud.clientIdentifier = "3e7f2924c47462bf79720ae5995194de"
-        
-        FirebaseAPI = FirebaseApi()
         loginOrHome()
         
         // Notifications
@@ -68,8 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope, SPTAuthUserLibraryReadScope]
         
-        // Start the player (this is only need for applications that using streaming, which we will use
-        // in this tutorial)
+        // Start the player
         do {
             try SPTAudioStreamingController.sharedInstance().start(withClientId: Constants.clientID)
         } catch {
