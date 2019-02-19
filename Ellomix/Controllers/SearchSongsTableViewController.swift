@@ -213,7 +213,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
             let searchString = searchBar.text!
             
             clearSongs()
-            //spService.search(query: searchString)
+            spService.search(query: searchString)
             scService.search(query: searchString) { (songs) -> () in
                 self.songs["Soundcloud"] = songs
                 self.tableView.reloadData()

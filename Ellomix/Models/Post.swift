@@ -15,4 +15,16 @@ class Post {
     var comments: Int!
     var timestamp: Int!
     var caption: String?
+    
+    func toDictionary() -> Dictionary<String, AnyObject>  {
+        var dict = Dictionary<String, AnyObject>()
+        
+        dict["track"] = track.toDictionary() as AnyObject
+        dict["likes"] = likes as AnyObject
+        dict["comments"] = comments as AnyObject
+        dict["timestamp"] = timestamp as AnyObject
+        if (caption != nil) { dict["caption"] = caption! as AnyObject }
+        
+        return dict
+    }
 }

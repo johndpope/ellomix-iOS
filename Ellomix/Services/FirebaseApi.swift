@@ -213,8 +213,22 @@ class FirebaseApi {
         orderGroupPlaylist(group: group, data: data)
     }
     
-    func sharePost(track: BaseTrack, uid: String) {
-        let postsRef = ref.child(POSTS).child(uid)
+    func sharePost(post: Post, uid: String) {
+        let postsRef = ref.child(POSTS).child(uid).childByAutoId()
+        let followersRef = ref.child(FOLLOWERS).child(uid)
+        let timelineRef = ref.child(TIMELINE)
+        let pid = postsRef.key
+        
+        postsRef.updateChildValues(post.toDictionary())
+        timelineRef.child(uid).updateChildValues(post.toDictionary())
+        
+        followersRef.observe(.childAdded, with: { (snapshot) in
+            let followerUid = snapshot.key
+            
+            timelineRef.child(followerUid).child(pid).updateChildValues(post.toDictionary())
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     func updateUserDeviceToken(uid: String, token: String) {

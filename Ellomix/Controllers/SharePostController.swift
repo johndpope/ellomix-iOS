@@ -46,7 +46,21 @@ class SharePostController: UIViewController {
     }
     
     @IBAction func shareButtonClicked(_ sender: Any) {
-        FirebaseAPI.sharePost(track: track, uid: currentUser.uid)
+        let post = Post()
+        
+        post.track = track
+        post.comments = 0
+        post.likes = 0
+        post.timestamp = Int(Date().timeIntervalSince1970)
+        post.caption = captionTextView.text
+        
+        FirebaseAPI.sharePost(post: post, uid: currentUser.uid)
+        
+        let alertTitle = "Shared!"
+        let alertMessage = "Shared song to followers"
+        EllomixAlertController.showAlert(viewController: self, title: alertTitle, message: alertMessage, handler: { (UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
     }
     
     
