@@ -398,62 +398,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         })
     }
     
-    /*
-    func spotifyRequest(query: String) {
-        print("spotify request")
-        SpotifyService.search(query: query) {
-            data in
-            if let data = data {
-                self.parseSpotify(JSONData: data)
-            }
-        }
-    }
-    */
-    
-    //MARK: Spotify Data:
-    func parseSpotify(JSONData : Data) {
-    
-        do {
-            var readableJSON =
-                try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as! JSONStandard
-            if let tracks = readableJSON["tracks"] as? JSONStandard {
-                if let items = tracks["items"] as? [JSONStandard] {
-                    for i in 0..<items.count {
-                        let spTrack = SpotifyTrack()
-                        let item = items[i]
-                        spTrack.trackTitle = item["name"] as? String
-                        spTrack.trackURI = item["uri"] as? String
-                        spTrack.trackPreviewURL = item["preview_url"] as? String
-                        if let artists = item["artists"] as? [JSONStandard] {
-                            if let firstArtistData = artists[0] as? JSONStandard {
-                                spTrack.trackArtist = firstArtistData["name"] as! String
-                            }
-                        }
-                        if let album = item["album"] as? JSONStandard {
-                            if let images = album["images"] as? [JSONStandard] {
-                                let imageData = images[0]
-                                let imageString = imageData["url"] as! String
-                                spTrack.trackThumbnailURL = imageString
-                                let mainImageURL = URL(string:imageString)
-                                let mainImageData = NSData(contentsOf: mainImageURL!)
-                                let mainImage = UIImage(data: mainImageData as! Data)
-                                self.songs["Spotify"]?.append(spTrack)
-                            }
-                        }
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
-            print(readableJSON)
-        }
-        catch {
-            print(error)
-        }
-    }
-    
-    
     //MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toProfile") {

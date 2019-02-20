@@ -24,22 +24,39 @@ extension Notification.Name {
 class SpotifyService {
     var accessToken: String! // Look over how authentication is being handled. This may not be needed. 
     
-    func search(query: String) {
+    func search(query: String, completed: @escaping ([SpotifyTrack]) -> ()) {
         let auth: SPTAuth = SPTAuth.defaultInstance()
         let token = auth.session.accessToken
         
-        if (token != nil) {
-            SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
-                print("--------------REQUESTING FROM SPOTIFY---------------")
-                if let songs = result as? SPTListPage {
-                    for song in songs.items {
-                        let song = song as! SPTPartialTrack
-                        print(song.name)
+        var songs = [SpotifyTrack]()
+        
+        SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
+            print("--------------REQUESTING FROM SPOTIFY---------------")
+            
+            if let listPage = result as? SPTListPage,
+            let items = listPage.items as? [SPTPartialTrack],
+            let artist = items.first?.artists.first as? SPTPartialArtist {
+                for item in items {
+                    let spTrack = SpotifyTrack()
+                    
+                    spTrack.title = item.name
+                    spTrack.artist = artist.name
+                    spTrack.url = item.previewURL
+                    spTrack.thumbnailURL = item.album.largestCover.imageURL
+                    spTrack.id = item.identifier
+                    
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: spTrack.thumbnailURL!) {
+                            DispatchQueue.main.async {
+                                spTrack.thumbnailImage = UIImage(data: data)
+                                completed(songs)
+                            }
+                        }
                     }
+                    songs.append(spTrack)
                 }
+                completed(songs)
             }
-        } else {
-            print("Spotify not authenticated.")
         }
     }
 }

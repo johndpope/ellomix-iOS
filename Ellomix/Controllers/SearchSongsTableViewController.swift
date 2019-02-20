@@ -95,6 +95,14 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
         cell.selectionStyle = .none
         
+        if (indexPath.section == 0) {
+            let spTrack = songs["Spotify"]?[indexPath.row] as? SpotifyTrack
+            cell.trackTitle.text = spTrack?.title
+            cell.trackThumbnail.image = spTrack?.thumbnailImage
+            id = spTrack!.id!
+            type = "Spotify"
+        }
+        
         if (indexPath.section == 1) {
             let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
             cell.trackTitle.text = scTrack?.title
@@ -127,6 +135,20 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         var id = ""
         var track: AnyObject?
         let cell = tableView.cellForRow(at: indexPath) as! TrackTableViewCell
+        
+        if (indexPath.section == 0 && songs["Spotify"]!.count > 0) {
+            if let spTrack = songs["Spotify"]?[indexPath.row] as? SpotifyTrack {
+                type = "Spotify"
+                id = spTrack.id!
+                track = [
+                    "artist": spTrack.artist,
+                    "title": spTrack.title,
+                    "thumbnail_url": spTrack.thumbnailURL?.absoluteString,
+                    "id": spTrack.id,
+                    "source": "spotify"
+                    ] as AnyObject
+            }
+        }
         
         if (indexPath.section == 1 && songs["Soundcloud"]!.count > 0) {
             if let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack {
@@ -189,6 +211,10 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:
+            if (!songs["Spotify"]!.isEmpty) {
+                return 75
+            }
+            
             return 0
         case 1:
             if (!songs["Soundcloud"]!.isEmpty) {
@@ -213,7 +239,11 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
             let searchString = searchBar.text!
             
             clearSongs()
-            spService.search(query: searchString)
+            spService.search(query: searchString) { (songs) -> () in
+                self.songs["Spotify"] = songs
+                self.tableView.reloadData()
+            }
+
             scService.search(query: searchString) { (songs) -> () in
                 self.songs["Soundcloud"] = songs
                 self.tableView.reloadData()

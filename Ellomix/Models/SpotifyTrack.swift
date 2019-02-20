@@ -10,11 +10,12 @@ import Foundation
 
 internal class SpotifyTrack {
     
-    var trackID:String?
-    var trackTitle:String?
-    var trackArtist:String?
-    var trackThumbnailURL:String?
-    var trackURI:String?
-    var trackPreviewURL:String?
+    var title:String?
+    var artist:String?
+    var url:URL?
+    var thumbnailURL:URL?
+    var thumbnailImage:UIImage?
+    var id:String?
+    var previewURL:String?
     
 }
