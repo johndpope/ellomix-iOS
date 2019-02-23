@@ -26,37 +26,42 @@ class SpotifyService {
     
     func search(query: String, completed: @escaping ([SpotifyTrack]) -> ()) {
         let auth: SPTAuth = SPTAuth.defaultInstance()
-        let token = auth.session.accessToken
         
-        var songs = [SpotifyTrack]()
-        
-        SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
-            print("--------------REQUESTING FROM SPOTIFY---------------")
+        if auth.session != nil {
+            let token = auth.session.accessToken
             
-            if let listPage = result as? SPTListPage,
-            let items = listPage.items as? [SPTPartialTrack],
-            let artist = items.first?.artists.first as? SPTPartialArtist {
-                for item in items {
-                    let spTrack = SpotifyTrack()
-                    
-                    spTrack.title = item.name
-                    spTrack.artist = artist.name
-                    spTrack.url = item.previewURL
-                    spTrack.thumbnailURL = item.album.largestCover.imageURL
-                    spTrack.id = item.identifier
-                    
-                    DispatchQueue.global().async {
-                        if let data = try? Data(contentsOf: spTrack.thumbnailURL!) {
-                            DispatchQueue.main.async {
-                                spTrack.thumbnailImage = UIImage(data: data)
-                                completed(songs)
+            var songs = [SpotifyTrack]()
+            
+            SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
+                print("--------------REQUESTING FROM SPOTIFY---------------")
+                
+                if let listPage = result as? SPTListPage,
+                    let items = listPage.items as? [SPTPartialTrack],
+                    let artist = items.first?.artists.first as? SPTPartialArtist {
+                    for item in items {
+                        let spTrack = SpotifyTrack()
+                        
+                        spTrack.title = item.name
+                        spTrack.artist = artist.name
+                        spTrack.url = item.previewURL
+                        spTrack.thumbnailURL = item.album.largestCover.imageURL
+                        spTrack.id = item.identifier
+                        
+                        DispatchQueue.global().async {
+                            if let data = try? Data(contentsOf: spTrack.thumbnailURL!) {
+                                DispatchQueue.main.async {
+                                    spTrack.thumbnailImage = UIImage(data: data)
+                                    completed(songs)
+                                }
                             }
                         }
+                        songs.append(spTrack)
                     }
-                    songs.append(spTrack)
+                    completed(songs)
                 }
-                completed(songs)
             }
+        } else {
+            print("User is not signed into Spotify.")
         }
     }
 }
