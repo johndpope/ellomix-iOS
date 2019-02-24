@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SharePostController: UIViewController {
+class SharePostController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var artworkImage: UIImageView!
     @IBOutlet weak var trackTitleLabel: UILabel!
@@ -24,6 +24,7 @@ class SharePostController: UIViewController {
         FirebaseAPI = FirebaseApi()
         currentUser = Global.sharedGlobal.user
         
+        captionTextView.delegate = self
         captionTextView.textColor = UIColor.lightGray
         captionTextView.text = "Write a caption..."
         
@@ -63,8 +64,8 @@ class SharePostController: UIViewController {
         })
     }
     
-    
     //MARK: Keyboard handling
+
     func handleKeyboardNotification(notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -83,4 +84,16 @@ class SharePostController: UIViewController {
             }
         }
     }
+    
+    //MARK: TextView
+
+    // Text limit for caption
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let charLimit = 2200;
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.count
+
+        return numberOfChars < charLimit;
+    }
+
 }
