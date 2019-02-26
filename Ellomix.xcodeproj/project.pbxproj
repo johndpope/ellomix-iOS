@@ -64,6 +64,8 @@
 		DB8E1BFE215F2E72003F65DE /* SelectUsersOrGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */; };
 		DB8FCA9E217ED950008BC0DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB8FCA9D217ED950008BC0DB /* MessageTableViewCell.xib */; };
 		DB8FCAA2217EE214008BC0DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8FCAA1217EE214008BC0DB /* MessageTableViewCell.swift */; };
+		DB95F6262224FACE005DC658 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB95F6252224FACE005DC658 /* PostTableViewCell.xib */; };
+		DB95F6282224FC5C005DC658 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB95F6272224FC5C005DC658 /* PostTableViewCell.swift */; };
 		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
 		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
@@ -190,6 +192,8 @@
 		DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsersOrGroupsController.swift; sourceTree = "<group>"; };
 		DB8FCA9D217ED950008BC0DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		DB8FCAA1217EE214008BC0DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		DB95F6252224FACE005DC658 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		DB95F6272224FC5C005DC658 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
 		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -385,6 +389,7 @@
 				DBF53C3321290AC200AB1E81 /* SectionLabelTableViewCell.swift */,
 				DBF933562165C67000D5C5BF /* GroupTableViewCell.swift */,
 				DB8FCAA1217EE214008BC0DB /* MessageTableViewCell.swift */,
+				DB95F6272224FC5C005DC658 /* PostTableViewCell.swift */,
 				DBEA17D220EB328C00A9294A /* LabelTableViewCell.xib */,
 				DB8FCA9D217ED950008BC0DB /* MessageTableViewCell.xib */,
 				DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */,
@@ -393,6 +398,7 @@
 				DB16728E2123C1FF00A368FC /* TrackTableViewCell.xib */,
 				DBF53C312129081700AB1E81 /* SectionLabelTableViewCell.xib */,
 				DBF933542165C5C300D5C5BF /* GroupTableViewCell.xib */,
+				DB95F6252224FACE005DC658 /* PostTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -656,6 +662,7 @@
 				E379E6291E08B69500B0256F /* Assets.xcassets in Resources */,
 				DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */,
 				DB5AAD7122065E2600BA69BA /* SharePost.storyboard in Resources */,
+				DB95F6262224FACE005DC658 /* PostTableViewCell.xib in Resources */,
 				E379E6271E08B69500B0256F /* Main.storyboard in Resources */,
 				1621BF3E215D975600C6F901 /* SeeFollowersFollowing.storyboard in Resources */,
 				DB8E1BFA215F28AA003F65DE /* SelectUsersOrGroups.storyboard in Resources */,
@@ -794,6 +801,7 @@
 				DBE384122193FD35008E3FAD /* TrackPreview.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
 				DBB727E420AA91AC00419789 /* SplashController.swift in Sources */,
+				DB95F6282224FC5C005DC658 /* PostTableViewCell.swift in Sources */,
 				16D2405B21433E810013B2AF /* SeeAllTableViewController.swift in Sources */,
 				DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */,
 				DBFA76DD206F39DF00689D4F /* Group.swift in Sources */,

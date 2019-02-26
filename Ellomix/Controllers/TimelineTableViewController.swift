@@ -13,13 +13,25 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     var baseDelegate: ContainerViewController!
     
     override func viewDidLoad() {
-        
+        tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postCell")
     }
     
     func doneSelecting(selected: [String : Dictionary<String, AnyObject>]) {
         let navVC = presentedViewController as! UINavigationController
         let searchSongsVC = navVC.topViewController as! SearchSongsTableViewController
         searchSongsVC.performSegue(withIdentifier: "toSharePost", sender: nil)
+    }
+    
+    //MARK: TableView
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell") as! PostTableViewCell
+
+        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
