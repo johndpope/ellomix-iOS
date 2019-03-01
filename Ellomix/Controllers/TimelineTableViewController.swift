@@ -10,11 +10,26 @@ import UIKit
 
 class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     
+    private var FirebaseAPI: FirebaseApi!
+    var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
     
     override func viewDidLoad() {
+        FirebaseAPI = FirebaseApi()
+        currentUser = Global.sharedGlobal.user
+        
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postCell")
+        
+        retrieveTimeline()
     }
+    
+    func retrieveTimeline() {
+        FirebaseAPI.getUserTimeline(uid: currentUser.uid, completion: { (snapshot) in
+            print(snapshot)
+        })
+    }
+    
+    //MARK: SearchSongsDelegate
     
     func doneSelecting(selected: [String : Dictionary<String, AnyObject>]) {
         let navVC = presentedViewController as! UINavigationController

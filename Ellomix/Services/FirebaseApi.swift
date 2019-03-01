@@ -220,12 +220,25 @@ class FirebaseApi {
         let pid = postsRef.key
         
         postsRef.updateChildValues(post.toDictionary())
-        timelineRef.child(uid).updateChildValues(post.toDictionary())
         
+        // Write the post to the current user's timeline
+        timelineRef.child(uid).child(pid).updateChildValues(post.toDictionary())
+        
+        // Write the post to each follower's timeline
         followersRef.observe(.childAdded, with: { (snapshot) in
             let followerUid = snapshot.key
             
             timelineRef.child(followerUid).child(pid).updateChildValues(post.toDictionary())
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getUserTimeline(uid: String, completion: ((DataSnapshot) -> ())? = nil) {
+        let timelineRef = ref.child(TIMELINE).child(uid)
+        
+        timelineRef.observe(.childAdded, with: { (snapshot) in
+            completion?(snapshot)
         }) { (error) in
             print(error.localizedDescription)
         }
