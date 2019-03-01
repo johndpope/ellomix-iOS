@@ -47,6 +47,13 @@ class PopUpPlayerController: UIViewController {
 
     func loadTrackInfo() {
         switch currentTrack {
+        case is SpotifyTrack:
+            Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
+            artworkImage.isHidden = false
+            let track = currentTrack as! SpotifyTrack
+            artworkImage.image = track.thumbnailImage
+            titleField.text = track.title
+            artistField.text = track.artist
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
             artworkImage.isHidden = false
@@ -94,6 +101,8 @@ class PopUpPlayerController: UIViewController {
     
     @IBAction func playPause(_ sender: Any) {
         switch currentTrack {
+        case is SpotifyTrack:
+            Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
         case is YouTubeVideo:

@@ -36,6 +36,22 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
         let track = queue[queueIndex]
         
         switch track["source"] as! String {
+        case "spotify":
+            let spTrack = SpotifyTrack()
+            spTrack.artist = track["artist"] as? String
+            spTrack.title = track["title"] as? String
+            spTrack.id = track["id"] as? String
+            let artworkUrl = track["thumbnail_url"] as? String
+            
+            if (artworkUrl == nil) {
+                spTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
+            } else {
+                spTrack.thumbnailURL = NSURL(string: artworkUrl!) as URL?
+                let imageData = try! Data(contentsOf: spTrack.thumbnailURL!)
+                spTrack.thumbnailImage = UIImage(data: imageData)
+            }
+            
+            activatePlaybar(track: spTrack)
         case "soundcloud":
             let scTrack = SoundcloudTrack()
             scTrack.artist = track["artist"] as? String
@@ -85,6 +101,17 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
         }
         
         switch track {
+        case is SpotifyTrack:
+            playBarController.playbarArtwork.isHidden = false
+            Global.sharedGlobal.youtubePlayer?.isHidden = true
+            let track = track as! SpotifyTrack
+            playBarController.currentTrack = track
+            let id = track.id
+            Global.sharedGlobal.musicPlayer.playSpotify(id: id!)
+            // Global.sharedGlobal.musicPlayer.updateNowPlayingInfoCenter(track: track)
+            playBarController.playbarTitle.text = track.title
+            playBarController.playbarArtist.text = track.artist
+            playBarController.playbarArtwork.image = track.thumbnailImage
         case is SoundcloudTrack:
             playBarController.playbarArtwork.isHidden = false
             Global.sharedGlobal.youtubePlayer?.isHidden = true

@@ -29,6 +29,9 @@ class PlayBarController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if (currentTrack is SpotifyTrack) {
+            Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
+        }
         if (currentTrack is SoundcloudTrack) {
             Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
         } else {
@@ -38,6 +41,8 @@ class PlayBarController: UIViewController {
 
     @IBAction func playPause(_ sender: Any) {
         switch currentTrack {
+        case is SpotifyTrack:
+            Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
         case is YouTubeVideo:

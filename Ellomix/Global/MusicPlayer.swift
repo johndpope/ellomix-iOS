@@ -33,6 +33,16 @@ class MusicPlayer: NSObject {
         player?.play()
     }
     
+    func playSpotify(id: String) {
+        SPTAudioStreamingController.sharedInstance()?.playSpotifyURI("spotify:track:" + id, startingWith: 0, startingWithPosition: 0, callback: { (error) in
+            if (error == nil) {
+                print("Playing Spotify track.")
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        })
+    }
+    
     func playPause(button: UIButton) {
         if isPlaying() {
             button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
@@ -40,6 +50,15 @@ class MusicPlayer: NSObject {
         } else {
             button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             player?.play()
+        }
+        if isPlayingSpotify() {
+            button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            SPTAudioStreamingController.sharedInstance()?.setIsPlaying(false, callback: nil)
+            print("Spotify pause.")
+        } else {
+            button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            SPTAudioStreamingController.sharedInstance()?.setIsPlaying(true, callback: nil)
+            print("Spotify play.")
         }
     }
     
@@ -53,6 +72,10 @@ class MusicPlayer: NSObject {
     
     func isPlaying() -> Bool {
         return player?.rate != 0 && player?.error == nil
+    }
+    
+    func isPlayingSpotify() -> Bool {
+        return (SPTAudioStreamingController.sharedInstance()?.playbackState.isPlaying)!
     }
     
     func updateNowPlayingInfoCenter(track: Any?) {
