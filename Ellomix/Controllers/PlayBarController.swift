@@ -29,20 +29,22 @@ class PlayBarController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if (currentTrack is SpotifyTrack) {
+        switch currentTrack {
+        case is SpotifyTrack:
+            Global.sharedGlobal.spotifyPlayer.setButton(button: playPauseButton)
+        case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
-        }
-        if (currentTrack is SoundcloudTrack) {
-            Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
-        } else {
+        case is YouTubeVideo:
             Global.sharedGlobal.youtubePlayer?.setButton(button: playPauseButton)
+        default:
+            print("Failed initializing play bar.")
         }
     }
 
     @IBAction func playPause(_ sender: Any) {
         switch currentTrack {
         case is SpotifyTrack:
-            Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
+            Global.sharedGlobal.spotifyPlayer.playPause(button: playPauseButton)
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.playPause(button: playPauseButton)
         case is YouTubeVideo:

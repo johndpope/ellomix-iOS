@@ -94,7 +94,9 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             let _ = try? AVAudioSession.sharedInstance().setActive(true)
         }
         
-        if (playBarController.currentTrack is YouTubeVideo) {
+        if (Global.sharedGlobal.spotifyPlayer.isPlaying()) {
+            Global.sharedGlobal.spotifyPlayer.pause()
+        } else if (playBarController.currentTrack is YouTubeVideo) {
             Global.sharedGlobal.youtubePlayer?.stop()
         } else if (Global.sharedGlobal.musicPlayer.isPlaying()) {
             Global.sharedGlobal.musicPlayer.player?.pause()
@@ -107,7 +109,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             let track = track as! SpotifyTrack
             playBarController.currentTrack = track
             let id = track.id
-            Global.sharedGlobal.musicPlayer.playSpotify(id: id!)
+            Global.sharedGlobal.spotifyPlayer.play(id: id!)
             // Global.sharedGlobal.musicPlayer.updateNowPlayingInfoCenter(track: track)
             playBarController.playbarTitle.text = track.title
             playBarController.playbarArtist.text = track.artist

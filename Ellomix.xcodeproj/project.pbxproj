@@ -59,6 +59,7 @@
 		DB7BAA63202FB731005B7115 /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */; };
 		DB7BAA65202FC7F1005B7115 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BAA64202FC7F1005B7115 /* Extensions.swift */; };
 		DB7BAA67202FD378005B7115 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BAA66202FD378005B7115 /* PasswordViewController.swift */; };
+		DB83B50C222E467A007578B5 /* SpotifyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB83B50B222E467A007578B5 /* SpotifyPlayer.swift */; };
 		DB8E1BFA215F28AA003F65DE /* SelectUsersOrGroups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */; };
 		DB8E1BFC215F2930003F65DE /* PopUpPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */; };
 		DB8E1BFE215F2E72003F65DE /* SelectUsersOrGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */; };
@@ -187,6 +188,7 @@
 		DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		DB7BAA64202FC7F1005B7115 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DB7BAA66202FD378005B7115 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		DB83B50B222E467A007578B5 /* SpotifyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlayer.swift; sourceTree = "<group>"; };
 		DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectUsersOrGroups.storyboard; sourceTree = "<group>"; };
 		DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUpPlayer.storyboard; sourceTree = "<group>"; };
 		DB8E1BFD215F2E72003F65DE /* SelectUsersOrGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsersOrGroupsController.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 			children = (
 				DB052E321F6F7A6E00F32A70 /* Global.swift */,
 				DB0938661FD502F700DB64AA /* MusicPlayer.swift */,
+				DB83B50B222E467A007578B5 /* SpotifyPlayer.swift */,
 				DB42B5091FFDF28400AB7E1D /* YouTubePlayer.swift */,
 				DBC09BB120BE513A003EE29F /* Cache.swift */,
 			);
@@ -811,6 +814,7 @@
 				DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */,
 				DBF94411205F4DF90047A1EB /* SpotifyTrack.swift in Sources */,
 				DBAC7BC4211D38AB0008978E /* SearchSongsTableViewController.swift in Sources */,
+				DB83B50C222E467A007578B5 /* SpotifyPlayer.swift in Sources */,
 				DB2FE5CE20DA0CEA0018E402 /* RoundImageView.swift in Sources */,
 				0DC4048D2153246100BACFC4 /* SpotifyService.swift in Sources */,
 				E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */,
