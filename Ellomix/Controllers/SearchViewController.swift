@@ -81,7 +81,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         if (scope == "Music") {
             if (section == 0) {
                 let spotifySongCount = songs["Spotify"]!.count
-                return spotifySongCount
+                return spotifySongCount > searchLimit ? searchLimit : spotifySongCount
             } else if (section == 1) {
                 let soundcloudSongCount = songs["Soundcloud"]!.count
                 if isSearchSCDone {
@@ -113,6 +113,20 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         if (scope == "Music") {
             // Check which section to add to and then check if the search is done and if there are any results
             let cell = tableView.dequeueReusableCell(withIdentifier: "searchMusicCell") as! SearchTableViewMusicCell
+            
+            if (indexPath.section == 0) {
+                let spCount = (songs["Spotify"]?.count)!
+                if isSearchSPDone && spCount == 0 {
+                    return tableView.dequeueReusableCell(withIdentifier: "noSearchFoundCell")!
+                } else {
+                    let spTrack = songs["Spotify"]?[indexPath.row] as? SpotifyTrack
+                    cell.songTitle.text = spTrack?.title
+                    cell.artist.text = spTrack?.artist
+                    // cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
+                    cell.thumbnail.image = spTrack?.thumbnailImage
+                    cell.track = spTrack
+                }
+            }
             
             if (indexPath.section == 1) {
                 let scCount = (songs["Soundcloud"]?.count)!
@@ -168,6 +182,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (scope == "Music") {
+            if (indexPath.section == 0) {
+                if songs["Spotify"]!.count > 0 {
+                    let track = songs["Spotify"]?[indexPath.row] as? SpotifyTrack
+                    baseDelegate?.playTrack(track: track)
+                }
+            }
             if (indexPath.section == 1) {
                 if songs["Soundcloud"]!.count > 0 {
                     let track = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
@@ -212,6 +232,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         if (scope == "Music") {
             headerCell.sectionTitleLabel.text = sections[section]
             headerCell.buttonAction = { sender in
+                if (headerCell.sectionTitleLabel.text == "Spotify") {
+                    self.sectionForSeeAll = 0
+                    self.performSegue(withIdentifier: "toSeeAll", sender: nil)
+                }
                 if (headerCell.sectionTitleLabel.text == "Soundcloud") {
                     self.sectionForSeeAll = 1
                     self.performSegue(withIdentifier: "toSeeAll", sender: nil)
@@ -232,6 +256,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         if (scope == "Music") {
             switch section {
             case 0:
+                if isSearchSPDone  {
+                    return 75
+                }
+                
                 return 0
             case 1:
                 if isSearchSCDone  {
@@ -291,7 +319,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 clearSongs()
                 soundcloudRequest(query: searchString)
                 youtubeRequest(query: searchString)
-                //spotifyRequest(query: searchString)
+                spotifyRequest(query: searchString)
             } else {
                 
             }
@@ -308,6 +336,52 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         scope = searchFilters[selectedScope]
         self.tableView.reloadData()
+    }
+    
+    //MARK: Soundcloud
+    func spotifyRequest(query: String) {
+        
+        isSearchSPDone = false
+        let auth: SPTAuth = SPTAuth.defaultInstance()
+        
+        if auth.session != nil {
+            let token = auth.session.accessToken
+            
+            var songs = [SpotifyTrack]()
+            
+            SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
+                print("--------------REQUESTING FROM SPOTIFY---------------")
+                
+                if let listPage = result as? SPTListPage,
+                    let items = listPage.items as? [SPTPartialTrack],
+                    let artist = items.first?.artists.first as? SPTPartialArtist {
+                    for item in items {
+                        let spTrack = SpotifyTrack()
+                        
+                        spTrack.title = item.name
+                        spTrack.artist = artist.name
+                        spTrack.url = item.previewURL
+                        spTrack.thumbnailURL = item.album.largestCover.imageURL
+                        spTrack.id = item.identifier
+                        
+                        DispatchQueue.global().async {
+                            if let data = try? Data(contentsOf: spTrack.thumbnailURL!) {
+                                DispatchQueue.main.async {
+                                    spTrack.thumbnailImage = UIImage(data: data)
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        }
+                        self.songs["Spotify"]?.append(spTrack)
+                    }
+                    self.isSearchSPDone = true
+                    
+                    self.tableView.reloadData()
+                }
+            }
+        } else {
+            print("User is not signed into Spotify.")
+        }
     }
     
     //MARK: Soundcloud
