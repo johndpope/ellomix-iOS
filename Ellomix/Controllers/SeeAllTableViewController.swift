@@ -20,6 +20,15 @@ class SeeAllTableViewController: UITableViewController {
         super.viewDidLoad()
         var track: AnyObject?
         for i in 0...(seeAllSongs.count - 1) {
+            if let spTrack = seeAllSongs[i] as? SpotifyTrack {
+                track = [
+                    "artist": spTrack.artist,
+                    "title": spTrack.title,
+                    "thumbnail_url": spTrack.thumbnailURL?.absoluteString,
+                    "id": spTrack.id,
+                    "source": "spotify"
+                    ] as AnyObject
+            }
             if let scTrack = seeAllSongs[i] as? SoundcloudTrack {
                 track = [
                     "artist": scTrack.artist,
@@ -54,6 +63,11 @@ class SeeAllTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
         
+        if (sectionForSeeAll == 0) {
+            let spTrack = seeAllSongs[indexPath.row] as? SpotifyTrack
+            cell.trackTitle.text = spTrack?.title
+            cell.trackThumbnail.image = spTrack?.thumbnailImage
+        }
         if (sectionForSeeAll == 1) {
             let scTrack = seeAllSongs[indexPath.row] as? SoundcloudTrack
             cell.trackTitle.text = scTrack?.title

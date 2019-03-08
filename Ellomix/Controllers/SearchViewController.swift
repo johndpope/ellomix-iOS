@@ -485,6 +485,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             let destinationVC = segue.destination as! SeeAllTableViewController
             destinationVC.sectionForSeeAll = sectionForSeeAll
             destinationVC.baseDelegate = baseDelegate
+            if (destinationVC.sectionForSeeAll == 0) {
+                destinationVC.seeAllSongs = songs["Spotify"]!
+            }
             if (destinationVC.sectionForSeeAll == 1) {
                 destinationVC.seeAllSongs = songs["Soundcloud"]!
             }
