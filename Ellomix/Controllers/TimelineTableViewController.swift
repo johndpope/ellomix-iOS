@@ -14,6 +14,8 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
     
+    var posts = [Post]()
+
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
         currentUser = Global.sharedGlobal.user
@@ -25,7 +27,14 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     
     func retrieveTimeline() {
         FirebaseAPI.getUserTimeline(uid: currentUser.uid, completion: { (snapshot) in
-            print(snapshot)
+            if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
+                if let post = postDict.toPost() {
+                    self.posts.append(post)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
         })
     }
     
@@ -39,16 +48,30 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     
     //MARK: TableView
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return posts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell") as! PostTableViewCell
+        let post = posts[indexPath.row]
+
+        cell.userNameLabel.text = post.name
+        cell.captionLabel.text = post.caption
+//        cell.userProfilePicImageView.downloadedFrom(link: post.photoUrl)
+//        cell.trackThumbnailImageView.downloadedFrom(link: post.track.thumbnailURL)
 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 667
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toCreateNewPost") {
             let navVC = segue.destination as! UINavigationController

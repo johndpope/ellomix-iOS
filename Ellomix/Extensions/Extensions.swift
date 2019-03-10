@@ -193,7 +193,23 @@ extension Dictionary {
         
         return track
     }
-    
+
+    func toPost() -> Post? {
+        let postDict = self as! Dictionary<String, AnyObject>
+
+        let post = Post()
+        if let trackDict = postDict["track"] as? Dictionary<String, AnyObject> { post.track = trackDict.toBaseTrack() }
+        if let likes = postDict["likes"] as? Int { post.likes = likes }
+        if let comments = postDict["comments"] as? Int { post.comments = comments }
+        if let timestamp = postDict["timestamp"] as? Int { post.timestamp = timestamp }
+        if let uid = postDict["uid"] as? String { post.uid = uid }
+        if let name = postDict["name"] as? String { post.name = name }
+        if let photoUrl = postDict["photoUrl"] as? String { post.photoUrl = photoUrl }
+        if let caption = postDict["caption"] as? String { post.caption = caption }
+
+        return post
+    }
+
 }
 
 extension Date {
