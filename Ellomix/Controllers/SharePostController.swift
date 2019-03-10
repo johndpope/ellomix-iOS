@@ -49,13 +49,16 @@ class SharePostController: UIViewController, UITextViewDelegate {
     @IBAction func shareButtonClicked(_ sender: Any) {
         let post = Post()
         
+        post.uid = currentUser.uid
+        post.name = currentUser.name
+        post.photoUrl = currentUser.profilePicLink
         post.track = track
         post.comments = 0
         post.likes = 0
         post.timestamp = Int(Date().timeIntervalSince1970)
         post.caption = captionTextView.text
         
-        FirebaseAPI.sharePost(post: post, uid: currentUser.uid)
+        FirebaseAPI.sharePost(post: post)
         
         let alertTitle = "Shared!"
         let alertMessage = "Shared song to followers"

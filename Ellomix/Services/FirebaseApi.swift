@@ -213,16 +213,16 @@ class FirebaseApi {
         orderGroupPlaylist(group: group, data: data)
     }
     
-    func sharePost(post: Post, uid: String) {
-        let postsRef = ref.child(POSTS).child(uid).childByAutoId()
-        let followersRef = ref.child(FOLLOWERS).child(uid)
+    func sharePost(post: Post) {
+        let postsRef = ref.child(POSTS).child(post.uid).childByAutoId()
+        let followersRef = ref.child(FOLLOWERS).child(post.uid)
         let timelineRef = ref.child(TIMELINE)
         let pid = postsRef.key
         
         postsRef.updateChildValues(post.toDictionary())
         
         // Write the post to the current user's timeline
-        timelineRef.child(uid).child(pid).updateChildValues(post.toDictionary())
+        timelineRef.child(post.uid).child(pid).updateChildValues(post.toDictionary())
         
         // Write the post to each follower's timeline
         followersRef.observe(.childAdded, with: { (snapshot) in

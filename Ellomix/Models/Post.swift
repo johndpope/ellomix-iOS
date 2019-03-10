@@ -14,7 +14,10 @@ class Post {
     var likes: Int!
     var comments: Int!
     var timestamp: Int!
+    var uid: String!
+    var name: String!
     var caption: String?
+    var photoUrl: String?
     
     func toDictionary() -> Dictionary<String, AnyObject>  {
         var dict = Dictionary<String, AnyObject>()
@@ -23,7 +26,10 @@ class Post {
         dict["likes"] = likes as AnyObject
         dict["comments"] = comments as AnyObject
         dict["timestamp"] = timestamp as AnyObject
+        dict["uid"] = uid as AnyObject
+        dict["name"] = name as AnyObject
         if (caption != nil) { dict["caption"] = caption! as AnyObject }
+        if (photoUrl != nil) { dict["photoUrl"] = photoUrl! as AnyObject }
         
         return dict
     }
