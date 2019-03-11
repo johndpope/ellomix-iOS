@@ -62,6 +62,13 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
         
         //TODO: Make currentTrack a BaseTrack type to get rid of switch statement
         switch currentTrack {
+        case is SpotifyTrack:
+            let spTrack = currentTrack as! SpotifyTrack
+            track.id = spTrack.id
+            track.title = spTrack.title
+            track.artist = spTrack.artist
+            track.thumbnailURL = String(describing: spTrack.thumbnailURL!)
+            track.source = "spotify"
         case is SoundcloudTrack:
             let scTrack = currentTrack as! SoundcloudTrack
             track.id = scTrack.id
