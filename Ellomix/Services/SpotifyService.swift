@@ -36,13 +36,15 @@ class SpotifyService {
                 print("--------------REQUESTING FROM SPOTIFY---------------")
                 
                 if let listPage = result as? SPTListPage,
-                    let items = listPage.items as? [SPTPartialTrack],
-                    let artist = items.first?.artists.first as? SPTPartialArtist {
+                    let items = listPage.items as? [SPTPartialTrack] {
                     for item in items {
                         let spTrack = SpotifyTrack()
                         
                         spTrack.title = item.name
-                        spTrack.artist = artist.name
+
+                        let artist = item.artists.first as? SPTPartialArtist
+                        spTrack.artist = artist?.name
+
                         spTrack.url = item.previewURL
                         spTrack.thumbnailURL = item.album.largestCover.imageURL
                         spTrack.id = item.identifier
