@@ -211,7 +211,22 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let track = self.recentlyListenedSongs[indexPath.item] as? Dictionary<String, Any>
         let trackSource = track!["source"] as? String
-        if trackSource == "soundcloud" {
+        if trackSource == "spotify" {
+            let spTrack = SpotifyTrack()
+            
+            spTrack.artist = track!["artist"] as? String
+            spTrack.title = track!["title"] as? String
+            spTrack.id = track!["id"] as? String
+            if (track!["thumbnail_url"] != nil) {
+                spTrack.thumbnailURL = NSURL(string: track!["thumbnail_url"] as! String) as URL?
+                let imageData = try! Data(contentsOf: spTrack.thumbnailURL!)
+                spTrack.thumbnailImage = UIImage(data: imageData)
+            } else {
+                spTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
+            }
+            
+            baseDelegate?.playTrack(track: spTrack)
+        } else if trackSource == "soundcloud" {
             let scTrack = SoundcloudTrack()
             
             scTrack.artist = track!["artist"] as? String

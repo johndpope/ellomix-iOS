@@ -114,6 +114,10 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarTitle.text = track.title
             playBarController.playbarArtist.text = track.artist
             playBarController.playbarArtwork.image = track.thumbnailImage
+            
+            let recentlyListenedValues = ["artist": track.artist, "title": track.title, "thumbnail_url": track.thumbnailURL?.absoluteString, "id": track.id, "source": "spotify"] as [String : AnyObject]
+            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
+            
         case is SoundcloudTrack:
             playBarController.playbarArtwork.isHidden = false
             Global.sharedGlobal.youtubePlayer?.isHidden = true
