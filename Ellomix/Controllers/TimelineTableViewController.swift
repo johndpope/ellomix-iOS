@@ -62,8 +62,8 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
 
         cell.userNameLabel.text = post.name
         cell.captionLabel.text = post.caption
-//        cell.userProfilePicImageView.downloadedFrom(link: post.photoUrl)
-//        cell.trackThumbnailImageView.downloadedFrom(link: post.track.thumbnailURL)
+        cell.userProfilePicImageView.downloadedFrom(link: post.photoUrl)
+        cell.trackThumbnailImageView.downloadedFrom(link: post.track.thumbnailURL)
 
         return cell
     }

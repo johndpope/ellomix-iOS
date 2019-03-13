@@ -169,13 +169,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             let cell = tableView.dequeueReusableCell(withIdentifier: "searchPeopleCell", for: indexPath) as! SearchTableViewPeopleCell
             let user = filteredUsers[indexPath.row]
             cell.nameLabel.text = user!["name"] as? String
-            if (user!["photo_url"] as? String == "" || user!["photo_url"] == nil) {
-                cell.profilePicImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
-            } else {
-                let url = user!["photo_url"]! as? String
-                cell.profilePicImageView.downloadedFrom(link: url!)
-            }
-            
+            cell.profilePicImageView.downloadedFrom(link: user!["photo_url"] as? String)
+
             return cell
         }
     }
@@ -212,7 +207,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 ellomixUser.setProfilePicLink(link: photoURL!)
                 ellomixUser.setFollowingCount(count: followingCount)
                 ellomixUser.setFollowersCount(count: followersCount)
-                ellomixUser.profilePicture.downloadedFrom(link: photoURL!)
+                ellomixUser.profilePicture.downloadedFrom(link: photoURL)
                 performSegue(withIdentifier: "toProfile", sender: ellomixUser)
             }
         }

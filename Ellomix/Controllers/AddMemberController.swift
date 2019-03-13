@@ -136,7 +136,7 @@ class AddMemberController: UIViewController, UITableViewDataSource, UITableViewD
             cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
         } else {
             let url = user!["photo_url"]! as? String
-            cell.userImageView.downloadedFrom(link: url!)
+            cell.userImageView.downloadedFrom(link: url)
         }
         
         if (selected[uid!]!) {

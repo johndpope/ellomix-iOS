@@ -175,11 +175,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for (uid, val) in (self.group?.users)! {
                 if (uid == message.uid!) {
-                    if let photoURL = val["photo_url"] as? String, !photoURL.isEmpty {
-                        cell.userImageView.downloadedFrom(link: photoURL)
-                    } else {
-                        cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
-                    }
+                    cell.userImageView.downloadedFrom(link: val["photo_url"] as? String)
                     break
                 }
             }
@@ -190,7 +186,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.track = track
                 cell.trackPreview.trackTitle.text = track.title
                 cell.trackPreview.trackArtist.text = track.artist
-                cell.trackPreview.trackThumbnail.downloadedFrom(link: track.thumbnailURL!)
+                cell.trackPreview.trackThumbnail.downloadedFrom(link: track.thumbnailURL)
                 
                 if (track.source == "soundcloud") {
                     cell.trackPreview.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")

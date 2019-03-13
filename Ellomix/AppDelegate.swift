@@ -190,7 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let loadedUser = EllomixUser(uid: uid)
         loadedUser.setName(name: name!)
-        loadedUser.profilePicture.downloadedFrom(link: photoUrl!)
+        loadedUser.profilePicture.downloadedFrom(link: photoUrl)
         loadedUser.setProfilePicLink(link: photoUrl!)
         if (website != nil) { loadedUser.setWebsite(website: website!) }
         if (bio != nil) { loadedUser.setBio(bio: bio!) }

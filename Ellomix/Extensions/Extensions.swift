@@ -61,12 +61,16 @@ extension UIImageView {
             }.resume()
     }
     
-    func downloadedFrom(link: String) {
-        if let cachedImage = Global.sharedGlobal.cache.get(key: link as NSString) as? UIImage {
-            self.image = cachedImage
+    func downloadedFrom(link: String?) {
+        if (link == nil || link == "") {
+            self.image = #imageLiteral(resourceName: "ellomix_logo_bw")
         } else {
-            guard let url = URL(string: link) else { return }
-            downloadedFrom(url: url)
+            if let cachedImage = Global.sharedGlobal.cache.get(key: link! as NSString) as? UIImage {
+                self.image = cachedImage
+            } else {
+                guard let url = URL(string: link!) else { return }
+                downloadedFrom(url: url)
+            }
         }
     }
     

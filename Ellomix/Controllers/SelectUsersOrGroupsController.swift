@@ -157,11 +157,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             
             cell.selectionStyle = .none
             cell.userLabel.text = ellomixUser.getName()
-            if (!ellomixUser.profilePicLink.isEmpty) {
-                cell.userImageView.downloadedFrom(link: ellomixUser.profilePicLink)
-            } else {
-                cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
-            }
+            cell.userImageView.downloadedFrom(link: ellomixUser.profilePicLink)
             
             if (shouldBeDisabled) {
                 cell.userLabel.isEnabled = false
@@ -199,20 +195,11 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                 
                 let firstUser = users[0]
                 let secondUser = users[1]
-                
+
                 cell.selectionStyle = .none
-                if (!firstUser.profilePicLink.isEmpty) {
-                    cell.bottomLeftImageView.downloadedFrom(link: firstUser.profilePicLink)
-                } else {
-                    cell.bottomLeftImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
-                }
-                
-                if (!secondUser.profilePicLink.isEmpty) {
-                    cell.topRightImageView.downloadedFrom(link: secondUser.profilePicLink)
-                } else {
-                    cell.topRightImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
-                }
-                
+                cell.bottomLeftImageView.downloadedFrom(link: firstUser.profilePicLink)
+                cell.topRightImageView.downloadedFrom(link: secondUser.profilePicLink)
+
                 if (users.count > 2) {
                     let additionalUsersCount = users.count - 2
                     cell.numberLabel.text = "+\(additionalUsersCount)"

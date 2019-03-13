@@ -30,9 +30,7 @@ class SharePostController: UIViewController, UITextViewDelegate {
         
         trackTitleLabel.text = track.title
         artistLabel.text = track.artist
-        if let thumbnailUrl = track.thumbnailURL {
-            artworkImage.downloadedFrom(link: thumbnailUrl)
-        }
+        artworkImage.downloadedFrom(link: track.thumbnailURL)
         
         hideKeyboardWhenTappedAround()
     }

@@ -108,11 +108,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
             } else if (members != nil) {
                 let user = members![indexPath.row - 1]
                 cell.userLabel.text = user["name"] as? String
-                if let photoURL = user["photo_url"] as? String, !photoURL.isEmpty {
-                    cell.userImageView.downloadedFrom(link: photoURL)
-                } else {
-                    cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
-                }
+                cell.userImageView.downloadedFrom(link: user["photo_url"] as? String)
             }
             
             return cell

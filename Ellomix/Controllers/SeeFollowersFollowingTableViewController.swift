@@ -34,11 +34,7 @@ class SeeFollowersFollowingTableViewController: UITableViewController {
         if (indexPath.item < (self.users.count)) {
             let user = self.users[indexPath.item] as? Dictionary<String, Any>
             cell.userLabel.text = user!["name"] as? String
-            if let photoURL = user!["photo_url"] as? String, !photoURL.isEmpty {
-                cell.userImageView.downloadedFrom(link: photoURL)
-            } else {
-                cell.userImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
-            }
+            cell.userImageView.downloadedFrom(link: user!["photo_url"] as? String)
         }
         return cell
     }
@@ -61,7 +57,7 @@ class SeeFollowersFollowingTableViewController: UITableViewController {
                     ellomixUser.setProfilePicLink(link: photoURL!)
                     ellomixUser.setFollowingCount(count: followingCount)
                     ellomixUser.setFollowersCount(count: followersCount)
-                    ellomixUser.profilePicture.downloadedFrom(link: photoURL!)
+                    ellomixUser.profilePicture.downloadedFrom(link: photoURL)
                     self.performSegue(withIdentifier: "toProfile", sender: ellomixUser)
                 }
             })

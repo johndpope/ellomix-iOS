@@ -71,7 +71,7 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
             cell.userProfilePic.image = #imageLiteral(resourceName: "ellomix_logo_bw")
         } else {
             let url = user!["photo_url"]! as? String
-            cell.userProfilePic.downloadedFrom(link: url!)
+            cell.userProfilePic.downloadedFrom(link: url)
         }
         
         if (selected[uid!]!) {

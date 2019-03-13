@@ -200,11 +200,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
 
             cell.artist.text = track!["artist"] as? String
             let url = track!["thumbnail_url"] as? String
-            if (url != nil) {
-                cell.thumbnail.downloadedFrom(link: url!)
-            } else {
-                cell.thumbnail.image = #imageLiteral(resourceName: "ellomix_logo_bw")
-            }            
+            cell.thumbnail.downloadedFrom(link: url)
             cell.thumbnail.clipsToBounds = true
             cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.height / 2
             cell.thumbnail.contentMode = .scaleAspectFill
