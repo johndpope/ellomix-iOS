@@ -38,7 +38,7 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYm-ku-Ouh">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYm-ku-Ouh">
                     <rect key="frame" x="16" y="438" width="343" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -51,14 +51,35 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" image="heart_outline"/>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elQ-pY-umr">
+                    <rect key="frame" x="16" y="398" width="302" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZg-O8-Mht">
+                    <rect key="frame" x="15" y="369" width="303" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="FA4-U9-Og7">
+                    <rect key="frame" x="337" y="399" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="captionLabel" destination="TYm-ku-Ouh" id="h5f-It-ZTk"/>
+                <outlet property="playPauseImageView" destination="FA4-U9-Og7" id="TAi-dV-Znk"/>
                 <outlet property="timestampLabel" destination="6bp-He-gUi" id="faP-Sl-4NI"/>
+                <outlet property="trackArtistLabel" destination="elQ-pY-umr" id="6jG-KE-8Et"/>
                 <outlet property="trackThumbnailImageView" destination="dlm-YF-MBt" id="cUW-aD-ohl"/>
+                <outlet property="trackTitleLabel" destination="WZg-O8-Mht" id="1Jr-IQ-Ykt"/>
                 <outlet property="userNameLabel" destination="5aZ-Yz-dyv" id="dPM-zR-eNX"/>
                 <outlet property="userProfilePicImageView" destination="9bD-0o-6er" id="Mqn-mQ-4ha"/>
             </connections>
@@ -67,5 +88,6 @@
     </objects>
     <resources>
         <image name="heart_outline" width="24" height="24"/>
+        <image name="play" width="29" height="37"/>
     </resources>
 </document>

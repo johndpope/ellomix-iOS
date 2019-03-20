@@ -237,7 +237,7 @@ class FirebaseApi {
     func getUserTimeline(uid: String, completion: ((DataSnapshot) -> ())? = nil) {
         let timelineRef = ref.child(TIMELINE).child(uid)
         
-        timelineRef.queryOrdered(byChild: "timestamp").observe(.childAdded, with: { (snapshot) in
+        timelineRef.queryOrdered(byChild: "order").observe(.childAdded, with: { (snapshot) in
             completion?(snapshot)
         }) { (error) in
             print(error.localizedDescription)

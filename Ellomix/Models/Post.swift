@@ -26,6 +26,7 @@ class Post {
         dict["likes"] = likes as AnyObject
         dict["comments"] = comments as AnyObject
         dict["timestamp"] = timestamp as AnyObject
+        dict["order"] = -timestamp as AnyObject // Used for ordering posts by most recent date when retrieving from Firebase
         dict["uid"] = uid as AnyObject
         dict["name"] = name as AnyObject
         if (caption != nil) { dict["caption"] = caption! as AnyObject }

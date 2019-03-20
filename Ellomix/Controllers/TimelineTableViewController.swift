@@ -59,9 +59,13 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell") as! PostTableViewCell
         let post = posts[indexPath.row]
+        let timestampDate = Date(timeIntervalSince1970: Double(post.timestamp))
 
         cell.userNameLabel.text = post.name
+        cell.trackTitleLabel.text = post.track.title
+        cell.trackArtistLabel.text = post.track.artist
         cell.captionLabel.text = post.caption
+        cell.timestampLabel.text = timestampDate.timeAgoDisplay()
         cell.userProfilePicImageView.downloadedFrom(link: post.photoUrl)
         cell.trackThumbnailImageView.downloadedFrom(link: post.track.thumbnailURL)
 
