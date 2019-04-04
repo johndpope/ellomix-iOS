@@ -19,6 +19,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     typealias JSONStandard = [String : AnyObject]
     var searchController: UISearchController?
     var selectUsersOrGroupsControllerNavController: UINavigationController!
+    var sharePostController: SharePostController!
     let sections = ["Spotify", "Soundcloud", "YouTube"]
     let searchFilters = ["Music", "People"]
     var scope = "Music"
@@ -52,8 +53,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         searchController?.searchBar.delegate = self
         tableView.backgroundView = UIView()
         
-        let storyboard = UIStoryboard(name: "SelectUsersOrGroups", bundle: nil)
-        selectUsersOrGroupsControllerNavController = storyboard.instantiateViewController(withIdentifier: "selectUsersOrGroupsNavController") as? UINavigationController
+        let selectUsersOrGroupsStoryboard = UIStoryboard(name: "SelectUsersOrGroups", bundle: nil)
+        let sharePostStoryboard = UIStoryboard(name: "SharePost", bundle: nil)
+
+        selectUsersOrGroupsControllerNavController = selectUsersOrGroupsStoryboard.instantiateViewController(withIdentifier: "selectUsersOrGroupsNavController") as? UINavigationController
+        sharePostController = sharePostStoryboard.instantiateViewController(withIdentifier: "sharePostController") as? SharePostController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -291,6 +295,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     
     func showOptionsMenu(sender: UIButton) {
         var actions = [UIAlertAction]()
+        //TODO: Complete BaseTrack refactor
+//        let postAction = UIAlertAction(title: "Post", style: .default) { _ in
+//            if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
+//                sharePostController.track = cell.track
+//                self.present(self.sharePostController, animated: true, completion: nil)
+//            }
+//        }
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
             let selectUsersOrGroupsVC = self.selectUsersOrGroupsControllerNavController.topViewController as! SelectUsersOrGroupsController
             if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
@@ -300,6 +311,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
+        //actions.append(postAction)
         actions.append(shareAction)
         actions.append(cancelAction)
         EllomixAlertController.showActionSheet(viewController: self, actions: actions)

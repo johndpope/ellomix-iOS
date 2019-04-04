@@ -13,7 +13,7 @@
         <!--New Post-->
         <scene sceneID="Zyd-yD-dpG">
             <objects>
-                <viewController id="HIs-K6-RbE" customClass="SharePostController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sharePostController" id="HIs-K6-RbE" customClass="SharePostController" customModule="Ellomix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2ic-Vm-VAS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
