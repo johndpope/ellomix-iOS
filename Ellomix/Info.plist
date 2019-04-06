@@ -46,7 +46,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
 	<key>FacebookAppID</key>
 	<string>714928195322801</string>
 	<key>FacebookDisplayName</key>
@@ -57,7 +57,7 @@
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-        <string>spotify-action</string>
+		<string>spotify-action</string>
 		<string>fbauth2</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
