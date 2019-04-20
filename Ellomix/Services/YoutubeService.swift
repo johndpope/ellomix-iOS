@@ -27,22 +27,25 @@ class YoutubeService {
                     let videoItem = video as! NSDictionary
                     
                     let id = videoItem["id"] as! NSDictionary
-                    ytVideo.videoID = id["videoId"] as? String
+                    ytVideo.id = id["videoId"] as? String
                     
                     let snippet = videoItem["snippet"] as! NSDictionary
-                    ytVideo.videoTitle = snippet["title"] as? String
+                    ytVideo.title = snippet["title"] as? String
                     ytVideo.videoDescription = snippet["description"] as? String
-                    ytVideo.videoChannel = snippet["channelTitle"] as? String
+                    ytVideo.artist = snippet["channelTitle"] as? String
+                    ytVideo.source = "youtube"
                     
                     let thumbnails = snippet["thumbnails"] as! NSDictionary
                     let highRes = thumbnails["high"] as! NSDictionary
-                    ytVideo.videoThumbnailURL = highRes["url"] as? String
+                    ytVideo.thumbnailURL = highRes["url"] as? String
                     DispatchQueue.global().async {
-                        if let ytVideoThumbnail = ytVideo.videoThumbnailURL, let data = try? Data(contentsOf: URL(string: ytVideoThumbnail)!) {
+                        if let thumbnailURL = ytVideo.thumbnailURL, let data = try? Data(contentsOf: URL(string: thumbnailURL)!) {
                             DispatchQueue.main.async {
-                                ytVideo.videoThumbnailImage = UIImage(data: data)
+                                ytVideo.thumbnailImage = UIImage(data: data)
                                 completed(videos)
                             }
+                        } else {
+                            ytVideo.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
                         }
                     }
                     

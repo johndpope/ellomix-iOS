@@ -16,17 +16,20 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
     var playBarController: PlayBarController!
     private var FirebaseAPI: FirebaseApi!
-    private var queue = [Dictionary<String, AnyObject>]()
+    private var scService: SoundcloudService!
+    private var queue = [BaseTrack]()
     private var queueIndex: Int!
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
+        scService = SoundcloudService()
+
         playBarView.isHidden = true
         playBarController.placeholderView.isHidden = true
         Global.sharedGlobal.musicPlayer.baseDelegate = self
     }
     
-    func playQueue(queue: [Dictionary<String, AnyObject>], startingIndex: Int) {
+    func playQueue(queue: [BaseTrack], startingIndex: Int) {
         self.queue = queue
         queueIndex = startingIndex
         queueTrack()
@@ -34,61 +37,18 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
     func queueTrack() {
         let track = queue[queueIndex]
-        
-        switch track["source"] as! String {
-        case "spotify":
-            let spTrack = SpotifyTrack()
-            spTrack.artist = track["artist"] as? String
-            spTrack.title = track["title"] as? String
-            spTrack.id = track["id"] as? String
-            let artworkUrl = track["thumbnail_url"] as? String
-            
-            if (artworkUrl == nil) {
-                spTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
-            } else {
-                spTrack.thumbnailURL = NSURL(string: artworkUrl!) as URL?
-                let imageData = try! Data(contentsOf: spTrack.thumbnailURL!)
-                spTrack.thumbnailImage = UIImage(data: imageData)
-            }
-            
-            activatePlaybar(track: spTrack)
-        case "soundcloud":
-            let scTrack = SoundcloudTrack()
-            scTrack.artist = track["artist"] as? String
-            scTrack.title = track["title"] as? String
-            scTrack.url = NSURL(string: track["id"] as! String) as URL?
-            let artworkUrl = track["thumbnail_url"] as? String
-            
-            if (artworkUrl == nil) {
-                scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
-            } else {
-                scTrack.thumbnailURL = NSURL(string: artworkUrl!) as URL?
-                let imageData = try! Data(contentsOf: scTrack.thumbnailURL!)
-                scTrack.thumbnailImage = UIImage(data: imageData)
-            }
-            
-            activatePlaybar(track: scTrack)
-        case "youtube":
-            let ytVideo = YouTubeVideo()
-            
-            ytVideo.videoChannel = track["artist"] as? String
-            ytVideo.videoTitle = track["title"] as? String
-            ytVideo.videoID = track["id"] as? String
-            ytVideo.videoThumbnailURL = track["thumbnail_url"] as? String
-            
-            activatePlaybar(track: ytVideo)
-        default:
-            print("Unable to play queue.")
-        }
+
+        determineSourceTrack(baseTrack: track)
     }
     
-    func playTrack(track: Any?) {
+    func playTrack(track: BaseTrack) {
         queue = []
         queueIndex = 0
-        activatePlaybar(track: track)
+
+        determineSourceTrack(baseTrack: track)
     }
     
-    private func activatePlaybar(track: Any?) {
+    private func activatePlaybar(track: BaseTrack) {
         if (AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback) {
             let _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             let _ = try? AVAudioSession.sharedInstance().setActive(true)
@@ -102,41 +62,33 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             Global.sharedGlobal.musicPlayer.player?.pause()
         }
         
-        switch track {
-        case is SpotifyTrack:
+        if let spTrack = track as? SpotifyTrack {
             playBarController.playbarArtwork.isHidden = false
-            Global.sharedGlobal.youtubePlayer?.isHidden = true
-            let track = track as! SpotifyTrack
-            playBarController.currentTrack = track
-            let id = track.id
-            Global.sharedGlobal.spotifyPlayer.play(id: id!)
+            playBarController.currentTrack = spTrack
+            Global.sharedGlobal.spotifyPlayer.play(id: spTrack.id)
             // Global.sharedGlobal.musicPlayer.updateNowPlayingInfoCenter(track: track)
-            playBarController.playbarTitle.text = track.title
-            playBarController.playbarArtist.text = track.artist
-            playBarController.playbarArtwork.image = track.thumbnailImage
+            playBarController.playbarTitle.text = spTrack.title
+            playBarController.playbarArtist.text = spTrack.artist
+            playBarController.playbarArtwork.image = spTrack.thumbnailImage
             
-            let recentlyListenedValues = ["artist": track.artist, "title": track.title, "thumbnail_url": track.thumbnailURL?.absoluteString, "id": track.id, "source": "spotify"] as [String : AnyObject]
+            //TODO: Move to FirebaseApi service
+            let recentlyListenedValues = ["artist": spTrack.artist, "title": spTrack.title, "thumbnail_url": spTrack.thumbnailURL, "id": spTrack.id, "source": "spotify"] as! [String : String]
             FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
-            
-        case is SoundcloudTrack:
+        } else if let scTrack = track as? SoundcloudTrack {
             playBarController.playbarArtwork.isHidden = false
             Global.sharedGlobal.youtubePlayer?.isHidden = true
-            let track = track as! SoundcloudTrack
-            playBarController.currentTrack = track
-            let streamURL = track.url
-            Global.sharedGlobal.musicPlayer.play(url: streamURL!)
-            Global.sharedGlobal.musicPlayer.updateNowPlayingInfoCenter(track: track)
-            playBarController.playbarTitle.text = track.title
-            playBarController.playbarArtist.text = track.artist
-            playBarController.playbarArtwork.image = track.thumbnailImage
+            playBarController.currentTrack = scTrack
+            Global.sharedGlobal.musicPlayer.play(url: scTrack.url)
+            Global.sharedGlobal.musicPlayer.updateNowPlayingInfoCenter(track: scTrack)
+            playBarController.playbarTitle.text = scTrack.title
+            playBarController.playbarArtist.text = scTrack.artist
+            playBarController.playbarArtwork.image = scTrack.thumbnailImage
             
-            let recentlyListenedValues = ["artist": track.artist, "title": track.title, "thumbnail_url": track.thumbnailURL?.absoluteString, "id": track.url?.absoluteString, "source": "soundcloud"] as [String : AnyObject]
+            let recentlyListenedValues = ["artist": scTrack.artist, "title": scTrack.title, "thumbnail_url": scTrack.thumbnailURL, "id": scTrack.id, "source": "soundcloud"] as! [String : String]
             FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
-    
-        case is YouTubeVideo:
+        } else if let ytVideo = track as? YouTubeVideo {
             playBarController.playbarArtwork.isHidden = true
-            let track = track as! YouTubeVideo
-            playBarController.currentTrack = track
+            playBarController.currentTrack = ytVideo
             Global.sharedGlobal.youtubePlayer = YouTubePlayerView()
             Global.sharedGlobal.youtubePlayer?.delegate = self
             Global.sharedGlobal.youtubePlayer?.playerVars =
@@ -145,15 +97,15 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
                  "rel": 0 as AnyObject,
                  "modestbranding": 1 as AnyObject,
                  "controls": 0 as AnyObject]
-            Global.sharedGlobal.youtubePlayer?.loadVideoID(track.videoID!)
+            Global.sharedGlobal.youtubePlayer?.loadVideoID(ytVideo.id)
             playBarController.view.addSubview(Global.sharedGlobal.youtubePlayer!)
             Global.sharedGlobal.youtubePlayer?.frame = CGRect(x: 0, y: 0, width: 113, height: playBarController.view.frame.height)
-            playBarController.playbarTitle.text = track.videoTitle
-            playBarController.playbarArtist.text = track.videoChannel
+            playBarController.playbarTitle.text = ytVideo.title
+            playBarController.playbarArtist.text = ytVideo.artist
             
-            let recentlyListenedValues = ["artist": track.videoChannel, "title": track.videoTitle, "thumbnail_url": track.videoThumbnailURL, "id": track.videoID, "source": "youtube"] as [String : AnyObject]
+            let recentlyListenedValues = ["artist": ytVideo.artist, "title": ytVideo.title, "thumbnail_url": ytVideo.thumbnailURL, "id": ytVideo.id, "source": "youtube"] as! [String : String]
             FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
-        default:
+        } else {
             print("Unable to play selected track.")
         }
         
@@ -177,6 +129,35 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
         queueIndex = queueIndex + 1
         if (queueIndex < queue.count) {
             queueTrack()
+        }
+    }
+    
+    func determineSourceTrack(baseTrack: BaseTrack) {
+        if (baseTrack is SpotifyTrack || baseTrack is SoundcloudTrack || baseTrack is YouTubeVideo) {
+            activatePlaybar(track: baseTrack)
+        } else {
+            switch baseTrack.source {
+            case "spotify":
+                let spTrack = SpotifyTrack(baseTrack: baseTrack)
+
+                spTrack.downloadImage()
+                activatePlaybar(track: spTrack)
+            case "soundcloud":
+                let scTrack = SoundcloudTrack(baseTrack: baseTrack)
+                
+                scTrack.downloadImage()
+                scService.getTrackById(id: Int(baseTrack.id)!) { (track) -> () in
+                    scTrack.url = track.streamURL
+
+                    self.activatePlaybar(track: scTrack)
+                }
+            case "youtube":
+                let ytVideo = YouTubeVideo(baseTrack: baseTrack)
+                
+                activatePlaybar(track: ytVideo)
+            default:
+                print("Loaded track has no source type.")
+            }
         }
     }
     

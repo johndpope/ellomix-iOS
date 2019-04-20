@@ -46,17 +46,21 @@ class SpotifyService {
                         spTrack.artist = artist?.name
 
                         spTrack.url = item.previewURL
-                        spTrack.thumbnailURL = item.album.largestCover.imageURL
                         spTrack.id = item.identifier
+                        spTrack.source = "spotify"
                         
                         DispatchQueue.global().async {
-                            if let data = try? Data(contentsOf: spTrack.thumbnailURL!) {
+                            if let thumbnailURL = item.album.largestCover.imageURL, let data = try? Data(contentsOf: thumbnailURL) {
                                 DispatchQueue.main.async {
+                                    spTrack.thumbnailURL = thumbnailURL.absoluteString
                                     spTrack.thumbnailImage = UIImage(data: data)
                                     completed(songs)
                                 }
+                            } else {
+                                spTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
                             }
                         }
+
                         songs.append(spTrack)
                     }
                     completed(songs)

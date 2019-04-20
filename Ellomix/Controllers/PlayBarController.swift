@@ -16,8 +16,8 @@ class PlayBarController: UIViewController {
     @IBOutlet weak var playbarTitle: UILabel!
     @IBOutlet weak var playbarArtist: UILabel!
     @IBOutlet weak var placeholderView: UIView!
-    var popUpPlayer: PopUpPlayerController?
-    var currentTrack: Any?
+    var popUpPlayer: PopUpPlayerController!
+    var currentTrack: BaseTrack!
     //let transition = PopUpAnimator()
     
     override func viewDidLoad() {
@@ -56,8 +56,8 @@ class PlayBarController: UIViewController {
 
     @IBAction func playbarTapped(_ sender: Any) {
         //popUpPlayer.transitioningDelegate = self
-        popUpPlayer?.currentTrack = currentTrack
-        popUpPlayer?.playbar = self
+        popUpPlayer.currentTrack = currentTrack
+        popUpPlayer.playbar = self
         self.present(popUpPlayer!, animated: true, completion: nil)
     }
 

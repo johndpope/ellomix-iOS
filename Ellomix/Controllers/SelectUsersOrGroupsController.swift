@@ -18,7 +18,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     let searchController = UISearchController(searchResultsController: nil)
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser?
-    var currentTrack: Any!
+    var currentTrack: BaseTrack!
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
@@ -54,40 +54,11 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     @IBAction func sendButtonClicked(_ sender: Any) {
         let selectedUserOrGroup = selected.first?.value
         let message = Message()
-        let track = BaseTrack()
         
         message.uid = currentUser?.uid
         message.type = "track"
         message.timestamp = Int(Date().timeIntervalSince1970)
-        
-        //TODO: Make currentTrack a BaseTrack type to get rid of switch statement
-        switch currentTrack {
-        case is SpotifyTrack:
-            let spTrack = currentTrack as! SpotifyTrack
-            track.id = spTrack.id
-            track.title = spTrack.title
-            track.artist = spTrack.artist
-            track.thumbnailURL = String(describing: spTrack.thumbnailURL!)
-            track.source = "spotify"
-        case is SoundcloudTrack:
-            let scTrack = currentTrack as! SoundcloudTrack
-            track.id = scTrack.id
-            track.title = scTrack.title
-            track.artist = scTrack.artist
-            track.thumbnailURL = String(describing: scTrack.thumbnailURL!)
-            track.source = "soundcloud"
-        case is YouTubeVideo:
-            let ytTrack = currentTrack as! YouTubeVideo
-            track.id = ytTrack.videoID
-            track.title = ytTrack.videoTitle
-            track.artist = ytTrack.videoChannel
-            track.thumbnailURL = ytTrack.videoThumbnailURL
-            track.source = "youtube"
-        default:
-            print("Unable to share track.")
-        }
-        
-        message.track = track
+        message.track = currentTrack
         
         if (selectedUserOrGroup is EllomixUser) {
             if let users = Array(selected.values) as? [EllomixUser] {

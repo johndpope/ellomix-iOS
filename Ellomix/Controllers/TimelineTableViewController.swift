@@ -40,7 +40,7 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     
     //MARK: SearchSongsDelegate
     
-    func doneSelecting(selected: [String : Dictionary<String, AnyObject>]) {
+    func doneSelecting(selected: [BaseTrack]) {
         let navVC = presentedViewController as! UINavigationController
         let searchSongsVC = navVC.topViewController as! SearchSongsTableViewController
         searchSongsVC.performSegue(withIdentifier: "toSharePost", sender: nil)

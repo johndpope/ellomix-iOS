@@ -28,10 +28,9 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     @IBOutlet weak var verticalLayoutConstraint: NSLayoutConstraint!
     
     private var FirebaseAPI: FirebaseApi!
-    var currentUser:EllomixUser?
-    var recentlyListenedSongs: [Any] = []
-    
-    var baseDelegate:ContainerViewController?
+    var currentUser: EllomixUser?
+    var recentlyListenedSongs: [BaseTrack] = []
+    var baseDelegate: ContainerViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -196,11 +195,10 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recentlyListenedCell", for: indexPath) as! RecentlyListenedCollectionViewCell
         if (indexPath.item < (self.recentlyListenedSongs.count)) {
-            let track = self.recentlyListenedSongs[indexPath.item] as? Dictionary<String, Any>
+            let track = self.recentlyListenedSongs[indexPath.item]
 
-            cell.artist.text = track!["artist"] as? String
-            let url = track!["thumbnail_url"] as? String
-            cell.thumbnail.downloadedFrom(link: url)
+            cell.artist.text = track.artist
+            cell.thumbnail.downloadedFrom(link: track.thumbnailURL)
             cell.thumbnail.clipsToBounds = true
             cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.height / 2
             cell.thumbnail.contentMode = .scaleAspectFill
@@ -209,50 +207,9 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let track = self.recentlyListenedSongs[indexPath.item] as? Dictionary<String, Any>
-        let trackSource = track!["source"] as? String
-        if trackSource == "spotify" {
-            let spTrack = SpotifyTrack()
-            
-            spTrack.artist = track!["artist"] as? String
-            spTrack.title = track!["title"] as? String
-            spTrack.id = track!["id"] as? String
-            if (track!["thumbnail_url"] != nil) {
-                spTrack.thumbnailURL = NSURL(string: track!["thumbnail_url"] as! String) as URL?
-                let imageData = try! Data(contentsOf: spTrack.thumbnailURL!)
-                spTrack.thumbnailImage = UIImage(data: imageData)
-            } else {
-                spTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
-            }
-            
-            baseDelegate?.playTrack(track: spTrack)
-        } else if trackSource == "soundcloud" {
-            let scTrack = SoundcloudTrack()
-            
-            scTrack.artist = track!["artist"] as? String
-    
-            scTrack.title = track!["title"] as? String
-            scTrack.url = NSURL(string: track!["id"] as! String) as URL?
-            
-            if (track!["thumbnail_url"] != nil) {
-                scTrack.thumbnailURL = NSURL(string: track!["thumbnail_url"] as! String) as URL?
-                let imageData = try! Data(contentsOf: scTrack.thumbnailURL!)
-                scTrack.thumbnailImage = UIImage(data: imageData)
-            } else {
-                scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
-            }
-            
-            baseDelegate?.playTrack(track: scTrack)
-        } else {
-            let ytVideo = YouTubeVideo()
-            
-            ytVideo.videoChannel = track!["artist"] as? String
-            ytVideo.videoTitle = track!["title"] as? String
-            ytVideo.videoID = track!["id"] as? String
-            ytVideo.videoThumbnailURL = track!["thumbnail_url"] as? String
-            
-            baseDelegate?.playTrack(track: ytVideo)
-        }
+        let track = self.recentlyListenedSongs[indexPath.item]
+        
+        baseDelegate?.playTrack(track: track)
     }
 
     //MARK: Navigation
@@ -285,7 +242,9 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         self.FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("recently_listened")
             .queryOrderedByKey().queryLimited(toLast: 20).observeSingleEvent(of: .value, with: { (snapshot) in
                 for child in snapshot.children.allObjects as! [DataSnapshot] {
-                    self.recentlyListenedSongs.append(child.value!)
+                    if let trackDict = child.value as? Dictionary<String, AnyObject> {
+                        self.recentlyListenedSongs.append(trackDict.toBaseTrack())
+                    }
                 }
                 self.recentlyListenedSongs.reverse()
                 self.currentUser?.recentlyListenedSongs = self.recentlyListenedSongs.reversed()

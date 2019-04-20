@@ -24,23 +24,20 @@ class SoundcloudService {
                     scTrack.artist = track.createdBy.username
                     scTrack.url = track.streamURL
                     scTrack.id = String(track.identifier)
-                    if (track.artworkImageURL.highURL != nil) {
-                        scTrack.thumbnailURL = track.artworkImageURL.highURL
-                    } else {
-                        scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
-                    }
-                    
-                    if (scTrack.thumbnailURL != nil) {
-                        DispatchQueue.global().async {
-                            if let data = try? Data(contentsOf: scTrack.thumbnailURL!) {
-                                DispatchQueue.main.async {
-                                    scTrack.thumbnailImage = UIImage(data: data)
-                                    completed(songs)
-                                }
+                    scTrack.source = "soundcloud"
+
+                    DispatchQueue.global().async {
+                        if let thumbnailURL = track.artworkImageURL.highURL, let data = try? Data(contentsOf: thumbnailURL) {
+                            DispatchQueue.main.async {
+                                scTrack.thumbnailURL = thumbnailURL.absoluteString
+                                scTrack.thumbnailImage = UIImage(data: data)
+                                completed(songs)
                             }
+                        } else {
+                            scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
                         }
                     }
-                    
+
                     songs.append(scTrack)
                 }
                 

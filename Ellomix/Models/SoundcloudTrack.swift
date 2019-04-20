@@ -6,16 +6,19 @@
 //  Copyright © 2017 Akshay Vyas. All rights reserved.
 //
 
-import Foundation
-import UIKit
-
-internal class SoundcloudTrack {
+internal class SoundcloudTrack: BaseTrack {
     
-    var title:String?
-    var artist:String?
-    var url:URL?
-    var thumbnailURL:URL?
-    var thumbnailImage:UIImage?
-    var id:String?
+    var url: URL!
     
+    convenience init(baseTrack: BaseTrack) {
+        self.init()
+        self.id = baseTrack.id
+        self.title = baseTrack.title
+        self.artist = baseTrack.artist
+        self.thumbnailURL = baseTrack.thumbnailURL
+        self.thumbnailImage = baseTrack.thumbnailImage
+        self.source = baseTrack.source
+        self.order = baseTrack.order
+        self.sid = baseTrack.sid
+    }
 }

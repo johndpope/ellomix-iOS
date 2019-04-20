@@ -18,7 +18,7 @@ class PopUpPlayerController: UIViewController {
     @IBOutlet var timeDuration: UILabel!
     @IBOutlet var currentTime: UILabel!
     
-    var currentTrack: Any?
+    var currentTrack: BaseTrack!
     var playbar: PlayBarController?
     var selectUsersOrGroupsControllerNavController: UINavigationController!
     var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
@@ -50,17 +50,15 @@ class PopUpPlayerController: UIViewController {
         case is SpotifyTrack:
             Global.sharedGlobal.spotifyPlayer.setButton(button: playPauseButton)
             artworkImage.isHidden = false
-            let track = currentTrack as! SpotifyTrack
-            artworkImage.image = track.thumbnailImage
-            titleField.text = track.title
-            artistField.text = track.artist
+            artworkImage.image = currentTrack.thumbnailImage
+            titleField.text = currentTrack.title
+            artistField.text = currentTrack.artist
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
             artworkImage.isHidden = false
-            let track = currentTrack as! SoundcloudTrack
-            artworkImage.image = track.thumbnailImage
-            titleField.text = track.title
-            artistField.text = track.artist
+            artworkImage.image = currentTrack.thumbnailImage
+            titleField.text = currentTrack.title
+            artistField.text = currentTrack.artist
             
             // Time duration
             if let duration = Global.sharedGlobal.musicPlayer.player?.currentItem?.duration {
@@ -81,9 +79,8 @@ class PopUpPlayerController: UIViewController {
         case is YouTubeVideo:
             Global.sharedGlobal.youtubePlayer?.setButton(button: playPauseButton)
             artworkImage.isHidden = true
-            let track = currentTrack as! YouTubeVideo
-            titleField.text = track.videoTitle
-            artistField.text = track.videoChannel
+            titleField.text = currentTrack.title
+            artistField.text = currentTrack.artist
             
             // Time duration
             if let duration = Int((Global.sharedGlobal.youtubePlayer?.getDuration())!) {

@@ -6,15 +6,19 @@
 //  Copyright © 2017 Akshay Vyas. All rights reserved.
 //
 
-import UIKit
-
-internal class YouTubeVideo {
+internal class YouTubeVideo: BaseTrack {
    
-    var videoID:String?
-    var videoChannel:String?
-    var videoDescription:String?
-    var videoTitle:String?
-    var videoThumbnailURL:String?
-    var videoThumbnailImage:UIImage?
-    
+    var videoDescription: String?
+
+    convenience init(baseTrack: BaseTrack) {
+        self.init()
+        self.id = baseTrack.id
+        self.title = baseTrack.title
+        self.artist = baseTrack.artist
+        self.thumbnailURL = baseTrack.thumbnailURL
+        self.thumbnailImage = baseTrack.thumbnailImage
+        self.source = baseTrack.source
+        self.order = baseTrack.order
+        self.sid = baseTrack.sid
+    }
 }

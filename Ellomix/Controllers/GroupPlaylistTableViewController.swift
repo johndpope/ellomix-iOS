@@ -21,7 +21,7 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
     var emptyPlaylistButton = UIButton()
     var emptyPlaylistLabel = UILabel()
     var emptyPlaylistView = UIView()
-    var songs = [Dictionary<String, AnyObject>]()
+    var songs = [BaseTrack]()
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
@@ -52,12 +52,15 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
     
     func loadPlaylist() {
         groupPlaylistRefHandle = FirebaseAPI.getGroupPlaylistsRef().child(group.gid!).observe(.childAdded, with: { (snapshot) in
-            var track = snapshot.value as! Dictionary<String, AnyObject>
-            track["key"] = snapshot.key as AnyObject
-            self.songs.append(track)
-            self.songs = self.songs.sorted {($0["order"]! as! Int) < ($1["order"]! as! Int)}
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            if let trackDict = snapshot.value as? Dictionary<String, AnyObject> {
+                let track = trackDict.toBaseTrack()
+
+                track.sid = snapshot.key
+                self.songs.append(track)
+                self.songs = self.songs.sorted {($0.order)! < ($1.order)!}
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         })
     }
@@ -67,7 +70,7 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
     }
     
     @IBAction func shuffleButtonClicked(_ sender: Any) {
-        if let shuffledTracks = songs.shuffle() as? [Dictionary<String, AnyObject>] {
+        if let shuffledTracks = songs.shuffle() as? [BaseTrack] {
             baseDelegate.playQueue(queue: shuffledTracks, startingIndex: 0)
         }
     }
@@ -89,9 +92,8 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
             let track = songs[indexPath.row - 1]
-            cell.trackTitle.text = track["title"] as? String
-            let artworkUrl = track["thumbnail_url"] as? String
-            cell.trackThumbnail.downloadedFrom(link: artworkUrl)
+            cell.trackTitle.text = track.title
+            cell.trackThumbnail.downloadedFrom(link: track.thumbnailURL)
             
             return cell
         }
@@ -149,10 +151,13 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             let track = songs.remove(at: indexPath.row - 1)
             for i in 0..<songs.count {
-                songs[i]["order"] = i as AnyObject
+                songs[i].order = i
             }
-            FirebaseAPI.removeFromGroupPlaylist(group: group, key: track["key"] as! String, data: songs)
-            tableView.reloadData()
+            
+            if let sid = track.sid {
+                FirebaseAPI.removeFromGroupPlaylist(group: group, key: sid, data: songs)
+                tableView.reloadData()
+            }
         }
     }
     
@@ -195,9 +200,9 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
                 let newRow = (indexPath?.row)! - 1
                 let initialRow = (initialIndexPath?.row)! - 1
                 songs.swapAt(newRow, initialRow)
-                let oldOrder = songs[newRow]["order"]
-                songs[newRow]["order"] = songs[initialRow]["order"]
-                songs[initialRow]["order"] = oldOrder
+                let oldOrder = songs[newRow].order
+                songs[newRow].order = songs[initialRow].order
+                songs[initialRow].order = oldOrder
                 tableView.moveRow(at: initialIndexPath!, to: indexPath!)
                 initialIndexPath = indexPath
 
@@ -248,13 +253,14 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
         return cellSnapshot
     }
 
-    func addSongsToPlaylist(selectedSongs: [String:Dictionary<String, AnyObject>]) {
-        var tracks = selectedSongs["Spotify"]!.toArray() + selectedSongs["Soundcloud"]!.toArray() + selectedSongs["YouTube"]!.toArray()
+    func addSongsToPlaylist(tracks: [BaseTrack]) {
         var order = songs.count
+
         for i in 0..<tracks.count {
-            tracks[i]["order"] = order as AnyObject
+            tracks[i].order = order
             order += 1
         }
+
         FirebaseAPI.addToGroupPlaylist(group: group, data: tracks)
     }
     
@@ -262,8 +268,8 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
         performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
     }
     
-    func doneSelecting(selected: [String : Dictionary<String, AnyObject>]) {
-        addSongsToPlaylist(selectedSongs: selected)
+    func doneSelecting(selected: [BaseTrack]) {
+        addSongsToPlaylist(tracks: selected)
         dismiss(animated: true, completion: nil)
     }
     

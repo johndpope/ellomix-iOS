@@ -216,36 +216,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func playTrack(sender: UIButton) {
         if let cell = sender.superview as? MessageTableViewCell {
-            //TODO: Send baseTrack to baseDelegate.playTrack() once other track classes extend BaseTrack
             if let baseTrack = cell.track {
-                if (baseTrack.source == "soundcloud") {
-                    let scTrack = SoundcloudTrack()
-                    
-                    scTrack.title = baseTrack.title
-                    scTrack.artist = baseTrack.artist
-                    if (baseTrack.thumbnailURL != nil) {
-                        scTrack.thumbnailURL = URL(string: baseTrack.thumbnailURL!)
-                        let imageData = try! Data(contentsOf: scTrack.thumbnailURL!)
-                        scTrack.thumbnailImage = UIImage(data: imageData)
-                    } else {
-                        scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
-                    }
+                self.baseDelegate?.playTrack(track: baseTrack)
 
-                    scService.getTrackById(id: Int(baseTrack.id)!) { (track) -> () in
-                        scTrack.url = track.streamURL
-                        self.baseDelegate?.playTrack(track: scTrack)
-                    }
-                } else if (baseTrack.source == "youtube") {
-                    let ytTrack = YouTubeVideo()
-                    
-                    ytTrack.videoTitle = baseTrack.title
-                    ytTrack.videoChannel = baseTrack.artist
-                    ytTrack.videoThumbnailURL = baseTrack.thumbnailURL != nil ? baseTrack.thumbnailURL! : ""
-                    ytTrack.videoID = baseTrack.id
-                    
-                    self.baseDelegate?.playTrack(track: ytTrack)
-                }
-                
                 if (currentTrackCell != cell) {
                     if (currentTrackCell != nil) {
                         currentTrackCell.trackPreview.play()

@@ -55,19 +55,17 @@ class MusicPlayer: NSObject {
         return player?.rate != 0 && player?.error == nil
     }
     
-    func updateNowPlayingInfoCenter(track: Any?) {
-        if (track is SoundcloudTrack) {
-            let track = track as! SoundcloudTrack
-            MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-                MPMediaItemPropertyTitle: track.title ?? "",
-                //MPMediaItemPropertyAlbumTitle: track ?? "",
-                MPMediaItemPropertyArtist: track.artist ?? "",
-                //MPMediaItemPropertyPlaybackDuration: audioPlayer.duration,
-                //MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.progress
-            ]
-            if let artwork = track.thumbnailImage {
-                MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: artwork)
-            }
+    func updateNowPlayingInfoCenter(track: BaseTrack) {
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+            MPMediaItemPropertyTitle: track.title,
+            //MPMediaItemPropertyAlbumTitle: track ?? "",
+            MPMediaItemPropertyArtist: track.artist,
+            //MPMediaItemPropertyPlaybackDuration: audioPlayer.duration,
+            //MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.progress
+        ]
+
+        if let artwork = track.thumbnailImage {
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: artwork)
         }
     }
     

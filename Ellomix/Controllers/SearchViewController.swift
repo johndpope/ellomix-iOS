@@ -16,7 +16,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     let YouTubeAPIKey = "AIzaSyDl9doicP6uc4cEVlRDiM7Ttgy-o7Hal3I"
     var youtubeSearchURL = "https://www.googleapis.com/youtube/v3/search"
     var spotifySearchURL = "https://api.spotify.com/v1/search"
-    typealias JSONStandard = [String : AnyObject]
     var searchController: UISearchController?
     var selectUsersOrGroupsControllerNavController: UINavigationController!
     var sharePostController: SharePostController!
@@ -30,7 +29,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     
     let searchLimit = 3
     
-    var songs:[String:[AnyObject]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
+    var songs: [String:[BaseTrack]] = ["Spotify":[], "Soundcloud":[], "YouTube":[]]
     
     var sectionForSeeAll: Int = 0
     
@@ -38,7 +37,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     var allUsers = [Dictionary<String, AnyObject>?]()
     var filteredUsers = [Dictionary<String, AnyObject>?]()
 
-    var baseDelegate:ContainerViewController?
+    var baseDelegate: ContainerViewController?
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
@@ -123,42 +122,39 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 if isSearchSPDone && spCount == 0 {
                     return tableView.dequeueReusableCell(withIdentifier: "noSearchFoundCell")!
                 } else {
-                    let spTrack = songs["Spotify"]?[indexPath.row] as? SpotifyTrack
-                    cell.songTitle.text = spTrack?.title
-                    cell.artist.text = spTrack?.artist
-                    // cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
-                    cell.thumbnail.image = spTrack?.thumbnailImage
-                    cell.track = spTrack
+                    if let track = songs["Spotify"]?[indexPath.row] {
+                        cell.songTitle.text = track.title
+                        cell.artist.text = track.artist
+                        // cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
+                        cell.thumbnail.image = track.thumbnailImage
+                        cell.track = track
+                    }
                 }
-            }
-            
-            if (indexPath.section == 1) {
+            } else if (indexPath.section == 1) {
                 let scCount = (songs["Soundcloud"]?.count)!
                 if isSearchSCDone && scCount == 0 {
                     return tableView.dequeueReusableCell(withIdentifier: "noSearchFoundCell")!
-                }
-//                else if indexPath.row < scCount {
-                else {
-                    let scTrack = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
-                    cell.songTitle.text = scTrack?.title
-                    cell.artist.text = scTrack?.artist
-                    cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
-                    cell.thumbnail.image = scTrack?.thumbnailImage
-                    cell.track = scTrack
+                } else {
+                    if let track = songs["Soundcloud"]?[indexPath.row] {
+                        cell.songTitle.text = track.title
+                        cell.artist.text = track.artist
+                        cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
+                        cell.thumbnail.image = track.thumbnailImage
+                        cell.track = track
+                    }
                 }
             } else if (indexPath.section == 2) {
                 let ytCount = songs["YouTube"]!.count
                 if isSearchYTDone && ytCount == 0 {
                     return tableView.dequeueReusableCell(withIdentifier: "noSearchFoundCell")!
-                }
-//                else if indexPath.row < ytCount
-                else {
-                    let ytVideo = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
-                    cell.songTitle.text = ytVideo?.videoTitle
-                    cell.artist.text = ytVideo?.videoChannel
-                    cell.serviceIcon.image = #imageLiteral(resourceName: "youtube")
-                    cell.thumbnail.image = ytVideo?.videoThumbnailImage
-                    cell.track = ytVideo
+                } else {
+                    if let track = songs["YouTube"]?[indexPath.row] {
+                        cell.songTitle.text = track.title
+                        cell.artist.text = track.artist
+                        cell.serviceIcon.image = #imageLiteral(resourceName: "youtube")
+                        cell.thumbnail.image = track.thumbnailImage
+                        cell.track = track
+                    }
                 }
             }
             cell.optionsButton.addTarget(self, action: #selector(showOptionsMenu(sender:)), for: .touchUpInside)
@@ -183,19 +179,22 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         if (scope == "Music") {
             if (indexPath.section == 0) {
                 if songs["Spotify"]!.count > 0 {
-                    let track = songs["Spotify"]?[indexPath.row] as? SpotifyTrack
-                    baseDelegate?.playTrack(track: track)
+                    if let track = songs["Spotify"]?[indexPath.row] {
+                        baseDelegate?.playTrack(track: track)
+                    }
                 }
             }
             if (indexPath.section == 1) {
                 if songs["Soundcloud"]!.count > 0 {
-                    let track = songs["Soundcloud"]?[indexPath.row] as? SoundcloudTrack
-                    baseDelegate?.playTrack(track: track)
+                    if let track = songs["Soundcloud"]?[indexPath.row] {
+                        baseDelegate?.playTrack(track: track)
+                    }
                 }
             } else if (indexPath.section == 2) {
                 if songs["YouTube"]!.count > 0 {
-                    let track = songs["YouTube"]?[indexPath.row] as? YouTubeVideo
-                    baseDelegate?.playTrack(track: track)
+                    if let track = songs["YouTube"]?[indexPath.row] {
+                        baseDelegate?.playTrack(track: track)
+                    }
                 }
             }
         } else {
@@ -264,18 +263,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 if isSearchSCDone  {
                     return 75
                 }
-//                else if !songs["Soundcloud"]!.isEmpty {
-//                    return 75
-//                }
 
                 return 0
             case 2:
                 if isSearchYTDone {
                     return 75
                 }
-//                if (!songs["YouTube"]!.isEmpty) {
-//                    return 75
-//                }
 
                 return 0
             default:
@@ -285,23 +278,20 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
             if isSearchUserDone {
                 return 75
             }
-//            if (!filteredUsers.isEmpty) {
-//                return 75
-//            }
-//
+
             return 0
         }
     }
     
     func showOptionsMenu(sender: UIButton) {
         var actions = [UIAlertAction]()
-        //TODO: Complete BaseTrack refactor
-//        let postAction = UIAlertAction(title: "Post", style: .default) { _ in
-//            if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
-//                sharePostController.track = cell.track
-//                self.present(self.sharePostController, animated: true, completion: nil)
-//            }
-//        }
+
+        let postAction = UIAlertAction(title: "Post", style: .default) { _ in
+            if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
+                self.sharePostController.track = cell.track
+                self.present(self.sharePostController, animated: true, completion: nil)
+            }
+        }
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
             let selectUsersOrGroupsVC = self.selectUsersOrGroupsControllerNavController.topViewController as! SelectUsersOrGroupsController
             if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
@@ -311,7 +301,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        //actions.append(postAction)
+        actions.append(postAction)
         actions.append(shareAction)
         actions.append(cancelAction)
         EllomixAlertController.showActionSheet(viewController: self, actions: actions)
@@ -345,7 +335,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         self.tableView.reloadData()
     }
     
-    //MARK: Soundcloud
+    //MARK: Spotify
     func spotifyRequest(query: String) {
         
         isSearchSPDone = false
@@ -353,8 +343,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         
         if auth.session != nil {
             let token = auth.session.accessToken
-            
-            var songs = [SpotifyTrack]()
             
             SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
                 print("--------------REQUESTING FROM SPOTIFY---------------")
@@ -368,23 +356,28 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                         
                         let artist = item.artists.first as? SPTPartialArtist
                         spTrack.artist = artist?.name
-                        
                         spTrack.url = item.previewURL
-                        spTrack.thumbnailURL = item.album.largestCover.imageURL
                         spTrack.id = item.identifier
+                        spTrack.source = "spotify"
                         
-                        DispatchQueue.global().async {
-                            if let data = try? Data(contentsOf: spTrack.thumbnailURL!) {
-                                DispatchQueue.main.async {
-                                    spTrack.thumbnailImage = UIImage(data: data)
-                                    self.tableView.reloadData()
+                        let thumbnailURL = item.album.largestCover.imageURL
+                        spTrack.thumbnailURL = String(describing: thumbnailURL)
+                        
+                        if (thumbnailURL != nil) {
+                            DispatchQueue.global().async {
+                                if let data = try? Data(contentsOf: thumbnailURL!) {
+                                    DispatchQueue.main.async {
+                                        spTrack.thumbnailImage = UIImage(data: data)
+                                        self.tableView.reloadData()
+                                    }
                                 }
                             }
                         }
+                        
                         self.songs["Spotify"]?.append(spTrack)
                     }
-                    self.isSearchSPDone = true
                     
+                    self.isSearchSPDone = true
                     self.tableView.reloadData()
                 }
             }
@@ -404,26 +397,24 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 
                 for track in tracks {
                     let scTrack = SoundcloudTrack()
-                    
+
                     scTrack.title = track.title
                     scTrack.artist = track.createdBy.username
                     scTrack.url = track.streamURL
                     scTrack.id = String(track.identifier)
+                    scTrack.source = "soundcloud"
                     if (track.artworkImageURL.highURL != nil) {
-                        scTrack.thumbnailURL = track.artworkImageURL.highURL
-                    } else {
-                        scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
-                    }
-                    
-                    if (scTrack.thumbnailURL != nil) {
+                        scTrack.thumbnailURL = String(describing: track.artworkImageURL.highURL)
                         DispatchQueue.global().async {
-                            if let data = try? Data(contentsOf: scTrack.thumbnailURL!) {
+                            if let data = try? Data(contentsOf: track.artworkImageURL.highURL!) {
                                 DispatchQueue.main.async {
                                     scTrack.thumbnailImage = UIImage(data: data)
                                     self.tableView.reloadData()
                                 }
                             }
                         }
+                    } else {
+                        scTrack.thumbnailImage = #imageLiteral(resourceName: "ellomix_logo_bw")
                     }
                     
                     self.songs["Soundcloud"]?.append(scTrack)
@@ -452,21 +443,24 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     let videoItem = video as! NSDictionary
                     
                     let id = videoItem["id"] as! NSDictionary
-                    ytVideo.videoID = id["videoId"] as? String
+                    ytVideo.id = id["videoId"] as? String
                     
                     let snippet = videoItem["snippet"] as! NSDictionary
-                    ytVideo.videoTitle = snippet["title"] as? String
+                    ytVideo.title = snippet["title"] as? String
                     ytVideo.videoDescription = snippet["description"] as? String
-                    ytVideo.videoChannel = snippet["channelTitle"] as? String
+                    ytVideo.artist = snippet["channelTitle"] as? String
+                    ytVideo.source = "youtube"
                     
                     let thumbnails = snippet["thumbnails"] as! NSDictionary
                     let highRes = thumbnails["high"] as! NSDictionary
-                    ytVideo.videoThumbnailURL = highRes["url"] as? String
-                    DispatchQueue.global().async {
-                        if let ytVideoThumbnail = ytVideo.videoThumbnailURL, let data = try? Data(contentsOf: URL(string: ytVideoThumbnail)!) {
-                            DispatchQueue.main.async {
-                                ytVideo.videoThumbnailImage = UIImage(data: data)
-                                self.tableView.reloadData()
+                    ytVideo.thumbnailURL = highRes["url"] as? String
+                    if (ytVideo.thumbnailURL != nil) {
+                        DispatchQueue.global().async {
+                            if let data = try? Data(contentsOf: URL(string: ytVideo.thumbnailURL!)!) {
+                                DispatchQueue.main.async {
+                                    ytVideo.thumbnailImage = UIImage(data: data)
+                                    self.tableView.reloadData()
+                                }
                             }
                         }
                     }
@@ -492,15 +486,15 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         }
         if (segue.identifier == "toSeeAll") {
             let destinationVC = segue.destination as! SeeAllTableViewController
-            destinationVC.sectionForSeeAll = sectionForSeeAll
+
             destinationVC.baseDelegate = baseDelegate
-            if (destinationVC.sectionForSeeAll == 0) {
+            if (sectionForSeeAll == 0) {
                 destinationVC.seeAllSongs = songs["Spotify"]!
             }
-            if (destinationVC.sectionForSeeAll == 1) {
+            if (sectionForSeeAll == 1) {
                 destinationVC.seeAllSongs = songs["Soundcloud"]!
             }
-            if (destinationVC.sectionForSeeAll == 2) {
+            if (sectionForSeeAll == 2) {
                 destinationVC.seeAllSongs = songs["YouTube"]!
             }
         }

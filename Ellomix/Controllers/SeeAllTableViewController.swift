@@ -11,44 +11,20 @@ import UIKit
 class SeeAllTableViewController: UITableViewController {
 
     var sectionForSeeAll: Int = 0
-    var seeAllSongs: [AnyObject] = []
-    private var queue = [Dictionary<String, AnyObject>]()
+    var seeAllSongs: [BaseTrack] = []
+    private var queue = [BaseTrack]()
     
     var baseDelegate: ContainerViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var track: AnyObject?
+
         for i in 0...(seeAllSongs.count - 1) {
-            if let spTrack = seeAllSongs[i] as? SpotifyTrack {
-                track = [
-                    "artist": spTrack.artist,
-                    "title": spTrack.title,
-                    "thumbnail_url": spTrack.thumbnailURL?.absoluteString,
-                    "id": spTrack.id,
-                    "source": "spotify"
-                    ] as AnyObject
-            }
-            if let scTrack = seeAllSongs[i] as? SoundcloudTrack {
-                track = [
-                    "artist": scTrack.artist,
-                    "title": scTrack.title,
-                    "thumbnail_url": scTrack.thumbnailURL?.absoluteString,
-                    "id": scTrack.url?.absoluteString,
-                    "source": "soundcloud"
-                    ] as AnyObject
-            }
-            if let ytVideo = seeAllSongs[i] as? YouTubeVideo {
-                track = [
-                    "artist": ytVideo.videoChannel,
-                    "title": ytVideo.videoTitle,
-                    "thumbnail_url": ytVideo.videoThumbnailURL,
-                    "id": ytVideo.videoID,
-                    "source": "youtube"
-                    ] as AnyObject
-            }
-            queue.append(track as! [String : AnyObject])
+            let track = seeAllSongs[i]
+
+            queue.append(track)
         }
+
         tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
     }
 
@@ -62,22 +38,11 @@ class SeeAllTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell") as! TrackTableViewCell
+        let track = seeAllSongs[indexPath.row]
         
-        if (sectionForSeeAll == 0) {
-            let spTrack = seeAllSongs[indexPath.row] as? SpotifyTrack
-            cell.trackTitle.text = spTrack?.title
-            cell.trackThumbnail.image = spTrack?.thumbnailImage
-        }
-        if (sectionForSeeAll == 1) {
-            let scTrack = seeAllSongs[indexPath.row] as? SoundcloudTrack
-            cell.trackTitle.text = scTrack?.title
-            cell.trackThumbnail.image = scTrack?.thumbnailImage
-        } else if (sectionForSeeAll == 2) {
-            let ytVideo = seeAllSongs[indexPath.row] as? YouTubeVideo
-            cell.trackTitle.text = ytVideo?.videoTitle
-            cell.trackThumbnail.image = ytVideo?.videoThumbnailImage
-        }
-        
+        cell.trackTitle.text = track.title
+        cell.trackThumbnail.image = track.thumbnailImage
+
         return cell
     }
     

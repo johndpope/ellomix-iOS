@@ -9,5 +9,5 @@
 import UIKit
 
 protocol SearchSongsDelegate {
-    func doneSelecting(selected: [String:Dictionary<String, AnyObject>])
+    func doneSelecting(selected: [BaseTrack])
 }

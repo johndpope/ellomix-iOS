@@ -127,17 +127,6 @@ extension Dictionary {
         return arr
     }
     
-    func toArray() ->  [Dictionary<String, AnyObject>] {
-        var arr = [Dictionary<String, AnyObject>]()
-        for (_, val) in self {
-            if let dict = val as? Dictionary<String, AnyObject> {
-                arr.append(dict)
-            }
-        }
-        
-        return arr
-    }
-    
     func toEllomixUser() -> EllomixUser? {
         let userDict = self as! Dictionary<String, AnyObject>
         if let uid = userDict["uid"] as? String {
@@ -185,16 +174,17 @@ extension Dictionary {
         return message
     }
     
-    func toBaseTrack() -> BaseTrack? {
+    func toBaseTrack() -> BaseTrack {
         let trackDict = self as! Dictionary<String, AnyObject>
-        
         let track = BaseTrack()
+        
         if let id = trackDict["id"] as? String { track.id = id }
         if let title = trackDict["title"] as? String { track.title = title }
         if let arist = trackDict["artist"] as? String { track.artist = arist }
         if let source = trackDict["source"] as? String { track.source = source }
         if let thumbnailURL = trackDict["thumbnail_url"] as? String { track.thumbnailURL = thumbnailURL }
-        
+        if let order = trackDict["order"] as? Int { track.order = order }
+
         return track
     }
 
