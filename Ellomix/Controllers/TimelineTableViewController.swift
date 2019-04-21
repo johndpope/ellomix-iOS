@@ -13,6 +13,7 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
+    var sharePostController: SharePostController!
     
     var posts = [Post]()
 
@@ -21,6 +22,9 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
         currentUser = Global.sharedGlobal.user
         
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postCell")
+        
+        let sharePostStoryboard = UIStoryboard(name: "SharePost", bundle: nil)
+        sharePostController = sharePostStoryboard.instantiateViewController(withIdentifier: "sharePostController") as? SharePostController
         
         retrieveTimeline()
     }
@@ -41,9 +45,10 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     //MARK: SearchSongsDelegate
     
     func doneSelecting(selected: [BaseTrack]) {
-        let navVC = presentedViewController as! UINavigationController
-        let searchSongsVC = navVC.topViewController as! SearchSongsTableViewController
-        searchSongsVC.performSegue(withIdentifier: "toSharePost", sender: nil)
+        let searchSongsNavVC = presentedViewController as! UINavigationController
+        
+        sharePostController.track = selected.first
+        searchSongsNavVC.pushViewController(sharePostController, animated: true)
     }
     
     //MARK: TableView

@@ -18,7 +18,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     var spotifySearchURL = "https://api.spotify.com/v1/search"
     var searchController: UISearchController?
     var selectUsersOrGroupsControllerNavController: UINavigationController!
-    var sharePostController: SharePostController!
+    var sharePostNavController: UINavigationController!
     let sections = ["Spotify", "Soundcloud", "YouTube"]
     let searchFilters = ["Music", "People"]
     var scope = "Music"
@@ -56,7 +56,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         let sharePostStoryboard = UIStoryboard(name: "SharePost", bundle: nil)
 
         selectUsersOrGroupsControllerNavController = selectUsersOrGroupsStoryboard.instantiateViewController(withIdentifier: "selectUsersOrGroupsNavController") as? UINavigationController
-        sharePostController = sharePostStoryboard.instantiateViewController(withIdentifier: "sharePostController") as? SharePostController
+        sharePostNavController = sharePostStoryboard.instantiateViewController(withIdentifier: "sharePostNavController") as? UINavigationController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -288,8 +288,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
 
         let postAction = UIAlertAction(title: "Post", style: .default) { _ in
             if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
-                self.sharePostController.track = cell.track
-                self.present(self.sharePostController, animated: true, completion: nil)
+                let sharePostVC = self.sharePostNavController.topViewController as! SharePostController
+
+                sharePostVC.track = cell.track
+                sharePostVC.showCancelButton = true
+                self.present(self.sharePostNavController, animated: true, completion: nil)
             }
         }
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in

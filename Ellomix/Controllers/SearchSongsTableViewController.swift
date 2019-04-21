@@ -209,14 +209,4 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     func numberOfSelectedSongs() -> Int {
         return selected["Spotify"]!.values.count + selected["Soundcloud"]!.values.count + selected["YouTube"]!.values.count
     }
-    
-    //MARK: Segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "toSharePost") {
-            let segueVC = segue.destination as! SharePostController
-            let selectedTracks = Array(selected["Spotify"]!.values) + Array(selected["Soundcloud"]!.values) + Array(selected["YouTube"]!.values)
-            
-            segueVC.track = selectedTracks.first
-        }
-    }
 }

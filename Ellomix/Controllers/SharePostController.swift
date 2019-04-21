@@ -19,6 +19,7 @@ class SharePostController: UIViewController, UITextViewDelegate {
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser!
     var track: BaseTrack!
+    var showCancelButton: Bool = false
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
@@ -28,11 +29,18 @@ class SharePostController: UIViewController, UITextViewDelegate {
         captionTextView.textColor = UIColor.lightGray
         captionTextView.text = "Write a caption..."
         
+        if (showCancelButton) {
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(cancelButtonClicked(sender:)))
+            navigationItem.leftBarButtonItem = cancelButton
+        }
+
+        hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         trackTitleLabel.text = track.title
         artistLabel.text = track.artist
-        artworkImage.downloadedFrom(link: track.thumbnailURL)
-        
-        hideKeyboardWhenTappedAround()
+        artworkImage.image = track.thumbnailImage
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +71,10 @@ class SharePostController: UIViewController, UITextViewDelegate {
         EllomixAlertController.showAlert(viewController: self, title: alertTitle, message: alertMessage, handler: { (UIAlertAction) in
             self.dismiss(animated: true, completion: nil)
         })
+    }
+    
+    func cancelButtonClicked(sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: Keyboard handling
