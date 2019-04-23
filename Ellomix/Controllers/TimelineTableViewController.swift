@@ -15,31 +15,42 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     var baseDelegate: ContainerViewController!
     var sharePostController: SharePostController!
     
+    let timelineRefreshControl = UIRefreshControl()
     var posts = [Post]()
 
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
         currentUser = Global.sharedGlobal.user
-        
+
+        // Add Refresh Control to Table View
+        timelineRefreshControl.addTarget(self, action: #selector(refreshTimeline(_:)), for: .valueChanged)
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = timelineRefreshControl
+        } else {
+            tableView.addSubview(timelineRefreshControl)
+        }
+
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postCell")
-        
+
         let sharePostStoryboard = UIStoryboard(name: "SharePost", bundle: nil)
         sharePostController = sharePostStoryboard.instantiateViewController(withIdentifier: "sharePostController") as? SharePostController
         
-        retrieveTimeline()
+        retrieveTimeline(refreshing: false)
     }
     
-    func retrieveTimeline() {
-        FirebaseAPI.getUserTimeline(uid: currentUser.uid, completion: { (snapshot) in
-            if let postDict = snapshot.value as? Dictionary<String, AnyObject> {
-                if let post = postDict.toPost() {
-                    self.posts.append(post)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
+    func retrieveTimeline(refreshing: Bool) {
+        FirebaseAPI.getUserTimeline(uid: currentUser.uid, completion: { (posts) in
+            self.posts = posts
+            self.tableView.reloadData()
+            
+            if (refreshing) {
+                self.timelineRefreshControl.endRefreshing()
             }
         })
+    }
+    
+    func refreshTimeline(_ sender: Any) {
+        retrieveTimeline(refreshing: true)
     }
     
     //MARK: SearchSongsDelegate

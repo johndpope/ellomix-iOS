@@ -234,11 +234,20 @@ class FirebaseApi {
         }
     }
     
-    func getUserTimeline(uid: String, completion: ((DataSnapshot) -> ())? = nil) {
+    func getUserTimeline(uid: String, completion: (([Post]) -> ())? = nil) {
         let timelineRef = ref.child(TIMELINE).child(uid)
-        
-        timelineRef.queryOrdered(byChild: "order").observe(.childAdded, with: { (snapshot) in
-            completion?(snapshot)
+        var posts = [Post]()
+
+        timelineRef.queryOrdered(byChild: "order").observeSingleEvent(of: .value, with: { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                if let postDict = child.value as? Dictionary<String, AnyObject> {
+                    if let post = postDict.toPost() {
+                        posts.append(post)
+                    }
+                }
+            }
+
+            completion?(posts)
         }) { (error) in
             print(error.localizedDescription)
         }
