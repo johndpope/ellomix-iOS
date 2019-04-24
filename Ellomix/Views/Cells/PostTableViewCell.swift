@@ -17,10 +17,11 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var playPauseImageView: UIImageView!
     @IBOutlet weak var userProfilePicImageView: UIImageView!
-    @IBOutlet weak var trackThumbnailImageView: UIImageView!
-
+    @IBOutlet weak var trackThumbnailButton: UIButton!
+    
     var playIcon: UIImage!
     var pauseIcon: UIImage!
+    var track: BaseTrack!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,5 +30,13 @@ class PostTableViewCell: UITableViewCell {
         pauseIcon = #imageLiteral(resourceName: "pause").withRenderingMode(.alwaysTemplate)
         playPauseImageView.image = playIcon
         playPauseImageView.tintColor = UIColor.white
+    }
+    
+    func playTrack() {
+        playPauseImageView.image = pauseIcon
+    }
+    
+    func pauseTrack() {
+        playPauseImageView.image = playIcon
     }
 }

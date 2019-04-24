@@ -219,6 +219,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let baseTrack = cell.track {
                 self.baseDelegate?.playTrack(track: baseTrack)
 
+                //TODO: Fix this logic
                 if (currentTrackCell != cell) {
                     if (currentTrackCell != nil) {
                         currentTrackCell.trackPreview.play()

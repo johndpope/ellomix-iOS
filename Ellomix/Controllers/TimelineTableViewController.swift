@@ -14,6 +14,7 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
     var sharePostController: SharePostController!
+    var currentTrackCell: PostTableViewCell!
     
     let timelineRefreshControl = UIRefreshControl()
     var posts = [Post]()
@@ -83,13 +84,39 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
         cell.captionLabel.text = post.caption
         cell.timestampLabel.text = timestampDate.timeAgoDisplay()
         cell.userProfilePicImageView.downloadedFrom(link: post.photoUrl)
-        cell.trackThumbnailImageView.downloadedFrom(link: post.track.thumbnailURL)
+        UIImage.downloadImage(url: post.track.thumbnailURL, completion: { image in
+            cell.trackThumbnailButton.setBackgroundImage(image, for: .normal)
+        })
+        
+        // Add action for playing tracks
+        cell.track = post.track
+        cell.trackThumbnailButton.addTarget(self, action: #selector(playTrack(sender:)), for: .touchUpInside)
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 667
+    }
+    
+    func playTrack(sender: UIButton) {
+        if let cell = sender.superview as? PostTableViewCell {
+            if let baseTrack = cell.track {
+                self.baseDelegate?.playTrack(track: baseTrack)
+                
+                if (currentTrackCell != cell) {
+                    // A different track on the timeline was chosen
+                    cell.playTrack()
+
+                    // If there is current track cell playing, pause it
+                    if (currentTrackCell != nil) {
+                        currentTrackCell.pauseTrack()
+                    }
+
+                    currentTrackCell = cell
+                }
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

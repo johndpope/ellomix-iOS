@@ -45,7 +45,34 @@ extension UITextField {
     }
 }
 
+extension UIImage {
+    static func downloadImage(url: String?, completion: @escaping ((UIImage) -> ())) {
+        if let url = url, !url.isEmpty {
+            if let cachedImage = Global.sharedGlobal.cache.get(key: url as NSString) as? UIImage {
+                completion(cachedImage)
+            } else {
+                guard let url = URL(string: url) else { return }
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                    guard
+                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                        let data = data, error == nil,
+                        let image = UIImage(data: data)
+                        else { return }
+                    DispatchQueue.main.async() { () -> Void in
+                        Global.sharedGlobal.cache.set(obj: image, key: url.absoluteString as NSString)
+                        completion(image)
+                    }
+                    }.resume()
+            }
+        } else {
+            completion(#imageLiteral(resourceName: "ellomix_logo_bw"))
+        }
+    }
+}
+
 extension UIImageView {
+    //TODO: Refactor to use UIImage downloadImage() instead
     func downloadedFrom(url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard
