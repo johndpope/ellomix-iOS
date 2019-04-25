@@ -71,9 +71,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarArtist.text = spTrack.artist
             playBarController.playbarArtwork.image = spTrack.thumbnailImage
             
-            //TODO: Move to FirebaseApi service
-            let recentlyListenedValues = ["artist": spTrack.artist, "title": spTrack.title, "thumbnail_url": spTrack.thumbnailURL, "id": spTrack.id, "source": "spotify"] as! [String : String]
-            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
+            FirebaseAPI.updateRecentlyListened(track: spTrack)
         } else if let scTrack = track as? SoundcloudTrack {
             playBarController.playbarArtwork.isHidden = false
             Global.sharedGlobal.youtubePlayer?.isHidden = true
@@ -84,8 +82,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarArtist.text = scTrack.artist
             playBarController.playbarArtwork.image = scTrack.thumbnailImage
             
-            let recentlyListenedValues = ["artist": scTrack.artist, "title": scTrack.title, "thumbnail_url": scTrack.thumbnailURL, "id": scTrack.id, "source": "soundcloud"] as! [String : String]
-            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
+            FirebaseAPI.updateRecentlyListened(track: scTrack)
         } else if let ytVideo = track as? YouTubeVideo {
             playBarController.playbarArtwork.isHidden = true
             playBarController.currentTrack = ytVideo
@@ -103,8 +100,7 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
             playBarController.playbarTitle.text = ytVideo.title
             playBarController.playbarArtist.text = ytVideo.artist
             
-            let recentlyListenedValues = ["artist": ytVideo.artist, "title": ytVideo.title, "thumbnail_url": ytVideo.thumbnailURL, "id": ytVideo.id, "source": "youtube"] as! [String : String]
-            FirebaseAPI.getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
+            FirebaseAPI.updateRecentlyListened(track: ytVideo)
         } else {
             print("Unable to play selected track.")
         }

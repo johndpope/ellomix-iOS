@@ -258,4 +258,9 @@ class FirebaseApi {
         
         userRef.child("device_token").setValue(token)
     }
+    
+    func updateRecentlyListened(track: BaseTrack) {
+        let recentlyListenedValues = track.toDictionary()
+        getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
+    }
 }
