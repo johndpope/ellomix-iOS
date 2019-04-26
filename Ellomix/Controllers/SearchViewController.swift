@@ -286,7 +286,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     func showOptionsMenu(sender: UIButton) {
         var actions = [UIAlertAction]()
 
-        let postAction = UIAlertAction(title: "Post", style: .default) { _ in
+        let postAction = UIAlertAction(title: "Create Post", style: .default) { _ in
             if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
                 let sharePostVC = self.sharePostNavController.topViewController as! SharePostController
 
@@ -295,7 +295,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 self.present(self.sharePostNavController, animated: true, completion: nil)
             }
         }
-        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+        let shareAction = UIAlertAction(title: "Send to Friends", style: .default) { _ in
             let selectUsersOrGroupsVC = self.selectUsersOrGroupsControllerNavController.topViewController as! SelectUsersOrGroupsController
             if let cell = sender.superview?.superview as? SearchTableViewMusicCell {
                 selectUsersOrGroupsVC.currentTrack = cell.track

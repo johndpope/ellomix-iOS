@@ -79,7 +79,7 @@
                                 <rect key="frame" x="329" y="573" width="28" height="24"/>
                                 <state key="normal" image="share"/>
                                 <connections>
-                                    <action selector="shareTrackClicked:" destination="Tq7-Gl-Xmw" eventType="touchUpInside" id="d5r-7E-YP3"/>
+                                    <action selector="showShareOptions:" destination="Tq7-Gl-Xmw" eventType="touchUpInside" id="RcY-IX-vBA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoE-ne-HRH">

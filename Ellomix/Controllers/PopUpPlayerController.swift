@@ -21,11 +21,15 @@ class PopUpPlayerController: UIViewController {
     var currentTrack: BaseTrack!
     var playbar: PlayBarController?
     var selectUsersOrGroupsControllerNavController: UINavigationController!
+    var sharePostNavController: UINavigationController!
     var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
     
-    override func viewDidLoad() {
-        let storyboard = UIStoryboard(name: "SelectUsersOrGroups", bundle: nil)
-        selectUsersOrGroupsControllerNavController = storyboard.instantiateViewController(withIdentifier: "selectUsersOrGroupsNavController") as? UINavigationController
+    override func viewDidLoad() {        
+        let selectUsersOrGroupsStoryboard = UIStoryboard(name: "SelectUsersOrGroups", bundle: nil)
+        let sharePostStoryboard = UIStoryboard(name: "SharePost", bundle: nil)
+        
+        selectUsersOrGroupsControllerNavController = selectUsersOrGroupsStoryboard.instantiateViewController(withIdentifier: "selectUsersOrGroupsNavController") as? UINavigationController
+        sharePostNavController = sharePostStoryboard.instantiateViewController(withIdentifier: "sharePostNavController") as? UINavigationController
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -109,12 +113,28 @@ class PopUpPlayerController: UIViewController {
         }
     }
     
-    @IBAction func shareTrackClicked(_ sender: Any) {
-        let selectUsersOrGroupsVC = selectUsersOrGroupsControllerNavController.topViewController as! SelectUsersOrGroupsController
-        selectUsersOrGroupsVC.currentTrack = currentTrack
-        present(selectUsersOrGroupsControllerNavController, animated: true, completion: nil)
+    @IBAction func showShareOptions(_ sender: Any) {
+        var actions = [UIAlertAction]()
+        
+        let postAction = UIAlertAction(title: "Create Post", style: .default) { _ in
+            let sharePostVC = self.sharePostNavController.topViewController as! SharePostController
+            
+            sharePostVC.track = self.currentTrack
+            sharePostVC.showCancelButton = true
+            self.present(self.sharePostNavController, animated: true, completion: nil)
+        }
+        let shareAction = UIAlertAction(title: "Send to Friends", style: .default) { _ in
+            let selectUsersOrGroupsVC = self.selectUsersOrGroupsControllerNavController.topViewController as! SelectUsersOrGroupsController
+            selectUsersOrGroupsVC.currentTrack = self.currentTrack
+            self.present(self.selectUsersOrGroupsControllerNavController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        actions.append(postAction)
+        actions.append(shareAction)
+        actions.append(cancelAction)
+        EllomixAlertController.showActionSheet(viewController: self, actions: actions)
     }
-    
     
     @IBAction func panGestureHandler(_ sender: UIPanGestureRecognizer) {
         let touchPoint = sender.location(in: self.view?.window)
