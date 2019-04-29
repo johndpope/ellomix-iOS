@@ -282,6 +282,7 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
             let navVC = segue.destination as! UINavigationController
             let segueVC = navVC.topViewController as! SearchSongsTableViewController
             segueVC.searchSongsDelegate = self
+            segueVC.showCancelButton = true
             segueVC.doneButton.title = "Done"
         }
     }

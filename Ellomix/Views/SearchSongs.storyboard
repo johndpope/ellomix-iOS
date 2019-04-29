@@ -33,12 +33,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="9iY-eG-neC">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="zoS-nv-HlG">
-                            <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="cancelButtonClicked:" destination="App-VN-wKI" id="JeW-fB-f5Z"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="xSe-ux-Fdn">
                             <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>

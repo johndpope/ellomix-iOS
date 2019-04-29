@@ -8,12 +8,11 @@
 
 import UIKit
 
-class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
+class TimelineTableViewController: UITableViewController {
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
-    var sharePostController: SharePostController!
     var currentTrackCell: PostTableViewCell!
     
     let timelineRefreshControl = UIRefreshControl()
@@ -32,9 +31,6 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
         }
 
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postCell")
-
-        let sharePostStoryboard = UIStoryboard(name: "SharePost", bundle: nil)
-        sharePostController = sharePostStoryboard.instantiateViewController(withIdentifier: "sharePostController") as? SharePostController
         
         retrieveTimeline(refreshing: false)
     }
@@ -52,15 +48,6 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
     
     func refreshTimeline(_ sender: Any) {
         retrieveTimeline(refreshing: true)
-    }
-    
-    //MARK: SearchSongsDelegate
-    
-    func doneSelecting(selected: [BaseTrack]) {
-        let searchSongsNavVC = presentedViewController as! UINavigationController
-        
-        sharePostController.track = selected.first
-        searchSongsNavVC.pushViewController(sharePostController, animated: true)
     }
     
     //MARK: TableView
@@ -116,15 +103,6 @@ class TimelineTableViewController: UITableViewController, SearchSongsDelegate {
                     currentTrackCell = cell
                 }
             }
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "toCreateNewPost") {
-            let navVC = segue.destination as! UINavigationController
-            let segueVC = navVC.topViewController as! SearchSongsTableViewController
-            segueVC.searchSongsDelegate = self
-            segueVC.selectLimit = 1
         }
     }
 }

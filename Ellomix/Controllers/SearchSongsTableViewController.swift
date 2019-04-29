@@ -9,7 +9,9 @@
 import UIKit
 
 class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
-
+    
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     private var ytService: YoutubeService!
     private var scService: SoundcloudService!
     private var spService: SpotifyService!
@@ -19,8 +21,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
     var selected: [String : Dictionary<String, BaseTrack>] = ["Spotify":[:], "Soundcloud":[:], "YouTube":[:]]
     var searchSongsDelegate: SearchSongsDelegate?
     var selectLimit: Int?
-    
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    var showCancelButton: Bool = false
 
     override func viewDidLoad() {
         ytService = YoutubeService()
@@ -38,6 +39,11 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         }
         definesPresentationContext = true
         doneButton.isEnabled = false
+        
+        if (showCancelButton) {
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(cancelButtonClicked(_:)))
+            navigationItem.leftBarButtonItem = cancelButton
+        }
         
         tableView.register(UINib(nibName: "TrackTableViewCell", bundle: nil), forCellReuseIdentifier: "trackCell")
         tableView.register(UINib(nibName: "SectionLabelTableViewCell", bundle: nil), forCellReuseIdentifier: "headerCell")
@@ -63,7 +69,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         }
     }
     
-    @IBAction func cancelButtonClicked(_ sender: Any) {
+    func cancelButtonClicked(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     

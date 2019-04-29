@@ -33,11 +33,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ellomix" id="oTx-1s-yDA">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ArJ-38-e6j">
-                            <color key="tintColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="0QB-bb-0Ms" kind="presentation" identifier="toCreateNewPost" id="SKV-DQ-lx3"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" title="Notifications" image="notifications" id="rhF-qn-Lag">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -75,5 +72,6 @@
     </scenes>
     <resources>
         <image name="home" width="24" height="26"/>
+        <image name="notifications" width="19" height="22"/>
     </resources>
 </document>
