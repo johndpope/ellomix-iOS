@@ -18,10 +18,11 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var playPauseImageView: UIImageView!
     @IBOutlet weak var userProfilePicImageView: UIImageView!
     @IBOutlet weak var trackThumbnailButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
     
     var playIcon: UIImage!
     var pauseIcon: UIImage!
-    var track: BaseTrack!
+    var post: Post!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,5 +39,13 @@ class PostTableViewCell: UITableViewCell {
     
     func pauseTrack() {
         playPauseImageView.image = playIcon
+    }
+    
+    func setLikeButtonImage() {
+        if (likeButton.image(for: .normal) == #imageLiteral(resourceName: "heart_outline")) {
+            likeButton.setImage(#imageLiteral(resourceName: "heart_filled"), for: .normal)
+        } else {
+            likeButton.setImage(#imageLiteral(resourceName: "heart_outline"), for: .normal)
+        }
     }
 }

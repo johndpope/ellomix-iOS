@@ -74,10 +74,14 @@ class TimelineTableViewController: UITableViewController {
         UIImage.downloadImage(url: post.track.thumbnailURL, completion: { image in
             cell.trackThumbnailButton.setBackgroundImage(image, for: .normal)
         })
-        
+
+        cell.post = post
+
         // Add action for playing tracks
-        cell.track = post.track
         cell.trackThumbnailButton.addTarget(self, action: #selector(playTrack(sender:)), for: .touchUpInside)
+        
+        // Add action for liking posts
+        cell.likeButton.addTarget(self, action: #selector(likePost(sender:)), for: .touchUpInside)
 
         return cell
     }
@@ -88,8 +92,8 @@ class TimelineTableViewController: UITableViewController {
     
     func playTrack(sender: UIButton) {
         if let cell = sender.superview as? PostTableViewCell {
-            if let baseTrack = cell.track {
-                self.baseDelegate?.playTrack(track: baseTrack)
+            if let post = cell.post {
+                self.baseDelegate?.playTrack(track: post.track)
                 
                 if (currentTrackCell != cell) {
                     // A different track on the timeline was chosen
@@ -102,6 +106,14 @@ class TimelineTableViewController: UITableViewController {
 
                     currentTrackCell = cell
                 }
+            }
+        }
+    }
+    
+    func likePost(sender: UIButton) {
+        if let cell = sender.superview as? PostTableViewCell {
+            if let post = cell.post {
+                cell.setLikeButtonImage()
             }
         }
     }

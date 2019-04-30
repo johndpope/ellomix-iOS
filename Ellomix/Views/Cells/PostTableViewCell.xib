@@ -49,7 +49,7 @@
                     <rect key="frame" x="16" y="461" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" image="heart_outline"/>
+                    <state key="normal" title="Like Button" image="heart_outline"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elQ-pY-umr">
                     <rect key="frame" x="16" y="398" width="302" height="21"/>
@@ -75,6 +75,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="captionLabel" destination="TYm-ku-Ouh" id="h5f-It-ZTk"/>
+                <outlet property="likeButton" destination="SKT-jK-Ugh" id="dfB-IB-DG4"/>
                 <outlet property="playPauseImageView" destination="FA4-U9-Og7" id="TAi-dV-Znk"/>
                 <outlet property="timestampLabel" destination="6bp-He-gUi" id="faP-Sl-4NI"/>
                 <outlet property="trackArtistLabel" destination="elQ-pY-umr" id="6jG-KE-8Et"/>

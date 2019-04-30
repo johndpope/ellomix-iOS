@@ -48,11 +48,13 @@
             </objects>
             <point key="canvasLocation" x="104.8" y="20.239880059970016"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Post-->
         <scene sceneID="l3t-D9-Hpu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rM3-Fe-RdT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Post" image="attach" id="gob-0G-ghq"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zc6-ir-5J2">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -67,4 +69,7 @@
             <point key="canvasLocation" x="-634" y="20"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="attach" width="25" height="25"/>
+    </resources>
 </document>
