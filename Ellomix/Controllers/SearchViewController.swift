@@ -364,9 +364,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                         spTrack.source = "spotify"
                         
                         let thumbnailURL = item.album.largestCover.imageURL
-                        spTrack.thumbnailURL = String(describing: thumbnailURL)
                         
                         if (thumbnailURL != nil) {
+                            spTrack.thumbnailURL = thumbnailURL?.absoluteString
                             DispatchQueue.global().async {
                                 if let data = try? Data(contentsOf: thumbnailURL!) {
                                     DispatchQueue.main.async {
@@ -406,13 +406,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     scTrack.url = track.streamURL
                     scTrack.id = String(track.identifier)
                     scTrack.source = "soundcloud"
-                    if (track.artworkImageURL.highURL != nil) {
-                        scTrack.thumbnailURL = String(describing: track.artworkImageURL.highURL)
+                    
+                    
+                    let thumbnailURL = track.artworkImageURL.highURL
+                    
+                    if (thumbnailURL != nil) {
+                        scTrack.thumbnailURL = thumbnailURL?.absoluteString
                         DispatchQueue.global().async {
-                            if let data = try? Data(contentsOf: track.artworkImageURL.highURL!) {
+                            if let data = try? Data(contentsOf: thumbnailURL!) {
                                 DispatchQueue.main.async {
                                     scTrack.thumbnailImage = UIImage(data: data)
-                                    self.tableView.reloadData()
                                 }
                             }
                         }
