@@ -407,15 +407,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     scTrack.id = String(track.identifier)
                     scTrack.source = "soundcloud"
                     
-                    
                     let thumbnailURL = track.artworkImageURL.highURL
-                    
+    
                     if (thumbnailURL != nil) {
-                        scTrack.thumbnailURL = thumbnailURL?.absoluteString
                         DispatchQueue.global().async {
                             if let data = try? Data(contentsOf: thumbnailURL!) {
                                 DispatchQueue.main.async {
                                     scTrack.thumbnailImage = UIImage(data: data)
+                                    self.tableView.reloadData()
                                 }
                             }
                         }
