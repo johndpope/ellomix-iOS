@@ -19,6 +19,7 @@ class SharePostController: UIViewController, UITextViewDelegate {
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser!
     var track: BaseTrack!
+    var sharePostDelegate: SharePostDelegate?
     var showCancelButton: Bool = false
     
     override func viewDidLoad() {
@@ -27,7 +28,6 @@ class SharePostController: UIViewController, UITextViewDelegate {
         
         captionTextView.delegate = self
         captionTextView.textColor = UIColor.lightGray
-        captionTextView.text = "Write a caption..."
         
         if (showCancelButton) {
             let cancelButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(cancelButtonClicked(sender:)))
@@ -41,6 +41,7 @@ class SharePostController: UIViewController, UITextViewDelegate {
         trackTitleLabel.text = track.title
         artistLabel.text = track.artist
         artworkImage.image = track.thumbnailImage
+        captionTextView.text = "Write a caption..."
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,7 +70,7 @@ class SharePostController: UIViewController, UITextViewDelegate {
         let alertTitle = "Shared!"
         let alertMessage = "Shared song to followers"
         EllomixAlertController.showAlert(viewController: self, title: alertTitle, message: alertMessage, handler: { (UIAlertAction) in
-            self.dismiss(animated: true, completion: nil)
+            self.sharePostDelegate?.didSharePost(sharePostVC: self)
         })
     }
     

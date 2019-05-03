@@ -9,14 +9,12 @@
 import UIKit
 import AVFoundation
 
-class ContainerViewController: UIViewController, YouTubePlayerDelegate, SearchSongsDelegate {
+class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     
     @IBOutlet weak var playBarView: UIView!
     @IBOutlet weak var playBarViewBottomConstraint: NSLayoutConstraint!
     
     var playBarController: PlayBarController!
-    var searchSongsNavController: UINavigationController!
-    var sharePostController: SharePostController!
     private var FirebaseAPI: FirebaseApi!
     private var scService: SoundcloudService!
     private var queue = [BaseTrack]()
@@ -29,9 +27,6 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate, SearchSo
         playBarView.isHidden = true
         playBarController.placeholderView.isHidden = true
         Global.sharedGlobal.musicPlayer.baseDelegate = self
-        
-        let sharePostStoryboard = UIStoryboard(name: "SharePost", bundle: nil)
-        sharePostController = sharePostStoryboard.instantiateViewController(withIdentifier: "sharePostController") as? SharePostController
     }
     
     func playQueue(queue: [BaseTrack], startingIndex: Int) {
@@ -161,13 +156,6 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate, SearchSo
             }
         }
     }
-
-    //MARK: SearchSongsDelegate
-    
-    func doneSelecting(selected: [BaseTrack]) {
-        sharePostController.track = selected.first
-        searchSongsNavController.pushViewController(sharePostController, animated: true)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let homeTabBarVC = segue.destination as? HomeTabBarController {
@@ -182,8 +170,8 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate, SearchSo
             }
             if let navController = homeTabBarVC.viewControllers?[2] as? UINavigationController {
                 let postVC = navController.topViewController as! SearchSongsTableViewController
-                searchSongsNavController = navController
-                postVC.searchSongsDelegate = self
+                homeTabBarVC.searchSongsNavController = navController
+                postVC.searchSongsDelegate = homeTabBarVC
                 postVC.selectLimit = 1
             }
             if let navController = homeTabBarVC.viewControllers?[3] as? UINavigationController {

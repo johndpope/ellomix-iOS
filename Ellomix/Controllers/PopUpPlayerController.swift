@@ -9,7 +9,7 @@
 import UIKit
 import CoreMedia
 
-class PopUpPlayerController: UIViewController {
+class PopUpPlayerController: UIViewController, SharePostDelegate {
     
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var titleField: UILabel!
@@ -121,6 +121,7 @@ class PopUpPlayerController: UIViewController {
             
             sharePostVC.track = self.currentTrack
             sharePostVC.showCancelButton = true
+            sharePostVC.sharePostDelegate = self
             self.present(self.sharePostNavController, animated: true, completion: nil)
         }
         let shareAction = UIAlertAction(title: "Send to Friends", style: .default) { _ in
@@ -158,6 +159,11 @@ class PopUpPlayerController: UIViewController {
     
     @IBAction func dismissPlayer(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: SharePostDelegate
+    func didSharePost(sharePostVC: SharePostController) {
+        sharePostVC.dismiss(animated: true, completion: nil)
     }
     
 }

@@ -70,6 +70,7 @@
 		DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */; };
 		DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */; };
 		DB9AD80C1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */; };
+		DBA9B9A9227BF9A500AD2947 /* SharePostDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA9B9A8227BF9A500AD2947 /* SharePostDelegate.swift */; };
 		DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */; };
 		DBAC7BC4211D38AB0008978E /* SearchSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */; };
 		DBB727E420AA91AC00419789 /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB727E320AA91AC00419789 /* SplashController.swift */; };
@@ -199,6 +200,7 @@
 		DB9ACDA6201D3715003C6925 /* PopUpAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimator.swift; sourceTree = "<group>"; };
 		DB9ACDA8201D3F0E003C6925 /* PopUpPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPlayerController.swift; sourceTree = "<group>"; };
 		DB9AD80B1FAADE0E00C025E8 /* ComposeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageTableViewCell.swift; sourceTree = "<group>"; };
+		DBA9B9A8227BF9A500AD2947 /* SharePostDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePostDelegate.swift; sourceTree = "<group>"; };
 		DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchSongs.storyboard; sourceTree = "<group>"; };
 		DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSongsTableViewController.swift; sourceTree = "<group>"; };
 		DBB727E320AA91AC00419789 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				DB576F64220D3E3B00142A02 /* SearchSongsDelegate.swift */,
+				DBA9B9A8227BF9A500AD2947 /* SharePostDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -851,6 +854,7 @@
 				DB9ACDA7201D3715003C6925 /* PopUpAnimator.swift in Sources */,
 				DBB85B112068A2EB00E99648 /* SentChatTableViewCell.swift in Sources */,
 				DB8E1BFE215F2E72003F65DE /* SelectUsersOrGroupsController.swift in Sources */,
+				DBA9B9A9227BF9A500AD2947 /* SharePostDelegate.swift in Sources */,
 				BA37F5CF1E5D658300C937CD /* ReceivedChatTableViewCell.swift in Sources */,
 				DBF933572165C67000D5C5BF /* GroupTableViewCell.swift in Sources */,
 				DBEA17D120EB2DCD00A9294A /* LabelTableViewCell.swift in Sources */,

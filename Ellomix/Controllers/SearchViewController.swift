@@ -11,7 +11,7 @@ import Alamofire
 import Soundcloud
 import Firebase
 
-class SearchViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class SearchViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SharePostDelegate {
     
     let YouTubeAPIKey = "AIzaSyDl9doicP6uc4cEVlRDiM7Ttgy-o7Hal3I"
     var youtubeSearchURL = "https://www.googleapis.com/youtube/v3/search"
@@ -292,6 +292,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
 
                 sharePostVC.track = cell.track
                 sharePostVC.showCancelButton = true
+                sharePostVC.sharePostDelegate = self
                 self.present(self.sharePostNavController, animated: true, completion: nil)
             }
         }
@@ -478,6 +479,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 self.tableView.reloadData()
             }
         })
+    }
+    
+    //MARK: SharePostDelegate
+    func didSharePost(sharePostVC: SharePostController) {
+        sharePostVC.dismiss(animated: true, completion: nil)
     }
     
     //MARK: Segue
