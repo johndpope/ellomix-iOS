@@ -69,7 +69,7 @@ class SearchSongsTableViewController: UITableViewController, UISearchBarDelegate
         }
     }
     
-    func cancelButtonClicked(_ sender: UIButton) {
+    @objc func cancelButtonClicked(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     

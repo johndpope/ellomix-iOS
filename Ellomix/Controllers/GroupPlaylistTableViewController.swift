@@ -162,7 +162,7 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
     }
     
     //MARK: LongPress functions
-    func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+    @objc func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
         let longpress = gestureRecognizer as! UILongPressGestureRecognizer
         let state = longpress.state
         let locationInView = longpress.location(in: self.tableView)
@@ -264,7 +264,7 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
         FirebaseAPI.addToGroupPlaylist(group: group, data: tracks)
     }
     
-    func addSongsButtonClicked() {
+    @objc func addSongsButtonClicked() {
         performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
     }
     

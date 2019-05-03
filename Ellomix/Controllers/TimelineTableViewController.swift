@@ -46,7 +46,7 @@ class TimelineTableViewController: UITableViewController {
         })
     }
     
-    func refreshTimeline(_ sender: Any) {
+    @objc func refreshTimeline(_ sender: Any) {
         retrieveTimeline(refreshing: true)
     }
     
@@ -90,7 +90,7 @@ class TimelineTableViewController: UITableViewController {
         return 667
     }
     
-    func playTrack(sender: UIButton) {
+    @objc func playTrack(sender: UIButton) {
         if let cell = sender.superview as? PostTableViewCell {
             if let post = cell.post {
                 self.baseDelegate?.playTrack(track: post.track)
@@ -110,7 +110,7 @@ class TimelineTableViewController: UITableViewController {
         }
     }
     
-    func likePost(sender: UIButton) {
+    @objc func likePost(sender: UIButton) {
         if let cell = sender.superview as? PostTableViewCell {
             if let post = cell.post {
                 cell.setLikeButtonImage()

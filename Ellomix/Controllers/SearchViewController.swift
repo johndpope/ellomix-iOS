@@ -283,7 +283,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         }
     }
     
-    func showOptionsMenu(sender: UIButton) {
+    @objc func showOptionsMenu(sender: UIButton) {
         var actions = [UIAlertAction]()
 
         let postAction = UIAlertAction(title: "Create Post", style: .default) { _ in

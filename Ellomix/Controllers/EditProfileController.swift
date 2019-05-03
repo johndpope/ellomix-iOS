@@ -111,7 +111,7 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
         datePickerView.addTarget(self, action: #selector(birthdayValueChanged), for: UIControlEvents.valueChanged)
     }
 
-    func birthdayValueChanged(sender: UIDatePicker) {
+    @objc func birthdayValueChanged(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.none

@@ -74,13 +74,13 @@ class SharePostController: UIViewController, UITextViewDelegate {
         })
     }
     
-    func cancelButtonClicked(sender: UIButton) {
+    @objc func cancelButtonClicked(sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     //MARK: Keyboard handling
 
-    func handleKeyboardNotification(notification: Notification) {
+    @objc func handleKeyboardNotification(notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         

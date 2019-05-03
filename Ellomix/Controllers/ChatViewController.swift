@@ -214,7 +214,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return UITableViewAutomaticDimension
     }
     
-    func playTrack(sender: UIButton) {
+    @objc func playTrack(sender: UIButton) {
         if let cell = sender.superview as? MessageTableViewCell {
             if let baseTrack = cell.track {
                 self.baseDelegate?.playTrack(track: baseTrack)
@@ -292,7 +292,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     //MARK: Keyboard handling
-    func handleKeyboardNotification(notification: Notification) {
+    @objc func handleKeyboardNotification(notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         

@@ -54,7 +54,7 @@ class LinkedAccountViewController: UIViewController, SPTAudioStreamingDelegate {
         }
     }
     
-    func receievedUrlFromSpotify(_ notification: Notification) {
+    @objc func receievedUrlFromSpotify(_ notification: Notification) {
         guard let url = notification.object as? URL else { return }
                 
         // Remove the observer from the Notification Center
