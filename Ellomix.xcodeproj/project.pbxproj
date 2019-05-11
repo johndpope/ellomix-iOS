@@ -10,13 +10,14 @@
 		0D4B01882156EA5200DDDBBC /* LinkedAccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4B01872156EA5200DDDBBC /* LinkedAccountsViewController.swift */; };
 		0DC4048B21531C2800BACFC4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC4048A21531C2800BACFC4 /* LoadingViewController.swift */; };
 		0DC4048D2153246100BACFC4 /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC4048C2153246100BACFC4 /* SpotifyService.swift */; };
+		160E280B9DB4EFA674808908 /* Pods_EllomixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6E8FACE9A8F4A0B5E45A69 /* Pods_EllomixUITests.framework */; };
 		1621BF3E215D975600C6F901 /* SeeFollowersFollowing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1621BF3D215D975600C6F901 /* SeeFollowersFollowing.storyboard */; };
 		1621BF40215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621BF3F215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift */; };
 		167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */; };
 		16D2405B21433E810013B2AF /* SeeAllTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2405A21433E810013B2AF /* SeeAllTableViewController.swift */; };
 		16D2405D21433EAC0013B2AF /* SeeAll.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16D2405C21433EAC0013B2AF /* SeeAll.storyboard */; };
-		35B95F0B09AA0D4D290F2B53 /* Pods_EllomixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F42159EA00C7245320515D /* Pods_EllomixUITests.framework */; };
-		79465F4F359335E43F682CB8 /* Pods_Ellomix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */; };
+		52D1C236D46202F14FEE2261 /* Pods_Ellomix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F52B4E12C4CE4048190973 /* Pods_Ellomix.framework */; };
+		B8B6A1DB13D37A835DF231CF /* Pods_EllomixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA68374B93C99E2CE902BEA5 /* Pods_EllomixTests.framework */; };
 		BA3669A9205F431200DC4D54 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3669A8205F431200DC4D54 /* SettingsViewController.swift */; };
 		BA3669AB205F5F5500DC4D54 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */; };
 		BA37F5CB1E5D600C00C937CD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */; };
@@ -24,7 +25,6 @@
 		BA4E4BB51E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */; };
 		BA4E4C061E63924700A4C4B9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */; };
 		BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */; };
-		BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */; };
 		BA894FD71E57F59700BA3F73 /* FirebaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */; };
 		BA894FDF1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */; };
 		DB052E331F6F7A6E00F32A70 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB052E321F6F7A6E00F32A70 /* Global.swift */; };
@@ -102,7 +102,6 @@
 		DBF94419205F5D220047A1EB /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94416205F5D220047A1EB /* SpotifyMetadata.framework */; };
 		DBF9441A205F5D220047A1EB /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF94417205F5D220047A1EB /* SpotifyAuthentication.framework */; };
 		DBFA76DD206F39DF00689D4F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA76DC206F39DF00689D4F /* Group.swift */; };
-		E193B0AC9A542B67F255F143 /* Pods_EllomixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D24004B5B584B342FE1703 /* Pods_EllomixTests.framework */; };
 		E379E6221E08B69500B0256F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379E6211E08B69500B0256F /* AppDelegate.swift */; };
 		E379E6241E08B69500B0256F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379E6231E08B69500B0256F /* LoginViewController.swift */; };
 		E379E6271E08B69500B0256F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E379E6251E08B69500B0256F /* Main.storyboard */; };
@@ -133,30 +132,37 @@
 		0D4B01872156EA5200DDDBBC /* LinkedAccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedAccountsViewController.swift; sourceTree = "<group>"; };
 		0DC4048A21531C2800BACFC4 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		0DC4048C2153246100BACFC4 /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
-		12016942F6C44225458DBBAF /* Pods-Ellomix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix.debug.xcconfig"; sourceTree = "<group>"; };
+		13663ED69F4EAF0A055FCF9D /* Pods-EllomixUITests.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixUITests.release (development).xcconfig"; path = "Target Support Files/Pods-EllomixUITests/Pods-EllomixUITests.release (development).xcconfig"; sourceTree = "<group>"; };
 		1621BF3D215D975600C6F901 /* SeeFollowersFollowing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SeeFollowersFollowing.storyboard; sourceTree = "<group>"; };
 		1621BF3F215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeFollowersFollowingTableViewController.swift; sourceTree = "<group>"; };
 		167BBDFB207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyListenedCollectionViewCell.swift; sourceTree = "<group>"; };
 		16C583BE211908AC0035BE35 /* Ellomix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ellomix.entitlements; sourceTree = "<group>"; };
 		16D2405A21433E810013B2AF /* SeeAllTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeAllTableViewController.swift; sourceTree = "<group>"; };
 		16D2405C21433EAC0013B2AF /* SeeAll.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SeeAll.storyboard; sourceTree = "<group>"; };
-		34C16BA52CE61328DE8C8CD5 /* Pods-EllomixUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllomixUITests/Pods-EllomixUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		4A1BF9AAABD2A86C22E0CE5E /* Pods-EllomixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EllomixTests/Pods-EllomixTests.release.xcconfig"; sourceTree = "<group>"; };
-		51D24004B5B584B342FE1703 /* Pods_EllomixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllomixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		540DAA8C272C14067F94158B /* Pods-EllomixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EllomixTests/Pods-EllomixTests.debug.xcconfig"; sourceTree = "<group>"; };
-		60F42159EA00C7245320515D /* Pods_EllomixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllomixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6930722A09922E5F7220E98F /* Pods-EllomixUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EllomixUITests/Pods-EllomixUITests.release.xcconfig"; sourceTree = "<group>"; };
+		246FDA8DC6411020E9F8A0FA /* Pods-Ellomix.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.debug (production).xcconfig"; path = "Target Support Files/Pods-Ellomix/Pods-Ellomix.debug (production).xcconfig"; sourceTree = "<group>"; };
+		278D572F6F9494544D7C9F2C /* Pods-EllomixUITests.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixUITests.debug (production).xcconfig"; path = "Target Support Files/Pods-EllomixUITests/Pods-EllomixUITests.debug (production).xcconfig"; sourceTree = "<group>"; };
+		6793EF238BD0B19B6CFFBDB1 /* Pods-EllomixTests.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixTests.debug (production).xcconfig"; path = "Target Support Files/Pods-EllomixTests/Pods-EllomixTests.debug (production).xcconfig"; sourceTree = "<group>"; };
+		6BDD4EC74FBFC3195F9C46D1 /* Pods-Ellomix.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.debug (development).xcconfig"; path = "Target Support Files/Pods-Ellomix/Pods-Ellomix.debug (development).xcconfig"; sourceTree = "<group>"; };
+		6EFF71E4F91FD143572BECB6 /* Pods-EllomixUITests.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixUITests.debug (development).xcconfig"; path = "Target Support Files/Pods-EllomixUITests/Pods-EllomixUITests.debug (development).xcconfig"; sourceTree = "<group>"; };
+		74F52B4E12C4CE4048190973 /* Pods_Ellomix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ellomix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76F4D3C4F6EED08C8EB81352 /* Pods-Ellomix.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.release (development).xcconfig"; path = "Target Support Files/Pods-Ellomix/Pods-Ellomix.release (development).xcconfig"; sourceTree = "<group>"; };
+		8C33472E65A51A0EFE61AEBD /* Pods-EllomixUITests.release (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixUITests.release (production).xcconfig"; path = "Target Support Files/Pods-EllomixUITests/Pods-EllomixUITests.release (production).xcconfig"; sourceTree = "<group>"; };
+		8C6E8FACE9A8F4A0B5E45A69 /* Pods_EllomixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllomixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E54233CE472C4DD4FD955A /* Pods-EllomixTests.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixTests.release (development).xcconfig"; path = "Target Support Files/Pods-EllomixTests/Pods-EllomixTests.release (development).xcconfig"; sourceTree = "<group>"; };
+		930C8247CF9235FBEA3C5414 /* Pods-EllomixTests.release (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixTests.release (production).xcconfig"; path = "Target Support Files/Pods-EllomixTests/Pods-EllomixTests.release (production).xcconfig"; sourceTree = "<group>"; };
+		9640397D26F4077B6A812A24 /* Pods-EllomixTests.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllomixTests.debug (development).xcconfig"; path = "Target Support Files/Pods-EllomixTests/Pods-EllomixTests.debug (development).xcconfig"; sourceTree = "<group>"; };
 		BA3669A8205F431200DC4D54 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BA3669AA205F5F5500DC4D54 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		BA37F5CA1E5D600B00C937CD /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		BA37F5CE1E5D658300C937CD /* ReceivedChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedChatTableViewCell.swift; sourceTree = "<group>"; };
 		BA4E4BB41E6212E100A4C4B9 /* GroupPlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPlaylistTableViewController.swift; sourceTree = "<group>"; };
 		BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BA68374B93C99E2CE902BEA5 /* Pods_EllomixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllomixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA894FD01E56C3B000BA3F73 /* ChatFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFeedTableViewController.swift; sourceTree = "<group>"; };
 		BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BA894FD61E57F59700BA3F73 /* FirebaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseApi.swift; sourceTree = "<group>"; };
 		BA894FDE1E5BD5F000BA3F73 /* ChatFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFeedTableViewCell.swift; sourceTree = "<group>"; };
-		CB58748A5C034C0CC7DBE1AB /* Pods-Ellomix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix.release.xcconfig"; sourceTree = "<group>"; };
+		D82902F5FFFF98B55712CF09 /* Pods-Ellomix.release (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ellomix.release (production).xcconfig"; path = "Target Support Files/Pods-Ellomix/Pods-Ellomix.release (production).xcconfig"; sourceTree = "<group>"; };
 		DB052E321F6F7A6E00F32A70 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		DB0938621FD4F54C00DB64AA /* PlayBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBarController.swift; sourceTree = "<group>"; };
 		DB0938641FD4FCD200DB64AA /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 		DB22FB7A1F5377E000AF384B /* EllomixUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllomixUser.swift; sourceTree = "<group>"; };
 		DB2DB00D204B7ADD00E0935A /* SearchHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderCell.swift; sourceTree = "<group>"; };
 		DB2FE5CD20DA0CEA0018E402 /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
+		DB31BF6A2283EA8E00BD4988 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		DB31BF6B2283EA9E00BD4988 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		DB3330EA1FE8E219004F4D7F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB3519E71EA6E6DE006ACBCE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		DB42B5071FFDE37800AB7E1D /* YTPlayer.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = YTPlayer.html; sourceTree = "<group>"; };
@@ -189,6 +197,7 @@
 		DB7BAA62202FB731005B7115 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		DB7BAA64202FC7F1005B7115 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DB7BAA66202FD378005B7115 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		DB7BCDEC2285486E008D822C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DB83B50B222E467A007578B5 /* SpotifyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlayer.swift; sourceTree = "<group>"; };
 		DB8E1BF9215F28AA003F65DE /* SelectUsersOrGroups.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectUsersOrGroups.storyboard; sourceTree = "<group>"; };
 		DB8E1BFB215F2930003F65DE /* PopUpPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUpPlayer.storyboard; sourceTree = "<group>"; };
@@ -233,7 +242,6 @@
 		DBF94417205F5D220047A1EB /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 		DBF9441B205F5F8C0047A1EB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		DBFA76DC206F39DF00689D4F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ellomix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E330802C1E342F2B0046D58F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "../Bridging-Header.h"; sourceTree = "<group>"; };
 		E379E61E1E08B69500B0256F /* Ellomix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ellomix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E379E6211E08B69500B0256F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -258,8 +266,8 @@
 				DBF9441A205F5D220047A1EB /* SpotifyAuthentication.framework in Frameworks */,
 				BA4E4C061E63924700A4C4B9 /* AVFoundation.framework in Frameworks */,
 				DBF94419205F5D220047A1EB /* SpotifyMetadata.framework in Frameworks */,
-				79465F4F359335E43F682CB8 /* Pods_Ellomix.framework in Frameworks */,
 				DBF94418205F5D220047A1EB /* SpotifyAudioPlayback.framework in Frameworks */,
+				52D1C236D46202F14FEE2261 /* Pods_Ellomix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E193B0AC9A542B67F255F143 /* Pods_EllomixTests.framework in Frameworks */,
+				B8B6A1DB13D37A835DF231CF /* Pods_EllomixTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +283,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35B95F0B09AA0D4D290F2B53 /* Pods_EllomixUITests.framework in Frameworks */,
+				160E280B9DB4EFA674808908 /* Pods_EllomixUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,24 +295,39 @@
 			children = (
 				DBF9441B205F5F8C0047A1EB /* SafariServices.framework */,
 				BA4E4C051E63924700A4C4B9 /* AVFoundation.framework */,
-				DD660CB1B6612123B4653350 /* Pods_Ellomix.framework */,
-				51D24004B5B584B342FE1703 /* Pods_EllomixTests.framework */,
-				60F42159EA00C7245320515D /* Pods_EllomixUITests.framework */,
+				74F52B4E12C4CE4048190973 /* Pods_Ellomix.framework */,
+				BA68374B93C99E2CE902BEA5 /* Pods_EllomixTests.framework */,
+				8C6E8FACE9A8F4A0B5E45A69 /* Pods_EllomixUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		98E642340DC8BDFF6D2E93F6 /* Pods */ = {
+		93967A1A289512B071674570 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				12016942F6C44225458DBBAF /* Pods-Ellomix.debug.xcconfig */,
-				CB58748A5C034C0CC7DBE1AB /* Pods-Ellomix.release.xcconfig */,
-				540DAA8C272C14067F94158B /* Pods-EllomixTests.debug.xcconfig */,
-				4A1BF9AAABD2A86C22E0CE5E /* Pods-EllomixTests.release.xcconfig */,
-				34C16BA52CE61328DE8C8CD5 /* Pods-EllomixUITests.debug.xcconfig */,
-				6930722A09922E5F7220E98F /* Pods-EllomixUITests.release.xcconfig */,
+				6BDD4EC74FBFC3195F9C46D1 /* Pods-Ellomix.debug (development).xcconfig */,
+				246FDA8DC6411020E9F8A0FA /* Pods-Ellomix.debug (production).xcconfig */,
+				76F4D3C4F6EED08C8EB81352 /* Pods-Ellomix.release (development).xcconfig */,
+				D82902F5FFFF98B55712CF09 /* Pods-Ellomix.release (production).xcconfig */,
+				9640397D26F4077B6A812A24 /* Pods-EllomixTests.debug (development).xcconfig */,
+				6793EF238BD0B19B6CFFBDB1 /* Pods-EllomixTests.debug (production).xcconfig */,
+				91E54233CE472C4DD4FD955A /* Pods-EllomixTests.release (development).xcconfig */,
+				930C8247CF9235FBEA3C5414 /* Pods-EllomixTests.release (production).xcconfig */,
+				6EFF71E4F91FD143572BECB6 /* Pods-EllomixUITests.debug (development).xcconfig */,
+				278D572F6F9494544D7C9F2C /* Pods-EllomixUITests.debug (production).xcconfig */,
+				13663ED69F4EAF0A055FCF9D /* Pods-EllomixUITests.release (development).xcconfig */,
+				8C33472E65A51A0EFE61AEBD /* Pods-EllomixUITests.release (production).xcconfig */,
 			);
-			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DB31BF692283EA4300BD4988 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				DB7BCDE8228542BE008D822C /* Dev */,
+				DB7BCDE9228542C3008D822C /* Prod */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		DB576F63220D3E1600142A02 /* Delegates */ = {
@@ -462,6 +485,24 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		DB7BCDE8228542BE008D822C /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				DB31BF6A2283EA8E00BD4988 /* Development.xcconfig */,
+				DB7BCDEC2285486E008D822C /* GoogleService-Info.plist */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
+		DB7BCDE9228542C3008D822C /* Prod */ = {
+			isa = PBXGroup;
+			children = (
+				DB31BF6B2283EA9E00BD4988 /* Production.xcconfig */,
+				BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */,
+			);
+			path = Prod;
+			sourceTree = "<group>";
+		};
 		DBF94414205F5CFA0047A1EB /* Spotify Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,8 +521,8 @@
 				E379E6351E08B69500B0256F /* EllomixTests */,
 				E379E6401E08B69500B0256F /* EllomixUITests */,
 				E379E61F1E08B69500B0256F /* Products */,
-				98E642340DC8BDFF6D2E93F6 /* Pods */,
 				67A20A8E352D884DD1B1B4DB /* Frameworks */,
+				93967A1A289512B071674570 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -498,6 +539,7 @@
 		E379E6201E08B69500B0256F /* Ellomix */ = {
 			isa = PBXGroup;
 			children = (
+				DB31BF692283EA4300BD4988 /* Config */,
 				DB5FB81320E1FE9D00345BAC /* Models */,
 				DB5FB81120E1FD4100345BAC /* Views */,
 				DB5FB81020E1FBAF00345BAC /* Controllers */,
@@ -508,7 +550,6 @@
 				DBF94414205F5CFA0047A1EB /* Spotify Frameworks */,
 				E379E62D1E08B69500B0256F /* Info.plist */,
 				16C583BE211908AC0035BE35 /* Ellomix.entitlements */,
-				BA894FD21E56C64600BA3F73 /* GoogleService-Info.plist */,
 				E330802C1E342F2B0046D58F /* Bridging-Header.h */,
 				E379E6211E08B69500B0256F /* AppDelegate.swift */,
 				DB42B5071FFDE37800AB7E1D /* YTPlayer.html */,
@@ -542,11 +583,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E379E6461E08B69500B0256F /* Build configuration list for PBXNativeTarget "Ellomix" */;
 			buildPhases = (
-				2DA1E04306DC6CF545CF7D08 /* [CP] Check Pods Manifest.lock */,
+				967F90E8D69C6C8607D8CF20 /* [CP] Check Pods Manifest.lock */,
 				E379E61A1E08B69500B0256F /* Sources */,
 				E379E61B1E08B69500B0256F /* Frameworks */,
+				DB7BCDEB228543BD008D822C /* Setup Firebase Environment GoogleService-Info.plist */,
 				E379E61C1E08B69500B0256F /* Resources */,
-				57EBD84D18CDCEE9FE505E5B /* [CP] Embed Pods Frameworks */,
+				9CA95714B71C2860180D1451 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -561,7 +603,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E379E6491E08B69500B0256F /* Build configuration list for PBXNativeTarget "EllomixTests" */;
 			buildPhases = (
-				5DC6E9B4B3E63B842F90678F /* [CP] Check Pods Manifest.lock */,
+				92CFEFDB8DA93801D6521EA8 /* [CP] Check Pods Manifest.lock */,
 				E379E62E1E08B69500B0256F /* Sources */,
 				E379E62F1E08B69500B0256F /* Frameworks */,
 				E379E6301E08B69500B0256F /* Resources */,
@@ -580,7 +622,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E379E64C1E08B69500B0256F /* Build configuration list for PBXNativeTarget "EllomixUITests" */;
 			buildPhases = (
-				35B082598D0E88DE2B66ABC4 /* [CP] Check Pods Manifest.lock */,
+				1F2DF3BE642093ED90545535 /* [CP] Check Pods Manifest.lock */,
 				E379E6391E08B69500B0256F /* Sources */,
 				E379E63A1E08B69500B0256F /* Frameworks */,
 				E379E63B1E08B69500B0256F /* Resources */,
@@ -666,7 +708,6 @@
 				DB16728F2123C1FF00A368FC /* TrackTableViewCell.xib in Resources */,
 				DBF933552165C5C300D5C5BF /* GroupTableViewCell.xib in Resources */,
 				DBE81D5620EDC92A00A27935 /* UserTableViewCell.xib in Resources */,
-				BA894FD31E56C64600BA3F73 /* GoogleService-Info.plist in Resources */,
 				DBEA17D520EB392100A9294A /* SwitchTableViewCell.xib in Resources */,
 				E379E6291E08B69500B0256F /* Assets.xcassets in Resources */,
 				DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */,
@@ -700,25 +741,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2DA1E04306DC6CF545CF7D08 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Ellomix-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		35B082598D0E88DE2B66ABC4 /* [CP] Check Pods Manifest.lock */ = {
+		1F2DF3BE642093ED90545535 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -736,13 +759,49 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		57EBD84D18CDCEE9FE505E5B /* [CP] Embed Pods Frameworks */ = {
+		92CFEFDB8DA93801D6521EA8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix-frameworks.sh",
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EllomixTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		967F90E8D69C6C8607D8CF20 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ellomix-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CA95714B71C2860180D1451 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ellomix/Pods-Ellomix-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/1PasswordExtension/OnePasswordExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -775,26 +834,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ellomix/Pods-Ellomix-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ellomix/Pods-Ellomix-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5DC6E9B4B3E63B842F90678F /* [CP] Check Pods Manifest.lock */ = {
+		DB7BCDEB228543BD008D822C /* Setup Firebase Environment GoogleService-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "Setup Firebase Environment GoogleService-Info.plist";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EllomixTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist\n\n# Get references to dev and prod versions of the GoogleService-Info.plist\n# NOTE: These should only live on the file system and should NOT be part of the target (since we'll be adding them to the target manually)\nGOOGLESERVICE_INFO_DEV=${PROJECT_DIR}/${TARGET_NAME}/Config/Dev/${GOOGLESERVICE_INFO_PLIST}\nGOOGLESERVICE_INFO_PROD=${PROJECT_DIR}/${TARGET_NAME}/Config/Prod/${GOOGLESERVICE_INFO_PLIST}\n\n# Make sure the dev version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_DEV}\"\nif [ ! -f $GOOGLESERVICE_INFO_DEV ]\nthen\necho \"No Development GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\nexit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\necho \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\nexit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\nPLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\necho \"Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${PLIST_DESTINATION}\"\n\n# Copy over the prod GoogleService-Info.plist for Release builds\necho \"Using configuration: ${CONFIGURATION}\"\nif [ \"${CONFIGURATION#*Production}\" != \"${CONFIGURATION}\" ]\nthen\necho \"Using ${GOOGLESERVICE_INFO_PROD}\"\ncp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\necho \"Using ${GOOGLESERVICE_INFO_DEV}\"\ncp \"${GOOGLESERVICE_INFO_DEV}\" \"${PLIST_DESTINATION}\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -929,8 +984,9 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E379E6441E08B69500B0256F /* Debug */ = {
+		DB31BF612283E7D300BD4988 /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB31BF6B2283EA9E00BD4988 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -976,10 +1032,84 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = "Debug (Production)";
 		};
-		E379E6451E08B69500B0256F /* Release */ = {
+		DB31BF622283E7D300BD4988 /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 246FDA8DC6411020E9F8A0FA /* Pods-Ellomix.debug (production).xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ellomix/Ellomix.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QFBNLQV3XJ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+					"\"${PODS_ROOT}/leveldb-library/\"",
+					"\"${PODS_ROOT}/leveldb-library/include\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+				);
+				INFOPLIST_FILE = Ellomix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.Ellomix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = "Debug (Production)";
+		};
+		DB31BF632283E7D300BD4988 /* Debug (Production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6793EF238BD0B19B6CFFBDB1 /* Pods-EllomixTests.debug (production).xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EllomixTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.EllomixTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ellomix.app/Ellomix";
+			};
+			name = "Debug (Production)";
+		};
+		DB31BF642283E7D300BD4988 /* Debug (Production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 278D572F6F9494544D7C9F2C /* Pods-EllomixUITests.debug (production).xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = EllomixUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.EllomixUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = Ellomix;
+			};
+			name = "Debug (Production)";
+		};
+		DB31BF652283E7D600BD4988 /* Release (Production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB31BF6B2283EA9E00BD4988 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1018,53 +1148,11 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Release (Production)";
 		};
-		E379E6471E08B69500B0256F /* Debug */ = {
+		DB31BF662283E7D600BD4988 /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12016942F6C44225458DBBAF /* Pods-Ellomix.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Ellomix/Ellomix.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QFBNLQV3XJ;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/Core/Sources",
-					"\"${PODS_ROOT}/leveldb-library/\"",
-					"\"${PODS_ROOT}/leveldb-library/include\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
-				);
-				INFOPLIST_FILE = Ellomix/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.Ellomix;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		E379E6481E08B69500B0256F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB58748A5C034C0CC7DBE1AB /* Pods-Ellomix.release.xcconfig */;
+			baseConfigurationReference = D82902F5FFFF98B55712CF09 /* Pods-Ellomix.release (production).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ellomix/Ellomix.entitlements;
@@ -1102,11 +1190,11 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
-			name = Release;
+			name = "Release (Production)";
 		};
-		E379E64A1E08B69500B0256F /* Debug */ = {
+		DB31BF672283E7D600BD4988 /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 540DAA8C272C14067F94158B /* Pods-EllomixTests.debug.xcconfig */;
+			baseConfigurationReference = 930C8247CF9235FBEA3C5414 /* Pods-EllomixTests.release (production).xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1118,11 +1206,203 @@
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ellomix.app/Ellomix";
 			};
-			name = Debug;
+			name = "Release (Production)";
 		};
-		E379E64B1E08B69500B0256F /* Release */ = {
+		DB31BF682283E7D600BD4988 /* Release (Production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A1BF9AAABD2A86C22E0CE5E /* Pods-EllomixTests.release.xcconfig */;
+			baseConfigurationReference = 8C33472E65A51A0EFE61AEBD /* Pods-EllomixUITests.release (production).xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = EllomixUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.EllomixUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = Ellomix;
+			};
+			name = "Release (Production)";
+		};
+		E379E6441E08B69500B0256F /* Debug (Development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB31BF6A2283EA8E00BD4988 /* Development.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug (Development)";
+		};
+		E379E6451E08B69500B0256F /* Release (Development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB31BF6A2283EA8E00BD4988 /* Development.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release (Development)";
+		};
+		E379E6471E08B69500B0256F /* Debug (Development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BDD4EC74FBFC3195F9C46D1 /* Pods-Ellomix.debug (development).xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ellomix/Ellomix.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QFBNLQV3XJ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+					"\"${PODS_ROOT}/leveldb-library/\"",
+					"\"${PODS_ROOT}/leveldb-library/include\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+				);
+				INFOPLIST_FILE = Ellomix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.Ellomix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = "Debug (Development)";
+		};
+		E379E6481E08B69500B0256F /* Release (Development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76F4D3C4F6EED08C8EB81352 /* Pods-Ellomix.release (development).xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ellomix/Ellomix.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QFBNLQV3XJ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+					"\"${PODS_ROOT}/leveldb-library/\"",
+					"\"${PODS_ROOT}/leveldb-library/include\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+				);
+				INFOPLIST_FILE = Ellomix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.Ellomix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = "Release (Development)";
+		};
+		E379E64A1E08B69500B0256F /* Debug (Development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9640397D26F4077B6A812A24 /* Pods-EllomixTests.debug (development).xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1134,11 +1414,27 @@
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ellomix.app/Ellomix";
 			};
-			name = Release;
+			name = "Debug (Development)";
 		};
-		E379E64D1E08B69500B0256F /* Debug */ = {
+		E379E64B1E08B69500B0256F /* Release (Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34C16BA52CE61328DE8C8CD5 /* Pods-EllomixUITests.debug.xcconfig */;
+			baseConfigurationReference = 91E54233CE472C4DD4FD955A /* Pods-EllomixTests.release (development).xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EllomixTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Ellomix.EllomixTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ellomix.app/Ellomix";
+			};
+			name = "Release (Development)";
+		};
+		E379E64D1E08B69500B0256F /* Debug (Development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EFF71E4F91FD143572BECB6 /* Pods-EllomixUITests.debug (development).xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = EllomixUITests/Info.plist;
@@ -1149,11 +1445,11 @@
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Ellomix;
 			};
-			name = Debug;
+			name = "Debug (Development)";
 		};
-		E379E64E1E08B69500B0256F /* Release */ = {
+		E379E64E1E08B69500B0256F /* Release (Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6930722A09922E5F7220E98F /* Pods-EllomixUITests.release.xcconfig */;
+			baseConfigurationReference = 13663ED69F4EAF0A055FCF9D /* Pods-EllomixUITests.release (development).xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = EllomixUITests/Info.plist;
@@ -1164,7 +1460,7 @@
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Ellomix;
 			};
-			name = Release;
+			name = "Release (Development)";
 		};
 /* End XCBuildConfiguration section */
 
@@ -1172,38 +1468,46 @@
 		E379E6191E08B69500B0256F /* Build configuration list for PBXProject "Ellomix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E379E6441E08B69500B0256F /* Debug */,
-				E379E6451E08B69500B0256F /* Release */,
+				E379E6441E08B69500B0256F /* Debug (Development) */,
+				DB31BF612283E7D300BD4988 /* Debug (Production) */,
+				E379E6451E08B69500B0256F /* Release (Development) */,
+				DB31BF652283E7D600BD4988 /* Release (Production) */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release (Development)";
 		};
 		E379E6461E08B69500B0256F /* Build configuration list for PBXNativeTarget "Ellomix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E379E6471E08B69500B0256F /* Debug */,
-				E379E6481E08B69500B0256F /* Release */,
+				E379E6471E08B69500B0256F /* Debug (Development) */,
+				DB31BF622283E7D300BD4988 /* Debug (Production) */,
+				E379E6481E08B69500B0256F /* Release (Development) */,
+				DB31BF662283E7D600BD4988 /* Release (Production) */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release (Development)";
 		};
 		E379E6491E08B69500B0256F /* Build configuration list for PBXNativeTarget "EllomixTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E379E64A1E08B69500B0256F /* Debug */,
-				E379E64B1E08B69500B0256F /* Release */,
+				E379E64A1E08B69500B0256F /* Debug (Development) */,
+				DB31BF632283E7D300BD4988 /* Debug (Production) */,
+				E379E64B1E08B69500B0256F /* Release (Development) */,
+				DB31BF672283E7D600BD4988 /* Release (Production) */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release (Development)";
 		};
 		E379E64C1E08B69500B0256F /* Build configuration list for PBXNativeTarget "EllomixUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E379E64D1E08B69500B0256F /* Debug */,
-				E379E64E1E08B69500B0256F /* Release */,
+				E379E64D1E08B69500B0256F /* Debug (Development) */,
+				DB31BF642283E7D300BD4988 /* Debug (Production) */,
+				E379E64E1E08B69500B0256F /* Release (Development) */,
+				DB31BF682283E7D600BD4988 /* Release (Production) */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release (Development)";
 		};
 /* End XCConfigurationList section */
 	};

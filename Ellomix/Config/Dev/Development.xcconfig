@@ -1,0 +1,16 @@
+//
+//  Development.xcconfig
+//  Ellomix
+//
+//  Created by Kevin Avila on 5/8/19.
+//  Copyright © 2019 Ellomix. All rights reserved.
+//
+
+// App Settings
+APP_NAME = Ellomix (dev)
+APP_BUNDLE_ID = Ellomix.Ellomix.dev
+
+// Facebook
+FACEBOOK_APP_ID = 406701473256733
+FACEBOOK_DISPLAY_NAME = ellomix (dev)
+FACEBOOK_URL_SCHEME = fb406701473256733

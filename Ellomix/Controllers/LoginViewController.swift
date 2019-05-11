@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func fbButtonClicked(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.showLoadingScreen(parentVC: self, message: "Login in...")
+        appDelegate.showLoadingScreen(parentVC: self, message: "Logging in...")
         let loginManager = LoginManager()
         loginManager.logIn(readPermissions: [.publicProfile, .email, .userFriends], viewController: self) { loginResult in
             
@@ -41,9 +41,9 @@ class LoginViewController: UIViewController {
             case .failed(let error):
                 print("Error logging in with Facebook: \(error)")
             case .cancelled:
-                print("User cancelled login.")
+                print("User cancelled Facebook login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                print("Logged in!")
+                print("Logged in with Facebook!")
                 
                 /* secondary auth for analytics purposes FB USERS
                  let params = ["fields": "id, first_name, last_name, name, email, picture"]
@@ -81,6 +81,7 @@ class LoginViewController: UIViewController {
                         print("Firebase Authentication failed: \(error)")
                     }
                     // User is signed in
+                    //TODO: Handle edge case where we don't have a current user object on the first Facebook sign-in
                     print("Firebase Authenticated succeeded.")
                     self.performSegue(withIdentifier: "toHomeTabBar", sender: self)
                 }
