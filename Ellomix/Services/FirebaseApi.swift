@@ -78,7 +78,7 @@ class FirebaseApi {
             } else {
                 print("Successfully uploaded image")
                 let userPhotoURLRef = self.ref.child(self.USERS).child(user.uid).child("photo_url")
-                user.setProfilePicLink(link: (metadata?.downloadURL()?.absoluteString)!)
+                user.profilePicLink = (metadata?.downloadURL()?.absoluteString)!
                 userPhotoURLRef.setValue((metadata?.downloadURL()?.absoluteString)!)
                 completion()
             }

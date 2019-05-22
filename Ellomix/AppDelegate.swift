@@ -98,6 +98,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        // TODO: Handle data of notification
+        // Print full message
+        print(userInfo)
+    }
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         if let refreshedToken = InstanceID.instanceID().token() {
             print("FCM Token: \(refreshedToken)")
@@ -189,16 +195,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let deviceToken = userData["device_token"] as? String
         
         let loadedUser = EllomixUser(uid: uid)
-        loadedUser.setName(name: name!)
+        loadedUser.name = name!
         loadedUser.profilePicture.downloadedFrom(link: photoUrl)
-        loadedUser.setProfilePicLink(link: photoUrl!)
-        if (website != nil) { loadedUser.setWebsite(website: website!) }
-        if (bio != nil) { loadedUser.setBio(bio: bio!) }
-        if (email != nil) { loadedUser.setEmail(email: email!) }
-        if (gender != nil) { loadedUser.setGender(gender: gender!) }
-        if (birthday != nil) { loadedUser.setBirthday(birthday: birthday!)}
-        if (followersCount != nil) { loadedUser.setFollowersCount(count: followersCount!) }
-        if (followingCount != nil) { loadedUser.setFollowingCount(count: followingCount!) }
+        loadedUser.profilePicLink = photoUrl!
+        loadedUser.website = website
+        loadedUser.bio = bio
+        loadedUser.email = email
+        loadedUser.gender = gender
+        loadedUser.birthday = birthday
+        loadedUser.followersCount = followersCount
+        loadedUser.followingCount = followingCount
+
         if (groups != nil) { loadedUser.groups = Array(groups!.keys)}
         if (deviceToken != fcmToken) {
             self.FirebaseAPI.updateUserDeviceToken(uid: uid, token: fcmToken)
@@ -228,7 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 let name = firstName! + " " + lastName!
                                 
                                 let newUser = EllomixUser(uid: user.uid)
-                                newUser.setName(name: name)
+                                newUser.name = name
                                 
                                 if let picture = responseDict["picture"] as? NSDictionary {
                                     if let data = picture["data"] as? NSDictionary {
@@ -237,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                             let data = try? Data(contentsOf: url!)
                                             DispatchQueue.main.async {
                                                 let image =  UIImage(data: data!)
-                                                newUser.setProfilePic(image: image!)
+                                                newUser.profilePicture.image = image
                                                 self.FirebaseAPI.updateUserProfilePicture(user: newUser, image: image!) {
                                                     self.FirebaseAPI.updateUser(user: newUser)
                                                     Global.sharedGlobal.user = newUser

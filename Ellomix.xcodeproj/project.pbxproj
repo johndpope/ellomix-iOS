@@ -82,6 +82,7 @@
 		DBCCAF6221784DE70061C6D4 /* EllomixAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCAF6121784DE70061C6D4 /* EllomixAlertController.swift */; };
 		DBCE53761FBABD06002B760C /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE53751FBABD06002B760C /* EditProfileController.swift */; };
 		DBD3DF1120E4935C005B9D74 /* GroupSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */; };
+		DBD62D65228D29AE0074857F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD62D64228D29AE0074857F /* NotificationService.swift */; };
 		DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */; };
 		DBDFCA002103FFA100229A45 /* AddMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDFC9FF2103FFA100229A45 /* AddMemberController.swift */; };
 		DBE384102193FC35008E3FAD /* TrackPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBE3840F2193FC35008E3FAD /* TrackPreview.xib */; };
@@ -221,6 +222,7 @@
 		DBCCAF6121784DE70061C6D4 /* EllomixAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllomixAlertController.swift; sourceTree = "<group>"; };
 		DBCE53751FBABD06002B760C /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		DBD3DF1020E4935C005B9D74 /* GroupSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSettingsTableViewController.swift; path = Ellomix/Controllers/GroupSettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		DBD62D64228D29AE0074857F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		DBDEDFC520E9D21000B65B88 /* GroupSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingsHeaderCell.swift; sourceTree = "<group>"; };
 		DBDFC9FF2103FFA100229A45 /* AddMemberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberController.swift; sourceTree = "<group>"; };
 		DBE3840F2193FC35008E3FAD /* TrackPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackPreview.xib; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				DB16728C2123BF2600A368FC /* YoutubeService.swift */,
 				DB49DC87212A7AEB00DB3E8B /* SoundcloudService.swift */,
 				0DC4048C2153246100BACFC4 /* SpotifyService.swift */,
+				DBD62D64228D29AE0074857F /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -864,6 +867,7 @@
 				167BBDFC207EF8DE00B3AE7E /* RecentlyListenedCollectionViewCell.swift in Sources */,
 				DBE384122193FD35008E3FAD /* TrackPreview.swift in Sources */,
 				BA894FD11E56C3B000BA3F73 /* ChatFeedTableViewController.swift in Sources */,
+				DBD62D65228D29AE0074857F /* NotificationService.swift in Sources */,
 				DBB727E420AA91AC00419789 /* SplashController.swift in Sources */,
 				DB95F6282224FC5C005DC658 /* PostTableViewCell.swift in Sources */,
 				16D2405B21433E810013B2AF /* SeeAllTableViewController.swift in Sources */,

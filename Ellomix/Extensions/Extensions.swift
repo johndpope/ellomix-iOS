@@ -134,7 +134,7 @@ extension Dictionary {
 
         for val in self.values {
             let obj = val as AnyObject
-            if let name = obj["name"] as? String, name != Global.sharedGlobal.user?.getName() {
+            if let name = obj["name"] as? String, name != Global.sharedGlobal.user?.name {
                 names.append(name)
             }
         }
@@ -158,8 +158,9 @@ extension Dictionary {
         let userDict = self as! Dictionary<String, AnyObject>
         if let uid = userDict["uid"] as? String {
             let user = EllomixUser(uid: uid)
-            if let name = userDict["name"] as? String { user.setName(name: name) }
-            if let photoUrl = userDict["photo_url"] as? String { user.setProfilePicLink(link: photoUrl) }
+            if let name = userDict["name"] as? String { user.name = name }
+            if let photoUrl = userDict["photo_url"] as? String { user.profilePicLink = photoUrl }
+            if let deviceToken = userDict["device_token"] as? String { user.deviceToken = deviceToken }
             //TODO: Set the rest of the properties
             
             return user

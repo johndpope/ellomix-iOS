@@ -12,7 +12,6 @@ internal class Group {
     
     var gid: String?
     var name: String?
-    var notifications: Bool?
     var lastMessage: Message?
     var users: Dictionary<String, AnyObject>?
     

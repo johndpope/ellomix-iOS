@@ -127,7 +127,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             let ellomixUser = userOrGroup as! EllomixUser
             
             cell.selectionStyle = .none
-            cell.userLabel.text = ellomixUser.getName()
+            cell.userLabel.text = ellomixUser.name
             cell.userImageView.downloadedFrom(link: ellomixUser.profilePicLink)
             
             if (shouldBeDisabled) {
@@ -280,7 +280,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             var name = ""
             if (groupOrUser is EllomixUser) {
                 let user = groupOrUser as! EllomixUser
-                name = user.getName()
+                name = user.name
             } else {
                 // Parse group name
                 let group = groupOrUser as! Group

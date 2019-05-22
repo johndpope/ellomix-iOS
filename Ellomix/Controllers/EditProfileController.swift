@@ -43,13 +43,13 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
     }
 
     @IBAction func saveInfo(_ sender: Any) {
-        currentUser?.setName(name: nameField.text!)
-        currentUser?.setWebsite(website: websiteField.text!)
-        currentUser?.setBio(bio: bioView.text!)
-        currentUser?.setEmail(email: emailField.text!)
-        currentUser?.setGender(gender: genderField.text!)
-        currentUser?.setBirthday(birthday: birthdayField.text!)
-        currentUser?.setProfilePic(image: profilePic.image!)
+        currentUser?.name = nameField.text!
+        currentUser?.website = websiteField.text
+        currentUser?.bio = bioView.text
+        currentUser?.email = emailField.text
+        currentUser?.gender = genderField.text
+        currentUser?.birthday = birthdayField.text
+        currentUser?.profilePicture = profilePic
         
         FirebaseAPI.updateUser(user: currentUser!)
         FirebaseAPI.updateUserProfilePicture(user: currentUser!, image: profilePic.image!, completion: {})
@@ -59,13 +59,13 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
     }
     
     func displayProfileInfo() {
-        profilePic.image = currentUser?.getProfilePicture().image
-        nameField.text = currentUser?.getName()
-        websiteField.text = currentUser?.getWebsite()
-        bioView.text = currentUser?.getBio()
-        emailField.text = currentUser?.getEmail()
-        birthdayField.text = currentUser?.getBirthday()
-        genderField.text = currentUser?.getGender()
+        profilePic.image = currentUser?.profilePicture.image
+        nameField.text = currentUser?.name
+        websiteField.text = currentUser?.website
+        bioView.text = currentUser?.bio
+        emailField.text = currentUser?.email
+        birthdayField.text = currentUser?.birthday
+        genderField.text = currentUser?.gender
     }
     
     @IBAction func changeProfilePic(_ sender: Any) {

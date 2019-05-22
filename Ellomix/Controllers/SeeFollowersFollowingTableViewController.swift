@@ -53,10 +53,10 @@ class SeeFollowersFollowingTableViewController: UITableViewController {
                     let followingCount = dictionary["following_count"] as? Int
                     let followersCount = dictionary["followers_count"] as? Int
                     let ellomixUser = EllomixUser(uid: uid!)
-                    ellomixUser.setName(name: name!)
-                    ellomixUser.setProfilePicLink(link: photoURL!)
-                    ellomixUser.setFollowingCount(count: followingCount)
-                    ellomixUser.setFollowersCount(count: followersCount)
+                    ellomixUser.name = name!
+                    ellomixUser.profilePicLink = photoURL!
+                    ellomixUser.followingCount = followingCount
+                    ellomixUser.followersCount = followersCount
                     ellomixUser.profilePicture.downloadedFrom(link: photoURL)
                     self.performSegue(withIdentifier: "toProfile", sender: ellomixUser)
                 }

@@ -61,9 +61,9 @@ class PasswordViewController: UIViewController {
                 let password = self.passwordField.text!
 
                 let newUser = EllomixUser(uid: userID!)
-                newUser.setName(name: self.name!)
-                newUser.setPassword(password: password)
-                newUser.setEmail(email: self.email!)
+                newUser.name = self.name!
+                newUser.password = password
+                newUser.email = self.email
                 Global.sharedGlobal.user = newUser
                 self.FirebaseAPI.updateUser(user: newUser)
                 self.goToHome()

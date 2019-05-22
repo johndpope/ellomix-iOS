@@ -11,112 +11,24 @@ import UIKit
 
 class EllomixUser {
     
-    var uid = ""
-    var name:String = ""
-    var profilePicLink:String = ""
-    var profilePicture:UIImageView = UIImageView()
-    var website:String = ""
-    var bio:String = ""
-    var email:String = ""
-    var gender:String = ""
-    var birthday:String = ""
-    var password:String = ""
-    var deviceToken:String!
-    var followingCount:Int?
-    var followersCount:Int?
-    var groups:[String] = []
-    var recentlyListenedSongs:[Any] = []
+    var uid: String!
+    var name: String!
+    var profilePicLink: String!
+    var profilePicture: UIImageView = UIImageView()
+    var website: String?
+    var bio: String?
+    var email: String?
+    var gender: String?
+    var birthday: String?
+    var password: String?
+    var deviceToken: String!
+    var followingCount: Int?
+    var followersCount: Int?
+    var groups: [String] = []
+    var recentlyListenedSongs: [Any] = []
     
     init(uid: String) {
         self.uid = uid
-    }
-    
-    func setName(name: String) {
-        self.name = name
-    }
-    
-    func setProfilePicLink(link: String) {
-        self.profilePicLink = link
-    }
-    
-    func setProfilePic(image: UIImage) {
-        self.profilePicture.image = image;
-    }
-    
-    func setWebsite(website: String) {
-        self.website = website
-    }
-    
-    func setBio(bio: String) {
-        self.bio = bio
-    }
-    
-    func setEmail(email: String) {
-        self.email = email
-    }
-    
-    func setGender(gender: String) {
-        self.gender = gender
-    }
-    
-    func setBirthday(birthday: String) {
-        self.birthday = birthday
-    }
-    
-    func setPassword(password: String) {
-        self.password = password
-    }
-    
-    func setFollowingCount(count: Int?) {
-        self.followingCount = count
-    }
-    
-    func setFollowersCount(count: Int?) {
-        self.followersCount = count
-    }
-
-    func getName() -> String {
-        return name
-    }
-    
-    func getProfilePicture() -> UIImageView {
-        return profilePicture
-    }
-    
-    func getWebsite() -> String {
-        return website
-    }
-    
-    func getBio() -> String {
-        return bio
-    }
-    
-    func getEmail() -> String {
-        return email
-    }
-    
-    func getGender() -> String {
-        return gender
-    }
-    
-    func getBirthday() -> String {
-        return birthday
-    }
-    
-    func getFollowingCount() -> Int? {
-        if (followingCount == nil) {
-            return nil
-        }
-        
-        return followingCount!
-    }
-    
-    func getFollowersCount() -> Int? {
-        if (followersCount == nil) {
-            return nil
-        }
-        
-        return followersCount!
     }
     
     func groupsDictionary() -> Dictionary<String, Bool> {
@@ -129,11 +41,23 @@ class EllomixUser {
     }
     
     func toDictionary() -> Any {
-        var password = self.password
-        if (password.isEmpty) {
-            password = "N/A"
-        }
-
-        return ["uid": uid, "name": name, "photo_url": profilePicLink, "website": website, "bio": bio, "email": email, "gender": gender, "birthday": birthday, "password": password, "following_count": followingCount, "followers_count": followersCount, "groups": groupsDictionary(), "recently_listened": recentlyListenedSongs]
+        var dict = Dictionary<String, AnyObject>()
+        
+        dict["uid"] = uid as AnyObject
+        dict["name"] = name as AnyObject
+        dict["photo_url"] = profilePicLink as AnyObject
+        dict["device_token"] = deviceToken as AnyObject
+        if (password != nil) { dict["password"] = password! as AnyObject }
+        if (!groupsDictionary().isEmpty) { dict["groups"] = groupsDictionary() as AnyObject }
+        if (!recentlyListenedSongs.isEmpty) { dict["recently_listened"] = recentlyListenedSongs as AnyObject }
+        if (website != nil) { dict["website"] = website! as AnyObject }
+        if (bio != nil) { dict["bio"] = bio! as AnyObject }
+        if (email != nil) { dict["email"] = email! as AnyObject }
+        if (gender != nil) { dict["gender"] = gender! as AnyObject }
+        if (birthday != nil) { dict["birthday"] = birthday! as AnyObject }
+        if (followingCount != nil) { dict["following_count"] = followingCount! as AnyObject }
+        if (followersCount != nil) { dict["followers_count"] = followersCount! as AnyObject }
+  
+        return dict
     }
 }

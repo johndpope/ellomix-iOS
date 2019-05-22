@@ -85,22 +85,22 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     }
     
     func loadProfile() {
-        navigationController?.navigationBar.topItem?.title = currentUser?.getName()
-        profilePic.image = currentUser?.getProfilePicture().image
+        navigationController?.navigationBar.topItem?.title = currentUser?.name
+        profilePic.image = currentUser?.profilePicture.image
         
         var followersCount:Int?
         var followingCount:Int?
         
-        if (currentUser?.getFollowersCount() == nil) {
+        if (currentUser?.followersCount == nil) {
             followersCount = 0
         } else {
-            followersCount = currentUser?.getFollowersCount()
+            followersCount = currentUser?.followersCount
         }
         
-        if (currentUser?.getFollowingCount() == nil) {
+        if (currentUser?.followingCount == nil) {
             followingCount = 0
         } else {
-            followingCount = currentUser?.getFollowingCount()
+            followingCount = currentUser?.followingCount
         }
 
         followersCountButton.setTitle(String(describing: followersCount!), for: .normal)
@@ -113,13 +113,13 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         
         if (followButton.titleLabel?.text == "Follow") {
             let follower = [
-                "name": Global.sharedGlobal.user?.getName(),
+                "name": Global.sharedGlobal.user?.name,
                 "photo_url": Global.sharedGlobal.user?.profilePicLink,
                 "uid": Global.sharedGlobal.user?.uid,
                 "device_token": Global.sharedGlobal.user?.deviceToken
             ]
             let following = [
-                "name": self.currentUser?.getName(),
+                "name": self.currentUser?.name,
                 "photo_url": self.currentUser?.profilePicLink,
                 "uid": self.currentUser?.uid,
                 "device_token": self.currentUser?.deviceToken
@@ -128,20 +128,20 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             var followersCount:Int?
             var followingCount:Int?
             
-            if (self.currentUser?.getFollowersCount() == nil) {
+            if (self.currentUser?.followersCount == nil) {
                 followersCount = 1
-                self.currentUser?.setFollowersCount(count: 1)
+                self.currentUser?.followersCount = 1
             } else {
-                followersCount = (self.currentUser?.getFollowersCount())! + 1
-                self.currentUser?.setFollowersCount(count: followersCount)
+                followersCount = (self.currentUser?.followersCount)! + 1
+                self.currentUser?.followersCount = followersCount
             }
             
-            if (Global.sharedGlobal.user?.getFollowingCount() == nil) {
+            if (Global.sharedGlobal.user?.followingCount == nil) {
                 followingCount = 1
-                Global.sharedGlobal.user?.setFollowingCount(count: 1)
+                Global.sharedGlobal.user?.followingCount = 1
             } else {
-                followingCount = (Global.sharedGlobal.user?.getFollowingCount())! + 1
-                Global.sharedGlobal.user?.setFollowingCount(count: followingCount)
+                followingCount = (Global.sharedGlobal.user?.followingCount)! + 1
+                Global.sharedGlobal.user?.followingCount = followingCount
             }
             
             let childUpdates = [followersPath:follower, followingPath:following]
@@ -150,11 +150,11 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             FirebaseAPI.getUsersRef().child("\((Global.sharedGlobal.user?.uid)!)").child("following_count").setValue(followingCount)
         } else {
             let childUpdates = [followersPath:NSNull(), followingPath:NSNull()]
-            let followersCount = (self.currentUser?.getFollowersCount())! - 1
-            let followingCount = (Global.sharedGlobal.user?.getFollowingCount())! - 1
+            let followersCount = (self.currentUser?.followersCount)! - 1
+            let followingCount = (Global.sharedGlobal.user?.followingCount)! - 1
             
-            self.currentUser?.setFollowersCount(count: followersCount)
-            Global.sharedGlobal.user?.setFollowingCount(count: followingCount)
+            self.currentUser?.followersCount = followersCount
+            Global.sharedGlobal.user?.followingCount = followingCount
             FirebaseAPI.getDatabaseRef().updateChildValues(childUpdates)
             FirebaseAPI.getUsersRef().child("\((self.currentUser?.uid)!)").child("followers_count").setValue(followersCount)
             FirebaseAPI.getUsersRef().child("\((Global.sharedGlobal.user?.uid)!)").child("following_count").setValue(followingCount)
@@ -219,11 +219,11 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             var newChatGroup = Dictionary<String, AnyObject>()
             
             newChatGroup[(Global.sharedGlobal.user?.uid)!] = [
-                    "name": Global.sharedGlobal.user?.getName(),
+                    "name": Global.sharedGlobal.user?.name,
                     "photo_url": Global.sharedGlobal.user?.profilePicLink
                 ] as AnyObject
             newChatGroup[(self.currentUser?.uid)!] = [
-                    "name": self.currentUser?.getName(),
+                    "name": self.currentUser?.name,
                     "photo_url": self.currentUser?.profilePicLink
                 ] as AnyObject
             

@@ -206,10 +206,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 let followingCount = user!["following_count"] as? Int
                 let followersCount = user!["followers_count"] as? Int
                 let ellomixUser = EllomixUser(uid: uid!)
-                ellomixUser.setName(name: name!)
-                ellomixUser.setProfilePicLink(link: photoURL!)
-                ellomixUser.setFollowingCount(count: followingCount)
-                ellomixUser.setFollowersCount(count: followersCount)
+                ellomixUser.name = name!
+                ellomixUser.profilePicLink = photoURL!
+                ellomixUser.followingCount = followingCount
+                ellomixUser.followersCount = followersCount
                 ellomixUser.profilePicture.downloadedFrom(link: photoURL)
                 performSegue(withIdentifier: "toProfile", sender: ellomixUser)
             }
