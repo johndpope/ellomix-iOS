@@ -261,12 +261,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     var usersData = Dictionary<String, AnyObject>()
                     for (uid, val) in self.newChatGroup! {
                         if var newVal = val as? Dictionary<String, AnyObject> {
-                            newVal["notifications"] = true as AnyObject
                             usersData[uid] = newVal as AnyObject
                             self.FirebaseAPI.getUsersRef().child(uid).child("groups").child((self.group?.gid)!).setValue(true)
                         }
                     }
-                    self.currentUser?.groups.append((self.group?.gid)!)
+                    self.currentUser?.groups[(self.group?.gid)!] = true
                     self.group?.users = self.newChatGroup
                     
                     self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).child("users").updateChildValues(usersData)

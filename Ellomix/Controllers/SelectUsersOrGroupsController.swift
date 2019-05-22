@@ -92,7 +92,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             print(error.localizedDescription)
         }
         
-        for gid in (currentUser?.groups)! {
+        for gid in (currentUser?.groups.keys)! {
             FirebaseAPI.getGroupsRef().child(gid).observe(.value, with: { (snapshot) in
                 var groupDict = snapshot.value as? Dictionary<String, AnyObject>
                 groupDict!["gid"] = snapshot.key as AnyObject

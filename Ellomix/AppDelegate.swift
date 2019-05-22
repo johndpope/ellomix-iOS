@@ -191,7 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let birthday = userData["birthday"] as? String
         let followersCount = userData["followers_count"] as? Int
         let followingCount = userData["following_count"] as? Int
-        let groups = userData["groups"] as? Dictionary<String, AnyObject>
+        let groups = userData["groups"] as? [String: Bool]
         let deviceToken = userData["device_token"] as? String
         
         let loadedUser = EllomixUser(uid: uid)
@@ -206,7 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         loadedUser.followersCount = followersCount
         loadedUser.followingCount = followingCount
 
-        if (groups != nil) { loadedUser.groups = Array(groups!.keys)}
+        if (groups != nil) { loadedUser.groups = groups!}
         if (deviceToken != fcmToken) {
             self.FirebaseAPI.updateUserDeviceToken(uid: uid, token: fcmToken)
         } else {

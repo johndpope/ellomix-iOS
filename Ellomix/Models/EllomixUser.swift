@@ -24,20 +24,11 @@ class EllomixUser {
     var deviceToken: String!
     var followingCount: Int?
     var followersCount: Int?
-    var groups: [String] = []
+    var groups: [String: Bool] = [:]
     var recentlyListenedSongs: [Any] = []
     
     init(uid: String) {
         self.uid = uid
-    }
-    
-    func groupsDictionary() -> Dictionary<String, Bool> {
-        var dictionary = Dictionary<String, Bool>()
-        for gid in groups {
-            dictionary[gid] = true
-        }
-        
-        return dictionary
     }
     
     func toDictionary() -> Any {
@@ -48,7 +39,7 @@ class EllomixUser {
         dict["photo_url"] = profilePicLink as AnyObject
         dict["device_token"] = deviceToken as AnyObject
         if (password != nil) { dict["password"] = password! as AnyObject }
-        if (!groupsDictionary().isEmpty) { dict["groups"] = groupsDictionary() as AnyObject }
+        if (!groups.isEmpty) { dict["groups"] = groups as AnyObject }
         if (!recentlyListenedSongs.isEmpty) { dict["recently_listened"] = recentlyListenedSongs as AnyObject }
         if (website != nil) { dict["website"] = website! as AnyObject }
         if (bio != nil) { dict["bio"] = bio! as AnyObject }

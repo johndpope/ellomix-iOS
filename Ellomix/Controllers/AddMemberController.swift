@@ -65,8 +65,7 @@ class AddMemberController: UIViewController, UITableViewDataSource, UITableViewD
         var usersToAdd = Dictionary<String, AnyObject>()
         for (uid, val) in followingUsers {
             if (selected[uid])! {
-                if var newVal = val as? Dictionary<String, AnyObject> {
-                    newVal["notifications"] = true as AnyObject
+                if let newVal = val as? Dictionary<String, AnyObject> {
                     usersToAdd[uid] = newVal as AnyObject
                     FirebaseAPI.getUsersRef().child(uid).child("groups").child(group.gid!).setValue(true)
                 }

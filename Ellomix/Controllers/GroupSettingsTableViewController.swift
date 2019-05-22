@@ -56,11 +56,9 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     override func viewWillDisappear(_ animated: Bool) {
         baseDelegate.playBarViewBottomConstraint.constant = 0
         if (leavingGroup) {
-            if let index = currentUser?.groups.index(of: group.gid!) {
-                currentUser?.groups.remove(at: index)
-                group.users?.removeValue(forKey: (currentUser?.uid)!)
-                FirebaseAPI.leaveGroupChat(group: group, uid: (currentUser?.uid)!)
-            }
+            currentUser?.groups.removeValue(forKey: group.gid!)
+            group.users?.removeValue(forKey: (currentUser?.uid)!)
+            FirebaseAPI.leaveGroupChat(group: group, uid: (currentUser?.uid)!)
         } else {
             saveSettings()
         }
@@ -78,13 +76,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (!groupChat || sections[indexPath.section] == "Notifications") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "notificationsCell", for: indexPath) as! SwitchTableViewCell
-            if let users = group.users {
-                if let userInfo = users[currentUser!.uid] as? Dictionary<String, AnyObject> {
-                    if let notifications = userInfo["notifications"] as? Bool {
-                        cell.toggle.isOn = notifications
-                    }
-                }
-            }
+            cell.toggle.isOn = currentUser!.groups[group.gid!]!
             cell.label.text = cell.toggle.isOn ? "On" : "Off"
             
             return cell
@@ -189,14 +181,9 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         let notificationsSection = groupChat ? 1 : 0
         let notificationsIndexPath = IndexPath(row: 0, section: notificationsSection)
         let cell = tableView.cellForRow(at: notificationsIndexPath) as! SwitchTableViewCell
-        if (group.users != nil) {
-            var userInfo = group.users![currentUser!.uid] as? Dictionary<String, AnyObject>
-            
-            userInfo!["notifications"] = cell.toggle.isOn as AnyObject
-            group.users![currentUser!.uid] = userInfo as AnyObject
-        }
+        currentUser!.groups[group.gid!] = cell.toggle.isOn
         
-        FirebaseAPI.updateGroupChat(group: group)
+        FirebaseAPI.updateGroupChat(group: group, user: currentUser!)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

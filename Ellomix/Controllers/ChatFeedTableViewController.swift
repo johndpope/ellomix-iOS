@@ -44,7 +44,7 @@ class ChatFeedTableViewController: UITableViewController {
         }
         
         let currentGIDs = Array(groupChatDictionary.keys)
-        for gid in (self.currentUser?.groups)! {
+        for gid in (self.currentUser?.groups.keys)! {
             if (!currentGIDs.contains(gid)) {
                 let group = Group()
                 group.gid = gid
@@ -72,12 +72,13 @@ class ChatFeedTableViewController: UITableViewController {
     func observeNewChats() {
         userGroupsRefHandle = FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").observe(.childAdded, with: { (snapshot) -> Void in
             let gid = snapshot.key
+            let notifications = snapshot.value as? Bool
 
-            if (!(self.currentUser?.groups.contains(gid))!) {
+            if (!(self.currentUser?.groups.keys.contains(gid))!) {
                 let group = Group()
                 group.gid = gid
                 self.observeChat(group: group)
-                self.currentUser?.groups.append(gid)
+                self.currentUser?.groups[gid] = notifications
                 self.groupChats.append(group)
             }
         })

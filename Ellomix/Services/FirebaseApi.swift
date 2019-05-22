@@ -90,13 +90,20 @@ class FirebaseApi {
         newUserRef.setValue(user.toDictionary())
     }
     
-    func updateGroupChat(group: Group) {
+    func updateGroupChat(group: Group, user: EllomixUser) {
         let groupChatRef = ref.child(GROUPS).child(group.gid!)
+        let userRef = ref.child(USERS).child(user.uid)
+
         if let name = group.name {
             groupChatRef.child("name").setValue(name)
         }
         if let users = group.users {
             groupChatRef.child("users").updateChildValues(users)
+        }
+
+        // Update user's notification setting for this group
+        if let gid = group.gid {
+            userRef.child("groups").child(gid).setValue(user.groups[gid])
         }
     }
     
@@ -132,7 +139,7 @@ class FirebaseApi {
                 usersData[user.uid] = [
                     "name": user.name,
                     "photo_url": user.profilePicLink,
-                    "notifications": true
+                    "device_token": user.deviceToken
                 ] as AnyObject
                 usersRef.child(user.uid).child("groups").child(gid).setValue(true)
             }
