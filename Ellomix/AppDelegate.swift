@@ -195,18 +195,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let deviceToken = userData["device_token"] as? String
         
         let loadedUser = EllomixUser(uid: uid)
-        loadedUser.name = name!
+        if (name != nil) { loadedUser.name = name! }
         loadedUser.profilePicture.downloadedFrom(link: photoUrl)
-        loadedUser.profilePicLink = photoUrl!
-        loadedUser.website = website
-        loadedUser.bio = bio
-        loadedUser.email = email
-        loadedUser.gender = gender
-        loadedUser.birthday = birthday
-        loadedUser.followersCount = followersCount
-        loadedUser.followingCount = followingCount
+        if (photoUrl != nil) { loadedUser.profilePicLink = photoUrl! }
+        if (website != nil) { loadedUser.website = website }
+        if (bio != nil ) { loadedUser.bio = bio }
+        if (email != nil) { loadedUser.email = email }
+        if (gender != nil) { loadedUser.gender = gender }
+        if (birthday != nil) { loadedUser.birthday = birthday }
+        if (followersCount != nil) { loadedUser.followersCount = followersCount }
+        if (followingCount != nil) { loadedUser.followingCount = followingCount }
 
-        if (groups != nil) { loadedUser.groups = groups!}
+        if (groups != nil) { loadedUser.groups = groups! }
         if (deviceToken != fcmToken) {
             self.FirebaseAPI.updateUserDeviceToken(uid: uid, token: fcmToken)
         } else {
