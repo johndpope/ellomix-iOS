@@ -195,9 +195,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let deviceToken = userData["device_token"] as? String
         
         let loadedUser = EllomixUser(uid: uid)
-        if (name != nil) { loadedUser.name = name! }
+        loadedUser.name = name!
         loadedUser.profilePicture.downloadedFrom(link: photoUrl)
-        if (photoUrl != nil) { loadedUser.profilePicLink = photoUrl! }
+        if (photoUrl != nil) { loadedUser.profilePicLink = photoUrl }
         if (website != nil) { loadedUser.website = website }
         if (bio != nil ) { loadedUser.bio = bio }
         if (email != nil) { loadedUser.email = email }

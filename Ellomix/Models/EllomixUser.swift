@@ -13,7 +13,7 @@ class EllomixUser {
     
     var uid: String!
     var name: String!
-    var profilePicLink: String!
+    var profilePicLink: String?
     var profilePicture: UIImageView = UIImageView()
     var website: String?
     var bio: String?
