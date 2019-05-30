@@ -85,16 +85,32 @@ class PopUpPlayerController: UIViewController, SharePostDelegate {
             artworkImage.isHidden = true
             titleField.text = currentTrack.title
             artistField.text = currentTrack.artist
-            
+
             // Time duration
-            if let duration = Int((Global.sharedGlobal.youtubePlayer?.getDuration())!) {
-                let minutes = duration / 60
-                let seconds = duration - minutes * 60
-                timeDuration.text = String(format:"%0d:%.2d", minutes, seconds)
+            if let durationStr = Global.sharedGlobal.youtubePlayer?.getDuration() {
+                if let duration:Double = Double(durationStr) {
+                    let minutes = floor(duration / 60)
+                    let seconds = round(duration - minutes * 60)
+                    timeDuration.text = String(format:"%.0f:%02.0f", minutes, seconds)
+                }
             }
             
             // Current time progress
-
+            if #available(iOS 10.0, *) {
+                let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                    RunLoop.current.add(timer, forMode: .commonModes)
+                    timer.tolerance = 0.1
+                    if let timeStr = Global.sharedGlobal.youtubePlayer?.getCurrentTime() {
+                        if let time:Double = Double(timeStr) {
+                            let minutes = floor(time / 60)
+                            let seconds = round(time - minutes * 60)
+                            self.currentTime.text = String(format:"%.0f:%02.0f", minutes, seconds)
+                        }
+                    }
+                }
+            } else {
+                // Fallback on earlier versions
+            }
         default:
             print("Unable to load track info.")
         }
