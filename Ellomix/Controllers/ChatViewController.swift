@@ -18,6 +18,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var dockBottomConstraint: NSLayoutConstraint!
 
     private var FirebaseAPI: FirebaseApi!
+    private var notificationService: NotificationService!
     private var messagesRefHandle: DatabaseHandle?
     private var ytService: YoutubeService!
     private var scService: SoundcloudService!
@@ -32,6 +33,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
+        notificationService = NotificationService()
         ytService = YoutubeService()
         scService = SoundcloudService()
         currentUser = Global.sharedGlobal.user
@@ -256,16 +258,21 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func sendMessage() {
         //TODO: Use FirebaseAPI function
-        let timestamp:Int = Int(Date().timeIntervalSince1970)
-        let messageValues = [
-                "uid": self.currentUser?.uid as AnyObject,
-                "device_token": self.currentUser?.deviceToken as AnyObject,
-                "content": self.messageTextView.text,
-                "timestamp": timestamp
-            ] as [String : AnyObject]
-        self.FirebaseAPI.getMessagesRef().child((self.group?.gid)!).childByAutoId().updateChildValues(messageValues)
-        self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).child("last_message").updateChildValues(messageValues)
+        let message = Message()
+
+        message.timestamp = Int(Date().timeIntervalSince1970)
+        message.uid = self.currentUser?.uid
+        message.content = self.messageTextView.text
+        message.type = "text"
+
+        self.FirebaseAPI.getMessagesRef().child((self.group?.gid)!).childByAutoId()
+            .updateChildValues(message.toDictionary())
+        self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).child("last_message")
+            .updateChildValues(message.toDictionary())
         messageTextView.text = ""
+
+        // Send push notification
+        notificationService.sendNewMessageNotification(gid: (self.group?.gid)!, sender: self.currentUser!, message: message)
     }
     
     
@@ -273,7 +280,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func handleKeyboardNotification(notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
+
         if (notification.name == Notification.Name.UIKeyboardWillShow) {
             dockBottomConstraint.constant = keyboardFrame.height
             if (messageTextView.textColor == UIColor.lightGray) {
@@ -288,7 +295,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 messageTextView.textColor = UIColor.lightGray
             }
         }
-        
+
         UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
             if (notification.name == Notification.Name.UIKeyboardWillShow) {

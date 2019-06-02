@@ -13,8 +13,8 @@ class NotificationService {
     private var FirebaseAPI: FirebaseApi = FirebaseApi()
     private let fcmURL: String = "https://fcm.googleapis.com/fcm/send"
     
-    // Send a notification to users of a newly created group chat
-    func sendNewGroupNotification(gid: String) {
+    // Send a notification to users when a new message is sent in a group chat
+    func sendNewMessageNotification(gid: String, sender: EllomixUser, message: Message) {
         var tokens = [String]()
         
         FirebaseAPI.getGroupsRef().child(gid).observe(.value, with: { (snapshot) in
@@ -23,22 +23,32 @@ class NotificationService {
                 if let group = groupDict.toGroup() {
                     if let users = group.users {
                         for user in users {
-                            tokens.append(user.deviceToken)
+                            // Only send to users who aren't the sender and have notifications turned on for this chat
+                            if (user.uid != sender.uid) {
+                                tokens.append(user.deviceToken)
+                            }
+                        }
+
+                        var content = message.content
+                        if (content == nil) {
+                            content = ""
                         }
 
                         // Prepare message payload
-                        let message: [String: Any] = [
+                        let payload: [String: Any] = [
                             "notification": [
-                                "title": "Ellomix",
-                                "body": "You just got invited to a new chat"
+                                "title": sender.name,
+                                "body": content!
                             ],
                             "registration_ids": tokens
                         ]
 
+                        print("Message title: \(sender.name)")
+                        print("Message conent: \(content!)")
                         print("Sending message to: \(tokens)")
 
-                        Alamofire.request(self.fcmURL, parameters: message).responseJSON(completionHandler: { response in
-                            print("Successfully sent new group creation notification for \(gid): \(response)")
+                        Alamofire.request(self.fcmURL, parameters: payload).responseJSON(completionHandler: { response in
+                            print("FCM response: \(response)")
                         })
                     }
                 }

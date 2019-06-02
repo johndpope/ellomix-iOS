@@ -193,14 +193,18 @@ extension Dictionary {
             group.gid = gid
             if let name = groupDict["name"] as? String { group.name = name }
             if let users = groupDict["users"] as? Dictionary<String, AnyObject> {
+                var groupUsers = [EllomixUser]()
+
                 for (uid, userInfo) in users {
                     if var userDict = userInfo as? Dictionary<String, AnyObject> {
                         userDict["uid"] = uid as AnyObject
                         if let ellomixUser = userDict.toEllomixUser() {
-                                group.users?.append(ellomixUser)
+                            groupUsers.append(ellomixUser)
                         }
                     }
                 }
+
+                group.users = groupUsers
             }
             if let lastMessageDictionary = groupDict["last_message"] as? Dictionary<String, AnyObject> {
                 let lastMessage = Message()
