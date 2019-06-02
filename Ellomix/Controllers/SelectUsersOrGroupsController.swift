@@ -155,12 +155,8 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
                 //TODO: Change users property of group to an array of Ellomix users
                 var users = [EllomixUser]()
                 for user in group.users! {
-                    if (user.key != (currentUser?.uid)!) {
-                        var userDict = user.value as? Dictionary<String, AnyObject>
-                        userDict!["uid"] = user.key as AnyObject
-                        if let ellomixUser = userDict!.toEllomixUser() {
-                            users.append(ellomixUser)
-                        }
+                    if (user.uid != (currentUser?.uid)!) {
+                        users.append(user)
                     }
                 }
                 

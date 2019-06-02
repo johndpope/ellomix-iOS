@@ -98,7 +98,7 @@ class FirebaseApi {
             groupChatRef.child("name").setValue(name)
         }
         if let users = group.users {
-            groupChatRef.child("users").updateChildValues(users)
+            groupChatRef.child("users").updateChildValues(users.userDictionaryByKey(key: "uid"))
         }
 
         // Update user's notification setting for this group
@@ -118,9 +118,9 @@ class FirebaseApi {
     func sendMessageToUsers(sender: EllomixUser, users: [EllomixUser], message: Message) {
         var groupToCheck = users
         groupToCheck.append(sender)
-        checkForExistingGroup(uid: sender.uid, groupToCheck: groupToCheck) { (existingGroupGid) -> () in
-            if (existingGroupGid != nil) {
-                self.sendMessageToGroupChat(gid: existingGroupGid!, message: message)
+        checkForExistingGroup(uid: sender.uid, groupToCheck: groupToCheck) { (existingGroup) -> () in
+            if (existingGroup != nil) {
+                self.sendMessageToGroupChat(gid: existingGroup!.gid!, message: message)
             } else {
                 self.sendMessageToNewGroupChat(users: groupToCheck, message: message)
             }
@@ -157,7 +157,7 @@ class FirebaseApi {
         lastMessageRef.updateChildValues(message.toDictionary())
     }
     
-    func checkForExistingGroup(uid: String, groupToCheck: [EllomixUser], completed: @escaping (String?) -> ()) {
+    func checkForExistingGroup(uid: String, groupToCheck: [EllomixUser], completed: @escaping (Group?) -> ()) {
         let usersRef = ref.child(USERS).child(uid)
         let groupsRef = ref.child(GROUPS)
         
@@ -173,17 +173,20 @@ class FirebaseApi {
                 
                 groupsRef.child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
                     if (!foundGroup) {
-                        if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
-                            if let users = dictionary["users"] as? Dictionary<String, AnyObject> {
-                                let currentGroup = Array(users.keys)
-                                
-                                if (Set(currentGroup) == Set(userIds)) {
-                                    foundGroup = true
-                                    completed(gid)
-                                } else if (counter == (groupCount - 1)) {
-                                    completed(nil)
+                        if let groupDict = snapshot.value as? Dictionary<String, AnyObject> {
+                            if let group = groupDict.toGroup() {
+                                if let users = group.users  {
+                                    var currentUserIds = [String]()
+                                    users.forEach { currentUserIds.append($0.uid) }
+                                    
+                                    if (Set(currentUserIds) == Set(userIds)) {
+                                        foundGroup = true
+                                        completed(group)
+                                    } else if (counter == (groupCount - 1)) {
+                                        completed(nil)
+                                    }
+                                    counter+=1
                                 }
-                                counter+=1
                             }
                         }
                     }

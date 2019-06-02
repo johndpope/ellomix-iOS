@@ -28,12 +28,14 @@ class ChatFeedTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Remove any groups that the user has left
         var groupChatDictionary = Dictionary<String, Group>()
         var removeIndices = [Int]()
 
         for i in 0..<groupChats.count {
             let group = groupChats[i]
-            if (!(group.users!.keys.contains(currentUser!.uid))) {
+
+            if (!group.containsUser(uid: currentUser!.uid)) {
                 removeIndices.append(i)
             } else {
                 groupChatDictionary[group.gid!] = group
@@ -42,7 +44,8 @@ class ChatFeedTableViewController: UITableViewController {
         for index in removeIndices {
             groupChats.remove(at: index)
         }
-        
+
+        // Update and observe groups that user is currently in
         let currentGIDs = Array(groupChatDictionary.keys)
         for gid in (self.currentUser?.groups.keys)! {
             if (!currentGIDs.contains(gid)) {
@@ -85,6 +88,7 @@ class ChatFeedTableViewController: UITableViewController {
 
     }
     
+    //TODO: Move to FirebaseAPI
     func observeChat(group: Group) {
         let handle = FirebaseAPI.getGroupsRef().child(group.gid!).observe(.value, with: { (snapshot) in
             if let groupDictionary = snapshot.value as? Dictionary<String, AnyObject> {
@@ -106,10 +110,21 @@ class ChatFeedTableViewController: UITableViewController {
         currentChatObservers[group.gid!] = handle
     }
     
+    //TODO: Refactor to use Dictionary.toGroup()
     func setGroupProperties(group: Group, groupDictionary: Dictionary<String, AnyObject>) {
         group.name = groupDictionary["name"] as? String
         if let users = groupDictionary["users"] as? Dictionary<String, AnyObject> {
-            group.users = users
+            var groupUsers = [EllomixUser]()
+            for (uid, userInfo) in users {
+                if var userDict = userInfo as? Dictionary<String, AnyObject> {
+                    userDict["uid"] = uid as AnyObject
+                    if let ellomixUser = userDict.toEllomixUser() {
+                        groupUsers.append(ellomixUser)
+                    }
+                }
+            }
+            
+            group.users = groupUsers
         }
         
         let lastMessage = Message()
@@ -146,19 +161,18 @@ class ChatFeedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:ChatFeedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatFeedTableViewCell
         let group = groupChats[indexPath.row]
-        var users = [Dictionary<String, AnyObject>]()
+        var users = [EllomixUser]()
         
-        // Make a new dictionary of users that excludes our user
-        //TODO: Change users property of group to an array of Ellomix users
+        // Make a new group of users that excludes our user
         if (group.users != nil) {
-            var otherUsers = group.users!
-            otherUsers.removeValue(forKey: (currentUser?.uid)!)
-            users = otherUsers.usersArray()
+            let otherGroup = group
+            otherGroup.removeUser(uid: (currentUser?.uid)!)
+            users = otherGroup.users!
         }
         
         if (users.count == 1) {
             let user = users[0]
-            if let photoURL = user["photo_url"] as? String, !photoURL.isEmpty {
+            if let photoURL = user.profilePicLink {
                 cell.profileImageView.downloadedFrom(link: photoURL)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
@@ -168,14 +182,14 @@ class ChatFeedTableViewController: UITableViewController {
             let firstUser = users[0]
             let secondUser = users[1]
             
-            if let photoURL = firstUser["photo_url"] as? String, !photoURL.isEmpty {
+            if let photoURL = firstUser.profilePicLink {
                 cell.profileImageView.image = nil
                 cell.firstProfileImageView.downloadedFrom(link: photoURL)
             } else {
                 cell.profileImageView.image = #imageLiteral(resourceName: "ellomix_logo_bw")
             }
             
-            if let photoURL = secondUser["photo_url"] as? String, !photoURL.isEmpty {
+            if let photoURL = secondUser.profilePicLink {
                 cell.profileImageView.image = nil
                 cell.secondProfileImageView.downloadedFrom(link: photoURL)
             } else {
@@ -225,7 +239,7 @@ class ChatFeedTableViewController: UITableViewController {
             segueVC.chatFeedDelegate = self
         } else if (segue.identifier == "toSendNewMessage") {
             let segueVC = segue.destination as! ChatViewController
-            if let newChatGroup = sender as? Dictionary<String, AnyObject>? {
+            if let newChatGroup = sender as? [EllomixUser] {
                 segueVC.newChatGroup = newChatGroup
             }
         }

@@ -15,7 +15,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     var group: Group!
     var groupChat: Bool = false
     var leavingGroup: Bool = false
-    var members: [Dictionary<String, AnyObject>]?
+    var members: [EllomixUser]?
     var baseDelegate: ContainerViewController!
     var delegate: ChatViewController?
     var leaveGroupAlert: UIAlertController?
@@ -42,9 +42,11 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
     
     override func viewWillAppear(_ animated: Bool) {
         baseDelegate.playBarViewBottomConstraint.constant = -(self.tabBarController?.tabBar.frame.height)!
-        var membersDictionary = group.users!
-        membersDictionary.removeValue(forKey: (currentUser?.uid)!)
-        members = membersDictionary.usersArray()
+        
+        let groupMembers = group
+        groupMembers?.removeUser(uid: (currentUser?.uid)!)
+        members = groupMembers?.users
+
         if let count = group.users?.count {
             if (count > 2) {
                 groupChat = true
@@ -57,7 +59,7 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
         baseDelegate.playBarViewBottomConstraint.constant = 0
         if (leavingGroup) {
             currentUser?.groups.removeValue(forKey: group.gid!)
-            group.users?.removeValue(forKey: (currentUser?.uid)!)
+            group.removeUser(uid: (currentUser?.uid)!)
             FirebaseAPI.leaveGroupChat(group: group, uid: (currentUser?.uid)!)
         } else {
             saveSettings()
@@ -99,8 +101,8 @@ class GroupSettingsTableViewController: UITableViewController, UITextFieldDelega
                 cell.userImageView.image = #imageLiteral(resourceName: "attach")
             } else if (members != nil) {
                 let user = members![indexPath.row - 1]
-                cell.userLabel.text = user["name"] as? String
-                cell.userImageView.downloadedFrom(link: user["photo_url"] as? String)
+                cell.userLabel.text = user.name
+                cell.userImageView.downloadedFrom(link: user.profilePicLink)
             }
             
             return cell

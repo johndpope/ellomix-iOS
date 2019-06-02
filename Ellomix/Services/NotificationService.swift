@@ -22,9 +22,9 @@ class NotificationService {
                 groupDict["gid"] = snapshot.key as AnyObject
                 if let group = groupDict.toGroup() {
                     if let users = group.users {
-//                        for user in users {
-//                            tokens.append(user.deviceToken)
-//                        }
+                        for user in users {
+                            tokens.append(user.deviceToken)
+                        }
 
                         // Prepare message payload
                         let message: [String: Any] = [
@@ -38,7 +38,7 @@ class NotificationService {
                         print("Sending message to: \(tokens)")
 
                         Alamofire.request(self.fcmURL, parameters: message).responseJSON(completionHandler: { response in
-                            print("uccessfully sent new group creation notification for \(gid): \(response)")
+                            print("Successfully sent new group creation notification for \(gid): \(response)")
                         })
                     }
                 }

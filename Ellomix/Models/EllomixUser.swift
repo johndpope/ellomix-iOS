@@ -31,13 +31,13 @@ class EllomixUser {
         self.uid = uid
     }
     
-    func toDictionary() -> Any {
+    func toDictionary() -> Dictionary<String, AnyObject> {
         var dict = Dictionary<String, AnyObject>()
-        
+
         dict["uid"] = uid as AnyObject
         dict["name"] = name as AnyObject
-        dict["photo_url"] = profilePicLink as AnyObject
         dict["device_token"] = deviceToken as AnyObject
+        if (profilePicLink != nil) {dict["photo_url"] = profilePicLink! as AnyObject}
         if (password != nil) { dict["password"] = password! as AnyObject }
         if (!groups.isEmpty) { dict["groups"] = groups as AnyObject }
         if (!recentlyListenedSongs.isEmpty) { dict["recently_listened"] = recentlyListenedSongs as AnyObject }

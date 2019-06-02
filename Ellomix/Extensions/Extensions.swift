@@ -126,22 +126,39 @@ extension Array {
         
         return arr
     }
-}
-
-extension Dictionary {
+    
     func groupNameFromUsers() -> String {
         var names = [String]()
-
-        for val in self.values {
-            let obj = val as AnyObject
-            if let name = obj["name"] as? String, name != Global.sharedGlobal.user?.name {
-                names.append(name)
+        
+        for val in self {
+            if let user = val as? EllomixUser {
+                if (user.name != Global.sharedGlobal.user?.name) {
+                    names.append(user.name)
+                }
             }
         }
         
         return names.joined(separator: ", ")
     }
     
+    func userDictionaryByKey(key: String) -> Dictionary<String, AnyObject> {
+        var dict = Dictionary<String, AnyObject>()
+        
+        for obj in self {
+            if let user = obj as? EllomixUser {
+                var userDict = user.toDictionary()
+                if let val = userDict[key] as? String {
+                    userDict.removeValue(forKey: key)
+                    dict[val] = userDict as AnyObject
+                }
+            }
+        }
+        
+        return dict
+    }
+}
+
+extension Dictionary {
     func usersArray() -> [Dictionary<String, AnyObject>] {
         var arr = [Dictionary<String, AnyObject>]()
         for (key, val) in self {
@@ -175,7 +192,16 @@ extension Dictionary {
             let group = Group()
             group.gid = gid
             if let name = groupDict["name"] as? String { group.name = name }
-            if let users = groupDict["users"] as? Dictionary<String, AnyObject> { group.users = users }
+            if let users = groupDict["users"] as? Dictionary<String, AnyObject> {
+                for (uid, userInfo) in users {
+                    if var userDict = userInfo as? Dictionary<String, AnyObject> {
+                        userDict["uid"] = uid as AnyObject
+                        if let ellomixUser = userDict.toEllomixUser() {
+                                group.users?.append(ellomixUser)
+                        }
+                    }
+                }
+            }
             if let lastMessageDictionary = groupDict["last_message"] as? Dictionary<String, AnyObject> {
                 let lastMessage = Message()
                 lastMessage.content = lastMessageDictionary["content"] as? String

@@ -69,6 +69,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     }
 
     func retrieveUsers() {
+        //TODO: Move to FirebaseAPI and make allUsers an array of EllomixUsers
         FirebaseAPI.getUsersRef().queryOrdered(byChild: "name").observe(.childAdded, with: { (snapshot) in
             self.allUsers.append(snapshot.value as? Dictionary)
         }) { (error) in
@@ -203,11 +204,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 let uid = user!["uid"] as? String
                 let name = user!["name"] as? String
                 let photoURL = user!["photo_url"] as? String
+                let deviceToken = user!["device_token"] as? String
                 let followingCount = user!["following_count"] as? Int
                 let followersCount = user!["followers_count"] as? Int
                 let ellomixUser = EllomixUser(uid: uid!)
                 ellomixUser.name = name!
-                ellomixUser.profilePicLink = photoURL!
+                ellomixUser.profilePicLink = photoURL
+                ellomixUser.deviceToken = deviceToken!
                 ellomixUser.followingCount = followingCount
                 ellomixUser.followersCount = followersCount
                 ellomixUser.profilePicture.downloadedFrom(link: photoURL)

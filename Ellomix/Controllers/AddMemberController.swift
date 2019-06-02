@@ -62,22 +62,27 @@ class AddMemberController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBAction func addButtonClicked(_ sender: Any) {
-        var usersToAdd = Dictionary<String, AnyObject>()
+        var usersToAdd = [EllomixUser]()
         for (uid, val) in followingUsers {
             if (selected[uid])! {
                 if let newVal = val as? Dictionary<String, AnyObject> {
-                    usersToAdd[uid] = newVal as AnyObject
-                    FirebaseAPI.getUsersRef().child(uid).child("groups").child(group.gid!).setValue(true)
+                    var userToAdd = newVal
+                    userToAdd["uid"] = uid as AnyObject
+                    if let ellomixUser = userToAdd.toEllomixUser() {
+                        usersToAdd.append(ellomixUser)
+                        FirebaseAPI.getUsersRef().child(uid).child("groups").child(group.gid!).setValue(true)
+                    }
                 }
             }
         }
         
-        FirebaseAPI.getGroupsRef().child(group.gid!).child("users").updateChildValues(usersToAdd, withCompletionBlock: { (error:Error?, ref:DatabaseReference!) in
+        //TODO: Move function to FirebaseAPI
+        FirebaseAPI.getGroupsRef().child(group.gid!).child("users").updateChildValues(usersToAdd.userDictionaryByKey(key: "uid"), withCompletionBlock: { (error: Error?, ref: DatabaseReference!) in
             if let error = error {
                 print("Data could not be saved: \(error).")
             } else {
                 if (self.delegate != nil) {
-                    self.group.users?.merge(usersToAdd, uniquingKeysWith: {(first, _) in first})
+                    self.group.users = usersToAdd
                     self.delegate!.group = self.group
                 }
                 self.dismiss(animated: true, completion: nil)
@@ -88,11 +93,9 @@ class AddMemberController: UIViewController, UITableViewDataSource, UITableViewD
     
     func retrieveUsers() {
         FirebaseAPI.getFollowingRef().child("\((currentUser?.uid)!)").queryOrdered(byChild: "name").observe(.childAdded, with: { (snapshot) in
-            if let users = self.group.users {
-                if (!users.keys.contains(snapshot.key)) {
-                    self.followingUsers[snapshot.key] = snapshot.value as AnyObject
-                    self.selected[snapshot.key] = false
-                }
+            if (!self.group.containsUser(uid: snapshot.key)) {
+                self.followingUsers[snapshot.key] = snapshot.value as AnyObject
+                self.selected[snapshot.key] = false
             }
         }) { (error) in
             print(error.localizedDescription)

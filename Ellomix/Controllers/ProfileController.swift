@@ -216,16 +216,20 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "messageFromProfile") {
             let chatVC = segue.destination as! ChatViewController
-            var newChatGroup = Dictionary<String, AnyObject>()
+            var newChatGroup = [EllomixUser]()
             
-            newChatGroup[(Global.sharedGlobal.user?.uid)!] = [
-                    "name": Global.sharedGlobal.user?.name,
-                    "photo_url": Global.sharedGlobal.user?.profilePicLink
-                ] as AnyObject
-            newChatGroup[(self.currentUser?.uid)!] = [
-                    "name": self.currentUser?.name,
-                    "photo_url": self.currentUser?.profilePicLink
-                ] as AnyObject
+            let recipient = EllomixUser(uid: (Global.sharedGlobal.user?.uid)!)
+            recipient.name = Global.sharedGlobal.user?.name
+            recipient.profilePicLink = Global.sharedGlobal.user?.profilePicLink
+            recipient.deviceToken = Global.sharedGlobal.user?.deviceToken
+            
+            let sender = EllomixUser(uid: (self.currentUser?.uid)!)
+            sender.name = self.currentUser?.name
+            sender.profilePicLink = self.currentUser?.profilePicLink
+            sender.deviceToken = self.currentUser?.deviceToken
+
+            newChatGroup.append(recipient)
+            newChatGroup.append(sender)
             
             chatVC.newChatGroup = newChatGroup
         }

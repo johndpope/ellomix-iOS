@@ -115,20 +115,26 @@ class ComposeMessageController: UIViewController, UITableViewDataSource, UITable
     }
     
     @IBAction func nextButtonClicked(_ sender: Any) {
-        var newChatGroup = Dictionary<String, AnyObject>()
+        var newChatGroup = [EllomixUser]()
         for (uid, val) in followingUsers {
             if (selected[uid])! {
-                newChatGroup[uid] = val
+                if var userDict = val as? Dictionary<String, AnyObject> {
+                    userDict["uid"] = uid as AnyObject
+                    if let user = userDict.toEllomixUser() {
+                        newChatGroup.append(user)
+                    }
+                }
             }
         }
         
         // Add current user to the new chat group
         if (currentUser != nil) {
-            newChatGroup[currentUser!.uid] = [
-                "name": currentUser!.name,
-                "photo_url": currentUser!.profilePicLink,
-                "device_token": currentUser!.deviceToken
-            ] as AnyObject
+            let user = EllomixUser(uid: currentUser!.uid)
+
+            user.name = currentUser!.name
+            user.profilePicLink = currentUser!.profilePicLink
+            user.deviceToken = currentUser!.deviceToken
+            newChatGroup.append(user)
         }
         
         chatFeedDelegate?.performSegue(withIdentifier: "toSendNewMessage", sender: newChatGroup)
