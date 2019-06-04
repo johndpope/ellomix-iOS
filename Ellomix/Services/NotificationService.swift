@@ -17,7 +17,7 @@ class NotificationService {
     func sendNewMessageNotification(gid: String, sender: EllomixUser, message: Message) {
         var tokens = [String]()
         
-        FirebaseAPI.getGroupsRef().child(gid).observe(.value, with: { (snapshot) in
+        FirebaseAPI.getGroupsRef().child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
             if var groupDict = snapshot.value as? Dictionary<String, AnyObject> {
                 groupDict["gid"] = snapshot.key as AnyObject
                 if let group = groupDict.toGroup() {
@@ -33,9 +33,14 @@ class NotificationService {
                         if (content == nil) {
                             content = ""
                         }
-
+                        
+                        let headers: HTTPHeaders = [
+                            "Content-Type": "application/json",
+                            "Authorization": "key=\(Environment.fcmServerKey)"
+                        ]
+                        
                         // Prepare message payload
-                        let payload: [String: Any] = [
+                        let params: Parameters = [
                             "notification": [
                                 "title": sender.name,
                                 "body": content!
@@ -47,8 +52,16 @@ class NotificationService {
                         print("Message conent: \(content!)")
                         print("Sending message to: \(tokens)")
 
-                        Alamofire.request(self.fcmURL, parameters: payload).responseJSON(completionHandler: { response in
-                            print("FCM response: \(response)")
+                        Alamofire.request(self.fcmURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                            .validate(statusCode: 200..<300)
+                            .responseJSON(completionHandler: { response in
+                                print(response)
+                                switch response.result {
+                                case .success(let data):
+                                    print("Successfully sent new group message notification for \(gid): \(data)")
+                                case .failure(let error):
+                                    print("Failed sending new group message notification for \(gid): \(error.localizedDescription)")
+                                }
                         })
                     }
                 }

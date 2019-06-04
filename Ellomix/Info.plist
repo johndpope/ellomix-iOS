@@ -51,6 +51,8 @@
 	<string>${FACEBOOK_APP_ID}</string>
 	<key>FacebookDisplayName</key>
 	<string>${FACEBOOK_DISPLAY_NAME}</string>
+	<key>FCMServerKey</key>
+	<string>${FCM_SERVER_KEY}</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
 	<key>LSApplicationCategoryType</key>
