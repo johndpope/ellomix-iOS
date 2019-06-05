@@ -247,7 +247,10 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             .queryOrderedByKey().queryLimited(toLast: 20).observeSingleEvent(of: .value, with: { (snapshot) in
                 for child in snapshot.children.allObjects as! [DataSnapshot] {
                     if let trackDict = child.value as? Dictionary<String, AnyObject> {
-                        self.recentlyListenedSongs.append(trackDict.toBaseTrack())
+                        let track = trackDict.toBaseTrack()
+                        track.sid = snapshot.key
+
+                        self.recentlyListenedSongs.append(track)
                     }
                 }
                 self.recentlyListenedSongs.reverse()

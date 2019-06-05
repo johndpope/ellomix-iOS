@@ -25,7 +25,7 @@ class EllomixUser {
     var followingCount: Int?
     var followersCount: Int?
     var groups: [String: Bool] = [:]
-    var recentlyListenedSongs: [Any] = []
+    var recentlyListenedSongs: [BaseTrack] = []
     
     init(uid: String) {
         self.uid = uid
@@ -40,7 +40,6 @@ class EllomixUser {
         if (profilePicLink != nil) {dict["photo_url"] = profilePicLink! as AnyObject}
         if (password != nil) { dict["password"] = password! as AnyObject }
         if (!groups.isEmpty) { dict["groups"] = groups as AnyObject }
-        if (!recentlyListenedSongs.isEmpty) { dict["recently_listened"] = recentlyListenedSongs as AnyObject }
         if (website != nil) { dict["website"] = website! as AnyObject }
         if (bio != nil) { dict["bio"] = bio! as AnyObject }
         if (email != nil) { dict["email"] = email! as AnyObject }
@@ -48,7 +47,19 @@ class EllomixUser {
         if (birthday != nil) { dict["birthday"] = birthday! as AnyObject }
         if (followingCount != nil) { dict["following_count"] = followingCount! as AnyObject }
         if (followersCount != nil) { dict["followers_count"] = followersCount! as AnyObject }
-  
+
+        if (!recentlyListenedSongs.isEmpty) {
+            var recentlyListenedSongsDict = Dictionary<String, AnyObject>()
+
+            for track in recentlyListenedSongs {
+                if let sid = track.sid {
+                    recentlyListenedSongsDict[sid] = track.toDictionary() as AnyObject
+                }
+            }
+
+            dict["recently_listened"] = recentlyListenedSongsDict as AnyObject
+        }
+
         return dict
     }
 }

@@ -19,7 +19,7 @@ class EditProfileController: UITableViewController, UIPickerViewDataSource, UIPi
     @IBOutlet weak var profilePic: UIImageView!
     
     private var FirebaseAPI: FirebaseApi!
-    var currentUser:EllomixUser?
+    var currentUser: EllomixUser?
     var genderOptions = ["Not Specified", "Male", "Female"]
     
     override func viewDidLoad() {
