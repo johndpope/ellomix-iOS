@@ -126,7 +126,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     if let track = songs["Spotify"]?[indexPath.row] {
                         cell.songTitle.text = track.title
                         cell.artist.text = track.artist
-                        // cell.serviceIcon.image = #imageLiteral(resourceName: "soundcloud")
+                        cell.serviceIcon.image = #imageLiteral(resourceName: "spotify")
                         cell.thumbnail.image = track.thumbnailImage
                         cell.track = track
                     }

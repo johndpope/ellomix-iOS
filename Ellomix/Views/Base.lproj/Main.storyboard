@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zel-JI-eWK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue-BoldItalic</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Container View Controller-->
         <scene sceneID="0on-NI-TzP">
@@ -681,20 +672,14 @@
                                                 <constraint firstAttribute="width" secondItem="FaP-sx-nWS" secondAttribute="height" multiplier="50:51" id="Lqk-0V-fFH"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-10-jgl">
-                                            <rect key="frame" x="67" y="11" width="273" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-kX-zZa">
-                                            <rect key="frame" x="93" y="32" width="247" height="12"/>
+                                            <rect key="frame" x="93" y="35" width="247" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="whF-pI-yAY" userLabel="Service Icon">
-                                            <rect key="frame" x="67" y="33" width="19" height="10"/>
+                                            <rect key="frame" x="67" y="33" width="20" height="11"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJe-9Y-9zc">
                                             <rect key="frame" x="348" y="20" width="20" height="20"/>
@@ -703,25 +688,31 @@
                                             </constraints>
                                             <state key="normal" image="dots"/>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-10-jgl">
+                                            <rect key="frame" x="67" y="11" width="273" height="19"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="CJe-9Y-9zc" firstAttribute="top" secondItem="Afw-P8-2W8" secondAttribute="top" constant="20" id="3Mf-TN-cvu"/>
-                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="top" secondItem="EOy-10-jgl" secondAttribute="bottom" constant="6" id="43k-nJ-xAf"/>
+                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="top" secondItem="EOy-10-jgl" secondAttribute="bottom" constant="5" id="43k-nJ-xAf"/>
                                         <constraint firstAttribute="bottom" secondItem="FaP-sx-nWS" secondAttribute="bottom" constant="5" id="5eP-sr-Fs9"/>
-                                        <constraint firstItem="whF-pI-yAY" firstAttribute="top" secondItem="9Ny-kX-zZa" secondAttribute="top" constant="1" id="6X5-Cr-ulN"/>
-                                        <constraint firstItem="FaP-sx-nWS" firstAttribute="top" secondItem="EOy-10-jgl" secondAttribute="bottom" constant="-21" id="9UW-xf-TWk"/>
+                                        <constraint firstItem="FaP-sx-nWS" firstAttribute="top" secondItem="EOy-10-jgl" secondAttribute="bottom" constant="-25" id="9UW-xf-TWk"/>
+                                        <constraint firstItem="whF-pI-yAY" firstAttribute="top" secondItem="EOy-10-jgl" secondAttribute="bottom" constant="3" id="K1q-CE-NjH"/>
                                         <constraint firstAttribute="bottom" secondItem="CJe-9Y-9zc" secondAttribute="bottom" constant="21" id="KWh-JJ-0Wq"/>
-                                        <constraint firstItem="whF-pI-yAY" firstAttribute="bottom" secondItem="9Ny-kX-zZa" secondAttribute="bottom" constant="-1" id="MQ6-j8-Wzc"/>
-                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="top" secondItem="FaP-sx-nWS" secondAttribute="bottom" constant="-24" id="QgZ-dI-KAb"/>
+                                        <constraint firstItem="whF-pI-yAY" firstAttribute="leading" secondItem="EOy-10-jgl" secondAttribute="leading" id="Q2o-KJ-q2n"/>
+                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="top" secondItem="FaP-sx-nWS" secondAttribute="bottom" constant="-21" id="QgZ-dI-KAb"/>
                                         <constraint firstAttribute="trailing" secondItem="CJe-9Y-9zc" secondAttribute="trailing" constant="7" id="RDX-r9-s2w"/>
-                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="leading" secondItem="whF-pI-yAY" secondAttribute="trailing" constant="7" id="Rld-H2-TRw"/>
                                         <constraint firstItem="9Ny-kX-zZa" firstAttribute="leading" secondItem="EOy-10-jgl" secondAttribute="trailing" constant="-247" id="UWM-Mz-qsD"/>
-                                        <constraint firstItem="whF-pI-yAY" firstAttribute="leading" secondItem="FaP-sx-nWS" secondAttribute="trailing" constant="9" id="ZQ3-eZ-BCb"/>
                                         <constraint firstItem="EOy-10-jgl" firstAttribute="leading" secondItem="FaP-sx-nWS" secondAttribute="trailing" constant="9" id="bzH-9G-3ny"/>
                                         <constraint firstItem="FaP-sx-nWS" firstAttribute="leading" secondItem="Afw-P8-2W8" secondAttribute="leading" constant="8" id="eYc-hS-532"/>
                                         <constraint firstItem="FaP-sx-nWS" firstAttribute="top" secondItem="Afw-P8-2W8" secondAttribute="top" constant="5" id="ldD-re-Uta"/>
                                         <constraint firstItem="CJe-9Y-9zc" firstAttribute="leading" secondItem="EOy-10-jgl" secondAttribute="trailing" constant="8" id="nwt-nt-msZ"/>
+                                        <constraint firstItem="9Ny-kX-zZa" firstAttribute="leading" secondItem="whF-pI-yAY" secondAttribute="trailing" constant="6" id="uWr-qg-nlx"/>
                                         <constraint firstItem="EOy-10-jgl" firstAttribute="top" secondItem="FaP-sx-nWS" secondAttribute="top" constant="6" id="vUT-or-LKX"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="whF-pI-yAY" secondAttribute="bottom" constant="6" id="zGq-SP-cUI"/>
                                         <constraint firstItem="CJe-9Y-9zc" firstAttribute="leading" secondItem="9Ny-kX-zZa" secondAttribute="trailing" constant="8" id="zMK-TI-5yK"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1141,7 +1132,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbc-Rz-LXB">
-                                                    <rect key="frame" x="1" y="9" width="73" height="21"/>
+                                                    <rect key="frame" x="1" y="6" width="73" height="26.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="OYA-pw-p3S"/>
                                                     </constraints>
@@ -1150,7 +1141,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OfJ-eK-njM">
-                                                    <rect key="frame" x="88" y="7.5" width="286" height="28.5"/>
+                                                    <rect key="frame" x="88" y="5" width="286" height="33.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -2692,12 +2683,12 @@
     <resources>
         <image name="attach" width="25" height="25"/>
         <image name="dots" width="24" height="24"/>
-        <image name="ellomix_logo" width="83" height="83"/>
+        <image name="ellomix_logo" width="83.5" height="83.5"/>
         <image name="facebook" width="1024" height="1024"/>
         <image name="home" width="24" height="26"/>
         <image name="messages" width="25" height="20"/>
         <image name="pause" width="34" height="39"/>
-        <image name="profile" width="19" height="25"/>
+        <image name="profile" width="19" height="25.5"/>
         <image name="search" width="24" height="24"/>
         <image name="settings" width="20" height="20"/>
     </resources>
