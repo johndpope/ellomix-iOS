@@ -115,19 +115,22 @@ class FirebaseApi {
         userRef.child("groups").child(group.gid!).removeValue()
     }
     
-    func sendMessageToUsers(sender: EllomixUser, users: [EllomixUser], message: Message) {
+    func sendMessageToUsers(sender: EllomixUser, users: [EllomixUser], message: Message, completed: @escaping (String) -> ()) {
         var groupToCheck = users
         groupToCheck.append(sender)
         checkForExistingGroup(uid: sender.uid, groupToCheck: groupToCheck) { (existingGroup) -> () in
             if (existingGroup != nil) {
                 self.sendMessageToGroupChat(gid: existingGroup!.gid!, message: message)
+                completed(existingGroup!.gid!)
             } else {
-                self.sendMessageToNewGroupChat(users: groupToCheck, message: message)
+                self.sendMessageToNewGroupChat(users: groupToCheck, message: message) { (gid) -> () in
+                    completed(gid)
+                }
             }
         }
     }
     
-    func sendMessageToNewGroupChat(users: [EllomixUser], message: Message) {
+    func sendMessageToNewGroupChat(users: [EllomixUser], message: Message, completed: @escaping (String) -> ()) {
         let groupChatRef = ref.child(GROUPS)
         let usersRef = ref.child(USERS)
         
@@ -146,6 +149,7 @@ class FirebaseApi {
             
             groupChatRef.child(gid).child("users").updateChildValues(usersData)
             self.sendMessageToGroupChat(gid: gid, message: message)
+            completed(gid)
         })
     }
     
@@ -173,7 +177,8 @@ class FirebaseApi {
                 
                 groupsRef.child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
                     if (!foundGroup) {
-                        if let groupDict = snapshot.value as? Dictionary<String, AnyObject> {
+                        if var groupDict = snapshot.value as? Dictionary<String, AnyObject> {
+                            groupDict["gid"] = snapshot.key as AnyObject
                             if let group = groupDict.toGroup() {
                                 if let users = group.users  {
                                     var currentUserIds = [String]()

@@ -257,7 +257,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func sendMessage() {
-        //TODO: Use FirebaseAPI function
         let message = Message()
 
         message.timestamp = Int(Date().timeIntervalSince1970)
@@ -265,10 +264,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         message.content = self.messageTextView.text
         message.type = "text"
 
-        self.FirebaseAPI.getMessagesRef().child((self.group?.gid)!).childByAutoId()
-            .updateChildValues(message.toDictionary())
-        self.FirebaseAPI.getGroupsRef().child((self.group?.gid)!).child("last_message")
-            .updateChildValues(message.toDictionary())
+        FirebaseAPI.sendMessageToGroupChat(gid: (self.group?.gid)!, message: message)
         messageTextView.text = ""
 
         // Send push notification

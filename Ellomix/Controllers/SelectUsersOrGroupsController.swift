@@ -14,14 +14,16 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
 
     var groupsAndFollowingUsers = [AnyObject]()
     var filteredGroupsAndFollowingUsers = [AnyObject]()
-    var selected:[String:AnyObject] = [:]
+    var selected: [String:AnyObject] = [:]
     let searchController = UISearchController(searchResultsController: nil)
     private var FirebaseAPI: FirebaseApi!
+    private var notificationService: NotificationService!
     var currentUser: EllomixUser?
     var currentTrack: BaseTrack!
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
+        notificationService = NotificationService()
         currentUser = Global.sharedGlobal.user
         
         searchController.dimsBackgroundDuringPresentation = false
@@ -62,12 +64,18 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
         
         if (selectedUserOrGroup is EllomixUser) {
             if let users = Array(selected.values) as? [EllomixUser] {
-                FirebaseAPI.sendMessageToUsers(sender: currentUser!, users: users, message: message)
+                FirebaseAPI.sendMessageToUsers(sender: currentUser!, users: users, message: message) { (gid) -> () in
+                    // Send push notification
+                    self.notificationService.sendNewMessageNotification(gid: gid, sender: self.currentUser!, message: message)
+                }
             }
         } else {
             let group = selectedUserOrGroup as! Group
             
             FirebaseAPI.sendMessageToGroupChat(gid: group.gid!, message: message)
+
+            // Send push notification
+            notificationService.sendNewMessageNotification(gid: group.gid!, sender: currentUser!, message: message)
         }
         
         let alertTitle = "Shared song"
@@ -152,7 +160,6 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             
             if (group.users != nil) {
                 // Make a new array of users that excludes our user
-                //TODO: Change users property of group to an array of Ellomix users
                 var users = [EllomixUser]()
                 for user in group.users! {
                     if (user.uid != (currentUser?.uid)!) {

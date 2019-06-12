@@ -29,9 +29,32 @@ class NotificationService {
                             }
                         }
 
-                        var content = message.content
-                        if (content == nil) {
-                            content = ""
+                        // Set content and title for push notification
+                        var content = ""
+                        var title: String?
+                        if (message.type == "track") {
+                            content = "\(sender.name!) shared a track"
+
+                            // If this is a group chat, set title to group name
+                            if (group.name != nil) {
+                                title = group.name
+                            } else if (group.users != nil && group.users!.count > 2) {
+                                title = group.users?.groupNameFromUsers()
+                            }
+                        } else if (message.type == "text" && message.content != nil) {
+                            if (group.name != nil) {
+                                // Group chat - set title to group name
+                                title = group.name
+                                content = "\(sender.name!): \(message.content!)"
+                            } else if (group.users != nil && group.users!.count > 2) {
+                                // Group chat with no group name - set title to name from users
+                                title = group.users?.groupNameFromUsers()
+                                content = "\(sender.name!): \(message.content!)"
+                            } else {
+                                // Single chat - set title to sender
+                                title = sender.name
+                                content = message.content!
+                            }
                         }
                         
                         let headers: HTTPHeaders = [
@@ -40,17 +63,22 @@ class NotificationService {
                         ]
                         
                         // Prepare message payload
-                        let params: Parameters = [
+                        var params: Parameters = [
                             "notification": [
-                                "title": sender.name,
-                                "body": content!
+                                "body": content
                             ],
                             "registration_ids": tokens
                         ]
 
-                        print("Message title: \(sender.name)")
-                        print("Message conent: \(content!)")
-                        print("Sending message to: \(tokens)")
+                        if var notificationJson = params["notification"] as? Parameters {
+                            if (title != nil) {
+                                notificationJson["title"] = title!
+                            }
+
+                            params["notification"] = notificationJson
+                        }
+
+                        print("Parameters: \(params)")
 
                         Alamofire.request(self.fcmURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
                             .validate(statusCode: 200..<300)
