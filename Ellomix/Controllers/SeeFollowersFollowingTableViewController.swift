@@ -43,24 +43,9 @@ class SeeFollowersFollowingTableViewController: UITableViewController {
         let user = self.users[indexPath.item] as? Dictionary<String, Any>
         let uid = user!["uid"] as? String
         
-        FirebaseAPI.getUsersRef()
-            .child(uid!)
-            .observe(.value, with: { (snapshot) in
-                if let dictionary = snapshot.value as? Dictionary<String, AnyObject> {
-                    let uid = dictionary["uid"] as? String
-                    let name = dictionary["name"] as? String
-                    let photoURL = dictionary["photo_url"] as? String
-                    let followingCount = dictionary["following_count"] as? Int
-                    let followersCount = dictionary["followers_count"] as? Int
-                    let ellomixUser = EllomixUser(uid: uid!)
-                    ellomixUser.name = name!
-                    ellomixUser.profilePicLink = photoURL!
-                    ellomixUser.followingCount = followingCount
-                    ellomixUser.followersCount = followersCount
-                    ellomixUser.profilePicture.downloadedFrom(link: photoURL)
-                    self.performSegue(withIdentifier: "toProfile", sender: ellomixUser)
-                }
-            })
+        FirebaseAPI.getUser(uid: uid!) { (user) -> () in
+            self.performSegue(withIdentifier: "toProfile", sender: user)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

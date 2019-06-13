@@ -65,7 +65,7 @@ class TimelineTableViewController: UITableViewController {
         let post = posts[indexPath.row]
         let timestampDate = Date(timeIntervalSince1970: Double(post.timestamp))
 
-        cell.userNameLabel.text = post.name
+        cell.userNameButton.setTitle(post.name, for: .normal)
         cell.trackTitleLabel.text = post.track.title
         cell.trackArtistLabel.text = post.track.artist
         cell.captionLabel.text = post.caption
@@ -76,6 +76,9 @@ class TimelineTableViewController: UITableViewController {
         })
 
         cell.post = post
+
+        // Add action for viewing a user's profile
+        cell.userNameButton.addTarget(self, action: #selector(viewUserProfile(sender:)), for: .touchUpInside)
 
         // Add action for playing tracks
         cell.trackThumbnailButton.addTarget(self, action: #selector(playTrack(sender:)), for: .touchUpInside)
@@ -88,6 +91,14 @@ class TimelineTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 667
+    }
+    
+    @objc func viewUserProfile(sender: UIButton) {
+        if let cell = sender.superview as? PostTableViewCell {
+            FirebaseAPI.getUser(uid: cell.post.uid) { (user) -> () in
+                self.performSegue(withIdentifier: "toProfile", sender: user)
+            }
+        }
     }
     
     @objc func playTrack(sender: UIButton) {
@@ -114,6 +125,18 @@ class TimelineTableViewController: UITableViewController {
         if let cell = sender.superview as? PostTableViewCell {
             if let post = cell.post {
                 cell.setLikeButtonImage()
+            }
+        }
+    }
+    
+    //MARK: Segue
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toProfile") {
+            if let user = sender as? EllomixUser {
+                let userProfileVC = segue.destination as! ProfileController
+                userProfileVC.baseDelegate = baseDelegate
+                userProfileVC.currentUser = user
             }
         }
     }

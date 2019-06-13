@@ -37,10 +37,21 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="9F7-Fe-O4V" kind="show" identifier="toProfile" id="D3s-yc-qko"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQ5-Au-v9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="863" y="2268"/>
+        </scene>
+        <!--profileController-->
+        <scene sceneID="4a1-Fo-zoC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="profileController" id="9F7-Fe-O4V" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Yc-Yv-1cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="2217"/>
         </scene>
         <!--SearchSongs-->
         <scene sceneID="bGI-q1-pLp">

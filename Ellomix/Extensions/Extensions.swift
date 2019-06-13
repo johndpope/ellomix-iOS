@@ -176,10 +176,16 @@ extension Dictionary {
         if let uid = userDict["uid"] as? String {
             let user = EllomixUser(uid: uid)
             if let name = userDict["name"] as? String { user.name = name }
-            if let photoUrl = userDict["photo_url"] as? String { user.profilePicLink = photoUrl }
             if let deviceToken = userDict["device_token"] as? String { user.deviceToken = deviceToken }
+            if let followingCount = userDict["following_count"] as? Int { user.followingCount = followingCount }
+            if let followersCount = userDict["followers_count"] as? Int { user.followersCount = followersCount }
             //TODO: Set the rest of the properties
-            
+
+            if let photoUrl = userDict["photo_url"] as? String {
+                user.profilePicLink = photoUrl
+                user.profilePicture.downloadedFrom(link: photoUrl)
+            }
+
             return user
         }
         

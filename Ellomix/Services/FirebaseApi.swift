@@ -84,6 +84,19 @@ class FirebaseApi {
             }
         })
     }
+    
+    func getUser(uid: String, completed: @escaping (EllomixUser) -> ()) {
+        let userRef = ref.child(USERS).child(uid)
+        
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if var userDict = snapshot.value as? Dictionary<String, AnyObject> {
+                userDict["uid"] = uid as AnyObject
+                if let user = userDict.toEllomixUser() {
+                    completed(user)
+                }
+            }
+        })
+    }
 
     func updateUser(user: EllomixUser) {
         let newUserRef = ref.child(USERS).child(user.uid)

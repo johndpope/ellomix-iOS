@@ -75,6 +75,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        //TODO: Load profile data in viewWillAppear
         loadProfile()
         clearSongs()
         retrieveRecentlyListened()

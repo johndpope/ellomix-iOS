@@ -10,7 +10,8 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var userNameLabel: UILabel!
+
+    @IBOutlet weak var userNameButton: UIButton!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var trackTitleLabel: UILabel!
     @IBOutlet weak var trackArtistLabel: UILabel!
