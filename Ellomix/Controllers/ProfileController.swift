@@ -28,6 +28,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     @IBOutlet weak var verticalLayoutConstraint: NSLayoutConstraint!
     
     private var FirebaseAPI: FirebaseApi!
+    private var notificationService: NotificationService!
     var currentUser: EllomixUser?
     var recentlyListenedSongs: [BaseTrack] = []
     var baseDelegate: ContainerViewController?
@@ -35,6 +36,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseAPI = FirebaseApi()
+        notificationService = NotificationService()
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -108,6 +110,7 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
         followingCountButton.setTitle(String(describing: followingCount!), for: .normal)
     }
     
+    //TODO: Refactor to use FirebaseAPI
     @IBAction func followUnfollowButtonClicked(_ sender: Any) {
         let followersPath = "Followers/\((self.currentUser?.uid)!)/\((Global.sharedGlobal.user?.uid)!)"
         let followingPath = "Following/\((Global.sharedGlobal.user?.uid)!)/\((self.currentUser?.uid)!)"
@@ -149,6 +152,9 @@ class ProfileController: UIViewController, UICollectionViewDataSource, UICollect
             FirebaseAPI.getDatabaseRef().updateChildValues(childUpdates)
             FirebaseAPI.getUsersRef().child("\((self.currentUser?.uid)!)").child("followers_count").setValue(followersCount)
             FirebaseAPI.getUsersRef().child("\((Global.sharedGlobal.user?.uid)!)").child("following_count").setValue(followingCount)
+            
+            // Send push notification
+            notificationService.sendNewFollowerNotification(follower: Global.sharedGlobal.user!, followed: currentUser!)
         } else {
             let childUpdates = [followersPath:NSNull(), followingPath:NSNull()]
             let followersCount = (self.currentUser?.followersCount)! - 1
