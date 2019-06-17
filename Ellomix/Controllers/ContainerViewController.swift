@@ -17,12 +17,14 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     var playBarController: PlayBarController!
     private var FirebaseAPI: FirebaseApi!
     private var scService: SoundcloudService!
+    private var spService: SpotifyService!
     private var queue = [BaseTrack]()
     private var queueIndex: Int!
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
         scService = SoundcloudService()
+        spService = SpotifyService()
 
         playBarView.isHidden = true
         playBarController.placeholderView.isHidden = true
@@ -129,15 +131,17 @@ class ContainerViewController: UIViewController, YouTubePlayerDelegate {
     }
     
     func determineSourceTrack(baseTrack: BaseTrack) {
-        if (baseTrack is SpotifyTrack || baseTrack is SoundcloudTrack || baseTrack is YouTubeVideo) {
+        if (baseTrack is SoundcloudTrack || baseTrack is YouTubeVideo) {
             activatePlaybar(track: baseTrack)
         } else {
             switch baseTrack.source {
             case "spotify":
                 let spTrack = SpotifyTrack(baseTrack: baseTrack)
-
-                spTrack.downloadImage()
-                activatePlaybar(track: spTrack)
+                
+                if spService.isLoggedIn() {
+                    spTrack.downloadImage()
+                    activatePlaybar(track: spTrack)
+                }
             case "soundcloud":
                 let scTrack = SoundcloudTrack(baseTrack: baseTrack)
                 

@@ -22,14 +22,12 @@ extension Notification.Name {
 }
 
 class SpotifyService {
+    let auth: SPTAuth = SPTAuth.defaultInstance()
     var accessToken: String! // Look over how authentication is being handled. This may not be needed. 
     
     func search(query: String, completed: @escaping ([SpotifyTrack]) -> ()) {
-        let auth: SPTAuth = SPTAuth.defaultInstance()
-        
         if auth.session != nil {
             let token = auth.session.accessToken
-            
             var songs = [SpotifyTrack]()
             
             SPTSearch.perform(withQuery: query, queryType: .queryTypeTrack, accessToken: token) { (error, result) in
@@ -67,8 +65,43 @@ class SpotifyService {
                     completed(songs)
                 }
             }
-        } else {
-            print("User is not signed into Spotify.")
         }
+    }
+    
+    func isLoggedIn() -> Bool {
+        if auth.session == nil || auth.session.isValid() == false {
+            print("User is not logged into Spotify.")
+            showAlert(title: "Spotify Login Required", message: "You are trying to play a Spotify track. Please login with Spotify to listen.")
+            return false
+        }
+        initializePlayer()
+        return true
+    }
+    
+    func initializePlayer() {
+        if SPTAudioStreamingController.sharedInstance()?.loggedIn != true {
+            SPTAudioStreamingController.sharedInstance()?.login(withAccessToken: auth.session.accessToken)
+        }
+    }
+    
+    func refreshToken() {
+        
+    }
+    
+    func showAlert(title: String, message: String){
+        let alertController = UIAlertController(title: title,
+                                                message: message,
+                                                preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "Continue", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        topViewController()?.present(alertController, animated: true, completion: nil)
+    }
+    
+    func topViewController() -> UIViewController? {
+        guard var topViewController = UIApplication.shared.keyWindow?.rootViewController else { return nil }
+        while topViewController.presentedViewController != nil {
+            topViewController = topViewController.presentedViewController!
+        }
+        return topViewController
     }
 }
