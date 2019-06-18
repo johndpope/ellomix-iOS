@@ -69,7 +69,7 @@ class SpotifyService {
     }
     
     func isLoggedIn() -> Bool {
-        if auth.session == nil || auth.session.isValid() == false {
+        if auth.session == nil || auth.session.isValid() == false || auth.session.accessToken == nil {
             print("User is not logged into Spotify.")
             EllomixAlertController.showAlert(viewController: topViewController()!,
                                              title: "Spotify Login Required",
