@@ -71,7 +71,9 @@ class SpotifyService {
     func isLoggedIn() -> Bool {
         if auth.session == nil || auth.session.isValid() == false {
             print("User is not logged into Spotify.")
-            showAlert(title: "Spotify Login Required", message: "You are trying to play a Spotify track. Please login with Spotify to listen.")
+            EllomixAlertController.showAlert(viewController: topViewController()!,
+                                             title: "Spotify Login Required",
+                                             message: "You are trying to play a Spotify track. Please login with Spotify to listen.")
             return false
         }
         initializePlayer()
@@ -86,15 +88,6 @@ class SpotifyService {
     
     func refreshToken() {
         
-    }
-    
-    func showAlert(title: String, message: String){
-        let alertController = UIAlertController(title: title,
-                                                message: message,
-                                                preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "Continue", style: .default, handler: nil)
-        alertController.addAction(defaultAction)
-        topViewController()?.present(alertController, animated: true, completion: nil)
     }
     
     func topViewController() -> UIViewController? {
