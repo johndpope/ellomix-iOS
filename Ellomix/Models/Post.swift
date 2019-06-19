@@ -10,20 +10,20 @@ import Foundation
 
 class Post {
     
+    var pid: String!
     var track: BaseTrack!
-    var likes: Int!
     var comments: Int!
     var timestamp: Int!
     var uid: String!
     var name: String!
     var caption: String?
     var photoUrl: String?
+    var likes: [String: Bool] = [:]
     
     func toDictionary() -> Dictionary<String, AnyObject>  {
         var dict = Dictionary<String, AnyObject>()
-        
+
         dict["track"] = track.toDictionary() as AnyObject
-        dict["likes"] = likes as AnyObject
         dict["comments"] = comments as AnyObject
         dict["timestamp"] = timestamp as AnyObject
         dict["order"] = -timestamp as AnyObject // Used for ordering posts by most recent date when retrieving from Firebase
@@ -31,6 +31,7 @@ class Post {
         dict["name"] = name as AnyObject
         if (caption != nil) { dict["caption"] = caption! as AnyObject }
         if (photoUrl != nil) { dict["photoUrl"] = photoUrl! as AnyObject }
+        if (!likes.isEmpty) { dict["likes"] = likes as AnyObject }
         
         return dict
     }

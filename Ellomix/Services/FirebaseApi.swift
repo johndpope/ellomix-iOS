@@ -23,6 +23,7 @@ class FirebaseApi {
     private let FOLLOWERS = "Followers"
     private let POSTS = "Posts"
     private let TIMELINE = "Timeline"
+    private let LIKES = "Likes"
     
     private var storageRef: StorageReference = Storage.storage().reference()
 
@@ -268,7 +269,8 @@ class FirebaseApi {
 
         timelineRef.queryOrdered(byChild: "order").observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
-                if let postDict = child.value as? Dictionary<String, AnyObject> {
+                if var postDict = child.value as? Dictionary<String, AnyObject> {
+                    postDict["pid"] = child.key as AnyObject
                     if let post = postDict.toPost() {
                         posts.append(post)
                     }
@@ -276,6 +278,24 @@ class FirebaseApi {
             }
 
             completion?(posts)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+
+    func getPostLikes(pid: String) {
+        let likesRef = ref.child(LIKES).child(pid)
+        var users = [EllomixUser]()
+        
+        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                if var userDict = child.value as? Dictionary<String, AnyObject> {
+                    userDict["uid"] = child.key as AnyObject
+                    if let user = userDict.toEllomixUser() {
+                        users.append(user)
+                    }
+                }
+            }
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -290,5 +310,62 @@ class FirebaseApi {
     func updateRecentlyListened(track: BaseTrack) {
         let recentlyListenedValues = track.toDictionary()
         getUsersRef().child((Global.sharedGlobal.user?.uid)!).child("recently_listened").childByAutoId().updateChildValues(recentlyListenedValues)
+    }
+    
+    func likePost(post: Post, liker: EllomixUser) {
+        let likesRef = ref.child(LIKES).child(post.pid)
+        let postsRef = ref.child(POSTS).child(post.uid).child(post.pid)
+        let timelineRef = ref.child(TIMELINE)
+        let followersRef = ref.child(FOLLOWERS).child(post.uid)
+        var userData = Dictionary<String, AnyObject>()
+
+        //TODO: Figure out a way to handle dictionary subsets
+        userData[liker.uid] = [
+            "name": liker.name,
+            "photo_url": liker.profilePicLink
+        ] as AnyObject
+
+        likesRef.updateChildValues(userData)
+        postsRef.child("likes").child(liker.uid).setValue(true)
+
+        // Update the post on the poster's timeline
+        timelineRef.child(post.uid).child(post.pid).child("likes").child(liker.uid).setValue(true)
+
+        // Update the post on our timeline in case we liked our own post
+        timelineRef.child(liker.uid).child(post.pid).child("likes").child(liker.uid).setValue(true)
+
+        // Update the post on every follower's timeline
+        followersRef.observe(.childAdded, with: { (snapshot) in
+            let followerUid = snapshot.key
+
+            timelineRef.child(followerUid).child(post.pid).child("likes").child(liker.uid).setValue(true)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func unlikePost(post: Post, unliker: EllomixUser) {
+        let likesRef = ref.child(LIKES).child(post.pid)
+        let postsRef = ref.child(POSTS).child(post.uid).child(post.pid)
+        let timelineRef = ref.child(TIMELINE)
+        let followersRef = ref.child(FOLLOWERS).child(post.uid)
+        
+        likesRef.child(unliker.uid).removeValue()
+        postsRef.child("likes").child(unliker.uid).removeValue()
+
+        // Update the post on the poster's timeline
+        timelineRef.child(post.uid).child(post.pid).child("likes").child(unliker.uid).removeValue()
+
+        // Update the post on our timeline in case we unliked our own post
+        timelineRef.child(unliker.uid).child(post.pid).child("likes").child(unliker.uid).removeValue()
+
+        // Update the post on every follower's timeline
+        followersRef.observe(.childAdded, with: { (snapshot) in
+            let followerUid = snapshot.key
+
+            timelineRef.child(followerUid).child(post.pid).child("likes").child(unliker.uid).removeValue()
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 }

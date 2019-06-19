@@ -75,6 +75,10 @@ class TimelineTableViewController: UITableViewController {
             cell.trackThumbnailButton.setBackgroundImage(image, for: .normal)
         })
 
+        if (post.likes[currentUser.uid] == true) {
+            cell.likeButton.setImage(#imageLiteral(resourceName: "heart_filled"), for: .normal)
+        }
+
         cell.post = post
 
         // Add action for viewing a user's profile
@@ -124,7 +128,15 @@ class TimelineTableViewController: UITableViewController {
     @objc func likePost(sender: UIButton) {
         if let cell = sender.superview as? PostTableViewCell {
             if let post = cell.post {
-                cell.setLikeButtonImage()
+                if (cell.isLiked()) {
+                    cell.likeButton.setImage(#imageLiteral(resourceName: "heart_outline"), for: .normal)
+                    post.likes.removeValue(forKey: currentUser.uid)
+                    FirebaseAPI.unlikePost(post: post, unliker: currentUser)
+                } else {
+                    cell.likeButton.setImage(#imageLiteral(resourceName: "heart_filled"), for: .normal)
+                    post.likes[currentUser.uid] = true
+                    FirebaseAPI.likePost(post: post, liker: currentUser)
+                }
             }
         }
     }

@@ -61,7 +61,6 @@ class SharePostController: UIViewController, UITextViewDelegate {
         post.photoUrl = currentUser.profilePicLink
         post.track = track
         post.comments = 0
-        post.likes = 0
         post.timestamp = Int(Date().timeIntervalSince1970)
         post.caption = captionTextView.text
         

@@ -42,11 +42,13 @@ class PostTableViewCell: UITableViewCell {
         playPauseImageView.image = playIcon
     }
     
-    func setLikeButtonImage() {
-        if (likeButton.image(for: .normal) == #imageLiteral(resourceName: "heart_outline")) {
-            likeButton.setImage(#imageLiteral(resourceName: "heart_filled"), for: .normal)
-        } else {
-            likeButton.setImage(#imageLiteral(resourceName: "heart_outline"), for: .normal)
+    func isLiked() -> Bool {
+        var isLiked = false
+
+        if (likeButton.image(for: .normal) == #imageLiteral(resourceName: "heart_filled")) {
+            isLiked = true
         }
+
+        return isLiked
     }
 }
