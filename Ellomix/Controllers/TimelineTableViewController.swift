@@ -8,12 +8,13 @@
 
 import UIKit
 
-class TimelineTableViewController: UITableViewController {
+class TimelineTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
     var currentPlayingPost: Post!
+    var previousTabBarIndex: Int?
     
     let timelineRefreshControl = UIRefreshControl()
     var posts = [Post]()
@@ -21,6 +22,8 @@ class TimelineTableViewController: UITableViewController {
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
         currentUser = Global.sharedGlobal.user
+
+        tabBarController?.delegate = self
 
         // Add Refresh Control to Table View
         timelineRefreshControl.addTarget(self, action: #selector(refreshTimeline(_:)), for: .valueChanged)
@@ -49,7 +52,18 @@ class TimelineTableViewController: UITableViewController {
     @objc func refreshTimeline(_ sender: Any) {
         retrieveTimeline(refreshing: true)
     }
-    
+
+    //MARK: TabBar
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        // Scroll to top if home tab is tapped while on the timeline
+        if (previousTabBarIndex == nil || previousTabBarIndex == tabBarController.selectedIndex) {
+            tableView.setContentOffset(CGPoint.zero, animated: true)
+        }
+
+        previousTabBarIndex = tabBarController.selectedIndex
+    }
+
     //MARK: TableView
     
     override func numberOfSections(in tableView: UITableView) -> Int {

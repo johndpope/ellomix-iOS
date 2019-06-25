@@ -414,6 +414,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                     let thumbnailURL = track.artworkImageURL.highURL
     
                     if (thumbnailURL != nil) {
+                        scTrack.thumbnailURL = thumbnailURL?.absoluteString
                         DispatchQueue.global().async {
                             if let data = try? Data(contentsOf: thumbnailURL!) {
                                 DispatchQueue.main.async {
