@@ -267,7 +267,7 @@ extension Dictionary {
             if let timestamp = postDict["timestamp"] as? Int { post.timestamp = timestamp }
             if let uid = postDict["uid"] as? String { post.uid = uid }
             if let name = postDict["name"] as? String { post.name = name }
-            if let photoUrl = postDict["photoUrl"] as? String { post.photoUrl = photoUrl }
+            if let photoUrl = postDict["photo_url"] as? String { post.photoUrl = photoUrl }
             if let caption = postDict["caption"] as? String { post.caption = caption }
 
             return post

@@ -30,7 +30,7 @@ class Post {
         dict["uid"] = uid as AnyObject
         dict["name"] = name as AnyObject
         if (caption != nil) { dict["caption"] = caption! as AnyObject }
-        if (photoUrl != nil) { dict["photoUrl"] = photoUrl! as AnyObject }
+        if (photoUrl != nil) { dict["photo_url"] = photoUrl! as AnyObject }
         if (!likes.isEmpty) { dict["likes"] = likes as AnyObject }
         
         return dict

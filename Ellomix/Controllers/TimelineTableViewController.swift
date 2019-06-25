@@ -13,7 +13,7 @@ class TimelineTableViewController: UITableViewController {
     private var FirebaseAPI: FirebaseApi!
     var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
-    var currentTrackCell: PostTableViewCell!
+    var currentPlayingPost: Post!
     
     let timelineRefreshControl = UIRefreshControl()
     var posts = [Post]()
@@ -75,8 +75,20 @@ class TimelineTableViewController: UITableViewController {
             cell.trackThumbnailButton.setBackgroundImage(image, for: .normal)
         })
 
+        // Set like button based on if the current user has liked this post
         if (post.likes[currentUser.uid] == true) {
             cell.likeButton.setImage(#imageLiteral(resourceName: "heart_filled"), for: .normal)
+        } else {
+            cell.likeButton.setImage(#imageLiteral(resourceName: "heart_outline"), for: .normal)
+        }
+
+        // Set play/pause button
+        if (currentPlayingPost != nil) {
+            if (currentPlayingPost.pid == post.pid) {
+                cell.playTrack()
+            } else {
+                cell.pauseTrack()
+            }
         }
 
         cell.post = post
@@ -109,18 +121,8 @@ class TimelineTableViewController: UITableViewController {
         if let cell = sender.superview as? PostTableViewCell {
             if let post = cell.post {
                 self.baseDelegate?.playTrack(track: post.track)
-                
-                if (currentTrackCell != cell) {
-                    // A different track on the timeline was chosen
-                    cell.playTrack()
-
-                    // If there is current track cell playing, pause it
-                    if (currentTrackCell != nil) {
-                        currentTrackCell.pauseTrack()
-                    }
-
-                    currentTrackCell = cell
-                }
+                cell.playTrack()
+                currentPlayingPost = post
             }
         }
     }
