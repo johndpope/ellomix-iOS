@@ -89,6 +89,13 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
             cell.trackThumbnailButton.setBackgroundImage(image, for: .normal)
         })
 
+        // Update like count
+        if (!post.likes.isEmpty) {
+            cell.likeCountLabel.text = String(post.likes.count)
+        } else {
+            cell.likeCountLabel.text = ""
+        }
+
         // Set like button based on if the current user has liked this post
         if (post.likes[currentUser.uid] == true) {
             cell.likeButton.setImage(#imageLiteral(resourceName: "heart_filled"), for: .normal)
@@ -152,6 +159,13 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
                     cell.likeButton.setImage(#imageLiteral(resourceName: "heart_filled"), for: .normal)
                     post.likes[currentUser.uid] = true
                     FirebaseAPI.likePost(post: post, liker: currentUser)
+                }
+
+                // Update like count
+                if (!post.likes.isEmpty) {
+                    cell.likeCountLabel.text = String(post.likes.count)
+                } else {
+                    cell.likeCountLabel.text = ""
                 }
             }
         }

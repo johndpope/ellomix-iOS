@@ -44,6 +44,12 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="Like Button" image="heart_outline"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bv7-rc-Gxd" userLabel="Comment Button">
+                    <rect key="frame" x="80" y="461" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="Like Button" image="comment"/>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elQ-pY-umr">
                     <rect key="frame" x="16" y="398" width="302" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -70,13 +76,22 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lh1-ne-tSV" userLabel="Like Count Label">
+                    <rect key="frame" x="38" y="460" width="45" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="captionLabel" destination="TYm-ku-Ouh" id="h5f-It-ZTk"/>
+                <outlet property="commentButton" destination="bv7-rc-Gxd" id="EQ0-3W-8vW"/>
                 <outlet property="likeButton" destination="SKT-jK-Ugh" id="dfB-IB-DG4"/>
+                <outlet property="likeCountLabel" destination="Lh1-ne-tSV" id="0i4-BB-B4E"/>
                 <outlet property="playPauseImageView" destination="FA4-U9-Og7" id="TAi-dV-Znk"/>
                 <outlet property="timestampLabel" destination="6bp-He-gUi" id="faP-Sl-4NI"/>
                 <outlet property="trackArtistLabel" destination="elQ-pY-umr" id="6jG-KE-8Et"/>
@@ -89,6 +104,7 @@
         </view>
     </objects>
     <resources>
+        <image name="comment" width="22" height="20"/>
         <image name="heart_outline" width="24" height="24"/>
         <image name="play" width="29" height="37"/>
     </resources>

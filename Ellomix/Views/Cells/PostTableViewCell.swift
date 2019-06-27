@@ -20,6 +20,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var userProfilePicImageView: UIImageView!
     @IBOutlet weak var trackThumbnailButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var likeCountLabel: UILabel!
     
     var playIcon: UIImage!
     var pauseIcon: UIImage!
