@@ -39,11 +39,20 @@
                     </navigationItem>
                     <connections>
                         <segue destination="9F7-Fe-O4V" kind="show" identifier="toProfile" id="D3s-yc-qko"/>
+                        <segue destination="0LI-60-qYD" kind="show" identifier="toComments" id="byz-q4-CBH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQ5-Au-v9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="863" y="2268"/>
+        </scene>
+        <!--Comments-->
+        <scene sceneID="10X-qJ-TBp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Comments" id="0LI-60-qYD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JUc-Pn-FJx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1443" y="2174"/>
         </scene>
         <!--profileController-->
         <scene sceneID="4a1-Fo-zoC">

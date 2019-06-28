@@ -83,6 +83,14 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ev8-Z1-90Z">
+                    <rect key="frame" x="16" y="489" width="341" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="View comments">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -99,6 +107,7 @@
                 <outlet property="trackTitleLabel" destination="WZg-O8-Mht" id="1Jr-IQ-Ykt"/>
                 <outlet property="userNameButton" destination="8BO-Vh-GKn" id="v2j-Tk-KiF"/>
                 <outlet property="userProfilePicImageView" destination="9bD-0o-6er" id="Mqn-mQ-4ha"/>
+                <outlet property="viewCommentsButton" destination="Ev8-Z1-90Z" id="4kK-oT-STq"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="53.5"/>
         </view>

@@ -123,6 +123,9 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
         // Add action for liking posts
         cell.likeButton.addTarget(self, action: #selector(likePost(sender:)), for: .touchUpInside)
 
+        // Add action for making and viewing comments
+        cell.viewCommentsButton.addTarget(self, action: #selector(viewComments(sender:)), for: .touchUpInside)
+
         return cell
     }
     
@@ -170,7 +173,15 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
             }
         }
     }
-    
+
+    @objc func viewComments(sender: UIButton) {
+        if let cell = sender.superview as? PostTableViewCell {
+            if let post = cell.post {
+                self.performSegue(withIdentifier: "toComments", sender: post)
+            }
+        }
+    }
+
     //MARK: Segue
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -179,6 +190,11 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
                 let userProfileVC = segue.destination as! ProfileController
                 userProfileVC.baseDelegate = baseDelegate
                 userProfileVC.currentUser = user
+            }
+        } else if (segue.identifier == "toComments") {
+            if let post = sender as? Post {
+                let commentsVC = segue.destination as! CommentsTableViewController
+                commentsVC.pid = post.pid
             }
         }
     }

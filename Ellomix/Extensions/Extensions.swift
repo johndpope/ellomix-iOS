@@ -276,6 +276,17 @@ extension Dictionary {
         return nil
     }
 
+    func toComment() -> Comment? {
+        let commentDict = self as! Dictionary<String, AnyObject>
+        let comment = Comment()
+
+        if let name = commentDict["name"] as? String { comment.name = name }
+        if let commentVal = commentDict["comment"] as? String { comment.comment = commentVal }
+        if let photoUrl = commentDict["photo_url"] as? String { comment.photoUrl = photoUrl }
+
+        return comment
+    }
+
 }
 
 extension Date {

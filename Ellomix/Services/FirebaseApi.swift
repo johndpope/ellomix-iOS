@@ -24,6 +24,7 @@ class FirebaseApi {
     private let POSTS = "Posts"
     private let TIMELINE = "Timeline"
     private let LIKES = "Likes"
+    private let COMMENTS = "Comments"
     
     private var storageRef: StorageReference = Storage.storage().reference()
 
@@ -282,24 +283,6 @@ class FirebaseApi {
             print(error.localizedDescription)
         }
     }
-
-    func getPostLikes(pid: String) {
-        let likesRef = ref.child(LIKES).child(pid)
-        var users = [EllomixUser]()
-        
-        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                if var userDict = child.value as? Dictionary<String, AnyObject> {
-                    userDict["uid"] = child.key as AnyObject
-                    if let user = userDict.toEllomixUser() {
-                        users.append(user)
-                    }
-                }
-            }
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
     
     func updateUserDeviceToken(uid: String, token: String) {
         let userRef = ref.child(USERS).child(uid)
@@ -364,6 +347,25 @@ class FirebaseApi {
             let followerUid = snapshot.key
 
             timelineRef.child(followerUid).child(post.pid).child("likes").child(unliker.uid).removeValue()
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getPostComments(pid: String, completion: (([Comment]) -> ())? = nil) {
+        let commentsRef = ref.child(COMMENTS).child(pid)
+        var comments = [Comment]()
+        
+        commentsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                if let commentDict = child.value as? Dictionary<String, AnyObject> {
+                    if let comment = commentDict.toComment() {
+                        comments.append(comment)
+                    }
+                }
+            }
+
+            completion?(comments)
         }) { (error) in
             print(error.localizedDescription)
         }
