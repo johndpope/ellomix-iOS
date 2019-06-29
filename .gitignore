@@ -1,10 +1,13 @@
+
+# Ignore macOS Finder user-related files
+.DS_Store
+
+# Ignore Xcode user-related files
+xcuserdata/
+
+# Ignore CocoaPods installed files
 Pods/
 Podfile.lock
-
-### OSX ###
-*.DS_Store
-
-xcuserdata
 
 ### Xcode Patch ###
 *.xcodeproj/*
