@@ -18,10 +18,10 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
+    private var FirebaseAPI: FirebaseApi!
+    private var fcmToken: String?
     var window: UIWindow?
     var storyboard: UIStoryboard?
-    private var FirebaseAPI: FirebaseApi!
-    private var fcmToken: String!
     lazy var loadingIndicatorView: LoadingViewController = {
         return self.storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as! LoadingViewController
         }()
@@ -205,10 +205,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if (birthday != nil) { loadedUser.birthday = birthday }
         if (followersCount != nil) { loadedUser.followersCount = followersCount }
         if (followingCount != nil) { loadedUser.followingCount = followingCount }
-
         if (groups != nil) { loadedUser.groups = groups! }
-        if (deviceToken != fcmToken) {
-            self.FirebaseAPI.updateUserDeviceToken(uid: uid, token: fcmToken)
+        if (fcmToken != nil && fcmToken! != deviceToken) {
+            self.FirebaseAPI.updateUserDeviceToken(uid: uid, token: fcmToken!)
         } else {
             loadedUser.deviceToken = deviceToken
         }
