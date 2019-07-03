@@ -17,7 +17,6 @@ class ChatFeedTableViewController: UITableViewController {
 
     var currentUser: EllomixUser?
     var baseDelegate: ContainerViewController!
-//    var groupChatDG: DispatchGroup!
     
     var groupChats = [Group]()
 
@@ -29,36 +28,6 @@ class ChatFeedTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Filter out any groups that the user has left
-//        let currentGIDs = Array(currentUser!.groups.keys)
-//        var tableGIDs = [String]()
-//
-//        var filteredGroupChats = [Group]()
-//        for group in groupChats {
-//            if (currentGIDs.contains(group.gid!)) {
-//                filteredGroupChats.append(group)
-//                tableGIDs.append(group.gid!)
-//            }
-//        }
-//        groupChats = filteredGroupChats
-
-        // Update and observe new group and groups that user is currently in
-//        for gid in currentGIDs {
-//            var newGroup = false
-//            if (!tableGIDs.contains(gid)) {
-//                // We found a new group, let's add it to our table
-//                newGroup = true
-//            }
-//
-//            observeChat(gid: gid, newGroup: newGroup)
-//        }
-//
-//        observeNewChats()
-//        groupChatDG = DispatchGroup()
-//        groupChats.removeAll()
-//        for gid in currentGIDs {
-//            observeChat(gid: gid)
-//        }
         FirebaseAPI.getUserGroups(user: currentUser!, completion: { (groups) in
             self.groupChats = groups
             self.sortGroupChats()
@@ -100,20 +69,9 @@ class ChatFeedTableViewController: UITableViewController {
         })
     }
     
-//    func observeNewChats() {
-//        userGroupsRefHandle = FirebaseAPI.observeNewGroupChats(uid: (currentUser?.uid)!, completed: { (newGroup) in
-//            if let gid = newGroup.keys.first {
-//                if (!(self.currentUser?.groups.keys.contains(gid))!) {
-//                    self.observeChat(gid: gid)
-//                    self.currentUser?.groups[gid] = newGroup[gid]
-//                }
-//            }
-//        })
-//    }
-    
     func observeRecentMessages(gid: String) {
         let handle = FirebaseAPI.getGroupsRef().child(gid).observe(.childChanged, with: { (snapshot) in
-            if var lastMessageDict = snapshot.value as? Dictionary<String, AnyObject> {
+            if let lastMessageDict = snapshot.value as? Dictionary<String, AnyObject> {
                 if let lastMessage = lastMessageDict.toMessage() {
                     for group in self.groupChats {
                         if (group.gid! == gid) {
@@ -128,32 +86,6 @@ class ChatFeedTableViewController: UITableViewController {
         
         currentChatObservers[gid] = handle
     }
-    
-//    func observeChat(gid: String) {
-//        groupChatDG.enter()
-//        let handle = FirebaseAPI.observeGroupChat(gid: gid, completed: { (group) in
-//            self.groupChats.append(group)
-//            self.groupChatDG.leave()
-//            DispatchQueue.main.async {
-//                self.groupChats.sort() {
-//                    if let message0 = $0.lastMessage, let message1 = $1.lastMessage {
-//                        if let timestamp0 = message0.timestamp, let timestamp1 = message1.timestamp {
-//                            return timestamp0 > timestamp1
-//                        }
-//                    }
-//                    return false
-//                }
-//                self.tableView.reloadData()
-//            }
-
-            // If this is a new group, add it to our groupChats array
-//            if (newGroup) {
-//                self.groupChats.append(group)
-//            }
-//        })
-//
-//        currentChatObservers[gid] = handle
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
