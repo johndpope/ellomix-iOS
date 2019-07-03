@@ -57,6 +57,19 @@ class PopUpPlayerController: UIViewController, SharePostDelegate {
             artworkImage.image = currentTrack.thumbnailImage
             titleField.text = currentTrack.title
             artistField.text = currentTrack.artist
+            
+            // Time duration
+            SPTTrack.track(withURI: URL(string: "spotify:track:" + currentTrack.id), accessToken: SPTAuth.defaultInstance()?.session.accessToken, market: "US") { (error, result) in
+                if let track = result as? SPTTrack {
+                    let progress = track.duration
+                    let minutes = floor(progress / 60)
+                    let seconds = round(progress - minutes * 60)
+                    self.timeDuration.text = String(format:"%.0f:%02.0f", minutes, seconds)
+                }
+            }
+            
+            // Current time progress
+            
         case is SoundcloudTrack:
             Global.sharedGlobal.musicPlayer.setButton(button: playPauseButton)
             artworkImage.isHidden = false
