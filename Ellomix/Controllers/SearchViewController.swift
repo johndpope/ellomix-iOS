@@ -210,7 +210,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
                 let ellomixUser = EllomixUser(uid: uid!)
                 ellomixUser.name = name!
                 ellomixUser.profilePicLink = photoURL
-                ellomixUser.deviceToken = deviceToken!
+                ellomixUser.deviceToken = deviceToken
                 ellomixUser.followingCount = followingCount
                 ellomixUser.followersCount = followersCount
                 ellomixUser.profilePicture.downloadedFrom(link: photoURL)

@@ -68,6 +68,8 @@ class FirebaseApi {
         return storageRef.child(uid)
     }
     
+    //TODO: Split this file into multiple services (UserService, MessageService, etc)
+    
     func updateUserProfilePicture(user: EllomixUser, image: UIImage, completion: @escaping () -> Void) {
         let uploadMetadata = StorageMetadata()
         uploadMetadata.contentType = "image/jpeg"
@@ -103,6 +105,43 @@ class FirebaseApi {
     func updateUser(user: EllomixUser) {
         let newUserRef = ref.child(USERS).child(user.uid)
         newUserRef.setValue(user.toDictionary())
+    }
+    
+    func getGroup(gid: String, completion: ((Group) -> ())? = nil) {
+        let groupsRef = ref.child(GROUPS)
+        
+        groupsRef.child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if var groupDict = snapshot.value as? Dictionary<String, AnyObject> {
+                groupDict["gid"] = gid as AnyObject
+                if let group = groupDict.toGroup() {
+                    completion?(group)
+                }
+            }
+        })
+    }
+    
+    func getUserGroups(user: EllomixUser, completion: (([Group]) -> ())? = nil) {
+        let groupsRef = ref.child(GROUPS)
+        let currentGIDs = Array(user.groups.keys)
+        let groupsDG = DispatchGroup()
+        var groups = [Group]()
+        
+        for gid in currentGIDs {
+            groupsDG.enter()
+            groupsRef.child(gid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if var groupDict = snapshot.value as? Dictionary<String, AnyObject> {
+                    groupDict["gid"] = gid as AnyObject
+                    if let group = groupDict.toGroup() {
+                        groups.append(group)
+                        groupsDG.leave()
+                    }
+                }
+            })
+        }
+        
+        groupsDG.notify(queue: .main) {
+           completion?(groups)
+        }
     }
     
     func updateGroupChat(group: Group, user: EllomixUser) {

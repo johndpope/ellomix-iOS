@@ -17,6 +17,7 @@ class ChatFeedTableViewController: UITableViewController {
 
     var currentUser: EllomixUser?
     var baseDelegate: ContainerViewController!
+//    var groupChatDG: DispatchGroup!
     
     var groupChats = [Group]()
 
@@ -28,35 +29,45 @@ class ChatFeedTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Remove any groups that the user has left
-        var groupChatDictionary = Dictionary<String, Group>()
-        var removeIndices = [Int]()
+        // Filter out any groups that the user has left
+//        let currentGIDs = Array(currentUser!.groups.keys)
+//        var tableGIDs = [String]()
+//
+//        var filteredGroupChats = [Group]()
+//        for group in groupChats {
+//            if (currentGIDs.contains(group.gid!)) {
+//                filteredGroupChats.append(group)
+//                tableGIDs.append(group.gid!)
+//            }
+//        }
+//        groupChats = filteredGroupChats
 
-        for i in 0..<groupChats.count {
-            let group = groupChats[i]
-
-            if (!group.containsUser(uid: currentUser!.uid)) {
-                removeIndices.append(i)
-            } else {
-                groupChatDictionary[group.gid!] = group
+        // Update and observe new group and groups that user is currently in
+//        for gid in currentGIDs {
+//            var newGroup = false
+//            if (!tableGIDs.contains(gid)) {
+//                // We found a new group, let's add it to our table
+//                newGroup = true
+//            }
+//
+//            observeChat(gid: gid, newGroup: newGroup)
+//        }
+//
+//        observeNewChats()
+//        groupChatDG = DispatchGroup()
+//        groupChats.removeAll()
+//        for gid in currentGIDs {
+//            observeChat(gid: gid)
+//        }
+        FirebaseAPI.getUserGroups(user: currentUser!, completion: { (groups) in
+            self.groupChats = groups
+            self.sortGroupChats()
+            self.tableView.reloadData()
+            
+            for group in self.groupChats {
+                self.observeRecentMessages(gid: group.gid!)
             }
-        }
-        for index in removeIndices {
-            groupChats.remove(at: index)
-        }
-
-        // Update and observe groups that user is currently in
-        let currentGIDs = Array(groupChatDictionary.keys)
-        for gid in (self.currentUser?.groups.keys)! {
-            if (!currentGIDs.contains(gid)) {
-                let group = Group()
-                group.gid = gid
-                observeChat(group: group)
-                self.groupChats.append(group)
-            } else {
-                observeChat(group: groupChatDictionary[gid]!)
-            }
-        }
+        })
         
         observeNewChats()
     }
@@ -76,64 +87,73 @@ class ChatFeedTableViewController: UITableViewController {
         userGroupsRefHandle = FirebaseAPI.getUsersRef().child((currentUser?.uid)!).child("groups").observe(.childAdded, with: { (snapshot) -> Void in
             let gid = snapshot.key
             let notifications = snapshot.value as? Bool
-
+ 
             if (!(self.currentUser?.groups.keys.contains(gid))!) {
-                let group = Group()
-                group.gid = gid
-                self.observeChat(group: group)
                 self.currentUser?.groups[gid] = notifications
-                self.groupChats.append(group)
-            }
-        })
-
-    }
-    
-    //TODO: Move to FirebaseAPI
-    func observeChat(group: Group) {
-        let handle = FirebaseAPI.getGroupsRef().child(group.gid!).observe(.value, with: { (snapshot) in
-            if let groupDictionary = snapshot.value as? Dictionary<String, AnyObject> {
-                self.setGroupProperties(group: group, groupDictionary: groupDictionary)
-                DispatchQueue.main.async {
-                    self.groupChats.sort() {
-                        if let message0 = $0.lastMessage, let message1 = $1.lastMessage {
-                            if let timestamp0 = message0.timestamp, let timestamp1 = message1.timestamp {
-                                return timestamp0 > timestamp1
-                            }
-                        }
-                        return false
-                    }
+                self.FirebaseAPI.getGroup(gid: gid, completion: { (group) in
+                    self.groupChats.append(group)
+                    self.sortGroupChats()
                     self.tableView.reloadData()
+                    self.observeRecentMessages(gid: gid)
+                })
+            }
+        })
+    }
+    
+//    func observeNewChats() {
+//        userGroupsRefHandle = FirebaseAPI.observeNewGroupChats(uid: (currentUser?.uid)!, completed: { (newGroup) in
+//            if let gid = newGroup.keys.first {
+//                if (!(self.currentUser?.groups.keys.contains(gid))!) {
+//                    self.observeChat(gid: gid)
+//                    self.currentUser?.groups[gid] = newGroup[gid]
+//                }
+//            }
+//        })
+//    }
+    
+    func observeRecentMessages(gid: String) {
+        let handle = FirebaseAPI.getGroupsRef().child(gid).observe(.childChanged, with: { (snapshot) in
+            if var lastMessageDict = snapshot.value as? Dictionary<String, AnyObject> {
+                if let lastMessage = lastMessageDict.toMessage() {
+                    for group in self.groupChats {
+                        if (group.gid! == gid) {
+                            group.lastMessage = lastMessage
+                            self.sortGroupChats()
+                            self.tableView.reloadData()
+                        }
+                    }
                 }
             }
         })
         
-        currentChatObservers[group.gid!] = handle
+        currentChatObservers[gid] = handle
     }
     
-    //TODO: Refactor to use Dictionary.toGroup()
-    func setGroupProperties(group: Group, groupDictionary: Dictionary<String, AnyObject>) {
-        group.name = groupDictionary["name"] as? String
-        if let users = groupDictionary["users"] as? Dictionary<String, AnyObject> {
-            var groupUsers = [EllomixUser]()
-            for (uid, userInfo) in users {
-                if var userDict = userInfo as? Dictionary<String, AnyObject> {
-                    userDict["uid"] = uid as AnyObject
-                    if let ellomixUser = userDict.toEllomixUser() {
-                        groupUsers.append(ellomixUser)
-                    }
-                }
-            }
-            
-            group.users = groupUsers
-        }
-        
-        let lastMessage = Message()
-        if let lastMessageDictionary = groupDictionary["last_message"] as? Dictionary<String, AnyObject> {
-            lastMessage.content = lastMessageDictionary["content"] as? String
-            lastMessage.timestamp = lastMessageDictionary["timestamp"] as? Int
-            group.lastMessage = lastMessage
-        }
-    }
+//    func observeChat(gid: String) {
+//        groupChatDG.enter()
+//        let handle = FirebaseAPI.observeGroupChat(gid: gid, completed: { (group) in
+//            self.groupChats.append(group)
+//            self.groupChatDG.leave()
+//            DispatchQueue.main.async {
+//                self.groupChats.sort() {
+//                    if let message0 = $0.lastMessage, let message1 = $1.lastMessage {
+//                        if let timestamp0 = message0.timestamp, let timestamp1 = message1.timestamp {
+//                            return timestamp0 > timestamp1
+//                        }
+//                    }
+//                    return false
+//                }
+//                self.tableView.reloadData()
+//            }
+
+            // If this is a new group, add it to our groupChats array
+//            if (newGroup) {
+//                self.groupChats.append(group)
+//            }
+//        })
+//
+//        currentChatObservers[gid] = handle
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -223,6 +243,17 @@ class ChatFeedTableViewController: UITableViewController {
         cell.gid = group.gid!
 
         return cell
+    }
+    
+    func sortGroupChats() {
+        self.groupChats.sort() {
+            if let message0 = $0.lastMessage, let message1 = $1.lastMessage {
+                if let timestamp0 = message0.timestamp, let timestamp1 = message1.timestamp {
+                    return timestamp0 > timestamp1
+                }
+            }
+            return false
+        }
     }
     
     // MARK: - Navigation

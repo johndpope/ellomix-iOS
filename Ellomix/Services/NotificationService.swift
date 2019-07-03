@@ -24,8 +24,8 @@ class NotificationService {
                     if let users = group.users {
                         for user in users {
                             // Only send to users who aren't the sender and have notifications turned on for this chat
-                            if (user.uid != sender.uid) {
-                                tokens.append(user.deviceToken)
+                            if (user.uid != sender.uid && user.deviceToken != nil) {
+                                tokens.append(user.deviceToken!)
                             }
                         }
 
@@ -98,31 +98,33 @@ class NotificationService {
     
     // Send a notification to users when a new message is sent in a group chat
     func sendNewFollowerNotification(follower: EllomixUser, followed: EllomixUser) {
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json",
-            "Authorization": "key=\(Environment.fcmServerKey)"
-        ]
-
-        // Prepare message payload
-        let content = "\(follower.name!) started following you"
-        let params: Parameters = [
-            "notification": [
-                "body": content
-            ],
-            "to": followed.deviceToken
-        ]
-
-        print("Parameters: \(params)")
-
-        Alamofire.request(self.fcmURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseJSON(completionHandler: { response in
-                switch response.result {
-                case .success(let data):
-                    print("Successfully sent new follower notification for \(followed.uid!): \(data)")
-                case .failure(let error):
-                    print("Failed sending new group message notification for \(followed.uid!): \(error.localizedDescription)")
-                }
-            })
+        if let deviceToken = followed.deviceToken {
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "key=\(Environment.fcmServerKey)"
+            ]
+            
+            // Prepare message payload
+            let content = "\(follower.name!) started following you"
+            let params: Parameters = [
+                "notification": [
+                    "body": content
+                ],
+                "to": deviceToken
+            ]
+            
+            print("Parameters: \(params)")
+            
+            Alamofire.request(self.fcmURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseJSON(completionHandler: { response in
+                    switch response.result {
+                    case .success(let data):
+                        print("Successfully sent new follower notification for \(followed.uid!): \(data)")
+                    case .failure(let error):
+                        print("Failed sending new group message notification for \(followed.uid!): \(error.localizedDescription)")
+                    }
+                })
+        }
     }
 }

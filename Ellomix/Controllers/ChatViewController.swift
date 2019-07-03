@@ -95,11 +95,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    //TODO: Refactor to use the version of this function in FirebaseApi.swift
     func checkForExistingGroup() {
         if (newChatGroup != nil) {
             FirebaseAPI.checkForExistingGroup(uid: (currentUser?.uid)!, groupToCheck: newChatGroup!) { (existingGroup) -> () in
                 if (existingGroup != nil) {
+                    // We found an existing group
                     var groupTitle = ""
                     if (existingGroup!.name == nil || existingGroup!.name!.isEmpty) {
                         if let users = existingGroup!.users {
@@ -111,11 +111,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.groupNameButton.setTitle(groupTitle, for: .normal)
                     self.groupNameButton.isEnabled = true
                 } else {
-                    if let users = existingGroup!.users {
-                        let groupTitle = users.groupNameFromUsers() + " >"
-                        self.groupNameButton.setTitle(groupTitle, for: .normal)
-                        self.groupNameButton.isEnabled = false
-                    }
+                    // This is a new group
+                    let groupTitle = self.newChatGroup!.groupNameFromUsers() + " >"
+                    self.groupNameButton.setTitle(groupTitle, for: .normal)
+                    self.groupNameButton.isEnabled = false
                 }
             }
         }
@@ -155,6 +154,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             cell.setupReceivedCell(type: type!)
             
+            //TODO: Safely unwrap users
             for user in (self.group?.users)! {
                 if (user.uid == message.uid!) {
                     cell.userImageView.downloadedFrom(link: user.profilePicLink)

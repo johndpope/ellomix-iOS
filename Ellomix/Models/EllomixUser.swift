@@ -21,7 +21,7 @@ class EllomixUser {
     var gender: String?
     var birthday: String?
     var password: String?
-    var deviceToken: String!
+    var deviceToken: String?
     var followingCount: Int?
     var followersCount: Int?
     var groups: [String: Bool] = [:]
@@ -36,8 +36,8 @@ class EllomixUser {
 
         dict["uid"] = uid as AnyObject
         dict["name"] = name as AnyObject
-        dict["device_token"] = deviceToken as AnyObject
-        if (profilePicLink != nil) {dict["photo_url"] = profilePicLink! as AnyObject}
+        if (deviceToken != nil) { dict["device_token"] = deviceToken! as AnyObject }
+        if (profilePicLink != nil) {dict["photo_url"] = profilePicLink! as AnyObject }
         if (password != nil) { dict["password"] = password! as AnyObject }
         if (!groups.isEmpty) { dict["groups"] = groups as AnyObject }
         if (website != nil) { dict["website"] = website! as AnyObject }
