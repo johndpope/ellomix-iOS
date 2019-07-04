@@ -11,6 +11,7 @@ import UIKit
 class TimelineTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     private var FirebaseAPI: FirebaseApi!
+    private var notificationService: NotificationService!
     var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
     var currentPlayingPost: Post!
@@ -21,6 +22,7 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
 
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
+        notificationService = NotificationService()
         currentUser = Global.sharedGlobal.user
 
         tabBarController?.delegate = self
@@ -162,6 +164,9 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
                     cell.likeButton.setImage(#imageLiteral(resourceName: "heart_filled"), for: .normal)
                     post.likes[currentUser.uid] = true
                     FirebaseAPI.likePost(post: post, liker: currentUser)
+                    
+                    // Send notification
+                    notificationService.sendNewLikeNotification(liker: currentUser, posterUid: post.uid)
                 }
 
                 // Update like count
