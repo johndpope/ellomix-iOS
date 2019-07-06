@@ -21,18 +21,15 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="89" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WjS-Am-fai">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="618" id="fWG-d1-tSg"/>
-                                </constraints>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilX-mY-ynO" userLabel="Dock">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NFj-fW-dtq" userLabel="Profile Picture Image View" customClass="RoundImageView" customModule="Ellomix" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="8.5" width="32" height="32"/>
+                                        <rect key="frame" x="8" y="9" width="32" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="4ZB-06-IhJ"/>
-                                            <constraint firstAttribute="height" constant="32" id="Yqd-dn-djO"/>
+                                            <constraint firstAttribute="width" constant="32" id="5kC-5x-iXq"/>
+                                            <constraint firstAttribute="height" constant="32" id="Qfz-qi-JUL"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5A-kg-LEO">
@@ -44,11 +41,11 @@
                                             <action selector="postButtonClicked:" destination="Rff-J2-1gI" eventType="touchUpInside" id="mgT-q2-NdV"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Fb-59-NLE">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Fb-59-NLE">
                                         <rect key="frame" x="48" y="8" width="277" height="33"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="lQ3-Ua-sGT"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="2Yn-XT-s4U"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -56,33 +53,33 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="D5A-kg-LEO" secondAttribute="bottom" constant="9" id="80t-g7-FiG"/>
-                                    <constraint firstItem="NFj-fW-dtq" firstAttribute="centerY" secondItem="ilX-mY-ynO" secondAttribute="centerY" id="A42-OW-5pT"/>
-                                    <constraint firstAttribute="bottom" secondItem="8Fb-59-NLE" secondAttribute="bottom" constant="8" id="GMQ-s3-aJ4"/>
-                                    <constraint firstItem="8Fb-59-NLE" firstAttribute="top" secondItem="ilX-mY-ynO" secondAttribute="top" constant="8" id="XEK-Ij-fpD"/>
-                                    <constraint firstItem="8Fb-59-NLE" firstAttribute="leading" secondItem="NFj-fW-dtq" secondAttribute="trailing" constant="8" id="XXj-qc-cgO"/>
-                                    <constraint firstItem="D5A-kg-LEO" firstAttribute="leading" secondItem="8Fb-59-NLE" secondAttribute="trailing" constant="8" id="Y9L-s6-cCk"/>
-                                    <constraint firstItem="NFj-fW-dtq" firstAttribute="leading" secondItem="ilX-mY-ynO" secondAttribute="leading" constant="8" id="khA-DK-a8d"/>
-                                    <constraint firstAttribute="trailing" secondItem="D5A-kg-LEO" secondAttribute="trailing" constant="11" id="sXO-u8-sbt"/>
+                                    <constraint firstItem="8Fb-59-NLE" firstAttribute="top" secondItem="ilX-mY-ynO" secondAttribute="top" constant="8" id="Gvq-5A-JdD"/>
+                                    <constraint firstItem="8Fb-59-NLE" firstAttribute="leading" secondItem="NFj-fW-dtq" secondAttribute="trailing" constant="8" id="IlY-hR-fn2"/>
+                                    <constraint firstAttribute="bottom" secondItem="8Fb-59-NLE" secondAttribute="bottom" constant="8" id="RJY-Mz-bwA"/>
+                                    <constraint firstItem="NFj-fW-dtq" firstAttribute="centerY" secondItem="8Fb-59-NLE" secondAttribute="centerY" id="S2A-Bf-IqP"/>
+                                    <constraint firstItem="D5A-kg-LEO" firstAttribute="leading" secondItem="8Fb-59-NLE" secondAttribute="trailing" constant="8" symbolic="YES" id="dgH-u5-YGW"/>
+                                    <constraint firstItem="NFj-fW-dtq" firstAttribute="leading" secondItem="ilX-mY-ynO" secondAttribute="leading" constant="8" id="fVC-rC-DrK"/>
+                                    <constraint firstAttribute="trailing" secondItem="D5A-kg-LEO" secondAttribute="trailing" constant="11" id="pFU-IC-Co4"/>
+                                    <constraint firstAttribute="bottom" secondItem="D5A-kg-LEO" secondAttribute="bottom" constant="9" id="tKD-Z7-MXK"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ilX-mY-ynO" firstAttribute="bottom" secondItem="xEb-WL-6PZ" secondAttribute="bottom" id="6NL-sK-xZo"/>
-                            <constraint firstAttribute="trailing" secondItem="WjS-Am-fai" secondAttribute="trailing" id="6Xl-83-30b"/>
-                            <constraint firstAttribute="trailing" secondItem="ilX-mY-ynO" secondAttribute="trailing" id="6cX-UZ-J0j"/>
-                            <constraint firstItem="WjS-Am-fai" firstAttribute="leading" secondItem="xEb-WL-6PZ" secondAttribute="leading" id="CSK-YU-YBP"/>
-                            <constraint firstItem="WjS-Am-fai" firstAttribute="top" secondItem="xEb-WL-6PZ" secondAttribute="top" id="g63-MB-Kc1"/>
-                            <constraint firstItem="ilX-mY-ynO" firstAttribute="leading" secondItem="xEb-WL-6PZ" secondAttribute="leading" id="lPa-FK-Hra"/>
-                            <constraint firstItem="ilX-mY-ynO" firstAttribute="top" secondItem="WjS-Am-fai" secondAttribute="bottom" id="xDj-la-ZKd"/>
+                            <constraint firstAttribute="bottom" secondItem="ilX-mY-ynO" secondAttribute="bottom" id="Bhb-WM-N4E"/>
+                            <constraint firstItem="WjS-Am-fai" firstAttribute="trailing" secondItem="ilX-mY-ynO" secondAttribute="trailing" id="F4F-4a-SD7"/>
+                            <constraint firstAttribute="trailing" secondItem="WjS-Am-fai" secondAttribute="trailing" id="GKV-Ix-rmh"/>
+                            <constraint firstItem="WjS-Am-fai" firstAttribute="top" secondItem="xEb-WL-6PZ" secondAttribute="top" id="QP5-Tn-LFd"/>
+                            <constraint firstItem="WjS-Am-fai" firstAttribute="leading" secondItem="xEb-WL-6PZ" secondAttribute="leading" id="RR7-zj-5rR"/>
+                            <constraint firstItem="ilX-mY-ynO" firstAttribute="top" secondItem="WjS-Am-fai" secondAttribute="bottom" id="alL-i1-dOs"/>
+                            <constraint firstItem="WjS-Am-fai" firstAttribute="leading" secondItem="ilX-mY-ynO" secondAttribute="leading" id="kad-Yz-eSO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Wb-O5-7r0"/>
                     </view>
                     <connections>
                         <outlet property="commentTextView" destination="8Fb-59-NLE" id="zwz-ca-i0r"/>
                         <outlet property="commentsTableView" destination="WjS-Am-fai" id="YDn-2J-QW7"/>
-                        <outlet property="dockBottomConstraint" destination="6NL-sK-xZo" id="iIj-cj-ZgI"/>
+                        <outlet property="dockBottomConstraint" destination="Bhb-WM-N4E" id="3nC-iH-oJx"/>
                         <outlet property="dockView" destination="ilX-mY-ynO" id="86M-JA-I9n"/>
                         <outlet property="postButton" destination="D5A-kg-LEO" id="6f3-ii-3L7"/>
                         <outlet property="profilePictureImageView" destination="NFj-fW-dtq" id="s1T-PO-XPU"/>
