@@ -198,7 +198,7 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
             }
         } else if (segue.identifier == "toComments") {
             if let post = sender as? Post {
-                let commentsVC = segue.destination as! CommentsTableViewController
+                let commentsVC = segue.destination as! CommentsViewController
                 commentsVC.pid = post.pid
             }
         }

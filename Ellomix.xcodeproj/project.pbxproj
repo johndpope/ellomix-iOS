@@ -53,6 +53,8 @@
 		DB5AAD6F22057B0100BA69BA /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */; };
 		DB5AAD7122065E2600BA69BA /* SharePost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5AAD7022065E2600BA69BA /* SharePost.storyboard */; };
 		DB5B4D4122A631120076977D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B4D4022A631120076977D /* Environment.swift */; };
+		DB5BA3F822D0684C00FF1B86 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB5BA3F722D0684C00FF1B86 /* CommentTableViewCell.xib */; };
+		DB5BA3FA22D0686F00FF1B86 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BA3F922D0686F00FF1B86 /* CommentTableViewCell.swift */; };
 		DB5EF7B6221A855000C95D26 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EF7B5221A855000C95D26 /* Post.swift */; };
 		DB7034DB20620F41003235EB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7034DA20620F41003235EB /* Message.swift */; };
 		DB720E991FA6D80300CC22FC /* ComposeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */; };
@@ -74,7 +76,7 @@
 		DBA9B9A9227BF9A500AD2947 /* SharePostDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA9B9A8227BF9A500AD2947 /* SharePostDelegate.swift */; };
 		DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */; };
 		DBAC7BC4211D38AB0008978E /* SearchSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */; };
-		DBB36DE922C5CD5E00DDC3AC /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB36DE822C5CD5E00DDC3AC /* CommentsTableViewController.swift */; };
+		DBB36DE922C5CD5E00DDC3AC /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB36DE822C5CD5E00DDC3AC /* CommentsViewController.swift */; };
 		DBB36DEB22C5CDCB00DDC3AC /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBB36DEA22C5CDCB00DDC3AC /* Comments.storyboard */; };
 		DBB36DED22C5DBEC00DDC3AC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB36DEC22C5DBEC00DDC3AC /* Comment.swift */; };
 		DBB727E420AA91AC00419789 /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB727E320AA91AC00419789 /* SplashController.swift */; };
@@ -196,6 +198,8 @@
 		DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
 		DB5AAD7022065E2600BA69BA /* SharePost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SharePost.storyboard; sourceTree = "<group>"; };
 		DB5B4D4022A631120076977D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		DB5BA3F722D0684C00FF1B86 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		DB5BA3F922D0686F00FF1B86 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		DB5EF7B5221A855000C95D26 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DB7034DA20620F41003235EB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DB720E981FA6D80300CC22FC /* ComposeMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageController.swift; sourceTree = "<group>"; };
@@ -218,7 +222,7 @@
 		DBA9B9A8227BF9A500AD2947 /* SharePostDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePostDelegate.swift; sourceTree = "<group>"; };
 		DBAC7BC1211D37D90008978E /* SearchSongs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchSongs.storyboard; sourceTree = "<group>"; };
 		DBAC7BC3211D38AB0008978E /* SearchSongsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSongsTableViewController.swift; sourceTree = "<group>"; };
-		DBB36DE822C5CD5E00DDC3AC /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
+		DBB36DE822C5CD5E00DDC3AC /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		DBB36DEA22C5CDCB00DDC3AC /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
 		DBB36DEC22C5DBEC00DDC3AC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		DBB727E320AA91AC00419789 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
@@ -383,7 +387,7 @@
 				1621BF3F215D97E300C6F901 /* SeeFollowersFollowingTableViewController.swift */,
 				DB5AAD6E22057B0100BA69BA /* TimelineTableViewController.swift */,
 				DB576F61220AA3A600142A02 /* SharePostController.swift */,
-				DBB36DE822C5CD5E00DDC3AC /* CommentsTableViewController.swift */,
+				DBB36DE822C5CD5E00DDC3AC /* CommentsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +435,7 @@
 				DBF933562165C67000D5C5BF /* GroupTableViewCell.swift */,
 				DB8FCAA1217EE214008BC0DB /* MessageTableViewCell.swift */,
 				DB95F6272224FC5C005DC658 /* PostTableViewCell.swift */,
+				DB5BA3F922D0686F00FF1B86 /* CommentTableViewCell.swift */,
 				DBEA17D220EB328C00A9294A /* LabelTableViewCell.xib */,
 				DB8FCA9D217ED950008BC0DB /* MessageTableViewCell.xib */,
 				DB451D2220F46EC900A56EB4 /* FieldTableViewCell.xib */,
@@ -440,6 +445,7 @@
 				DBF53C312129081700AB1E81 /* SectionLabelTableViewCell.xib */,
 				DBF933542165C5C300D5C5BF /* GroupTableViewCell.xib */,
 				DB95F6252224FACE005DC658 /* PostTableViewCell.xib */,
+				DB5BA3F722D0684C00FF1B86 /* CommentTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -726,6 +732,7 @@
 				DBEA17D520EB392100A9294A /* SwitchTableViewCell.xib in Resources */,
 				E379E6291E08B69500B0256F /* Assets.xcassets in Resources */,
 				DBAC7BC2211D37D90008978E /* SearchSongs.storyboard in Resources */,
+				DB5BA3F822D0684C00FF1B86 /* CommentTableViewCell.xib in Resources */,
 				DBB36DEB22C5CDCB00DDC3AC /* Comments.storyboard in Resources */,
 				DB5AAD7122065E2600BA69BA /* SharePost.storyboard in Resources */,
 				DB95F6262224FACE005DC658 /* PostTableViewCell.xib in Resources */,
@@ -885,6 +892,7 @@
 				DB95F6282224FC5C005DC658 /* PostTableViewCell.swift in Sources */,
 				16D2405B21433E810013B2AF /* SeeAllTableViewController.swift in Sources */,
 				DBDEDFC620E9D21000B65B88 /* GroupSettingsHeaderCell.swift in Sources */,
+				DB5BA3FA22D0686F00FF1B86 /* CommentTableViewCell.swift in Sources */,
 				DBFA76DD206F39DF00689D4F /* Group.swift in Sources */,
 				DB3330EB1FE8E219004F4D7F /* SignUpViewController.swift in Sources */,
 				0DC4048B21531C2800BACFC4 /* LoadingViewController.swift in Sources */,
@@ -900,7 +908,7 @@
 				DB9ACDA9201D3F0E003C6925 /* PopUpPlayerController.swift in Sources */,
 				DB3519E81EA6E6DE006ACBCE /* ProfileController.swift in Sources */,
 				DBBEA825213F969600BF4AD2 /* GroupPlaylistControlsTableViewCell.swift in Sources */,
-				DBB36DE922C5CD5E00DDC3AC /* CommentsTableViewController.swift in Sources */,
+				DBB36DE922C5CD5E00DDC3AC /* CommentsViewController.swift in Sources */,
 				BA3669A9205F431200DC4D54 /* SettingsViewController.swift in Sources */,
 				BA3669AB205F5F5500DC4D54 /* ChangePasswordViewController.swift in Sources */,
 				DB22FB7B1F5377E100AF384B /* EllomixUser.swift in Sources */,
