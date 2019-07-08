@@ -280,6 +280,7 @@ extension Dictionary {
         let commentDict = self as! Dictionary<String, AnyObject>
         let comment = Comment()
 
+        if let uid = commentDict["uid"] as? String { comment.uid = uid }
         if let name = commentDict["name"] as? String { comment.name = name }
         if let commentVal = commentDict["comment"] as? String { comment.comment = commentVal }
         if let photoUrl = commentDict["photo_url"] as? String { comment.photoUrl = photoUrl }

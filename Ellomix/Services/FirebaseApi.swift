@@ -409,4 +409,10 @@ class FirebaseApi {
             print(error.localizedDescription)
         }
     }
+    
+    func postComment(pid: String, comment: Comment) {
+        let commentsRef = ref.child(COMMENTS).child(pid)
+
+        commentsRef.childByAutoId().updateChildValues(comment.toDictionary())
+    }
 }

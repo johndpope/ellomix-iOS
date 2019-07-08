@@ -10,6 +10,7 @@ import Foundation
 
 class Comment {
 
+    var uid: String!
     var name: String!
     var comment: String!
     var photoUrl: String?
@@ -17,6 +18,7 @@ class Comment {
     func toDictionary() -> Dictionary<String, AnyObject>  {
         var dict = Dictionary<String, AnyObject>()
 
+        dict["uid"] = uid as AnyObject
         dict["name"] = name as AnyObject
         dict["comment"] = comment as AnyObject
         if (photoUrl != nil) { dict["photo_url"] = photoUrl! as AnyObject }

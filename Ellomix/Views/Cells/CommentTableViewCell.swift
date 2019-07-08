@@ -10,6 +10,9 @@ import Foundation
 
 class CommentTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var userProfilePictureImageView: RoundImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

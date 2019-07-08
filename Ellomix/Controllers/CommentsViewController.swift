@@ -42,12 +42,13 @@ class CommentsViewController: UIViewController {
         
         self.hideKeyboardWhenTappedAround()
         
-        commentsTableView.register(UINib(nibName: "CommentViewCell", bundle: nil), forCellReuseIdentifier: "commentCell")
+        commentsTableView.register(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "commentCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         FirebaseAPI.getPostComments(pid: pid, completion: { (comments) in
             self.comments = comments
+            self.commentsTableView.reloadData()
         })
     }
     
@@ -61,7 +62,17 @@ class CommentsViewController: UIViewController {
     }
     
     @IBAction func postButtonClicked(_ sender: Any) {
-        
+        if (!commentTextView.text.isEmpty) {
+            let comment = Comment()
+            
+            //TODO: Add timestamp to comment
+            comment.uid = currentUser.uid
+            comment.name = currentUser.name
+            comment.photoUrl = currentUser.profilePicLink
+            comment.comment = commentTextView.text
+            
+            FirebaseAPI.postComment(pid: pid, comment: comment)
+        }
     }
     
     //MARK: Keyboard handling
@@ -80,7 +91,7 @@ class CommentsViewController: UIViewController {
             dockBottomConstraint.constant = 0
             commentsTableView.contentOffset.y -= keyboardFrame.height
             if (commentTextView.text.isEmpty) {
-                commentTextView.text = "Reply"
+                commentTextView.text = "Add a comment"
                 commentTextView.textColor = UIColor.lightGray
             }
         }
@@ -102,6 +113,10 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentTableViewCell
+        let comment = comments[indexPath.row]
+        
+        cell.commentTextView.text = "\(comment.name) \(comment.comment)"
+        cell.userProfilePictureImageView.downloadedFrom(link: comment.photoUrl)
         
         return cell
     }
