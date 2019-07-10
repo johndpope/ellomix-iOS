@@ -283,6 +283,7 @@ extension Dictionary {
         if let uid = commentDict["uid"] as? String { comment.uid = uid }
         if let name = commentDict["name"] as? String { comment.name = name }
         if let commentVal = commentDict["comment"] as? String { comment.comment = commentVal }
+        if let timestamp = commentDict["timestamp"] as? Int { comment.timestamp = timestamp }
         if let photoUrl = commentDict["photo_url"] as? String { comment.photoUrl = photoUrl }
 
         return comment

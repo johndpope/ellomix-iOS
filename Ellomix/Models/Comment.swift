@@ -13,6 +13,7 @@ class Comment {
     var uid: String!
     var name: String!
     var comment: String!
+    var timestamp: Int!
     var photoUrl: String?
 
     func toDictionary() -> Dictionary<String, AnyObject>  {
@@ -21,6 +22,7 @@ class Comment {
         dict["uid"] = uid as AnyObject
         dict["name"] = name as AnyObject
         dict["comment"] = comment as AnyObject
+        dict["timestamp"] = timestamp as AnyObject
         if (photoUrl != nil) { dict["photo_url"] = photoUrl! as AnyObject }
 
         return dict

@@ -23,29 +23,39 @@
                         <constraint firstAttribute="height" constant="30" id="diL-4i-swR"/>
                     </constraints>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lr2-y4-Ja8">
-                    <rect key="frame" x="43" y="5" width="10" height="30"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lr2-y4-Ja8">
+                    <rect key="frame" x="43" y="5" width="271" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" priority="250" constant="10" id="kOk-1O-UdJ"/>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="odr-Ct-YQM"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8J-Dr-OtL">
+                    <rect key="frame" x="322" y="10" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="Afy-QV-BD1"/>
+                        <constraint firstAttribute="height" constant="21" id="dbG-lW-k9y"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Lr2-y4-Ja8" firstAttribute="leading" secondItem="R1h-rE-HoR" secondAttribute="trailing" constant="5" id="0C8-zO-rsC"/>
+                <constraint firstItem="b8J-Dr-OtL" firstAttribute="leading" secondItem="Lr2-y4-Ja8" secondAttribute="trailing" constant="8" id="7RW-b4-QkP"/>
+                <constraint firstItem="b8J-Dr-OtL" firstAttribute="centerY" secondItem="R1h-rE-HoR" secondAttribute="centerY" id="8aO-7m-KzC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Lr2-y4-Ja8" secondAttribute="bottom" constant="5" id="XBb-a5-24Q"/>
                 <constraint firstItem="Lr2-y4-Ja8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="Z5Q-sq-Cxz"/>
                 <constraint firstItem="R1h-rE-HoR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="coF-P4-5uA"/>
                 <constraint firstItem="R1h-rE-HoR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="f0G-Yx-Xme"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="b8J-Dr-OtL" secondAttribute="trailing" constant="11" id="p7d-Mp-ZZf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="commentTextView" destination="Lr2-y4-Ja8" id="jvp-xX-gM8"/>
+                <outlet property="timestampLabel" destination="b8J-Dr-OtL" id="aue-fw-2v3"/>
                 <outlet property="userProfilePictureImageView" destination="R1h-rE-HoR" id="iLB-zJ-Xtl"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="54"/>

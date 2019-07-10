@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class CommentsViewController: UIViewController {
     
@@ -65,10 +66,10 @@ class CommentsViewController: UIViewController {
         if (!commentTextView.text.isEmpty) {
             let comment = Comment()
             
-            //TODO: Add timestamp to comment
             comment.uid = currentUser.uid
             comment.name = currentUser.name
             comment.photoUrl = currentUser.profilePicLink
+            comment.timestamp = Int(Date().timeIntervalSince1970)
             comment.comment = commentTextView.text
             
             FirebaseAPI.postComment(pid: pid, comment: comment)
@@ -115,7 +116,14 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentTableViewCell
         let comment = comments[indexPath.row]
         
-        cell.commentTextView.text = "\(comment.name) \(comment.comment)"
+        let nameString = NSMutableAttributedString(string: "\(comment.name!)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+        let commentString = NSAttributedString(string: " \(comment.comment!)")
+        nameString.append(commentString)
+        cell.commentTextView.attributedText = nameString
+        
+        let timestampDate = Date(timeIntervalSince1970: Double(comment.timestamp))
+        cell.timestampLabel.text = timestampDate.timeAgoDisplay()
+        
         cell.userProfilePictureImageView.downloadedFrom(link: comment.photoUrl)
         
         return cell
