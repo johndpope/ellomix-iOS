@@ -16,7 +16,7 @@ import FacebookCore
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate {
 
     private var FirebaseAPI: FirebaseApi!
     private var fcmToken: String?
@@ -69,12 +69,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SPTAuth.defaultInstance().clientID = Constants.clientID
         SPTAuth.defaultInstance().redirectURL = Constants.redirectURI
         SPTAuth.defaultInstance().sessionUserDefaultsKey = Constants.sessionKey
+        SPTAuth.defaultInstance().tokenRefreshURL = Constants.tokenRefreshURL
+        SPTAuth.defaultInstance().tokenSwapURL = Constants.tokenSwapURL
         
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope, SPTAuthUserLibraryReadScope]
         
         // Start the player
         do {
-            try SPTAudioStreamingController.sharedInstance().start(withClientId: Constants.clientID)
+            try SPTAudioStreamingController.sharedInstance().start(withClientId: SPTAuth.defaultInstance().clientID, audioController: nil, allowCaching: true)
+            SPTAudioStreamingController.sharedInstance().delegate = self
+            SPTAudioStreamingController.sharedInstance().playbackDelegate = self
+            SPTAudioStreamingController.sharedInstance().diskCache = SPTDiskCache() /* capacity: 1024 * 1024 * 64 */
+            SPTAudioStreamingController.sharedInstance().login(withAccessToken: SPTAuth.defaultInstance().session.accessToken!)
         } catch {
             fatalError("Couldn't start Spotify SDK")
         }
@@ -83,14 +89,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // This function is called when the app is opened by a URL
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         // Check if this URL was sent from the Spotify app or website
+        print("The URL: \(url)")
         if SPTAuth.defaultInstance().canHandle(url) {
-            
-            // Send out a notification which we can listen for in our sign in view controller
-            NotificationCenter.default.post(name: NSNotification.Name.Spotify.authURLOpened, object: url)
-            
-            return true
+            SPTAuth.defaultInstance().handleAuthCallback(withTriggeredAuthURL: url) { error, session in
+                // This is the callback that'll be triggered when auth is completed (or fails).
+                if error != nil {
+                    print("*** Auth error: \(String(describing: error))")
+                    return
+                }
+                else {
+                    SPTAuth.defaultInstance().session = session
+                }
+                // NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "sessionUpdated"), object: self)
+            }
         }
-        
         return false
     }
     

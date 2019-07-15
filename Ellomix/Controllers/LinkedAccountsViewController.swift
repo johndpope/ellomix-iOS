@@ -32,19 +32,18 @@ class LinkedAccountViewController: UIViewController, SPTAudioStreamingDelegate {
         
         spotifyButton.layer.cornerRadius = spotifyButton.frame.height / 2
         facebookButton.layer.cornerRadius = facebookButton.frame.height / 2
+        
+        if SPTAuth.defaultInstance().session != nil || SPTAuth.defaultInstance().session.accessToken != nil || SPTAuth.defaultInstance().session.isValid() != false {
+            spotifyButton.backgroundColor = UIColor.gray
+            spotifyButton.setTitle("Logged into Spotify", for: .disabled)
+            spotifyButton.isEnabled = false
+        }
     }
-    
     // LOGIN WITH FACEBOOK AND ATTACHED LINKED ACCOUNT
     
     // SPOTIFY AUTHENTICATION
     @IBAction func spotifyButtonPressed(_ sender: Any) {
         let webURL = SPTAuth.defaultInstance().spotifyWebAuthenticationURL()!
-        
-        // Before presenting the view controllers we are going to start watching for the notification
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(receievedUrlFromSpotify(_:)),
-                                               name: NSNotification.Name.Spotify.authURLOpened,
-                                               object: nil)
         
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
@@ -52,67 +51,6 @@ class LinkedAccountViewController: UIViewController, SPTAudioStreamingDelegate {
             // Fallback on earlier versions
             UIApplication.shared.openURL(webURL)
         }
-    }
-    
-    @objc func receievedUrlFromSpotify(_ notification: Notification) {
-        guard let url = notification.object as? URL else { return }
-                
-        // Remove the observer from the Notification Center
-        NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.Spotify.authURLOpened,
-                                                  object: nil)
-        
-        SPTAuth.defaultInstance().handleAuthCallback(withTriggeredAuthURL: url) { (error, session) in
-            if let error = error {
-                // Pass our error onto another method which will determine how to show it
-                self.displayErrorMessage(error: error)
-                return
-            }
-            
-            if let session = session {
-                self.spService.accessToken = session.accessToken
-                // The streaming login is asyncronious and will alert us if the user
-                // was logged in through a delegate, so we need to implement those methods
-                SPTAudioStreamingController.sharedInstance().delegate = self
-                SPTAudioStreamingController.sharedInstance().login(withAccessToken: self.spService.accessToken)
-            }
-        }
-    }
-    
-    func displayErrorMessage(error: Error) {
-        // When changing the UI, all actions must be done on the main thread,
-        // since this can be called from a notification which doesn't run on
-        // the main thread, we must add this code to the main thread's queue
-        
-        DispatchQueue.main.async {
-            let alertController = UIAlertController(title: "Error",
-                                                    message: error.localizedDescription,
-                                                    preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
-    }
-    
-    func successfulLogin() {
-        // When changing the UI, all actions must be done on the main thread,
-        // since this can be called from a notification which doesn't run on
-        // the main thread, we must add this code to the main thread's queue
-        
-        DispatchQueue.main.async {
-            // Present next view controller or use performSegue(withIdentifier:, sender:)
-            // self.present(LoginViewController(), animated: true, completion: nil)
-        }
-    }
-    
-    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
-        self.successfulLogin()
-    }
-    
-    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
-        displayErrorMessage(error: error)
     }
     
     override func didReceiveMemoryWarning() {

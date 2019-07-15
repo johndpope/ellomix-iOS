@@ -7,7 +7,6 @@
 //
 
 class SpotifyPlayer {
-    
     func play(id: String) {
         SPTAudioStreamingController.sharedInstance()?.playSpotifyURI("spotify:track:" + id, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if (error == nil) {

@@ -13,6 +13,8 @@ struct Constants {
     static let clientID = "a3d3b4620139433b96ff80890e3a584b"
     static let redirectURI = URL(string: "ellomix://return-after-login")!
     static let sessionKey = "spotifySessionKey"
+    static let tokenRefreshURL = URL(string: "https://us-central1-ellomix-dev.cloudfunctions.net/spotifyAuth/refresh")
+    static let tokenSwapURL = URL(string: "https://us-central1-ellomix-dev.cloudfunctions.net/spotifyAuth/swap")
 }
 
 extension Notification.Name {
@@ -27,6 +29,9 @@ class SpotifyService {
     
     func search(query: String, completed: @escaping ([SpotifyTrack]) -> ()) {
         if auth.session != nil {
+            if auth.session.isValid() == false {
+                refreshToken()
+            }
             let token = auth.session.accessToken
             var songs = [SpotifyTrack]()
             
@@ -69,7 +74,10 @@ class SpotifyService {
     }
     
     func isLoggedIn() -> Bool {
-        if auth.session == nil || auth.session.isValid() == false || auth.session.accessToken == nil {
+        if auth.session.isValid() == false {
+            refreshToken()
+        }
+        if auth.session == nil || auth.session.accessToken == nil {
             print("User is not logged into Spotify.")
             EllomixAlertController.showAlert(viewController: topViewController()!,
                                              title: "Spotify Login Required",
@@ -87,7 +95,14 @@ class SpotifyService {
     }
     
     func refreshToken() {
-        
+        SPTAuth.defaultInstance().renewSession(SPTAuth.defaultInstance().session) { error, session in
+            SPTAuth.defaultInstance().session = session
+            if error != nil {
+                print("Refreshing token failed.")
+                print("*** Error renewing session: \(String(describing: error))")
+                return
+            }
+        }
     }
     
     func topViewController() -> UIViewController? {
