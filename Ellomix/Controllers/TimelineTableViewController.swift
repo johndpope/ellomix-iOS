@@ -166,7 +166,7 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
                     FirebaseAPI.likePost(post: post, liker: currentUser)
                     
                     // Send notification
-                    notificationService.sendNewLikeNotification(liker: currentUser, posterUid: post.uid)
+                    notificationService.sendNewLikeNotification(liker: currentUser, post: post)
                 }
 
                 // Update like count
@@ -199,7 +199,7 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
         } else if (segue.identifier == "toComments") {
             if let post = sender as? Post {
                 let commentsVC = segue.destination as! CommentsViewController
-                commentsVC.pid = post.pid
+                commentsVC.post = post
             }
         }
     }

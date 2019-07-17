@@ -20,13 +20,15 @@ class CommentsViewController: UIViewController {
     
     private var FirebaseAPI: FirebaseApi!
     private var currentUser: EllomixUser!
-    var pid: String!
+    private var notificationService: NotificationService!
+    var post: Post!
     
     var comments = [Comment]()
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
         currentUser = Global.sharedGlobal.user
+        notificationService = NotificationService()
         
         commentsTableView.dataSource = self
         commentsTableView.delegate = self
@@ -47,7 +49,7 @@ class CommentsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        FirebaseAPI.getPostComments(pid: pid, completion: { (comments) in
+        FirebaseAPI.getPostComments(pid: post.pid, completion: { (comments) in
             self.comments = comments
             self.commentsTableView.reloadData()
         })
@@ -72,7 +74,13 @@ class CommentsViewController: UIViewController {
             comment.timestamp = Int(Date().timeIntervalSince1970)
             comment.comment = commentTextView.text
             
-            FirebaseAPI.postComment(pid: pid, comment: comment)
+            FirebaseAPI.postComment(pid: post.pid, comment: comment)
+            comments.append(comment)
+            commentsTableView.reloadData()
+            commentTextView.text = ""
+            
+            // Send notification
+            notificationService.sendNewCommentNotification(commenter: currentUser, post: post, comment: comment)
         }
     }
     

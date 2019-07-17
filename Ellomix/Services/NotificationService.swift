@@ -96,7 +96,7 @@ class NotificationService {
         })
     }
     
-    // Send a notification to users when a new message is sent in a group chat
+    // Send a notification to a user when another user follows them
     func sendNewFollowerNotification(follower: EllomixUser, followed: EllomixUser) {
         if let deviceToken = followed.deviceToken {
             let headers: HTTPHeaders = [
@@ -129,8 +129,8 @@ class NotificationService {
     }
     
     // Send a notification to a user when another user likes their post
-    func sendNewLikeNotification(liker: EllomixUser, posterUid: String) {
-        FirebaseAPI.getUser(uid: posterUid) { (poster) -> () in
+    func sendNewLikeNotification(liker: EllomixUser, post: Post) {
+        FirebaseAPI.getUser(uid: post.uid) { (poster) -> () in
             if let deviceToken = poster.deviceToken {
                 let headers: HTTPHeaders = [
                     "Content-Type": "application/json",
@@ -156,6 +156,40 @@ class NotificationService {
                             print("Successfully sent new like notification for \(poster.uid!): \(data)")
                         case .failure(let error):
                             print("Failed sending new like notification for \(poster.uid!): \(error.localizedDescription)")
+                        }
+                    })
+            }
+        }
+    }
+    
+    // Send a notification to a user when another user comments on their post
+    func sendNewCommentNotification(commenter: EllomixUser, post: Post, comment: Comment) {
+        FirebaseAPI.getUser(uid: post.uid) { (poster) -> () in
+            if let deviceToken = poster.deviceToken {
+                let headers: HTTPHeaders = [
+                    "Content-Type": "application/json",
+                    "Authorization": "key=\(Environment.fcmServerKey)"
+                ]
+                
+                // Prepare message payload
+                let content = "\(commenter.name!) commented: \(comment.comment!)"
+                let params: Parameters = [
+                    "notification": [
+                        "body": content
+                    ],
+                    "to": deviceToken
+                ]
+                
+                print("Parameters: \(params)")
+                
+                Alamofire.request(self.fcmURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                    .validate(statusCode: 200..<300)
+                    .responseJSON(completionHandler: { response in
+                        switch response.result {
+                        case .success(let data):
+                            print("Successfully sent new comment notification for \(poster.uid!): \(data)")
+                        case .failure(let error):
+                            print("Failed sending new commment notification for \(poster.uid!): \(error.localizedDescription)")
                         }
                     })
             }

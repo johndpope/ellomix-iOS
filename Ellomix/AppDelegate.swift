@@ -82,7 +82,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             SPTAudioStreamingController.sharedInstance().delegate = self
             SPTAudioStreamingController.sharedInstance().playbackDelegate = self
             SPTAudioStreamingController.sharedInstance().diskCache = SPTDiskCache() /* capacity: 1024 * 1024 * 64 */
-            SPTAudioStreamingController.sharedInstance().login(withAccessToken: SPTAuth.defaultInstance().session.accessToken!)
+            DispatchQueue.main.async {
+                SPTAudioStreamingController.sharedInstance().login(withAccessToken: SPTAuth.defaultInstance().session.accessToken!)
+            }
         } catch {
             fatalError("Couldn't start Spotify SDK")
         }
