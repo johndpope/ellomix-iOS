@@ -19,6 +19,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate {
 
     private var FirebaseAPI: FirebaseApi!
+    private var spService: SpotifyService!
     private var fcmToken: String?
     var window: UIWindow?
     var storyboard: UIStoryboard?
@@ -35,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UINavigationBar.appearance().tintColor = .black
         
         // Spotify
+        spService = SpotifyService()
         setupSpotify()
         
         // Soundcloud
@@ -83,6 +85,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             SPTAudioStreamingController.sharedInstance().login(withAccessToken: SPTAuth.defaultInstance().session.accessToken!)
         } catch {
             fatalError("Couldn't start Spotify SDK")
+        }
+        
+        if SPTAuth.defaultInstance().session != nil {
+            if SPTAuth.defaultInstance().session.isValid() == false {
+                spService.refreshToken()
+            }
         }
     }
     
