@@ -33,7 +33,7 @@ class LinkedAccountViewController: UIViewController, SPTAudioStreamingDelegate {
         spotifyButton.layer.cornerRadius = spotifyButton.frame.height / 2
         facebookButton.layer.cornerRadius = facebookButton.frame.height / 2
         
-        if SPTAuth.defaultInstance().session != nil || SPTAuth.defaultInstance().session.accessToken != nil || SPTAuth.defaultInstance().session.isValid() != false {
+        if SPTAuth.defaultInstance().session != nil {
             spotifyButton.backgroundColor = UIColor.gray
             spotifyButton.setTitle("Logged into Spotify", for: .disabled)
             spotifyButton.isEnabled = false
