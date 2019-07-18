@@ -83,8 +83,8 @@ class SpotifyService {
         }
         if auth.session.isValid() == false {
             refreshToken()
-            initializePlayer()
         }
+        initializePlayer()
         return true
     }
     
