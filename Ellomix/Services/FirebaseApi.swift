@@ -353,9 +353,6 @@ class FirebaseApi {
         // Update the post on the poster's timeline
         timelineRef.child(post.uid).child(post.pid).child("likes").child(liker.uid).setValue(true)
 
-        // Update the post on our timeline in case we liked our own post
-        timelineRef.child(liker.uid).child(post.pid).child("likes").child(liker.uid).setValue(true)
-
         // Update the post on every follower's timeline
         followersRef.observe(.childAdded, with: { (snapshot) in
             let followerUid = snapshot.key
@@ -377,9 +374,6 @@ class FirebaseApi {
 
         // Update the post on the poster's timeline
         timelineRef.child(post.uid).child(post.pid).child("likes").child(unliker.uid).removeValue()
-
-        // Update the post on our timeline in case we unliked our own post
-        timelineRef.child(unliker.uid).child(post.pid).child("likes").child(unliker.uid).removeValue()
 
         // Update the post on every follower's timeline
         followersRef.observe(.childAdded, with: { (snapshot) in
@@ -410,9 +404,24 @@ class FirebaseApi {
         }
     }
     
-    func postComment(pid: String, comment: Comment) {
-        let commentsRef = ref.child(COMMENTS).child(pid)
+    func postComment(post: Post, comment: Comment) {
+        let commentsRef = ref.child(COMMENTS).child(post.pid)
+        let timelineRef = ref.child(TIMELINE)
+        let followersRef = ref.child(FOLLOWERS).child(post.uid)
+        let count = post.comments + 1
 
         commentsRef.childByAutoId().updateChildValues(comment.toDictionary())
+        
+        // Update the comment count for the post on the poster's timeline
+        timelineRef.child(post.uid).child(post.pid).child("comments").setValue(count)
+        
+        // Update the comment count for the post on every follower's timeline
+        followersRef.observe(.childAdded, with: { (snapshot) in
+            let followerUid = snapshot.key
+            
+            timelineRef.child(followerUid).child(post.pid).child("comments").setValue(count)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 }

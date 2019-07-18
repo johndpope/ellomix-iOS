@@ -74,13 +74,17 @@ class CommentsViewController: UIViewController {
             comment.timestamp = Int(Date().timeIntervalSince1970)
             comment.comment = commentTextView.text
             
-            FirebaseAPI.postComment(pid: post.pid, comment: comment)
+            FirebaseAPI.postComment(post: post, comment: comment)
             comments.append(comment)
             commentsTableView.reloadData()
             commentTextView.text = ""
             
             // Send notification
             notificationService.sendNewCommentNotification(commenter: currentUser, post: post, comment: comment)
+            
+            // Update comment count
+            //TODO: Implement comment deletion and a way for the TL to update the count correctly on back navigation
+            post.comments = post.comments + 1
         }
     }
     

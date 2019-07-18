@@ -91,6 +91,13 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
             cell.trackThumbnailButton.setBackgroundImage(image, for: .normal)
         })
 
+        // Update comment count
+        if (post.comments == 0) {
+            cell.commentCountLabel.text = ""
+        } else {
+            cell.commentCountLabel.text = String(post.comments)
+        }
+        
         // Update like count
         if (!post.likes.isEmpty) {
             cell.likeCountLabel.text = String(post.likes.count)
