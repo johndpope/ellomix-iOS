@@ -22,6 +22,7 @@ class CommentsViewController: UIViewController {
     private var currentUser: EllomixUser!
     private var notificationService: NotificationService!
     var post: Post!
+    var newComment: Bool = false
     
     var comments = [Comment]()
     
@@ -58,6 +59,10 @@ class CommentsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        if (newComment) {
+            commentTextView.becomeFirstResponder()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

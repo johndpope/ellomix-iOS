@@ -14,6 +14,7 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
     private var notificationService: NotificationService!
     var currentUser: EllomixUser!
     var baseDelegate: ContainerViewController!
+    var commentsStoryboard: UIStoryboard!
     var currentPlayingPost: Post!
     var previousTabBarIndex: Int?
     
@@ -35,7 +36,11 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
             tableView.addSubview(timelineRefreshControl)
         }
 
+        // Initialize cells
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postCell")
+        
+        // Initialize storyboards
+        commentsStoryboard = UIStoryboard(name: "Comments", bundle: nil)
         
         retrieveTimeline(refreshing: false)
     }
@@ -131,8 +136,11 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
         
         // Add action for liking posts
         cell.likeButton.addTarget(self, action: #selector(likePost(sender:)), for: .touchUpInside)
+        
+        // Add action for posting new comment
+        cell.commentButton.addTarget(self, action: #selector(postComment(sender:)), for: .touchUpInside)
 
-        // Add action for making and viewing comments
+        // Add action for viewing comments
         cell.viewCommentsButton.addTarget(self, action: #selector(viewComments(sender:)), for: .touchUpInside)
 
         return cell
@@ -185,11 +193,19 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
             }
         }
     }
+    
+    @objc func postComment(sender: UIButton) {
+        if let cell = sender.superview as? PostTableViewCell {
+            if let post = cell.post {
+                segueToComments(post: post, commenting: true)
+            }
+        }
+    }
 
     @objc func viewComments(sender: UIButton) {
         if let cell = sender.superview as? PostTableViewCell {
             if let post = cell.post {
-                self.performSegue(withIdentifier: "toComments", sender: post)
+                segueToComments(post: post, commenting: false)
             }
         }
     }
@@ -203,11 +219,14 @@ class TimelineTableViewController: UITableViewController, UITabBarControllerDele
                 userProfileVC.baseDelegate = baseDelegate
                 userProfileVC.currentUser = user
             }
-        } else if (segue.identifier == "toComments") {
-            if let post = sender as? Post {
-                let commentsVC = segue.destination as! CommentsViewController
-                commentsVC.post = post
-            }
+        }
+    }
+    
+    func segueToComments(post: Post, commenting: Bool) {
+        if let commentsController = commentsStoryboard.instantiateViewController(withIdentifier: "commentsViewController") as? CommentsViewController {
+            commentsController.post = post
+            commentsController.newComment = commenting
+            navigationController?.pushViewController(commentsController, animated: true)
         }
     }
 }
