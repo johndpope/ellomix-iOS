@@ -133,9 +133,10 @@ class FirebaseApi {
                     groupDict["gid"] = gid as AnyObject
                     if let group = groupDict.toGroup() {
                         groups.append(group)
-                        groupsDG.leave()
                     }
                 }
+                
+                groupsDG.leave()
             })
         }
         
