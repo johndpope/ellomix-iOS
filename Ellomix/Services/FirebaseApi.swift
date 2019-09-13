@@ -255,13 +255,48 @@ class FirebaseApi {
         })
     }
     
-    func addToGroupPlaylist(group: Group, data: [BaseTrack]) {
+    func loadPlaylist(gid: String, completion: (([BaseTrack]) -> ())? = nil) {
+        var songs = [BaseTrack]()
+        
+        getGroupPlaylistsRef().child(gid).observe(.childAdded, with: { (snapshot) in
+            if let trackDict = snapshot.value as? Dictionary<String, AnyObject> {
+                let track = trackDict.toBaseTrack()
+                
+                track.sid = snapshot.key
+                songs.append(track)
+                songs = songs.sorted {($0.order)! < ($1.order)!}
+                
+                completion?(songs)
+            }
+        })
+    }
+    
+    // "Tracks" are ones selected, while "songs" are loaded from firebase
+//    func addSongsToPlaylist(tracks: [BaseTrack], songs: [BaseTrack]) {
+//        var order = songs.count
+//
+//        for i in 0..<tracks.count {
+//            tracks[i].order = order
+//            order += 1
+//        }
+//
+//        addToGroupPlaylist(group: Group, data: tracks)
+//    }
+    
+    func addToGroupPlaylist(group: Group, playlist: [BaseTrack], selected: [BaseTrack]) {
+        var order = playlist.count
+        
+        for i in 0..<selected.count {
+            selected[i].order = order
+            order += 1
+        }
+        
         let groupPlaylistRef = ref.child(GROUP_PLAYLISTS).child(group.gid!)
         var values = Dictionary<String, AnyObject>()
         
-        for i in 0..<data.count {
+        for i in 0..<selected.count {
             let key = groupPlaylistRef.childByAutoId().key
-            values[key] = data[i].toDictionary() as AnyObject
+            values[key] = selected[i].toDictionary() as AnyObject
         }
         groupPlaylistRef.updateChildValues(values)
     }

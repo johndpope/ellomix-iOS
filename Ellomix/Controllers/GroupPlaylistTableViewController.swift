@@ -35,7 +35,14 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
     override func viewWillAppear(_ animated: Bool) {
         baseDelegate.playBarViewBottomConstraint.constant = -(self.tabBarController?.tabBar.frame.height)!
         if (groupPlaylistRefHandle == nil) {
-            loadPlaylist()
+            if let gid = group.gid {
+                FirebaseAPI.loadPlaylist(gid: gid, completion: { (songs) in
+                    self.songs = songs
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                })
+            }
         }
     }
     
@@ -50,6 +57,7 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
         }
     }
     
+    /*
     func loadPlaylist() {
         groupPlaylistRefHandle = FirebaseAPI.getGroupPlaylistsRef().child(group.gid!).observe(.childAdded, with: { (snapshot) in
             if let trackDict = snapshot.value as? Dictionary<String, AnyObject> {
@@ -64,6 +72,7 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
             }
         })
     }
+    */
     
     @IBAction func playButtonClicked(_ sender: Any) {
         baseDelegate.playQueue(queue: songs, startingIndex: 0)
@@ -253,23 +262,24 @@ class GroupPlaylistTableViewController: UITableViewController, SearchSongsDelega
         return cellSnapshot
     }
 
-    func addSongsToPlaylist(tracks: [BaseTrack]) {
-        var order = songs.count
-
-        for i in 0..<tracks.count {
-            tracks[i].order = order
-            order += 1
-        }
-
-        FirebaseAPI.addToGroupPlaylist(group: group, data: tracks)
-    }
+//    func addSongsToPlaylist(tracks: [BaseTrack]) {
+//        var order = songs.count
+//
+//        for i in 0..<tracks.count {
+//            tracks[i].order = order
+//            order += 1
+//        }
+//
+//        FirebaseAPI.addToGroupPlaylist(group: group, data: tracks)
+//    }
     
     @objc func addSongsButtonClicked() {
         performSegue(withIdentifier: "toAddSongsToPlaylist", sender: nil)
     }
     
     func doneSelecting(selected: [BaseTrack]) {
-        addSongsToPlaylist(tracks: selected)
+        //addSongsToPlaylist(tracks: selected)
+        FirebaseAPI.addToGroupPlaylist(group: group, playlist: songs, selected: selected)
         dismiss(animated: true, completion: nil)
     }
     

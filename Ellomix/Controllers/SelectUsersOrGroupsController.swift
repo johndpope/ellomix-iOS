@@ -20,6 +20,8 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
     private var notificationService: NotificationService!
     var currentUser: EllomixUser?
     var currentTrack: BaseTrack!
+    var group: Group!
+    var songs = [BaseTrack]()
     
     override func viewDidLoad() {
         FirebaseAPI = FirebaseApi()
@@ -65,6 +67,11 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
         if (selectedUserOrGroup is EllomixUser) {
             if let users = Array(selected.values) as? [EllomixUser] {
                 FirebaseAPI.sendMessageToUsers(sender: currentUser!, users: users, message: message) { (gid) -> () in
+                    // we have GID, so now we want to add song to playlist
+                    self.FirebaseAPI.loadPlaylist(gid: gid, completion: { (songs) in
+                        self.songs = songs
+                    })
+                    
                     // Send push notification
                     self.notificationService.sendNewMessageNotification(gid: gid, sender: self.currentUser!, message: message)
                 }
@@ -73,6 +80,7 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
             let group = selectedUserOrGroup as! Group
             
             FirebaseAPI.sendMessageToGroupChat(gid: group.gid!, message: message)
+            FirebaseAPI.addToGroupPlaylist(group: group, playlist: songs, selected: [currentTrack])
 
             // Send push notification
             notificationService.sendNewMessageNotification(gid: group.gid!, sender: currentUser!, message: message)
@@ -102,17 +110,18 @@ class SelectUsersOrGroupsController: UITableViewController, UISearchBarDelegate,
         
         for gid in (currentUser?.groups.keys)! {
             FirebaseAPI.getGroupsRef().child(gid).observe(.value, with: { (snapshot) in
-                var groupDict = snapshot.value as? Dictionary<String, AnyObject>
-                groupDict!["gid"] = snapshot.key as AnyObject
-                if let group = groupDict?.toGroup() {
-                    if (group.users != nil && group.users!.count > 2)  {
-                        self.groupsAndFollowingUsers.append(group)
-                        self.filteredGroupsAndFollowingUsers.append(group)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
+                if var groupDict = snapshot.value as? Dictionary<String, AnyObject> {
+                    groupDict["gid"] = snapshot.key as AnyObject
+                    if let group = groupDict.toGroup() {
+                        if (group.users != nil && group.users!.count > 2)  {
+                            self.groupsAndFollowingUsers.append(group)
+                            self.filteredGroupsAndFollowingUsers.append(group)
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        } else {
+                            //TODO: Non-group message, match it with the user so we can prioritize it in the table
                         }
-                    } else {
-                        //TODO: Non-group message, match it with the user so we can prioritize it in the table
                     }
                 }
             }) { (error) in
