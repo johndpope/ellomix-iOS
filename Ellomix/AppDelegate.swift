@@ -12,7 +12,7 @@ import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
 import Soundcloud
-import FacebookCore
+import FBSDKCoreKit
 import UserNotifications
 
 @UIApplicationMain
@@ -241,49 +241,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func fetchProfileFromFB(user: Firebase.User) {
         let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
-        GraphRequest(graphPath: "me",
-                     parameters: parameters,
-                     accessToken: AccessToken.current,
-                     httpMethod: .GET,
-                     apiVersion: .defaultVersion).start { (urlResponse, requestResult) in
-                        switch requestResult {
-                        case .failed(let error):
-                            print(error)
-                            break
-                        case .success(let graphResponse):
-                            if let responseDict = graphResponse.dictionaryValue {
-                                let firstName = responseDict["first_name"] as? String
-                                let lastName = responseDict["last_name"] as? String
-                                let name = firstName! + " " + lastName!
-                                
-                                let newUser = EllomixUser(uid: user.uid)
-                                newUser.name = name
-                                
-                                if let picture = responseDict["picture"] as? NSDictionary {
-                                    if let data = picture["data"] as? NSDictionary {
-                                        if let urlString = data["url"] as? String {
-                                            let url = URL(string: urlString)
-                                            let data = try? Data(contentsOf: url!)
-                                            DispatchQueue.main.async {
-                                                let image =  UIImage(data: data!)
-                                                newUser.profilePicture.image = image
-                                                self.FirebaseAPI.updateUserProfilePicture(user: newUser, image: image!) {
-                                                    self.FirebaseAPI.updateUser(user: newUser)
-                                                    Global.sharedGlobal.user = newUser
-                                                    self.loadHomeScreen()
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else {
+        GraphRequest(graphPath: "me", parameters: parameters, httpMethod: .get).start { (connection, result, error) in
+            if let err = error {
+                print(err)
+                return
+            }
+            
+            if let userInfo = result as? Dictionary<String, Any> {
+                let firstName = userInfo["first_name"] as? String
+                let lastName = userInfo["last_name"] as? String
+                let name = firstName! + " " + lastName!
+                
+                let newUser = EllomixUser(uid: user.uid)
+                newUser.name = name
+                
+                if let picture = userInfo["picture"] as? NSDictionary {
+                    if let data = picture["data"] as? NSDictionary {
+                        if let urlString = data["url"] as? String {
+                            let url = URL(string: urlString)
+                            let data = try? Data(contentsOf: url!)
+                            DispatchQueue.main.async {
+                                let image =  UIImage(data: data!)
+                                newUser.profilePicture.image = image
+                                self.FirebaseAPI.updateUserProfilePicture(user: newUser, image: image!) {
                                     self.FirebaseAPI.updateUser(user: newUser)
                                     Global.sharedGlobal.user = newUser
                                     self.loadHomeScreen()
                                 }
                             }
-                            
-                            break
                         }
+                    }
+                } else {
+                    self.FirebaseAPI.updateUser(user: newUser)
+                    Global.sharedGlobal.user = newUser
+                    self.loadHomeScreen()
+                }
+            }
         }
     }
     

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FacebookCore
-import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.showLoadingScreen(parentVC: self, message: "Logging in...")
         let loginManager = LoginManager()
-        loginManager.logIn(readPermissions: [.publicProfile, .email, .userFriends], viewController: self) { loginResult in
+        loginManager.logIn(permissions: [.publicProfile, .email, .userFriends], viewController: self) { loginResult in
             
             appDelegate.dismissLoadingScreen()
             switch loginResult {
@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
                 //                    }
                 //                }
                 
-                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
                 Auth.auth().signIn(with: credential) { (user, error) in
                     if let error = error {
                         print("Firebase Authentication failed: \(error)")
